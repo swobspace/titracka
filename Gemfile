@@ -11,9 +11,14 @@ gem 'coffee-rails'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'simple_form'
 gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
 gem 'rails-i18n', '~> 6.0.0'
+
+gem 'font-awesome-sass', '>=4.7', '< 6'
+
+
 group :development do
   gem 'capistrano', require: false
   gem 'capistrano-rails', require: false

@@ -1,7 +1,6 @@
 // --- fontawesome
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "v4-shims.min";
 
 // --- colors
 $mh-blue: #0063ad;
@@ -21,7 +20,6 @@ $table-accent-bg: #f8f9fa;
 @import "bootstrap/scss/bootstrap";
 @import "wobapphelpers/breadcrumbs";
 
-// -- FONTS
 // -- FONTS
 @font-face {
         font-family: 'Roboto';
@@ -77,10 +75,10 @@ div#footer{
   }
 }
 
-/ --- simple form bootstrap v4 error workaround
+// --- simple form bootstrap v4 error workaround
 $form-feedback-invalid-color: rgb(220,53,69);
 
-required {
+.required {
   span.select2-selection,
   textarea.required, input.required, select.required {
     background-color: #FFFAC2;
