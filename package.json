@@ -5,6 +5,7 @@
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "4.3.0",
     "bootstrap": "4",
     "datatables.net-bs4": "^1.10.22",
     "datatables.net-buttons-bs4": "^1.6.4",
@@ -14,5 +15,8 @@
     "select2": "4",
     "select2-theme-bootstrap4": "^1.0.0"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.0"
+  }
 }
