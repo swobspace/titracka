@@ -4,7 +4,7 @@ de:
   'yes': Ja
   'no': Nein
   # mostly used in navigation
-  daisy:
+  titracka:
     action: Aktion
     configuration: Konfiguration
     change_columns: Spalten ändern

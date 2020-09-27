@@ -1,4 +1,4 @@
-//= require jquery3
+//= require jquery
 //= require rails-ujs
 //= require jquery-ui/widgets/datepicker
 //= require jquery-ui/i18n/datepicker-de
@@ -13,10 +13,11 @@
 //= require datatables.net-buttons/js/buttons.print.js
 //= require datatables.net-buttons/js/buttons.colVis.js
 //= require select2/dist/js/select2
-//= require popper.js/dist/popper
+//= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap
 /// require jstree/dist/jstree
-/// require jquery.dirtyforms/jquery.dirtyforms
+//= require jquery.dirtyforms/jquery.dirtyforms
 /// require cocoon
-/// require js-routes
-/// require debounce
+//= require js-routes
+//= require debounce
+//= require titracka
