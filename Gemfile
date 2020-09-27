@@ -12,12 +12,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'simple_form'
-gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
 gem 'rails-i18n', '~> 6.0.0'
-
-gem 'font-awesome-sass', '>=4.7', '< 6'
-
 
 group :development do
   gem 'capistrano', require: false
@@ -55,6 +50,30 @@ group :production do
   gem 'mysql2'
 end
 
+gem 'simple_form'
+gem 'font-awesome-sass', '>=4.7', '< 6'
+gem 'devise-remote-user'
 gem 'paper_trail'
 gem 'cancancan'
+gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
 gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
+
+gem 'acts_as_list'
+gem 'ancestry'
+# gem 'cocoon'
+# gem 'asciidoctor'
+# gem 'carrierwave', '~> 2.0'
+# gem 'prawn', require: ["prawn/measurement_extensions", "prawn", "prawn/table"],
+#             submodules: true
+# gem 'prawn-table'
+# gem 'immutable-struct'
+gem 'js-routes'
+gem 'yaml_db'
+gem 'pagy'
+
+gem 'record_tag_helper', '~> 1.0'
+gem 'rails-controller-testing'
+# gem 'delayed_job_active_record'
+# gem 'daemons'
+gem 'exception_notification'
+
