@@ -1,4 +1,54 @@
 de:
+  'true': Ja
+  'false': Nein
+  'yes': Ja
+  'no': Nein
+  # mostly used in navigation
+  daisy:
+    action: Aktion
+    configuration: Konfiguration
+    change_columns: Spalten ändern
+    show_all: alles anzeigen
+    restore: zurücksetzen
+    search: Suche
+    search_documents: Suche Dokumente
+    sort_helper: Sortierhilfe
+    sort_alphanum: "%{model} alphabetisch sortieren"
+    really_sort_alphanum: "Wollen Sie wirklich %{model} alphabetisch sortieren? Dieser Schritt kann nicht rückgängig gemacht werden"
+    applied_filter: Angewandter Filter
+    basics: Basics
+    state:
+      'pending': in Bearbeitung
+      'done': freigegeben
+    tristate:
+      'yes': Ja
+      'no': Nein
+      notset: nicht bearbeitet
+    grades:
+      'low': niedrig
+      'medium': mittel
+      'high': hoch
+      'critical': sehr hoch
+      notset: nicht bearbeitet
+    csv_export: CSV-Export
+
+  actions:
+    destroy: Datensatz löschen
+    mandantory: Pflichtfelder
+    optional: Optional
+    search: Suche
+    cancel: abbrechen
+    reset_table: Tabelle zurücksetzen
+    upload: Upload
+    add: "%{model} hinzufügen"
+    remove: "%{model} löschen"
+    release: "%{model} freigeben"
+
+  errors:
+    org_unit_id_blank: Organisationseinheit muss angegeben werden
+    action_not_allowed: Keine Berechtigung für diese Aktion
+    in_use_not_destroyable: "%{model} wird noch benutzt und kann nicht gelöscht werden!"
+
   activerecord:
     models:
       user: User

@@ -1,0 +1,14 @@
+<% if can? :navigate, :configuration %>
+  <li class="nav-item dropdown <%= configuration_active_class %>">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarConfigurationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+      <%= t('titracka.configuration') %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
+      <% Titracka::CONFIGURATION_CONTROLLER.reject {|c| c == 'software'}.each do |ctrlr| %>
+        <%=link_to t('controller.' + ctrlr), main_app.send("#{ctrlr}_path"), 
+                     class: 'dropdown-item' %>
+      <% end %>
+    </div>
+  </li>
+<% end %>
