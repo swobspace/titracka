@@ -1,24 +1,5 @@
-// --- fontawesome
-@import "font-awesome-sprockets";
-@import "font-awesome";
-
-// --- colors
-$mh-blue: #0063ad;
-$colors: (
-  "blue": $mh-blue
-);
-$theme-colors: (
-  "primary": $mh-blue,
-  "custom": $mh-blue
-);
-$table-accent-bg: #f8f9fa;
-
-@import "custom-colors";
-
 // --- bootstrap
-// $icon-font-path: "bootstrap/assets/fonts/bootstrap/";
 @import "bootstrap/scss/bootstrap";
-@import "wobapphelpers/breadcrumbs";
 
 // -- FONTS
 @font-face {
