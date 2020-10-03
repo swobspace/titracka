@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/swobspace/wobapphelpers
-  revision: 0b650d2b05978ba3a5ef753caa33edb4fdcd811f
+  revision: 55687867f179b295b2d0f1d979f5ee6fff29f997
   branch: master
   specs:
-    wobapphelpers (4.1.1)
+    wobapphelpers (4.1.2)
       coffee-rails
       font-awesome-sass (>= 4.7, <= 6)
       jquery-rails
@@ -14,10 +14,10 @@ GIT
 
 GIT
   remote: https://github.com/swobspace/wobauth.git
-  revision: 1c034aa461242ef7d1cfc67e8371c16e9c0af67c
-  branch: master
+  revision: 6c37628f14698c021cc70e7847b2c8d987dfcc69
+  branch: develop
   specs:
-    wobauth (5.1.0)
+    wobauth (5.1.1)
       cancancan
       coffee-rails
       devise
@@ -95,7 +95,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    ancestry (3.1.0)
+    ancestry (3.2.1)
       activerecord (>= 4.2.0)
     apparition (0.6.0)
       capybara (~> 3.13, < 4)
@@ -307,7 +307,7 @@ GEM
       ffi (~> 1.0)
     record_tag_helper (1.0.1)
       actionview (>= 5)
-    regexp_parser (1.8.0)
+    regexp_parser (1.8.1)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)
@@ -317,7 +317,7 @@ GEM
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
       rspec-mocks (~> 3.9.0)
-    rspec-core (3.9.2)
+    rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -348,7 +348,7 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (4.4.1)
       activesupport (>= 4.2.0)
-    simple_form (5.0.2)
+    simple_form (5.0.3)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
     sprockets (4.0.2)

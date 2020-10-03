@@ -56,7 +56,7 @@ gem 'devise-remote-user'
 gem 'paper_trail'
 gem 'cancancan'
 gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
-gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
+gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'develop'
 
 gem 'acts_as_list'
 gem 'ancestry'
