@@ -4,14 +4,24 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
+require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-// require('bootstrap')
-// require('datatables.net')
-// require('datatables.net-bs4')
-// require('datatables.net-buttons')
-// require('datatables.net-buttons-bs4')
+import "bootstrap";
+import '@fortawesome/fontawesome-free/js/all'
+import "@fortawesome/fontawesome-free/css/all.css"
+import "../stylesheets/application";
+
+import JSZip from 'jszip'
+require('pdfmake')
+require('datatables.net-bs4')
+require('datatables.net-buttons-bs4')
+require('datatables.net-buttons/js/buttons.colVis.js')
+require('datatables.net-buttons/js/buttons.html5.js')
+require('datatables.net-buttons/js/buttons.print.js')
+
+window.JSZip = JSZip;
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
