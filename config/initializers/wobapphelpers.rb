@@ -15,4 +15,5 @@ Wobapphelpers.setup do |config|
   #
   # default:
   # config.cancan = :none
+  config.cancan = :cancan1
 end
