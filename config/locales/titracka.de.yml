@@ -51,15 +51,50 @@ de:
 
   activerecord:
     models:
-      user: User
+      list: Liste
+      org_unit: Organisationseinheit
+      state: Status
+      tag: Tag
+      task: Aufgabe
+      time_accounting: Aktivität
+      user: Benutzer
 
   attributes:
+    date: Datum
+    deadline: Zieltermin
     description: Beschreibung
     displayname: Anzeigename
+    duration: Dauer
     givenname: Vorname
+    list: Liste
+    list_id: Liste
     name: Name
+    org_unit: Organisationseinheit
+    org_unit_id: Organisationseinheit
+    priority: Priorität
+    private: privat
+    responsible: Verantwortlich
+    responsible_id: Verantwortlich
     sn: Nachname
+    start: Beginn
+    state: Status
+    state_id: Status
+    subject: Subject
+    tag: Tag
+    tag_id: Tag
+    task: Aufgabe
+    task_id: Aufgabe
+    time_accounting: Aktivität
+    time_accounting_id: Aktivität
     username: Username
+    user: Benutzer
+    user_id: Benutzer
 
   controller:
+    lists: Listen
+    org_units: Organisationseinheiten
+    states: Status
+    tags: Tags
+    tasks: Aufgaben
+    time_accountings: Aktivitäten
     users: Benutzer
