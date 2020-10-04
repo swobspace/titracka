@@ -17,13 +17,13 @@ bin/rails g scaffold Task \
   org_unit:belongs_to \
   state:belongs_to \
   list:belongs_to \
-  
-#   --no-stylesheets --no-javascripts --no-helper --no-jbuilder
+  private:boolean \
+  --no-stylesheets --no-javascripts --no-helper
 ----
 
 ## State
 
-state = ( 'pre' | 'open' | 'done' | 'archived' )
+state = ( 'permanent' | 'pre' | 'open' | 'done' | 'archived' )
 
 ----
 bin/rails g scaffold State \
@@ -46,6 +46,26 @@ bin/rails g scaffold OrgUnit \
 ----
 bin/rails g scaffold List \
   org_unit:belong_to \
+  name:string:index \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+## TimeAccounting
+
+----
+bin/rails g scaffold TimeAccounting \
+  task:belongs_to \
+  user:belongs_to \
+  name:string:index \
+  date:date:index \
+  duration:integer \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+## Tag
+
+----
+bin/rails g scaffold Tag \
   name:string:index \
   --no-stylesheets --no-javascripts --no-helper
 ----
