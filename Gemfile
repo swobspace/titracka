@@ -36,6 +36,7 @@ group :test, :development do
   gem 'guard-rspec', require: false
   gem 'byebug'
   gem 'railroady'
+  gem 'json_spec', require: false
 end
 
 group :test do
