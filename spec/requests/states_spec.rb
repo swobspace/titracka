@@ -16,12 +16,16 @@ RSpec.describe "/states", type: :request do
   # State. As you add validations to State, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryBot.attributes_for(:state)
   }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) {{
+    name: nil, state: 'doesnotexist'
+  }}
+
+  before(:each) do
+    login_admin
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
