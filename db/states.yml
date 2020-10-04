@@ -1,0 +1,11 @@
+states:
+  - name: Themenspeicher
+    state: pre
+  - name: offen
+    state: open
+  - name: in Bearbeitung
+    state: open
+  - name: erledigt
+    state: done
+  - name: archiviert
+    state: archive
