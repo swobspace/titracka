@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">
+    <h4><%= t('activerecord.models.state') %></h4>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover autowidth">
+    
+      <tr>
+        <th><%= t('attributes.name')%>:</th>
+        <td><%= @state.name %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.state')%>:</th>
+        <td><%= @state.state %></td>
+      </tr>
+        </table>
+
+    <div role="toolbar">
+      <%= back_link %>
+      <%= edit_link(@state) %>
+      <%= delete_link(@state) %>
+      <%= new_link State %>
+    </div>
+  </div>
+</div>

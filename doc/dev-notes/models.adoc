@@ -1,0 +1,52 @@
+# Models for Titracka
+
+## Task
+
+using :description as rich text field:
+
+----
+bin/rails action_text:install
+bin/rake db:migrate
+----
+
+----
+bin/rails g scaffold Task \
+  subject:string start:date:index deadline:date:index \
+  priority:string:index \
+  responsible:belongs_to \
+  org_unit:belongs_to \
+  state:belongs_to \
+  list:belongs_to \
+  
+#   --no-stylesheets --no-javascripts --no-helper --no-jbuilder
+----
+
+## State
+
+state = ( 'pre' | 'open' | 'done' | 'archived' )
+
+----
+bin/rails g scaffold State \
+  'name:string:index{unique: true}' \
+  state:string:index \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+## OrgUnit
+
+----
+bin/rails g scaffold OrgUnit \
+  'name:string:index{unique: true}' \
+  ancestry:string:index \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+## List
+
+----
+bin/rails g scaffold List \
+  org_unit:belong_to \
+  name:string:index \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
