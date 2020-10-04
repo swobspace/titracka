@@ -56,7 +56,7 @@ gem 'font-awesome-sass', '>=4.7', '< 6'
 gem 'devise-remote-user'
 gem 'paper_trail'
 gem 'cancancan'
-gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
+gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'develop'
 gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'develop'
 
 gem 'acts_as_list'

@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/swobspace/wobapphelpers
-  revision: 55687867f179b295b2d0f1d979f5ee6fff29f997
-  branch: master
+  revision: 8afa0a4070a0a63e3cf47d2f183b0ecb81681199
+  branch: develop
   specs:
     wobapphelpers (4.1.2)
       coffee-rails
