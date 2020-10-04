@@ -100,6 +100,7 @@ GEM
     apparition (0.6.0)
       capybara (~> 3.13, < 4)
       websocket-driver (>= 0.6.5)
+    asciidoctor (2.0.10)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.4.8)
@@ -402,6 +403,7 @@ DEPENDENCIES
   acts_as_list
   ancestry
   apparition
+  asciidoctor
   bootsnap (>= 1.4.2)
   byebug
   cancancan

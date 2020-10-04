@@ -62,7 +62,7 @@ gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'develop
 gem 'acts_as_list'
 gem 'ancestry'
 # gem 'cocoon'
-# gem 'asciidoctor'
+gem 'asciidoctor'
 # gem 'carrierwave', '~> 2.0'
 # gem 'prawn', require: ["prawn/measurement_extensions", "prawn", "prawn/table"],
 #             submodules: true
