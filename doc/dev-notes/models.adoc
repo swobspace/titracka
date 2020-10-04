@@ -27,7 +27,7 @@ state = ( 'pre' | 'open' | 'done' | 'archived' )
 
 ----
 bin/rails g scaffold State \
-  'name:string:index{unique: true}' \
+  name:string:index \
   state:string:index \
   --no-stylesheets --no-javascripts --no-helper
 ----
@@ -36,7 +36,7 @@ bin/rails g scaffold State \
 
 ----
 bin/rails g scaffold OrgUnit \
-  'name:string:index{unique: true}' \
+  name:string:index \
   ancestry:string:index \
   --no-stylesheets --no-javascripts --no-helper
 ----

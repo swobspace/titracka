@@ -6,6 +6,7 @@ class CreateStates < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :states, :state, unique: true
+    add_index :states, :name
+    add_index :states, :state
   end
 end

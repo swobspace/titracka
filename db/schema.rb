@@ -48,7 +48,8 @@ ActiveRecord::Schema.define(version: 2020_10_04_095932) do
     t.string "state", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["state"], name: "index_states_on_state", unique: true
+    t.index ["name"], name: "index_states_on_name"
+    t.index ["state"], name: "index_states_on_state"
   end
 
   create_table "versions", force: :cascade do |t|
