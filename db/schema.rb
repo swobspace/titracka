@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_095932) do
+ActiveRecord::Schema.define(version: 2020_10_09_154435) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +50,29 @@ ActiveRecord::Schema.define(version: 2020_10_04_095932) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_states_on_name"
     t.index ["state"], name: "index_states_on_state"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "subject"
+    t.date "start"
+    t.date "deadline"
+    t.date "resubmission"
+    t.string "priority"
+    t.integer "responsible_id"
+    t.integer "org_unit_id"
+    t.integer "state_id", null: false
+    t.integer "list_id"
+    t.boolean "private"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["deadline"], name: "index_tasks_on_deadline"
+    t.index ["list_id"], name: "index_tasks_on_list_id"
+    t.index ["org_unit_id"], name: "index_tasks_on_org_unit_id"
+    t.index ["priority"], name: "index_tasks_on_priority"
+    t.index ["responsible_id"], name: "index_tasks_on_responsible_id"
+    t.index ["resubmission"], name: "index_tasks_on_resubmission"
+    t.index ["start"], name: "index_tasks_on_start"
+    t.index ["state_id"], name: "index_tasks_on_state_id"
   end
 
   create_table "versions", force: :cascade do |t|
@@ -130,4 +153,8 @@ ActiveRecord::Schema.define(version: 2020_10_04_095932) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "tasks", "lists"
+  add_foreign_key "tasks", "org_units"
+  add_foreign_key "tasks", "responsibles"
+  add_foreign_key "tasks", "states"
 end
