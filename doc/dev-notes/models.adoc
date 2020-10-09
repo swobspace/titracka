@@ -48,7 +48,7 @@ bin/rails g scaffold OrgUnit \
 
 ----
 bin/rails g scaffold List \
-  org_unit:belong_to \
+  org_unit:belongs_to \
   name:string:index \
   --no-stylesheets --no-javascripts --no-helper
 ----
