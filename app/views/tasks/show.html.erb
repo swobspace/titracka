@@ -1,0 +1,66 @@
+<div class="card">
+  <div class="card-header">
+    <h4><%= t('activerecord.models.task') %></h4>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover autowidth">
+    
+      <tr>
+        <th><%= t('attributes.subject')%>:</th>
+        <td><%= @task.subject %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.start')%>:</th>
+        <td><%= @task.start %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.deadline')%>:</th>
+        <td><%= @task.deadline %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.resubmission')%>:</th>
+        <td><%= @task.resubmission %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.priority')%>:</th>
+        <td><%= @task.priority %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.responsible')%>:</th>
+        <td><%= @task.responsible %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.org_unit')%>:</th>
+        <td><%= @task.org_unit %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.state')%>:</th>
+        <td><%= @task.state %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.list')%>:</th>
+        <td><%= @task.list %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.private')%>:</th>
+        <td><%= @task.private %></td>
+      </tr>
+        </table>
+
+    <div role="toolbar">
+      <%= back_link %>
+      <%= edit_link(@task) %>
+      <%= delete_link(@task) %>
+      <%= new_link Task %>
+    </div>
+  </div>
+</div>

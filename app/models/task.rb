@@ -1,6 +1,9 @@
 class Task < ApplicationRecord
   # -- associations
+  belongs_to :responsible
+  belongs_to :org_unit
   belongs_to :state
+  belongs_to :list
 
   # -- configuration
   # -- validations and callbacks
@@ -9,4 +12,5 @@ class Task < ApplicationRecord
   def to_s
     "#{subject}"
   end
+
 end

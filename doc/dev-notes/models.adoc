@@ -11,7 +11,10 @@ bin/rake db:migrate
 
 ----
 bin/rails g scaffold Task \
-  subject:string start:date:index deadline:date:index \
+  subject:string \
+  start:date:index \
+  deadline:date:index \
+  resubmission:date:index \
   priority:string:index \
   responsible:belongs_to \
   org_unit:belongs_to \
@@ -23,7 +26,7 @@ bin/rails g scaffold Task \
 
 ## State
 
-state = ( 'permanent' | 'pre' | 'open' | 'done' | 'archived' )
+state = ( 'pre' | 'open' | 'done' | 'archive' )
 
 ----
 bin/rails g scaffold State \

@@ -1,0 +1,34 @@
+<div class="container">
+  <%= simple_form_for(@task,
+    html: { class: 'form-horizontal card' }) do |f| %>
+
+    <div class="card-header">
+      <%= form_legend %>
+    </div>
+    <div class="card-body">
+      <%= f.input :subject
+	 %>
+      <%= f.input :start
+	 %>
+      <%= f.input :deadline
+	 %>
+      <%= f.input :resubmission
+	 %>
+      <%= f.input :priority
+	 %>
+      <%= f.association :responsible
+	 %>
+      <%= f.association :org_unit
+	 %>
+      <%= f.association :state
+	 %>
+      <%= f.association :list
+	 %>
+      <%= f.input :private
+	 %>
+
+      <%= f.button :submit, class: 'btn btn-primary' %>
+      <%= cancel_button %>
+    </div>
+  <% end %>
+</div>
