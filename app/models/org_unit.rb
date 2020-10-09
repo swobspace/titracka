@@ -1,0 +1,2 @@
+class OrgUnit < ApplicationRecord
+end
