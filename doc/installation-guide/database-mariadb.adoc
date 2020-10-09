@@ -1,0 +1,41 @@
+=== Initialize Database (MariaDB)
+
+.Set a root password
+[source,mysql]
+----
+mysql -u root mysql
+update user set password=PASSWORD('******') where User='root';
+----
+
+.Create databases
+[source,mysql]
+----
+mysql -u root mysql
+CREATE DATABASE IF NOT EXISTS titracka_development
+  CHARACTER SET = 'utf8'
+  COLLATE       = 'utf8_general_ci';
+CREATE DATABASE IF NOT EXISTS titracka_test
+  CHARACTER SET = 'utf8'
+  COLLATE       = 'utf8_general_ci';
+CREATE DATABASE IF NOT EXISTS titracka_production
+  CHARACTER SET = 'utf8'
+  COLLATE       = 'utf8_general_ci'; <!--1-->
+
+select * from information_schema.schemata;
+----
+<1> Für eine Produktivumgebung wird nur `titracka_production` benötigt
+
+.Create users
+[source,mysql]
+----
+mysql -u root mysql
+CREATE USER IF NOT EXISTS titracka_dev@localhost  IDENTIFIED BY '*****';
+CREATE USER IF NOT EXISTS titracka_test@localhost IDENTIFIED BY '*****';
+CREATE USER IF NOT EXISTS titracka_prod@localhost IDENTIFIED BY '*****';<1>
+
+GRANT ALL on titracka_development.* to 'titracka_dev'@'localhost';
+GRANT ALL on titracka_test.*        to 'titracka_test'@'localhost';
+GRANT ALL on titracka_production.*  to 'titracka_prod'@'localhost';<1>
+FLUSH PRIVILEGES;
+----
+<1> Für eine Produktivumgebung wird nur `titracka_prod` benötigt

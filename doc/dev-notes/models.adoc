@@ -59,7 +59,7 @@ bin/rails g scaffold List \
 bin/rails g scaffold TimeAccounting \
   task:belongs_to \
   user:belongs_to \
-  name:string:index \
+  subject:string \
   date:date:index \
   duration:integer \
   --no-stylesheets --no-javascripts --no-helper

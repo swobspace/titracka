@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :time_accountings
   resources :lists
   resources :org_units
   resources :tasks
