@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_154435) do
+ActiveRecord::Schema.define(version: 2020_10_09_155635) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 2020_10_09_154435) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "org_units", force: :cascade do |t|
+    t.string "name", default: ""
+    t.string "ancestry"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ancestry"], name: "index_org_units_on_ancestry"
+    t.index ["name"], name: "index_org_units_on_name"
   end
 
   create_table "states", force: :cascade do |t|
