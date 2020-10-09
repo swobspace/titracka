@@ -10,29 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_155635) do
+ActiveRecord::Schema.define(version: 2020_10_09_160332) do
 
-  create_table "action_text_rich_texts", force: :cascade do |t|
+  create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.text "body"
+    t.text "body", size: :long
     t.string "record_type", null: false
-    t.integer "record_id", null: false
+    t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", force: :cascade do |t|
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -43,7 +43,16 @@ ActiveRecord::Schema.define(version: 2020_10_09_155635) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "org_units", force: :cascade do |t|
+  create_table "lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "org_unit_id"
+    t.string "name", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_lists_on_name"
+    t.index ["org_unit_id"], name: "index_lists_on_org_unit_id"
+  end
+
+  create_table "org_units", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", default: ""
     t.string "ancestry"
     t.datetime "created_at", precision: 6, null: false
@@ -52,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_10_09_155635) do
     t.index ["name"], name: "index_org_units_on_name"
   end
 
-  create_table "states", force: :cascade do |t|
+  create_table "states", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "state", default: ""
     t.datetime "created_at", precision: 6, null: false
@@ -61,16 +70,16 @@ ActiveRecord::Schema.define(version: 2020_10_09_155635) do
     t.index ["state"], name: "index_states_on_state"
   end
 
-  create_table "tasks", force: :cascade do |t|
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "subject"
     t.date "start"
     t.date "deadline"
     t.date "resubmission"
     t.string "priority"
-    t.integer "responsible_id"
-    t.integer "org_unit_id"
-    t.integer "state_id", null: false
-    t.integer "list_id"
+    t.bigint "responsible_id"
+    t.bigint "org_unit_id"
+    t.bigint "state_id", null: false
+    t.bigint "list_id"
     t.boolean "private"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -84,21 +93,21 @@ ActiveRecord::Schema.define(version: 2020_10_09_155635) do
     t.index ["state_id"], name: "index_tasks_on_state_id"
   end
 
-  create_table "versions", force: :cascade do |t|
+  create_table "versions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "item_type", null: false
     t.bigint "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object", limit: 1073741823
+    t.text "object", size: :long
     t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  create_table "wobauth_authorities", force: :cascade do |t|
-    t.integer "authorizable_id"
+  create_table "wobauth_authorities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "authorizable_id"
     t.string "authorizable_type"
-    t.integer "role_id"
-    t.integer "authorized_for_id"
+    t.bigint "role_id"
+    t.bigint "authorized_for_id"
     t.string "authorized_for_type"
     t.date "valid_from"
     t.date "valid_until"
@@ -109,16 +118,16 @@ ActiveRecord::Schema.define(version: 2020_10_09_155635) do
     t.index ["role_id"], name: "index_wobauth_authorities_on_role_id"
   end
 
-  create_table "wobauth_groups", force: :cascade do |t|
+  create_table "wobauth_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "wobauth_memberships", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
+  create_table "wobauth_memberships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
     t.boolean "auto", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -126,13 +135,13 @@ ActiveRecord::Schema.define(version: 2020_10_09_155635) do
     t.index ["user_id"], name: "index_wobauth_memberships_on_user_id"
   end
 
-  create_table "wobauth_roles", force: :cascade do |t|
+  create_table "wobauth_roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "wobauth_users", force: :cascade do |t|
+  create_table "wobauth_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.text "gruppen"
     t.string "sn"
@@ -162,8 +171,4 @@ ActiveRecord::Schema.define(version: 2020_10_09_155635) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "tasks", "lists"
-  add_foreign_key "tasks", "org_units"
-  add_foreign_key "tasks", "responsibles"
-  add_foreign_key "tasks", "states"
 end

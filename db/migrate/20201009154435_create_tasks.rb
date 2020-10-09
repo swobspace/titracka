@@ -6,10 +6,10 @@ class CreateTasks < ActiveRecord::Migration[6.0]
       t.date :deadline
       t.date :resubmission
       t.string :priority
-      t.belongs_to :responsible, true: false, foreign_key: true
-      t.belongs_to :org_unit, null: true, foreign_key: true
-      t.belongs_to :state, null: false, foreign_key: true
-      t.belongs_to :list, null: true, foreign_key: true
+      t.belongs_to :responsible
+      t.belongs_to :org_unit
+      t.belongs_to :state, null: false
+      t.belongs_to :list
       t.boolean :private
 
       t.timestamps

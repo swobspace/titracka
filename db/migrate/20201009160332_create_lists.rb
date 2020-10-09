@@ -1,7 +1,7 @@
 class CreateLists < ActiveRecord::Migration[6.0]
   def change
     create_table :lists do |t|
-      t.belongs_to :org_unit, null: true, foreign_key: true
+      t.belongs_to :org_unit
       t.string :name, default: ""
 
       t.timestamps
