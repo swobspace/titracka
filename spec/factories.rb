@@ -23,4 +23,19 @@ FactoryBot.define do
       state { 'archive'}
     end
   end
+
+  factory :task do
+    subject { "Some Task" }
+    association :state, :open
+    association :user
+    priority {'normal'}
+  end
+
+  factory :time_accounting do
+    description { "Some activity" }
+    date { Date.today.to_s }
+    duration { 30 }
+    association :user
+    association :task
+  end
 end
