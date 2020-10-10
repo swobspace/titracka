@@ -17,11 +17,14 @@ bin/rails g scaffold Task \
   resubmission:date:index \
   priority:string:index \
   responsible:belongs_to \
+  user:belongs_to \
   org_unit:belongs_to \
   state:belongs_to \
   list:belongs_to \
   private:boolean \
   --no-stylesheets --no-javascripts --no-helper
+
+bin/rails g migration AddUserToTask user:belongs_to
 ----
 
 ## State
@@ -50,7 +53,10 @@ bin/rails g scaffold OrgUnit \
 bin/rails g scaffold List \
   org_unit:belongs_to \
   name:string:index \
+  user:belongs_to \
   --no-stylesheets --no-javascripts --no-helper
+
+bin/rails g migration AddUserToList user:belongs_to
 ----
 
 ## TimeAccounting

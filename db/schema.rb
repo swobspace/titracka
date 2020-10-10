@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_160332) do
+ActiveRecord::Schema.define(version: 2020_10_10_094141) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -48,8 +48,10 @@ ActiveRecord::Schema.define(version: 2020_10_09_160332) do
     t.string "name", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
     t.index ["name"], name: "index_lists_on_name"
     t.index ["org_unit_id"], name: "index_lists_on_org_unit_id"
+    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "org_units", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -83,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_10_09_160332) do
     t.boolean "private"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
     t.index ["deadline"], name: "index_tasks_on_deadline"
     t.index ["list_id"], name: "index_tasks_on_list_id"
     t.index ["org_unit_id"], name: "index_tasks_on_org_unit_id"
@@ -91,6 +94,20 @@ ActiveRecord::Schema.define(version: 2020_10_09_160332) do
     t.index ["resubmission"], name: "index_tasks_on_resubmission"
     t.index ["start"], name: "index_tasks_on_start"
     t.index ["state_id"], name: "index_tasks_on_state_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
+  create_table "time_accountings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "task_id"
+    t.bigint "user_id"
+    t.string "description", default: ""
+    t.date "date"
+    t.integer "duration"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["date"], name: "index_time_accountings_on_date"
+    t.index ["task_id"], name: "index_time_accountings_on_task_id"
+    t.index ["user_id"], name: "index_time_accountings_on_user_id"
   end
 
   create_table "versions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
