@@ -1,0 +1,21 @@
+<% if can? :navigate, :time_accountings %>
+  <li class="nav-item dropdown <%= active_class('time_accountings') %>">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarConfigurationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+      <%= t('controller.time_accountings') %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+            t('controller.time_accountings')),
+          main_app.time_accountings_path, class: "dropdown-item" %>
+      <% if can? :create, List %>
+        <%= link_to raw('<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                        t('titracka.new_time_accounting')),
+              main_app.new_time_accounting_path,
+              class: "dropdown-item" %>
+      <% end %>
+
+    </div>
+  </li>
+<% end %>
+

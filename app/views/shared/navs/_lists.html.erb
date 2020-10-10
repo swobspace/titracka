@@ -1,0 +1,21 @@
+<% if can? :navigate, :lists %>
+  <li class="nav-item dropdown <%= active_class('lists') %>">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarConfigurationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+      <%= t('controller.lists') %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+            t('controller.lists')),
+          main_app.lists_path, class: "dropdown-item" %>
+      <% if can? :create, List %>
+        <%= link_to raw('<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                        t('titracka.new_list')),
+              main_app.new_list_path,
+              class: "dropdown-item" %>
+      <% end %>
+
+    </div>
+  </li>
+<% end %>
+
