@@ -89,14 +89,15 @@ RSpec.describe "/states", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: 'blub', state: 'archive' }
       }
 
       it "updates the requested state" do
         state = State.create! valid_attributes
         patch state_url(state), params: { state: new_attributes }
         state.reload
-        skip("Add assertions for updated state")
+        expect(state.name).to eq("blub")
+        expect(state.state).to eq("archive")
       end
 
       it "redirects to the state" do

@@ -25,7 +25,7 @@ class TimeAccountingsController < ApplicationController
 
   # POST /time_accountings
   def create
-    @time_accounting = TimeAccounting.new(time_accounting_params)
+    @time_accounting = @current_user.time_accountings.new(time_accounting_params)
 
     @time_accounting.save
     respond_with(@time_accounting)

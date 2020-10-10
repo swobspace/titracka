@@ -38,6 +38,19 @@ FactoryBot.define do
     association :state, :open
     association :user
     priority {'normal'}
+
+    trait :pre do
+      association :state, :pre
+    end
+    trait :open do
+      association :state, :open
+    end
+    trait :done do
+      association :state, :done
+    end
+    trait :archive do
+      association :state, :archive
+    end
   end
 
   factory :time_accounting do
