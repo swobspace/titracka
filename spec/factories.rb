@@ -7,6 +7,15 @@ FactoryBot.define do
     "mail_#{n}@example.net"
   end
 
+  factory :list do
+    name { "Some Task" }
+    association :user
+  end
+
+  factory :org_unit do
+    name { "Workers Company" }
+  end
+
   factory :state do
     name { generate(:aname) }
     state { 'open' }
