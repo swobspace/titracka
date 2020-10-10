@@ -5,7 +5,7 @@ RSpec.describe Task, type: :model do
   it { is_expected.to belong_to(:user) }
   it { is_expected.to belong_to(:org_unit).optional }
   it { is_expected.to belong_to(:list).optional }
-  it { is_expected.to have_many(:time_accountings) }
+  it { is_expected.to have_many(:time_accountings).dependent(:restrict_with_error) }
   it { is_expected.to validate_presence_of(:subject) }
   it { is_expected.to validate_presence_of(:priority) }
   it { is_expected.to validate_presence_of(:user_id) }

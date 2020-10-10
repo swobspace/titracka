@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe State, type: :model do
-  it { is_expected.to have_many(:tasks) }
+  it { is_expected.to have_many(:tasks).dependent(:restrict_with_error) }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_inclusion_of(:state).in_array(State::STATES) }
 
