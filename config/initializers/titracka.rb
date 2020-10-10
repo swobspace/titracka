@@ -1,6 +1,6 @@
 module Titracka
   CONFIGURATION_CONTROLLER = [
-    "states",
+    "org_units", "states",
   ]
   CONFIGFILE = File.join(Rails.root, 'config', 'titracka.yml')
   if File.readable? CONFIGFILE
