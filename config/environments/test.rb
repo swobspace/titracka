@@ -45,4 +45,15 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+
+  # --- wob
+  config.action_view.raise_on_missing_translations = true
+  config.colorize_logging = false
+  # -- strong parameters
+  config.action_controller.action_on_unpermitted_parameters = :raise
+
+  config.after_initialize do
+    PaperTrail.enabled = false
+  end
+
 end
