@@ -6,10 +6,8 @@ class Ability
 
   # just for development
   def initialize(user)
-    if user or ( Rails.env != 'production' )
+    if user
       can :manage, :all
-    else
-      can :read, :all
     end
   end
 
