@@ -16,6 +16,7 @@
     "jquery.dirtyforms": "^2.0.0",
     "jszip": "^3.5.0",
     "pdfmake": "^0.1.68",
+    "pikaday": "^1.8.0",
     "popper.js": "^1.16.1",
     "rails-erb-loader": "^5.5.2",
     "select2": "4",
