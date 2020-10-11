@@ -7,10 +7,12 @@ SimpleForm.setup do |config|
     b.use :label, class: 'col-sm-3 form-control-label'
 
     b.wrapper :grid_wrapper, tag: 'div', class: 'col-sm-9' do |ba|
-      ba.wrapper tag: 'div', class: 'input-group mb-2' do |bai|
-        bai.use :input, class: 'form-control datepicker col-sm-3', error_class: 'is-invalid', valid_class: 'is-valid'
+      ba.wrapper tag: 'div', class: 'input-group mb-2', html: { data: { controller: 'datepicker' }} do |bai|
+        bai.use :input, class: 'form-control datepicker col-sm-3', error_class: 'is-invalid', valid_class: 'is-valid', data: { target: 'datepicker.dateinput'}
         bai.wrapper tag: 'div', class: 'input-group-append' do |baig|
-          baig.wrapper tag: 'i', class: 'input-group-text fas fa-calendar-alt fa-2x' do |baigi|
+          baig.wrapper tag: 'div', class: 'input-group-text' do |baigi|
+            baigi.wrapper tag: 'i', class: 'fas fa-calendar-alt' do |baigi|
+            end
           end
         end
       end
