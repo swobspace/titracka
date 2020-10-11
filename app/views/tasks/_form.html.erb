@@ -6,13 +6,15 @@
       <%= form_legend %>
     </div>
     <div class="card-body">
-      <%= f.input :subject
+      <%= f.input :subject, label: t('attributes.task')
 	 %>
-      <%= f.input :start
+      <%= f.input :description, as: :rich_text_area
 	 %>
-      <%= f.input :deadline
-	 %>
-      <%= f.input :resubmission
+      <%= f.input :start, as: :string, wrapper: :horizontal_date
+        %>
+       <%= f.input :deadline, as: :string, wrapper: :horizontal_date
+        %>
+      <%= f.input :resubmission, as: :string, wrapper: :horizontal_date
 	 %>
       <%= f.input :priority
 	 %>

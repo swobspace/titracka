@@ -81,7 +81,7 @@ RSpec.describe "/tasks", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        { subject: "new subject", priority: "high" }
+        { subject: "new subject", priority: "high" , description: "some text"}
       }
 
       it "updates the requested task" do
@@ -90,6 +90,7 @@ RSpec.describe "/tasks", type: :request do
         task.reload
         expect(task.subject).to eq("new subject")
         expect(task.priority).to eq("high")
+        expect(task.description).to eq("some text")
       end
 
       it "redirects to the task" do

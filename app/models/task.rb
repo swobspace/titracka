@@ -8,6 +8,7 @@ class Task < ApplicationRecord
   has_many :time_accountings, dependent: :restrict_with_error
 
   # -- configuration
+  has_rich_text :description
   # -- validations and callbacks
   validates :subject, :state_id, :user_id, :priority, presence: true
 

@@ -78,6 +78,7 @@ de:
     private: privat
     responsible: Verantwortlich
     responsible_id: Verantwortlich
+    resubmission: Wiedervorlage
     sn: Nachname
     start: Beginn
     state: Status

@@ -15,20 +15,22 @@
     <thead>
       <tr>
             <th><%= t('attributes.subject') %></th>
-            <th><%= t('attributes.start') %></th>
-            <th><%= t('attributes.deadline') %></th>
-            <th><%= t('attributes.resubmission') %></th>
-            <th><%= t('attributes.priority') %></th>
-            <th><%= t('attributes.responsible') %></th>
-            <th><%= t('attributes.org_unit') %></th>
+            <th><%= t('attributes.description') %></th>
             <th><%= t('attributes.state') %></th>
-            <th><%= t('attributes.list') %></th>
+            <th><%= t('attributes.responsible') %></th>
+            <th class="notvisible"><%= t('attributes.start') %></th>
+            <th><%= t('attributes.deadline') %></th>
+            <th class="notvisible"><%= t('attributes.resubmission') %></th>
+            <th><%= t('attributes.priority') %></th>
+            <th class="notvisible"><%= t('attributes.org_unit') %></th>
+            <th class="notvisible"><%= t('attributes.list') %></th>
             <th><%= t('attributes.private') %></th>
-            <th class="nosort"><%= t('daisy.action') %></th>
+            <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
     <tfoot>
       <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -46,13 +48,14 @@
       <% @tasks.each do |task| %>
         <%= content_tag_for(:tr, task) do %>
                 <td><%= task.subject %></td>
+                <td><%= task.description %></td>
+                <td><%= task.state %></td>
+                <td><%= task.responsible %></td>
                 <td><%= task.start %></td>
                 <td><%= task.deadline %></td>
                 <td><%= task.resubmission %></td>
                 <td><%= task.priority %></td>
-                <td><%= task.responsible %></td>
                 <td><%= task.org_unit %></td>
-                <td><%= task.state %></td>
                 <td><%= task.list %></td>
                 <td><%= task.private %></td>
                 <td class="text-nowrap">

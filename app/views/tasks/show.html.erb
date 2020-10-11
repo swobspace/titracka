@@ -3,22 +3,37 @@
     <h4><%= t('activerecord.models.task') %></h4>
   </div>
   <div class="card-body">
-    <table class="table table-bordered table-hover autowidth">
+    <table class="table table-sm table-hover table-borderless autowidth">
     
       <tr>
-        <th><%= t('attributes.subject')%>:</th>
+        <th class="w-25"><%= t('attributes.subject')%>:</th>
         <td><%= @task.subject %></td>
       </tr>
     
       <tr>
-        <th><%= t('attributes.start')%>:</th>
-        <td><%= @task.start %></td>
+        <th class="w-25"><%= t('attributes.description')%>:</th>
+        <td><%= @task.description %></td>
       </tr>
     
       <tr>
-        <th><%= t('attributes.deadline')%>:</th>
-        <td><%= @task.deadline %></td>
+        <th><%= t('attributes.state')%>:</th>
+        <td><%= @task.state %></td>
       </tr>
+    
+      <tr>
+        <th><%= t('attributes.responsible')%>:</th>
+        <td><%= @task.responsible %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.start')%> 
+            <i class="fas fa-long-arrow-alt-right"></i>
+            <%= t('attributes.deadline')%>:</th>
+        <td><%= @task.start %>
+            <i class="fas fa-long-arrow-alt-right"></i>
+            <%= @task.deadline %></td>
+      </tr>
+    
     
       <tr>
         <th><%= t('attributes.resubmission')%>:</th>
@@ -31,18 +46,8 @@
       </tr>
     
       <tr>
-        <th><%= t('attributes.responsible')%>:</th>
-        <td><%= @task.responsible %></td>
-      </tr>
-    
-      <tr>
         <th><%= t('attributes.org_unit')%>:</th>
         <td><%= @task.org_unit %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.state')%>:</th>
-        <td><%= @task.state %></td>
       </tr>
     
       <tr>
