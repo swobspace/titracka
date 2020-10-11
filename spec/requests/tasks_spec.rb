@@ -12,7 +12,7 @@ RSpec.describe "/tasks", type: :request do
   }
 
   let(:invalid_attributes) {
-    { subject: nil, state_id: nil, user_id: nil, priority: 'wrong' }
+    { subject: nil, state_id: nil, priority: 'wrong' }
   }
 
   before(:each) do
@@ -90,7 +90,7 @@ RSpec.describe "/tasks", type: :request do
         task.reload
         expect(task.subject).to eq("new subject")
         expect(task.priority).to eq("high")
-        expect(task.description).to eq("some text")
+        expect(task.description.to_s).to eq("<div class=\"trix-content\">\n  some text\n</div>\n")
       end
 
       it "redirects to the task" do

@@ -11,7 +11,7 @@ RSpec.describe "/time_accountings", type: :request do
   }
 
   let(:invalid_attributes) {
-    { date: nil, duration: nil, user_id: nil }
+    { date: nil, duration: nil }
   }
 
   before(:each) do

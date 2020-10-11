@@ -10,7 +10,7 @@ RSpec.describe "/lists", type: :request do
   }
 
   let(:invalid_attributes) {{
-    name: nil, user_id: nil
+    name: nil
   }}
 
   before(:each) do
