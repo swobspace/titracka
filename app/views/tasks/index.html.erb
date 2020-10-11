@@ -25,11 +25,13 @@
             <th class="notvisible"><%= t('attributes.org_unit') %></th>
             <th class="notvisible"><%= t('attributes.list') %></th>
             <th><%= t('attributes.private') %></th>
+            <th class="notvisible"><%= t('attributes.owner') %></th>
             <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
     <tfoot>
       <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -58,6 +60,7 @@
                 <td><%= task.org_unit %></td>
                 <td><%= task.list %></td>
                 <td><%= task.private %></td>
+                <td><%= task.user %></td>
                 <td class="text-nowrap">
             <%= show_link task %>
             <%= edit_link task %>

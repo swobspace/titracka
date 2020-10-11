@@ -6,12 +6,12 @@
     <table class="table table-sm table-hover table-borderless autowidth">
     
       <tr>
-        <th class="w-25"><%= t('attributes.subject')%>:</th>
-        <td><%= @task.subject %></td>
+        <th class="w25"><%= t('attributes.subject')%>:</th>
+        <td class="w-100"><%= @task.subject %></td>
       </tr>
     
       <tr>
-        <th class="w-25"><%= t('attributes.description')%>:</th>
+        <th class="w25"><%= t('attributes.description')%>:</th>
         <td><%= @task.description %></td>
       </tr>
     
@@ -58,6 +58,11 @@
       <tr>
         <th><%= t('attributes.private')%>:</th>
         <td><%= @task.private %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('attributes.owner')%>:</th>
+        <td><%= @task.user %></td>
       </tr>
         </table>
 

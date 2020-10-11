@@ -74,6 +74,7 @@ de:
     name: Name
     org_unit: Organisationseinheit
     org_unit_id: Organisationseinheit
+    owner: Besitzer
     priority: Priorität
     private: privat
     responsible: Verantwortlich
