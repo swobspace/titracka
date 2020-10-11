@@ -8,13 +8,11 @@
     <div class="card-body">
       <%= f.association :task
 	 %>
-      <%= f.association :user
-	 %>
       <%= f.input :description
 	 %>
-      <%= f.input :date
+      <%= f.input :date, as: :string, wrapper: :horizontal_date
 	 %>
-      <%= f.input :duration
+      <%= f.input :duration, as: :string, input_html: { class: 'col-sm-3' }
 	 %>
 
       <%= f.button :submit, class: 'btn btn-primary' %>

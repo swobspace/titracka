@@ -51,6 +51,6 @@ class TimeAccountingsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def time_accounting_params
-      params.require(:time_accounting).permit(:task_id, :user_id, :description, :date, :duration)
+      params.require(:time_accounting).permit(:task_id, :description, :date, :duration)
     end
 end

@@ -14,11 +14,11 @@
         } do %>
     <thead>
       <tr>
-            <th><%= t('attributes.task') %></th>
-            <th><%= t('attributes.user') %></th>
-            <th><%= t('attributes.description') %></th>
             <th><%= t('attributes.date') %></th>
             <th><%= t('attributes.duration') %></th>
+            <th><%= t('attributes.task') %></th>
+            <th><%= t('attributes.description') %></th>
+            <th class="notvisible"><%= t('attributes.user') %></th>
             <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
@@ -35,11 +35,11 @@
     <tbody>
       <% @time_accountings.each do |time_accounting| %>
         <%= content_tag_for(:tr, time_accounting) do %>
-                <td><%= time_accounting.task %></td>
-                <td><%= time_accounting.user %></td>
-                <td><%= time_accounting.description %></td>
                 <td><%= time_accounting.date %></td>
                 <td><%= time_accounting.duration %></td>
+                <td><%= time_accounting.task %></td>
+                <td><%= time_accounting.description %></td>
+                <td><%= time_accounting.user %></td>
                 <td class="text-nowrap">
             <%= show_link time_accounting %>
             <%= edit_link time_accounting %>

@@ -3,22 +3,7 @@
     <h4><%= t('activerecord.models.time_accounting') %></h4>
   </div>
   <div class="card-body">
-    <table class="table table-bordered table-hover autowidth">
-    
-      <tr>
-        <th><%= t('attributes.task')%>:</th>
-        <td><%= @time_accounting.task %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.user')%>:</th>
-        <td><%= @time_accounting.user %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.description')%>:</th>
-        <td><%= @time_accounting.description %></td>
-      </tr>
+    <table class="table table-borderless table-sm table-hover autowidth">
     
       <tr>
         <th><%= t('attributes.date')%>:</th>
@@ -29,7 +14,23 @@
         <th><%= t('attributes.duration')%>:</th>
         <td><%= @time_accounting.duration %></td>
       </tr>
-        </table>
+
+      <tr>
+        <th><%= t('attributes.task')%>:</th>
+        <td class="w-100"><%= @time_accounting.task %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.description')%>:</th>
+        <td><%= @time_accounting.description %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.user')%>:</th>
+        <td><%= @time_accounting.user %></td>
+      </tr>
+    
+    </table>
 
     <div role="toolbar">
       <%= back_link %>
