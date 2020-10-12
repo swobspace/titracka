@@ -78,13 +78,27 @@ namespace :check do
       end
     end
   end
+end
 
+namespace :deploy do
   desc "printenv"
   task :printenv do
     on roles(:all) do |host|
       execute "printenv"
     end
   end
+
+  desc "reload the database with seed data"
+  task :seed do
+    on primary :db do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "db:seed"
+        end
+      end
+    end
+  end
+
 end
 
 # before 'deploy:compile_assets', 'bower:install'
