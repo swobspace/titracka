@@ -1,0 +1,13 @@
+/config/database.yml    export-ignore
+/config/titracka.yml       export-ignore
+/config/secrets.yml     export-ignore
+/config/_custom-colors.scss     export-ignore
+/public/images          export-ignore
+/shared/images          export-ignore
+/shared/images/placeholder.png  !export-ignore
+/utils/*                export-ignore
+/shared/config/*.yml    export-ignore
+/config/deploy.rb       export-ignore
+/config/deploy/*        export-ignore
+/db/demo/*              export-ignore
+
