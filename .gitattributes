@@ -1,6 +1,8 @@
 /config/database.yml    export-ignore
 /config/titracka.yml       export-ignore
 /config/secrets.yml     export-ignore
+/config/credentials.yml.enc     export-ignore
+/config/master.key     	export-ignore
 /config/_custom-colors.scss     export-ignore
 /public/images          export-ignore
 /shared/images          export-ignore

@@ -67,6 +67,7 @@ yarn-debug.log*
 !/storage/.keep
 
 # Ignore master key for decrypting credentials and more.
+/config/credentials.yml.enc
 /config/master.key
 /vendor/bundle
 /db/data*yml
