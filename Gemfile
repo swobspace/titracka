@@ -59,6 +59,7 @@ gem 'paper_trail'
 gem 'cancancan'
 gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'develop'
 gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'develop'
+gem 'wobaduser', '~> 1.0'
 
 gem 'acts_as_list'
 gem 'ancestry'

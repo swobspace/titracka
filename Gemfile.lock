@@ -455,6 +455,7 @@ DEPENDENCIES
   turbolinks (~> 5)
   web-console (>= 3.3.0)
   webpacker (~> 4.0)
+  wobaduser (~> 1.0)
   wobapphelpers!
   wobauth!
   yaml_db
