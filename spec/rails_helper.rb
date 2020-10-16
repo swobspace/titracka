@@ -59,10 +59,12 @@ RSpec.configure do |config|
 
   # -- devise stuff
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :feature
   config.extend ControllerMacros, type: :controller
   config.extend ControllerMacros, type: :view
-  config.include RequestMacros, type: :feature
   config.include RequestMacros, type: :request
+  config.include RequestMacros, type: :feature
 
   config.before(:suite) do
     DatabaseRewinder.clean_all

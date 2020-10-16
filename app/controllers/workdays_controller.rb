@@ -4,7 +4,7 @@ class WorkdaysController < ApplicationController
 
   # GET /workdays
   def index
-    @workdays = Workday.all
+    @workdays = @current_user.workdays
     respond_with(@workdays)
   end
 
@@ -15,7 +15,7 @@ class WorkdaysController < ApplicationController
 
   # GET /workdays/new
   def new
-    @workday = Workday.new
+    @workday = @current_user.workdays.new(date: Date.today.to_s)
     respond_with(@workday)
   end
 
@@ -25,7 +25,7 @@ class WorkdaysController < ApplicationController
 
   # POST /workdays
   def create
-    @workday = Workday.new(workday_params)
+    @workday = @current_user.workdays.new(workday_params)
 
     @workday.save
     respond_with(@workday)
@@ -46,11 +46,11 @@ class WorkdaysController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_workday
-      @workday = Workday.find(params[:id])
+      @workday = @current_user.workdays.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def workday_params
-      params.require(:workday).permit(:user_id, :date, :work_start, :pause)
+      params.require(:workday).permit(:date, :work_start, :pause)
     end
 end

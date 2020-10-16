@@ -20,8 +20,9 @@ module RequestMacros
   # for use in request specs
   def login_admin
     @admin      = FactoryBot.create(:user)
-    @admin_role = FactoryBot.create(:role, name: 'Admin')
+    @admin_role = Wobauth::Role.find_or_create_by(name: 'Admin')
     FactoryBot.create(:authority, :authorizable => @admin, :role => @admin_role)
     login_as @admin
+    @admin
   end
 end

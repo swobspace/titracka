@@ -4,6 +4,7 @@ class Wobauth::User < ActiveRecord::Base
   has_many :lists, dependent: :restrict_with_error
   has_many :time_accountings, dependent: :restrict_with_error
   has_many :responsibilities, dependent: :restrict_with_error
+  has_many :workdays, dependent: :restrict_with_error
   # dependencies within wobauth models
   include UserConcerns
 

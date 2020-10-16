@@ -1,9 +1,12 @@
  require 'rails_helper'
 
 RSpec.describe "/workdays", type: :request do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { @myuser }
   let(:valid_attributes) {
     FactoryBot.attributes_for(:workday, user_id: user.id) 
+  }
+  let(:post_attributes) {
+    FactoryBot.attributes_for(:workday) 
   }
 
   let(:invalid_attributes) {
@@ -11,7 +14,7 @@ RSpec.describe "/workdays", type: :request do
   }
 
   before(:each) do
-    login_admin
+    @myuser = login_admin
   end
 
   describe "GET /index" do
@@ -49,12 +52,12 @@ RSpec.describe "/workdays", type: :request do
     context "with valid parameters" do
       it "creates a new Workday" do
         expect {
-          post workdays_url, params: { workday: valid_attributes }
+          post workdays_url, params: { workday: post_attributes }
         }.to change(Workday, :count).by(1)
       end
 
       it "redirects to the created workday" do
-        post workdays_url, params: { workday: valid_attributes }
+        post workdays_url, params: { workday: post_attributes }
         expect(response).to redirect_to(workday_url(Workday.last))
       end
     end
