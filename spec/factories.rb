@@ -60,4 +60,9 @@ FactoryBot.define do
     association :user
     association :task
   end
+
+  factory :workday do
+    date { Date.today.to_s }
+    association :user
+  end
 end
