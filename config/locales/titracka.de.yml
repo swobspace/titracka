@@ -61,6 +61,7 @@ de:
       task: Aufgabe
       time_accounting: Aktivität
       user: Benutzer
+      workday: Arbeitstag
 
   attributes:
     date: Datum
@@ -75,6 +76,7 @@ de:
     org_unit: Organisationseinheit
     org_unit_id: Organisationseinheit
     owner: Besitzer
+    pause: Pause
     priority: Priorität
     private: privat
     responsible: Verantwortlich
@@ -94,6 +96,8 @@ de:
     username: Username
     user: Benutzer
     user_id: Benutzer
+    workday: Arbeitstag
+    work_start: Tagesbeginn
 
   controller:
     lists: Listen
@@ -103,3 +107,4 @@ de:
     tasks: Aufgaben
     time_accountings: Aktivitäten
     users: Benutzer
+    workdays: Arbeitstage
