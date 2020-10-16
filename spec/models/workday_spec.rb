@@ -8,6 +8,7 @@ RSpec.describe Workday, type: :model do
   it "should get plain factory working" do
     f = FactoryBot.create(:workday)
     g = FactoryBot.create(:workday)
+    is_expected.to validate_uniqueness_of(:date).scoped_to(:user_id)
     expect(f).to be_valid
     expect(g).to be_valid
   end

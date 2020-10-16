@@ -194,7 +194,7 @@ ActiveRecord::Schema.define(version: 2020_10_16_161041) do
     t.integer "pause", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["date"], name: "index_workdays_on_date"
+    t.index ["date", "user_id"], name: "index_workdays_on_date_and_user_id", unique: true
     t.index ["user_id"], name: "index_workdays_on_user_id"
   end
 

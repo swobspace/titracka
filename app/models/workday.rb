@@ -4,7 +4,8 @@ class Workday < ApplicationRecord
 
   # -- configuration
   # -- validations and callbacks
-  validates :date, :user_id, presence: true
+  validates :user_id, presence: true
+  validates :date, presence: true, uniqueness: { scope: :user_id }
 
   def to_s
     "#{date.to_s}"

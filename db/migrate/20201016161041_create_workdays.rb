@@ -8,6 +8,6 @@ class CreateWorkdays < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :workdays, :date
+    add_index :workdays, [:date, :user_id], unique: true
   end
 end
