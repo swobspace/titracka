@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_10_094141) do
+ActiveRecord::Schema.define(version: 2020_10_16_161041) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -185,6 +185,17 @@ ActiveRecord::Schema.define(version: 2020_10_10_094141) do
     t.string "company", default: ""
     t.index ["reset_password_token"], name: "index_wobauth_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_wobauth_users_on_username", unique: true
+  end
+
+  create_table "workdays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date"
+    t.time "work_start"
+    t.integer "pause", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["date"], name: "index_workdays_on_date"
+    t.index ["user_id"], name: "index_workdays_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
