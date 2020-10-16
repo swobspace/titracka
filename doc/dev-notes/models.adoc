@@ -71,6 +71,18 @@ bin/rails g scaffold TimeAccounting \
   --no-stylesheets --no-javascripts --no-helper
 ----
 
+## Workday
+
+----
+bin/rails g scaffold Workday \
+  user:belongs_to \
+  date:date:index \
+  work_start:time \
+  pause:integer \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+
 ## Tag
 
 ----

@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-header">
+    <h4><%= t('activerecord.models.workday') %></h4>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover autowidth">
+    
+      <tr>
+        <th><%= t('attributes.user')%>:</th>
+        <td><%= @workday.user %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.date')%>:</th>
+        <td><%= @workday.date %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.work_start')%>:</th>
+        <td><%= @workday.work_start %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.pause')%>:</th>
+        <td><%= @workday.pause %></td>
+      </tr>
+        </table>
+
+    <div role="toolbar">
+      <%= back_link %>
+      <%= edit_link(@workday) %>
+      <%= delete_link(@workday) %>
+      <%= new_link Workday %>
+    </div>
+  </div>
+</div>
