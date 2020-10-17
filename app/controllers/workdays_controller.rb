@@ -10,6 +10,9 @@ class WorkdaysController < ApplicationController
 
   # GET /workdays/1
   def show
+    @time_accountings = @current_user.time_accountings.where(date: @workday.date)
+    @work_sum = @time_accountings.sum(:duration)
+    @end_of_work = @workday.work_start + @work_sum.minutes + @workday.pause.minutes
     respond_with(@workday)
   end
 
