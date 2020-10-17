@@ -1,7 +1,7 @@
  require 'rails_helper'
 
 RSpec.describe "/workdays", type: :request do
-  let(:user) { @myuser }
+  let(:user) { FactoryBot.create(:user) }
   let(:valid_attributes) {
     FactoryBot.attributes_for(:workday, user_id: user.id) 
   }
@@ -14,7 +14,7 @@ RSpec.describe "/workdays", type: :request do
   }
 
   before(:each) do
-    @myuser = login_admin
+    login_user(user: user)
   end
 
   describe "GET /index" do

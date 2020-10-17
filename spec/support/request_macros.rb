@@ -6,9 +6,9 @@ module RequestMacros
   # for use in request specs
   def login_user(options = {})
     options.symbolize_keys!
-    ou = options.fetch(:org_unit, nil)
-    role = options.fetch(:role, false)
-    user = FactoryBot.create(:user)
+    user = options.fetch(:user) { FactoryBot.create(:user) }
+    ou = options.fetch(:org_unit) { nil }
+    role = options.fetch(:role) { false }
     if role
       user_role = Wobauth::Role.find_or_create_by(name: role)
       FactoryBot.create(:authority, authorizable: user, 
@@ -18,11 +18,11 @@ module RequestMacros
   end
 
   # for use in request specs
-  def login_admin
-    @admin      = FactoryBot.create(:user)
-    @admin_role = Wobauth::Role.find_or_create_by(name: 'Admin')
-    FactoryBot.create(:authority, :authorizable => @admin, :role => @admin_role)
-    login_as @admin
-    @admin
+  def login_admin(options = {})
+    options.symbolize_keys!
+    admin = options.fetch(:user) { FactoryBot.create(:user) }
+    admin_role = Wobauth::Role.find_or_create_by(name: 'Admin')
+    FactoryBot.create(:authority, :authorizable => admin, :role => admin_role)
+    login_as admin
   end
 end
