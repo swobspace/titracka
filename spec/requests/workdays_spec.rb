@@ -33,6 +33,14 @@ RSpec.describe "/workdays", type: :request do
     end
   end
 
+  describe "GET /by_date" do
+    it "renders a successful response" do
+      workday = FactoryBot.create(:workday, date: "2020-02-03")
+      get "/workdays/2020-02-03"
+      expect(response).to be_successful
+    end
+  end
+
   describe "GET /new" do
     it "renders a successful response" do
       get new_workday_url

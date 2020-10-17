@@ -1,6 +1,6 @@
 class WorkdaysController < ApplicationController
   before_action :set_workday, only: [:show, :edit, :update, :destroy]
-  before_action :add_breadcrumb_show, only: [:show]
+  # before_action :add_breadcrumb_show, only: [:show]
 
   # GET /workdays
   def index
@@ -10,15 +10,26 @@ class WorkdaysController < ApplicationController
 
   # GET /workdays/1
   def show
+    add_breadcrumb(@workday.date.to_s, workday_path(@workday))
     @time_accountings = @current_user.time_accountings.where(date: @workday.date)
     @work_sum = @time_accountings.sum(:duration)
-    @end_of_work = @workday.work_start + @work_sum.minutes + @workday.pause.minutes
+    @end_of_work = (@workday.work_start || @workday.date.to_time.beginning_of_day) + 
+                     @work_sum.minutes + @workday.pause.minutes
     respond_with(@workday)
+  end
+
+  def by_date
+    @workday = @current_user.workdays.where(date: params[:date]).first
+    if @workday.nil?
+      redirect_to new_workday_path(date: params[:date])
+    else
+      redirect_to workday_path(@workday)
+    end
   end
 
   # GET /workdays/new
   def new
-    @workday = @current_user.workdays.new(date: Date.today.to_s)
+    @workday = @current_user.workdays.new(date: (params[:date] || Date.today.to_s))
     respond_with(@workday)
   end
 
