@@ -24,7 +24,7 @@ RSpec.describe "time_accountings/show", type: :view do
     render
     expect(rendered).to match(/2020-02-23/)
     expect(rendered).to match(/A special task/)
-    expect(rendered).to match(/Mustermann, Max (mmax)/)
+    expect(rendered).to match(/Mustermann, Max \(mmax\)/)
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(/23/)
   end

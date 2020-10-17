@@ -75,6 +75,10 @@ GEM
       globalid (>= 0.3.6)
     activemodel (6.0.3.4)
       activesupport (= 6.0.3.4)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (6.0.3.4)
       activemodel (= 6.0.3.4)
       activesupport (= 6.0.3.4)
@@ -151,6 +155,12 @@ GEM
       devise
     diff-lcs (1.4.4)
     dotenv (2.7.6)
+    draper (4.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
     em-websocket (0.5.2)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -419,6 +429,7 @@ DEPENDENCIES
   database_rewinder
   devise-remote-user
   dotenv
+  draper
   exception_notification
   factory_bot_rails
   font-awesome-sass (>= 4.7, < 6)

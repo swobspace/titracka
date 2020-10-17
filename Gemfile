@@ -73,6 +73,7 @@ gem 'asciidoctor'
 gem 'js-routes'
 gem 'yaml_db'
 gem 'pagy'
+gem 'draper'
 
 gem 'record_tag_helper', '~> 1.0'
 gem 'rails-controller-testing'

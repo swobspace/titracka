@@ -14,29 +14,32 @@
         } do %>
     <thead>
       <tr>
+            <th class="text-center"><%= t('attributes.date') %></th>
+            <th class="text-center"><%= t('attributes.duration') %></th>
+            <th class="text-center"><%= t('attributes.work_start') %></th>
+            <th class="text-center"><%= t('attributes.pause') %></th>
             <th><%= t('attributes.user') %></th>
-            <th><%= t('attributes.date') %></th>
-            <th><%= t('attributes.work_start') %></th>
-            <th><%= t('attributes.pause') %></th>
             <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
-    <tfoot>
+    <tfoot class="search">
       <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </tfoot>
     <tbody>
       <% @workdays.each do |workday| %>
         <%= content_tag_for(:tr, workday) do %>
-                <td><%= workday.user %></td>
-                <td><%= workday.date %></td>
-                <td><%= workday.work_start %></td>
-                <td><%= workday.pause %></td>
+                <td class="text-center align-middle"><%= workday.date %></td>
+                <td class="text-center align-middle"><%= hourmin(workday.duration) %></td>
+                <td class="text-center align-middle"><%= workday.work_start_hourmin %></td>
+                <td class="text-center align-middle notvisible"><%= workday.pause %></td>
+                <td class="align-middle notvisible"><%= workday.user %></td>
                 <td class="text-nowrap">
             <%= show_link workday %>
             <%= edit_link workday %>

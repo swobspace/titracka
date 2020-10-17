@@ -4,7 +4,7 @@ class WorkdaysController < ApplicationController
 
   # GET /workdays
   def index
-    @workdays = @current_user.workdays
+    @workdays = @current_user.workdays.decorate
     respond_with(@workdays)
   end
 

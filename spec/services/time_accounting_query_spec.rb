@@ -58,7 +58,7 @@ RSpec.describe TimeAccountingQuery do
   context "with :user_id" do
     subject { TimeAccountingQuery.new(time_accountings, {user_id: mmax.id}) }
     before(:each) do
-      @matching = [ta11, ta12]
+      @matching = [ta11, ta12, ta13]
       @nonmatching = [ta21, ta22]
     end
     it_behaves_like "a time_accounting query"
@@ -68,7 +68,7 @@ RSpec.describe TimeAccountingQuery do
     subject { TimeAccountingQuery.new(time_accountings, {user: 'caro'}) }
     before(:each) do
       @matching = [ta21, ta22]
-      @nonmatching = [ta11, ta12]
+      @nonmatching = [ta11, ta12, ta13]
     end
     it_behaves_like "a time_accounting query"
   end # :user 'caro'
@@ -76,7 +76,7 @@ RSpec.describe TimeAccountingQuery do
   context "with :date Date.yesterday" do
     subject { TimeAccountingQuery.new(time_accountings, {date: Date.yesterday}) }
     before(:each) do
-      @matching = [ta11, ta21]
+      @matching = [ta11, ta13, ta21]
       @nonmatching = [ta12, ta22]
     end
     it_behaves_like "a time_accounting query"
@@ -87,7 +87,7 @@ RSpec.describe TimeAccountingQuery do
     context "using :search'" do
       it "searches for sn" do
         search = TimeAccountingQuery.new(time_accountings, {search: 'max'})
-        expect(search.all).to contain_exactly(ta11, ta12)
+        expect(search.all).to contain_exactly(ta11, ta12, ta13)
       end
     end
   end
