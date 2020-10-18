@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   get ':date', to: 'workdays#by_date', as: 'by_date', constraints: {date: /2\d\d\d-\d\d-\d\d/ }
   get 'workdays/:date', to: 'workdays#by_date', constraints: {date: /2\d\d\d-\d\d-\d\d/ }
   resources :workdays do
@@ -19,6 +20,6 @@ Rails.application.routes.draw do
   get "/pages/index", to: 'pages#index'
   get "/pages/*page", to: 'pages#show', as: :page, format: false
 
-  root to: 'workdays#by_date', date: Date.today.to_s
+  root to: 'home#index'
   mount Wobauth::Engine, at: '/auth'
 end
