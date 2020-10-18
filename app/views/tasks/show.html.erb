@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mb-3">
   <div class="card-header">
     <div class="subtitle float-none"><%= t('activerecord.models.task') %>:</div>
     <h4 class="title float-left"><%= @task %></h4>
@@ -78,3 +78,15 @@
     </div>
   </div>
 </div>
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title"><%= t('attributes.time_accountings')%></h5>
+  </div>
+  <div class="card-body">
+    <%= render partial: 'time_accountings',
+               locals: { time_accountings: @task.time_accountings } %>
+
+    <%= new_link [@task, TimeAccounting] %>
+  </div>
+</div>
+

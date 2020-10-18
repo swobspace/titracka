@@ -98,6 +98,8 @@ de:
     task_id: Aufgabe
     time_accounting: Aktivität
     time_accounting_id: Aktivität
+    time_accountings: Aktivitäten
+    time_accounting_ids: Aktivitäten
     username: Username
     user: Benutzer
     user_id: Benutzer
