@@ -11,19 +11,18 @@ class WorkdaysController < ApplicationController
   # GET /workdays/1
   def show
     add_breadcrumb(@workday.date.to_s, workday_path(@workday))
-    @time_accountings = @current_user.time_accountings.where(date: @workday.date)
-    @work_sum = @time_accountings.sum(:duration)
-    @end_of_work = (@workday.work_start || @workday.date.to_time.beginning_of_day) + 
-                     @work_sum.minutes + @workday.pause.minutes
+    set_daystuff
     respond_with(@workday)
   end
 
   def by_date
     @workday = @current_user.workdays.where(date: params[:date]).first
+    authorize! :read, @workday
     if @workday.nil?
       redirect_to new_workday_path(date: params[:date])
     else
-      redirect_to workday_path(@workday)
+      set_daystuff
+      render :show
     end
   end
 
@@ -66,5 +65,11 @@ class WorkdaysController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def workday_params
       params.require(:workday).permit(:date, :work_start, :pause)
+    end
+    def set_daystuff
+      @time_accountings = @current_user.time_accountings.where(date: @workday.date)
+      @work_sum = @time_accountings.sum(:duration)
+      @end_of_work = (@workday.work_start || @workday.date.to_time.beginning_of_day) + 
+                       @work_sum.minutes + @workday.pause.minutes
     end
 end
