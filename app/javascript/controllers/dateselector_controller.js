@@ -5,13 +5,18 @@ export default class extends Controller {
   static targets = [ "date", "field" ]
 
   connect() {
+    // const url = this.data.get("url")
+    const url = this.data.get("url")
     var picker = new Pikaday({
       field: this.fieldTarget,
       trigger: this.dateTarget,
       format: 'YYYY-MM-DD',
       onSelect: function(date) {
         var value = picker.toString()
-        console.log(value)
+        var newurl = url + value
+        console.log(newurl)
+        Turbolinks.clearCache();
+        Turbolinks.visit(newurl);
       },
       firstDay: 1,
       i18n: {

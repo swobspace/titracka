@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get ':date', to: 'workdays#by_date', constraints: {date: /2\d\d\d-\d\d-\d\d/ }
+  get ':date', to: 'workdays#by_date', as: 'by_date', constraints: {date: /2\d\d\d-\d\d-\d\d/ }
   get 'workdays/:date', to: 'workdays#by_date', constraints: {date: /2\d\d\d-\d\d-\d\d/ }
   resources :workdays do
     member do
