@@ -6,7 +6,7 @@ RSpec.describe "time_accountings/new", type: :view do
     @ability.extend(CanCan::Ability)
     allow(controller).to receive(:current_ability) { @ability }
     allow(controller).to receive(:controller_name) { "time_accountings" }
-    allow(controller).to receive(:action_name) { "edit" }
+    allow(controller).to receive(:action_name) { "new" }
 
     @time_accounting = assign(:time_accounting, FactoryBot.build(:time_accounting))
   end

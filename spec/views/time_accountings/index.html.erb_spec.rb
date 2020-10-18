@@ -6,7 +6,7 @@ RSpec.describe "time_accountings/index", type: :view do
     @ability.extend(CanCan::Ability)
     allow(controller).to receive(:current_ability) { @ability }
     allow(controller).to receive(:controller_name) { "time_accountings" }
-    allow(controller).to receive(:action_name) { "show" }
+    allow(controller).to receive(:action_name) { "index" }
 
     task = FactoryBot.create(:task, :open, subject: "A special task")
     user = FactoryBot.create(:user, sn: "Mustermann", givenname: "Max", username: "mmax")

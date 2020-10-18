@@ -6,7 +6,7 @@ RSpec.describe "states/new", type: :view do
     @ability.extend(CanCan::Ability)
     allow(controller).to receive(:current_ability) { @ability }
     allow(controller).to receive(:controller_name) { "states" }
-    allow(controller).to receive(:action_name) { "edit" }
+    allow(controller).to receive(:action_name) { "new" }
 
     @state = assign(:state, FactoryBot.build(:state))
   end
