@@ -1,6 +1,7 @@
  require 'rails_helper'
 
 RSpec.describe "/org_units", type: :request do
+  let(:parent) { FactoryBot.create(:org_unit) }
   let(:valid_attributes) {
     FactoryBot.attributes_for(:org_unit)
   }
@@ -74,9 +75,10 @@ RSpec.describe "/org_units", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        { name: "Nobody Ltd." }
-      }
+      let(:new_attributes) {{
+        name: "Nobody Ltd.",
+        parent_id: parent.id,
+      }}
 
       it "updates the requested org_unit" do
         org_unit = OrgUnit.create! valid_attributes

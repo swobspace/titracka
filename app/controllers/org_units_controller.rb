@@ -51,6 +51,6 @@ class OrgUnitsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def org_unit_params
-      params.require(:org_unit).permit(:name, :ancestry)
+      params.require(:org_unit).permit(:name, :parent_id )
     end
 end
