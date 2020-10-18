@@ -44,7 +44,10 @@ bin/rails g scaffold State \
 bin/rails g scaffold OrgUnit \
   name:string:index \
   ancestry:string:index \
+  position:integer \
   --no-stylesheets --no-javascripts --no-helper
+
+bin/rails g migration AddPositionToOrgUnit position:integer
 ----
 
 ## List
