@@ -14,21 +14,24 @@
         } do %>
     <thead>
       <tr>
-            <th><%= t('attributes.name') %></th>
-            <th class="nosort"><%= t('titracka.action') %></th>
+        <th><%= t('attributes.name') %></th>
+        <th><%= t('attributes.parent') %></th>
+        <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
-            <th></th>
-            <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </tfoot>
     <tbody>
       <% @org_units.each do |org_unit| %>
         <%= content_tag_for(:tr, org_unit) do %>
-                <td><%= org_unit.name %></td>
-                <td class="text-nowrap">
+          <td><%= org_unit.name %></td>
+          <td><%= org_unit.parent %></td>
+          <td class="text-nowrap">
             <%= show_link org_unit %>
             <%= edit_link org_unit %>
             <%= delete_link org_unit %>

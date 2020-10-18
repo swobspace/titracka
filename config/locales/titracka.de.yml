@@ -78,6 +78,7 @@ de:
     org_unit: Organisationseinheit
     org_unit_id: Organisationseinheit
     owner: Besitzer
+    parent: Parent
     pause: Pause
     priority: Priorität
     private: privat

@@ -9,6 +9,11 @@
       <%= f.input :name
 	 %>
 
+      <%= f.input :parent_id, as: :hidden %>
+      <%= f.input :parent_id,
+            collection: OrgUnit.arrange_as_array
+        %>
+
       <%= f.button :submit, class: 'btn btn-primary' %>
       <%= cancel_button %>
     </div>
