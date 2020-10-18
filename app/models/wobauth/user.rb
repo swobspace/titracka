@@ -10,7 +10,7 @@ class Wobauth::User < ActiveRecord::Base
 
   # devise *#{@app_name}.devise_modules 
   # or ... basic usage:
-  devise :database_authenticatable
+  devise *Titracka.devise_modules
 
   validates :password, confirmation: true
 end
