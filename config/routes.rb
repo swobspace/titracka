@@ -5,11 +5,14 @@ Rails.application.routes.draw do
     member do
       get 'by_date'
     end
+    resources :time_accountings, module: :workdays
   end
   resources :time_accountings
   resources :lists
   resources :org_units
-  resources :tasks
+  resources :tasks do
+    resources :time_accountings, module: :tasks
+  end
   resources :states
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

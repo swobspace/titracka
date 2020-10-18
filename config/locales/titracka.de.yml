@@ -61,9 +61,11 @@ de:
       state: Status
       tag: Tag
       task: Aufgabe
+      tasks/time_accounting: Aktivität
       time_accounting: Aktivität
       user: Benutzer
       workday: Arbeitstag
+      workdays/time_accounting: Aktivität
 
   attributes:
     date: Datum
@@ -108,6 +110,8 @@ de:
     states: Status
     tags: Tags
     tasks: Aufgaben
+    tasks/time_accountings: Aktivitäten
     time_accountings: Aktivitäten
     users: Benutzer
     workdays: Arbeitstage
+    workdays/time_accountings: Aktivitäten

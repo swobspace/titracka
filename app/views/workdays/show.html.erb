@@ -59,9 +59,9 @@
               <td class="align-middle"><%= time_accounting.description %></td>
               <td class="align-middle"><%= time_accounting.user %></td>
               <td class="text-nowrap text-right">
-                <%= show_link(time_accounting) %>
-                <%= edit_link(time_accounting) %>
-                <%= delete_link(time_accounting) %>
+                <%= show_link([@workday, time_accounting]) %>
+                <%= edit_link([@workday, time_accounting]) %>
+                <%= delete_link([@workday, time_accounting]) %>
               </td>
             <% end %>
           <% end %>
@@ -82,6 +82,6 @@
     <br />
 
     <%= back_link %>
-    <%= new_link TimeAccounting %>
+    <%= new_link [@workday, TimeAccounting] %>
   </div>
 </div>

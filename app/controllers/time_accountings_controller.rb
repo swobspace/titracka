@@ -4,7 +4,9 @@ class TimeAccountingsController < ApplicationController
 
   # GET /time_accountings
   def index
-    @time_accountings = TimeAccounting.all
+    if @time_accountable
+      @time_accountings = @time_accountable.time_accountings
+    end
     respond_with(@time_accountings)
   end
 
@@ -15,7 +17,11 @@ class TimeAccountingsController < ApplicationController
 
   # GET /time_accountings/new
   def new
-    @time_accounting = TimeAccounting.new(date: Date.today.to_s)
+    if @time_accountable
+      @time_accounting = @time_accountable.time_accountings.new
+    else
+      @time_accounting = TimeAccounting.new(date: Date.today.to_s)
+    end
     respond_with(@time_accounting)
   end
 
@@ -26,21 +32,20 @@ class TimeAccountingsController < ApplicationController
   # POST /time_accountings
   def create
     @time_accounting = @current_user.time_accountings.new(time_accounting_params)
-
     @time_accounting.save
-    respond_with(@time_accounting)
+    respond_with(@time_accounting, location: location)
   end
 
   # PATCH/PUT /time_accountings/1
   def update
     @time_accounting.update(time_accounting_params)
-    respond_with(@time_accounting)
+    respond_with(@time_accounting, location: location)
   end
 
   # DELETE /time_accountings/1
   def destroy
     @time_accounting.destroy
-    respond_with(@time_accounting)
+    respond_with(@time_accounting, location: location)
   end
 
   private
@@ -52,5 +57,9 @@ class TimeAccountingsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def time_accounting_params
       params.require(:time_accounting).permit(:task_id, :description, :date, :duration)
+    end
+
+    def location
+      polymorphic_path(@time_accountable || @time_accounting)
     end
 end

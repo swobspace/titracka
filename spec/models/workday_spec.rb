@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Workday, type: :model do
   it { is_expected.to belong_to(:user) }
+  it { is_expected.to have_many(:time_accountings).with_primary_key(:date).with_foreign_key(:date) }
   it { is_expected.to validate_presence_of(:date) }
   it { is_expected.to validate_presence_of(:user_id) }
 
