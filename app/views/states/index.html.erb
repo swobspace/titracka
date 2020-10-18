@@ -30,7 +30,7 @@
       <% @states.each do |state| %>
         <%= content_tag_for(:tr, state) do %>
                 <td><%= state.name %></td>
-                <td><%= state.state %></td>
+                <td><%= t(state.state, scope: 'titracka.state') %></td>
                 <td class="text-nowrap">
             <%= show_link state %>
             <%= edit_link state %>

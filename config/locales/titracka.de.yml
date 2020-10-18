@@ -18,8 +18,10 @@ de:
     applied_filter: Angewandter Filter
     basics: Basics
     state:
-      'pending': in Bearbeitung
-      'done': freigegeben
+      'pre': pre
+      'open': offen
+      'done': erledigt
+      'archive': archiviert
     tristate:
       'yes': Ja
       'no': Nein
