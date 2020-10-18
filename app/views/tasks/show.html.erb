@@ -1,6 +1,12 @@
 <div class="card">
   <div class="card-header">
-    <h4><%= t('activerecord.models.task') %></h4>
+    <div class="subtitle float-none"><%= t('activerecord.models.task') %>:</div>
+    <h4 class="title float-left"><%= @task %></h4>
+
+    <div role="toolbar" class="float-right">
+      <%= edit_link(@task) %>
+      <%= delete_link(@task) %>
+    </div>
   </div>
   <div class="card-body">
     <table class="table table-sm table-hover table-borderless autowidth">
@@ -68,8 +74,6 @@
 
     <div role="toolbar">
       <%= back_link %>
-      <%= edit_link(@task) %>
-      <%= delete_link(@task) %>
       <%= new_link Task %>
     </div>
   </div>

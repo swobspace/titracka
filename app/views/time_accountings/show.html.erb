@@ -1,6 +1,12 @@
 <div class="card">
   <div class="card-header">
-    <h4><%= t('activerecord.models.time_accounting') %></h4>
+    <div class="subtitle float-none"><%= t('activerecord.models.time_accounting') %>:</div>
+    <h4 class="title float-left"><%= @time_accounting %></h4>
+
+    <div role="toolbar" class="float-right">
+      <%= edit_link(@time_accounting) %>
+      <%= delete_link(@time_accounting) %>
+    </div>
   </div>
   <div class="card-body">
     <table class="table table-borderless table-sm table-hover autowidth">
@@ -34,8 +40,6 @@
 
     <div role="toolbar">
       <%= back_link %>
-      <%= edit_link(@time_accounting) %>
-      <%= delete_link(@time_accounting) %>
       <%= new_link TimeAccounting %>
     </div>
   </div>
