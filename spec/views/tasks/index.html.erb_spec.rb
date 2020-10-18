@@ -14,7 +14,7 @@ RSpec.describe "tasks/index", type: :view do
     assign(:tasks, [
       FactoryBot.create(:task,
         subject: "Subject",
-        priority: "Priority",
+        priority: "low",
         responsible: user,
         org_unit: nil,
         state: state,
@@ -23,7 +23,7 @@ RSpec.describe "tasks/index", type: :view do
       ),
       FactoryBot.create(:task,
         subject: "Subject",
-        priority: "Priority",
+        priority: "high",
         responsible: user,
         org_unit: nil,
         state: state,
@@ -36,7 +36,8 @@ RSpec.describe "tasks/index", type: :view do
   it "renders a list of tasks" do
     render
     assert_select "tr>td", text: "Subject".to_s, count: 2
-    assert_select "tr>td", text: "Priority".to_s, count: 2
+    assert_select "tr>td", text: "hoch".to_s, count: 1
+    assert_select "tr>td", text: "niedrig".to_s, count: 1
     assert_select "tr>td", text: "Bombadil, Tom (tom)".to_s, count: 2
     assert_select "tr>td", text: "Open".to_s, count: 2
     assert_select "tr>td", text: false.to_s, count: 2

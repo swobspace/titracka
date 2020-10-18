@@ -24,9 +24,9 @@ de:
       'yes': Ja
       'no': Nein
       notset: nicht bearbeitet
-    grades:
+    priority:
       'low': niedrig
-      'medium': mittel
+      'normal': normal
       'high': hoch
       'critical': sehr hoch
       notset: nicht bearbeitet

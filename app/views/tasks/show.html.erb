@@ -24,6 +24,21 @@
         <th><%= t('attributes.responsible')%>:</th>
         <td><%= @task.responsible %></td>
       </tr>
+
+      <tr>
+        <th><%= t('attributes.org_unit')%>:</th>
+        <td><%= @task.org_unit %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.list')%>:</th>
+        <td><%= @task.list %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('attributes.priority')%>:</th>
+        <td><%= t(@task.priority, scope: 'titracka.priority') %></td>
+      </tr>
     
       <tr>
         <th><%= t('attributes.start')%> 
@@ -38,21 +53,6 @@
       <tr>
         <th><%= t('attributes.resubmission')%>:</th>
         <td><%= @task.resubmission %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.priority')%>:</th>
-        <td><%= @task.priority %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.org_unit')%>:</th>
-        <td><%= @task.org_unit %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.list')%>:</th>
-        <td><%= @task.list %></td>
       </tr>
     
       <tr>

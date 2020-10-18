@@ -17,7 +17,7 @@ RSpec.describe "tasks/edit", type: :view do
     assert_select "form[action=?][method=?]", task_path(@task), "post" do
       assert_select "input[name=?]", "task[subject]"
       assert_select "input[name=?]", "task[description]"
-      assert_select "input[name=?]", "task[priority]"
+      assert_select "select[name=?]", "task[priority]"
       assert_select "select[name=?]", "task[responsible_id]"
       assert_select "select[name=?]", "task[org_unit_id]"
       assert_select "select[name=?]", "task[state_id]"

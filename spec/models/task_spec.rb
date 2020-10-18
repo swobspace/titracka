@@ -8,9 +8,9 @@ RSpec.describe Task, type: :model do
   it { is_expected.to have_many(:time_accountings).dependent(:restrict_with_error) }
   it { is_expected.to have_rich_text(:description) }
   it { is_expected.to validate_presence_of(:subject) }
-  it { is_expected.to validate_presence_of(:priority) }
   it { is_expected.to validate_presence_of(:user_id) }
   it { is_expected.to validate_presence_of(:state_id) }
+  it { is_expected.to validate_inclusion_of(:priority).in_array(Task::PRIORITIES) }
 
   it "should get plain factory working" do
     f = FactoryBot.create(:task)

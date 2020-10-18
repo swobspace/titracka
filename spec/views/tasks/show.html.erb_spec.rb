@@ -12,7 +12,7 @@ RSpec.describe "tasks/show", type: :view do
     @task = assign(:task, FactoryBot.create(:task, 
       state: open,
       subject: "Subject",
-      priority: "Priority",
+      priority: "low",
       responsible: nil,
       org_unit: nil,
       list: nil,
@@ -23,7 +23,7 @@ RSpec.describe "tasks/show", type: :view do
   it "renders attributes in <p>" do
     render
     expect(rendered).to match(/Subject/)
-    expect(rendered).to match(/Priority/)
+    expect(rendered).to match(/niedrig/)
     expect(rendered).to match(/Open/)
     expect(rendered).to match(/false/)
   end

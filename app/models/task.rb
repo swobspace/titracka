@@ -9,8 +9,10 @@ class Task < ApplicationRecord
 
   # -- configuration
   has_rich_text :description
+  PRIORITIES = ["low", "normal", "high"]
   # -- validations and callbacks
-  validates :subject, :state_id, :user_id, :priority, presence: true
+  validates :subject, :state_id, :user_id, presence: true
+  validates :priority, inclusion: PRIORITIES, allow_blank: false
 
   def to_s
     "#{subject}"
