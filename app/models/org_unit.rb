@@ -1,4 +1,6 @@
 class OrgUnit < ApplicationRecord
+  include OrgUnitConcerns
+
   # -- associations
   has_many :lists, dependent: :restrict_with_error
   has_many :tasks, dependent: :restrict_with_error
