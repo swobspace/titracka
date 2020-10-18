@@ -1,26 +1,24 @@
 <div class="card">
   <div class="card-header">
-    <h4><%= t('activerecord.models.list') %></h4>
-  </div>
-  <div class="card-body">
-    <table class="table table-bordered table-hover autowidth">
-    
-      <tr>
-        <th><%= t('attributes.org_unit')%>:</th>
-        <td><%= @list.org_unit %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.name')%>:</th>
-        <td><%= @list.name %></td>
-      </tr>
-        </table>
+    <div class="subtitle float-none"><%= t('activerecord.models.list') %>:</div>
+    <h4 class="title float-left"><%= @list %></h4>
 
-    <div role="toolbar">
-      <%= back_link %>
+    <div role="toolbar" class="float-right">
       <%= edit_link(@list) %>
       <%= delete_link(@list) %>
-      <%= new_link List %>
     </div>
+    
+  </div>
+  <div class="card-body">
+    <table class="table table-borderless table-hover autowidth">
+      <tr>
+        <th class="w-25"><%= t('attributes.org_unit')%>:</th>
+        <td><%= @list.org_unit %></td>
+      </tr>
+    </table>
+    <div role="toolbar">
+      <%= back_link %>
+    </div>
+
   </div>
 </div>

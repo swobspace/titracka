@@ -2,10 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "lists/new", type: :view do
   before(:each) do
-    assign(:list, List.new(
-      org_unit: nil,
-      name: "MyString"
-    ))
+    @ability = Object.new
+    @ability.extend(CanCan::Ability)
+    allow(controller).to receive(:current_ability) { @ability }
+    allow(controller).to receive(:controller_name) { "lists" }
+    allow(controller).to receive(:action_name) { "new" }
+
+    @list = assign(:list, FactoryBot.build(:list))
   end
 
   it "renders new list form" do
@@ -13,8 +16,7 @@ RSpec.describe "lists/new", type: :view do
 
     assert_select "form[action=?][method=?]", lists_path, "post" do
 
-      assert_select "input[name=?]", "list[org_unit_id]"
-
+      assert_select "select[name=?]", "list[org_unit_id]"
       assert_select "input[name=?]", "list[name]"
     end
   end
