@@ -19,7 +19,7 @@ end
       assert_select "select[name=?]", "time_accounting[task_id]"
       assert_select "input[name=?]", "time_accounting[user_id]", count: 0
       assert_select "input[name=?]", "time_accounting[description]"
-      assert_select "input[name=?]", "time_accounting[duration]"
+      assert_select "input[name=?]", "time_accounting[formatted_duration]"
     end
   end
 end
