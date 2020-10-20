@@ -8,6 +8,7 @@ de:
     action: Aktion
     configuration: Konfiguration
     change_columns: Spalten ändern
+    today: heute
     show_all: alles anzeigen
     restore: zurücksetzen
     search: Suche

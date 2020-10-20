@@ -37,13 +37,13 @@
     <tbody>
       <% @workdays.each do |workday| %>
         <%= content_tag_for(:tr, workday) do %>
-                <td class="text-center align-middle"><%= workday.date %></td>
-                <td class="text-center align-middle"><%= hourmin(workday.duration) %></td>
-                <td class="text-center align-middle"><%= workday.duration %></td>
-                <td class="text-center align-middle"><%= workday.work_start_hourmin %></td>
-                <td class="text-center align-middle notvisible"><%= workday.pause %></td>
-                <td class="align-middle notvisible"><%= workday.user %></td>
-                <td class="text-nowrap">
+          <td class="text-center align-middle"><%= workday.date %></td>
+          <td class="text-center align-middle"><%= hourmin(workday.duration) %></td>
+          <td class="text-center align-middle"><%= workday.duration %></td>
+          <td class="text-center align-middle"><%= workday.work_start_hourmin %></td>
+          <td class="text-center align-middle notvisible"><%= workday.pause %></td>
+          <td class="align-middle notvisible"><%= workday.user %></td>
+          <td class="text-nowrap">
             <%= show_link workday %>
             <%= edit_link workday %>
             <%= delete_link workday %>

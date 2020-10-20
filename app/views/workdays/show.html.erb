@@ -73,6 +73,7 @@
           <tr>
             <th class="text-center">[ <%= @end_of_work.to_s(:hourmin) %> ]</th>
             <th class="text-center"><%= hourmin(@work_sum) %></th>
+            <th class="text-center"><%= @work_sum %></th>
             <th></th>
             <th></th>
             <th></th>
@@ -86,5 +87,10 @@
 
     <%= back_link %>
     <%= new_link [@workday, TimeAccounting] %>
+    <%= link_to raw(%Q[<i class="fas fa-backward"></i>]), 
+          by_date_path(date: 1.day.before(@workday.date)), class: "ml-3 btn btn-secondary" %>
+    <%= link_to t('titracka.today'), by_date_path(date: Date.today.to_s), class: "btn btn-secondary" %>
+    <%= link_to raw(%Q[<i class="fas fa-forward"></i>]), 
+          by_date_path(date: 1.day.after(@workday.date)), class: "btn btn-secondary" %>
   </div>
 </div>
