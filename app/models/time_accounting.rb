@@ -1,3 +1,4 @@
+require 'minute_string'
 class TimeAccounting < ApplicationRecord
   # -- associations
   belongs_to :task
@@ -9,6 +10,14 @@ class TimeAccounting < ApplicationRecord
 
   def to_s
     "#{date.to_s} /#{duration}/ #{task.subject} : #{description}"
+  end
+
+  def formatted_duration
+    @duration_string = ::MinuteString.min2hour(self.duration)
+  end
+
+  def formatted_duration=(text)
+    self.duration = ::MinuteString.hour2min(text)
   end
 
 end
