@@ -32,7 +32,8 @@
         <thead>
           <tr>
             <th class="text-center nosort">[ <%= start_of_day(@workday) %> ]</th>
-            <th class="text-center"><%= t('attributes.duration') %></th>
+            <th class="text-center"><%= t('attributes.formatted_duration') %></th>
+            <th class="notvisible text-center"><%= t('attributes.duration') %></th>
             <th><%= t('attributes.task') %></th>
             <th><%= t('attributes.description') %></th>
             <th class="notvisible"><%= t('attributes.user') %></th>
@@ -44,6 +45,7 @@
             <tr>
               <td class="text-center align-middle"><%= @workday.date %></td>
               <td class="text-center align-middle"><%= hourmin(@workday.pause) %></td>
+              <td class="text-center align-middle"><%= @workday.pause %></td>
               <td class="align-middle">Pause</td>
               <td></td>
               <td></td>
@@ -54,7 +56,8 @@
           <% @time_accountings.each do |time_accounting| %>
             <%= content_tag_for(:tr, time_accounting) do %>
               <td class="text-center align-middle"><%= time_accounting.date %></td>
-              <td class="text-center align-middle"><%= hourmin(time_accounting.duration) %></td>
+              <td class="text-center align-middle"><%= time_accounting.formatted_duration %></td>
+              <td class="text-center align-middle"><%= time_accounting.duration %></td>
               <td class="align-middle"><%= time_accounting.task %></td>
               <td class="align-middle"><%= time_accounting.description %></td>
               <td class="align-middle"><%= time_accounting.user %></td>

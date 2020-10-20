@@ -80,7 +80,7 @@ RSpec.describe "/time_accountings", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        {duration: 123, description: "some other text", date: '2020-04-23' }
+        {formatted_duration: "2:03", description: "some other text", date: '2020-04-23' }
       }
 
       it "updates the requested time_accounting" do

@@ -74,6 +74,7 @@ de:
     description: Beschreibung
     displayname: Anzeigename
     duration: Dauer
+    formatted_duration: Dauer (HH:MM)
     givenname: Vorname
     home: Home
     list: Liste

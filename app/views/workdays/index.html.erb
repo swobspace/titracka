@@ -15,7 +15,8 @@
     <thead>
       <tr>
             <th class="text-center"><%= t('attributes.date') %></th>
-            <th class="text-center"><%= t('attributes.duration') %></th>
+            <th class="text-center"><%= t('attributes.formatted_duration') %></th>
+            <th class="notvisible text-center"><%= t('attributes.duration') %></th>
             <th class="text-center"><%= t('attributes.work_start') %></th>
             <th class="text-center"><%= t('attributes.pause') %></th>
             <th><%= t('attributes.user') %></th>
@@ -30,6 +31,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </tfoot>
     <tbody>
@@ -37,6 +39,7 @@
         <%= content_tag_for(:tr, workday) do %>
                 <td class="text-center align-middle"><%= workday.date %></td>
                 <td class="text-center align-middle"><%= hourmin(workday.duration) %></td>
+                <td class="text-center align-middle"><%= workday.duration %></td>
                 <td class="text-center align-middle"><%= workday.work_start_hourmin %></td>
                 <td class="text-center align-middle notvisible"><%= workday.pause %></td>
                 <td class="align-middle notvisible"><%= workday.user %></td>

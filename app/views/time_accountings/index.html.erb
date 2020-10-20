@@ -15,7 +15,8 @@
     <thead>
       <tr>
             <th><%= t('attributes.date') %></th>
-            <th><%= t('attributes.duration') %></th>
+            <th class="notvisible"><%= t('attributes.duration') %></th>
+            <th><%= t('attributes.formatted_duration') %></th>
             <th><%= t('attributes.task') %></th>
             <th><%= t('attributes.description') %></th>
             <th class="notvisible"><%= t('attributes.user') %></th>
@@ -30,6 +31,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
       </tr>
     </tfoot>
     <tbody>
@@ -37,6 +39,7 @@
         <%= content_tag_for(:tr, time_accounting) do %>
                 <td><%= time_accounting.date %></td>
                 <td><%= time_accounting.duration %></td>
+                <td><%= time_accounting.formatted_duration %></td>
                 <td><%= time_accounting.task %></td>
                 <td><%= time_accounting.description %></td>
                 <td><%= time_accounting.user %></td>
