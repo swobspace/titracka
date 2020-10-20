@@ -1,0 +1,7 @@
+de:
+  flash:
+    actions:
+      create:
+        notice: ""
+      update:
+        notice: ""
