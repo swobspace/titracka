@@ -13,11 +13,17 @@
       <%= f.association :state, 
             include_blank: false
 	 %>
-      <%= f.association :responsible
+      <%= f.association :responsible,
+          collection: @users,
+          wrapper: :horizontal_select2
 	 %>
-      <%= f.association :org_unit
+      <%= f.association :org_unit, 
+          collection: @org_units.arrange_as_array,
+          wrapper: :horizontal_select2
 	 %>
-      <%= f.association :list
+      <%= f.association :list,
+          collection: @lists,
+          wrapper: :horizontal_select2
 	 %>
       <%= f.input :priority, collection:
             Task::PRIORITIES.map {|x| [t(x, scope: 'titracka.priority'), x]},

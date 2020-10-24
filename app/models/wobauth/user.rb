@@ -13,5 +13,8 @@ class Wobauth::User < ActiveRecord::Base
   devise *Titracka.devise_modules
 
   validates :password, confirmation: true
+
+
+  scope :active, -> { all }
 end
 
