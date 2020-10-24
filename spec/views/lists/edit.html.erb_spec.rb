@@ -8,6 +8,9 @@ RSpec.describe "lists/edit", type: :view do
     allow(controller).to receive(:controller_name) { "lists" }
     allow(controller).to receive(:action_name) { "edit" }
 
+    OrgUnit.create!(name: "ACME")
+    @org_units = OrgUnit.all
+
     @list = assign(:list, FactoryBot.create(:list))
   end
 

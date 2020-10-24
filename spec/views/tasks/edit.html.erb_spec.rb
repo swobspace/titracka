@@ -8,6 +8,9 @@ RSpec.describe "tasks/edit", type: :view do
     allow(controller).to receive(:controller_name) { "tasks" }
     allow(controller).to receive(:action_name) { "edit" }
 
+    OrgUnit.create!(name: "ACME")
+    @org_units = OrgUnit.all
+
     @task = assign(:task, FactoryBot.create(:task, :open))
   end
 
