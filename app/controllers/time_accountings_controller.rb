@@ -1,6 +1,7 @@
 class TimeAccountingsController < ApplicationController
   before_action :set_time_accounting, only: [:show, :edit, :update, :destroy]
   before_action :add_breadcrumb_show, only: [:show]
+  before_action :set_tasks, only: [:new, :edit, :update, :create]
 
   # GET /time_accountings
   def index
@@ -62,5 +63,9 @@ class TimeAccountingsController < ApplicationController
 
     def location
       polymorphic_path(@time_accountable || @time_accounting)
+    end
+
+    def set_tasks
+      @tasks = Task.accessible_by(current_ability, :read).order(:subject)
     end
 end

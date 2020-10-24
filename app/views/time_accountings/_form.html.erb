@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
       <%= f.association :task, 
-          collection: Task.accessible_by(current_ability, :read).order(:subject),
+          collection: @tasks,
           wrapper: :horizontal_select2
 	 %>
       <%= f.input :description
