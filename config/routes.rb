@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     resources :time_accountings, module: :workdays
   end
   resources :time_accountings
-  resources :lists
+  resources :lists do
+    resources :tasks, module: :lists
+  end
   resources :org_units
   resources :tasks do
     resources :time_accountings, module: :tasks

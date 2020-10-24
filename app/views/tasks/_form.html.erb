@@ -1,5 +1,5 @@
 <div class="container">
-  <%= simple_form_for(@task,
+  <%= simple_form_for([@taskable, @task],
     html: { class: 'form-horizontal card' }) do |f| %>
 
     <div class="card-header">

@@ -5,7 +5,9 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all
+    if @taskable
+      @tasks = @taskable.tasks
+    end
     respond_with(@tasks)
   end
 
@@ -16,7 +18,11 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new(priority: 'normal')
+    if @taskable
+      @task = @taskable.tasks.new(priority: 'normal')
+    else
+      @task = Task.new(priority: 'normal')
+    end
     respond_with(@task)
   end
 
@@ -29,19 +35,19 @@ class TasksController < ApplicationController
     @task = @current_user.tasks.new(task_params)
 
     @task.save
-    respond_with(@task)
+    respond_with(@task, location: location)
   end
 
   # PATCH/PUT /tasks/1
   def update
     @task.update(task_params)
-    respond_with(@task)
+    respond_with(@task, location: location)
   end
 
   # DELETE /tasks/1
   def destroy
     @task.destroy
-    respond_with(@task)
+    respond_with(@task, location: location)
   end
 
   private
@@ -59,5 +65,9 @@ class TasksController < ApplicationController
       @users = Wobauth::User.active.order("sn, givenname")
       @org_units = OrgUnit.accessible_by(current_ability, :read)
       @lists = List.accessible_by(current_ability, :read).order(:name)
+    end
+
+    def location
+      polymorphic_path(@taskable || @task)
     end
 end

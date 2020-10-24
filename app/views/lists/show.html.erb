@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mb-3">
   <div class="card-header">
     <div class="subtitle float-none"><%= t('activerecord.models.list') %>:</div>
     <h4 class="title float-left"><%= @list %></h4>
@@ -22,3 +22,16 @@
 
   </div>
 </div>
+
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title"><%= t('attributes.tasks')%></h5>
+  </div>
+  <div class="card-body">
+    <%= render partial: 'tasks',
+               locals: { tasks: @list.tasks } %>
+
+    <%= new_link [@list, Task] %>
+  </div>
+</div>
+

@@ -59,6 +59,7 @@ de:
     models:
       home: Home
       list: Liste
+      lists/task: Aufgabe
       org_unit: Organisationseinheit
       state: Status
       tag: Tag
@@ -100,6 +101,8 @@ de:
     tag_id: Tag
     task: Aufgabe
     task_id: Aufgabe
+    tasks: Aufgaben
+    task_ids: Aufgaben
     time_accounting: Aktivität
     time_accounting_id: Aktivität
     time_accountings: Aktivitäten
@@ -113,6 +116,7 @@ de:
   controller:
     home: Home
     lists: Listen
+    lists/tasks: Aufgaben
     org_units: Organisationseinheiten
     states: Status
     tags: Tags
