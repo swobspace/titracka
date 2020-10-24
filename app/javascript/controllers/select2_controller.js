@@ -13,7 +13,6 @@ export default class extends Controller {
     $(this.inputTarget).select2({
       'width': '100%',
       'language': 'de'
-
     })
   }
 }
