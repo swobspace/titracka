@@ -22,6 +22,7 @@ require('datatables.net-buttons/js/buttons.html5.js')
 require('datatables.net-buttons/js/buttons.print.js')
 require('moment')
 require('pikaday/scss/pikaday.scss')
+require('select2/dist/js/select2')
 
 window.JSZip = JSZip;
 
