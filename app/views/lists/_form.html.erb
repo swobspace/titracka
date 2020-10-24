@@ -6,7 +6,9 @@
       <%= form_legend %>
     </div>
     <div class="card-body">
-      <%= f.association :org_unit
+      <%= f.association :org_unit,
+          collection: @org_units.arrange_as_array,
+          wrapper: :horizontal_select2
 	 %>
       <%= f.input :name
 	 %>

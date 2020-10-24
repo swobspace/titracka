@@ -1,6 +1,7 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
   before_action :add_breadcrumb_show, only: [:show]
+  before_action :set_org_units, only: [:new, :edit, :update, :create]
 
   # GET /lists
   def index
@@ -52,5 +53,9 @@ class ListsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def list_params
       params.require(:list).permit(:org_unit_id, :name)
+    end
+
+    def set_org_units
+      @org_units = OrgUnit.accessible_by(current_ability, :read)
     end
 end
