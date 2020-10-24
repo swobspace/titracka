@@ -57,7 +57,7 @@ class TasksController < ApplicationController
 
     def set_associations
       @users = Wobauth::User.active.order("sn, givenname")
-      @org_units = OrgUnit.all
+      @org_units = OrgUnit.accessible_by(current_ability, :read)
       @lists = List.accessible_by(current_ability, :read).order(:name)
     end
 end
