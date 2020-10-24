@@ -6,7 +6,10 @@
       <%= form_legend %>
     </div>
     <div class="card-body">
-      <%= f.association :task
+      <%= f.association :task, 
+          collection: Task.accessible_by(current_ability, :read).order(:subject),
+          wrapper_html: {data: {controller: 'select2'}},
+          input_html: {data: {target: 'select2.input'}}
 	 %>
       <%= f.input :description
 	 %>
