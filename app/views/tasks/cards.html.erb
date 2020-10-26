@@ -1,0 +1,17 @@
+<h1><%= t('controller.tasks') %></h1>
+
+<%= content_tag :div, class: :row, data: { controller: 'draggable' } do %>
+  <% @columns.each do |column| %>
+    <div class='col'>
+      <div class='card'>
+        <h5 class='card-title'><%= column.name %></h5>
+        <div class='card-body'>
+          <%= content_tag :ul, class: 'card-text dropzone', data: { id: column.id, target: 'draggable.column' } do %>
+            <%= render column.tasks %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+

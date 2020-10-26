@@ -8,7 +8,12 @@ class TasksController < ApplicationController
     if @taskable
       @tasks = @taskable.tasks
     end
-    respond_with(@tasks)
+    if params[:view] == 'cards'
+      @columns = State.all
+      render template: 'tasks/cards'
+    else
+      respond_with(@tasks)
+    end
   end
 
   # GET /tasks/1
