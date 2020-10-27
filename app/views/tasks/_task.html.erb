@@ -1,9 +1,8 @@
-<%= content_tag :li, data: { target: 'draggable.item', url: '#' } do%>
-  <div class="card">
-    <div class="card-body">
-      <p class="card-text">
-        <%= task.subject %>
-      </p>
-    </div>
+<%= content_tag :li, class: "list-group-item", data: { target: 'draggable.item', url: '#' } do%>
+  <div class="d-flex w-100 justify-content-between">
+    <p><%= task.subject %></p>
+  </div>
+  <div class="d-flex w-100 justify-content-between small">
+    <p class="mb-1"><%= truncate(strip_tags(task.description.to_s), length: 100) %></p>
   </div>
 <% end %>
