@@ -36,4 +36,7 @@ export default class extends Controller {
     }
   }
   disconnect() {}
+  activities() {
+    console.log("activities clicked")
+  }
 }
