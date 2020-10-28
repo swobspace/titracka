@@ -15,7 +15,7 @@ export default class extends Controller {
       })
       sortable.on('sortable:start', function(event) {
         let task = event.dragEvent.source
-        task.setAttribute('style', 'z-index: 1000; background-color: yellow;')
+        task.setAttribute('style', 'z-index: 1000; background-color: #FFFFAB;')
       })
       sortable.on('sortable:stop', function(event) {
         let url = event.dragEvent.source.getAttribute('data-url')
