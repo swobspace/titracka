@@ -98,12 +98,6 @@ trix-editor.form-control {
 
 // - cardboard
 
-// div.card-body {
-//   ul {
-//     padding-inline-start: 0px;
-//   }
-//   li {
-//     list-style: none;
-//   }
-// }
-
+ul.dropzone {
+  min-height: 400px;
+}

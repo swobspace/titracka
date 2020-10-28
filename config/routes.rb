@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   resources :tasks do
     resources :time_accountings, module: :tasks
   end
-  resources :states
+  resources :states do
+    resources :tasks, except: [:index, :show], module: :states
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   get "/pages/index", to: 'pages#index'

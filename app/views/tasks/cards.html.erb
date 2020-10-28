@@ -8,8 +8,8 @@
           <%= column.name %>
         </div>
       
-        <%= content_tag :ul, class: 'list-group list-group-flush dropzone', data: { id: column.id, target: 'draggable.column' } do %>
-          <%= render column.tasks %>
+        <%= content_tag :ul, class: 'list-group list-group-flsh dropzone', data: { id: column.id, target: 'draggable.column' } do %>
+          <%= render column.tasks, column: column %>
         <% end %>
       </div>
     </div>

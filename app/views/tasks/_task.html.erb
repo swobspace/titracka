@@ -1,4 +1,4 @@
-<%= content_tag :li, class: "list-group-item", data: { target: 'draggable.item', url: '#' } do%>
+<%= content_tag :li, class: "list-group-item", data: { target: 'draggable.task', url: state_task_path(column, task) } do%>
   <div class="d-flex w-100 justify-content-between">
     <p><%= task.subject %></p>
   </div>

@@ -62,6 +62,7 @@ de:
       lists/task: Aufgabe
       org_unit: Organisationseinheit
       state: Status
+      states/task: Aufgabe
       tag: Tag
       task: Aufgabe
       tasks/time_accounting: Aktivität
@@ -119,6 +120,7 @@ de:
     lists/tasks: Aufgaben
     org_units: Organisationseinheiten
     states: Status
+    states/tasks: Aufgaben
     tags: Tags
     tasks: Aufgaben
     tasks/time_accountings: Aktivitäten
