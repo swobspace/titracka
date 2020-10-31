@@ -1,0 +1,30 @@
+<div class="modal fade" id="timeAccountingModal" tabindex="-1" role="dialog" aria-labelledby="timeAccountingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="timeAccountingModalLabel">
+          <%= t('actions.add', model: t('activerecord.models.time_accounting')) %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for(time_accounting,
+          remote: true,
+	  html: { class: 'form-horizontal' }) do |f| %>
+	<div class="modal-body">
+          <%= f.input :description %>
+          <%= f.input :date, as: :string, wrapper: :horizontal_date %>
+          <%= f.input :formatted_duration, as: :string, 
+                      input_html: { class: 'col-sm-3' } %>
+
+	</div>
+	<div class="modal-footer">
+          <div class="infomsg"></div>
+	  <%= f.button :submit, class: 'btn btn-primary' %>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+	</div>
+      <% end %>
+    </div>
+  </div>
+</div>

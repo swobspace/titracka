@@ -1,4 +1,10 @@
-<%= content_tag :li, class: "list-group-item", data: { target: 'draggable.task', url: state_task_path(column, task) } do%>
+<%= content_tag :li, 
+      class: "list-group-item", 
+      data: { 
+        target: 'draggable.task', 
+        url: state_task_path(column, task), 
+        controller: 'task' 
+      } do %>
   <div class="d-flex w-100 justify-content-between">
     <p><%= task.subject %></p>
   </div>
@@ -6,6 +12,12 @@
     <p class="mb-1"><%= truncate(strip_tags(task.description.to_s), length: 100) %></p>
   </div>
   <div class="d-flex w-100 justify-content-between small">
-    <span style="z-index: 2000;" data-action="click->draggable#activities"><i class="far fa-clock"></i></span>
+    <span style="z-index: 2000;" 
+          data-target="task.timeAccounting" 
+          data-action="click->task#add_activity"
+          data-activities-url="<%= task_time_accountings_url(task) %>"
+    >
+      <i class="far fa-clock"></i>
+    </span>
   </div>
 <% end %>

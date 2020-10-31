@@ -1,3 +1,6 @@
+<%= render partial: 'time_accountings/modal_form',
+           locals: { time_accounting: TimeAccounting.new } %>
+
 <h1><%= t('controller.tasks') %></h1>
 
 <%= content_tag :div, class: :row, data: { controller: 'draggable' } do %>
