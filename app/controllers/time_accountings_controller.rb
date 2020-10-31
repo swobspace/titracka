@@ -32,21 +32,32 @@ class TimeAccountingsController < ApplicationController
 
   # POST /time_accountings
   def create
-    @time_accounting = @current_user.time_accountings.new(time_accounting_params)
+    if @time_accountable
+      @time_accounting = @time_accountable.time_accountings.new(time_accounting_params)
+      @time_accounting.update(user_id: @current_user.id)
+    else
+      @time_accounting = @current_user.time_accountings.new(time_accounting_params)
+    end
     @time_accounting.save
-    respond_with(@time_accounting, location: location)
+    respond_with(@time_accounting, location: location) do |format|
+      format.json {}
+    end
   end
 
   # PATCH/PUT /time_accountings/1
   def update
     @time_accounting.update(time_accounting_params)
-    respond_with(@time_accounting, location: location)
+    respond_with(@time_accounting, location: location) do |format|
+      format.json {}
+    end
   end
 
   # DELETE /time_accountings/1
   def destroy
     @time_accounting.destroy
-    respond_with(@time_accounting, location: location)
+    respond_with(@time_accounting, location: location) do |format|
+      format.json {}
+    end
   end
 
   private
