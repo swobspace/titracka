@@ -77,7 +77,10 @@
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
+            <td class="text-right">
+              <span class="text-secondary mr-3">Summe KW <%= @workday.date.cweek %> </span>
+              <span class="font-weight-bold"><%= hourmin(@week_sum) %></span>
+            </td>
           </tr>
         </tfoot>
       <% end %>
