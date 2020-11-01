@@ -5,6 +5,9 @@
       <%= t('controller.tasks') %>
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
+      <%= link_to raw( '<i class="fas fa-fw fa-clipboard-list" aria-hidden="true"></i> ' +
+            t('titracka.cardboard')),
+          main_app.tasks_path(view: 'cards'), class: "dropdown-item" %>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
             t('controller.tasks')),
           main_app.tasks_path, class: "dropdown-item" %>

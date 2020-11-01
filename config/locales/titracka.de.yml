@@ -6,6 +6,7 @@ de:
   # mostly used in navigation
   titracka:
     action: Aktion
+    cardboard: Cardboard
     configuration: Konfiguration
     change_columns: Spalten ändern
     today: heute
