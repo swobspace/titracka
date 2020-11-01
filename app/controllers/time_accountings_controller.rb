@@ -38,9 +38,15 @@ class TimeAccountingsController < ApplicationController
     else
       @time_accounting = @current_user.time_accountings.new(time_accounting_params)
     end
-    @time_accounting.save
     respond_with(@time_accounting, location: location) do |format|
-      format.json {}
+      if @time_accounting.save
+        format.js {}
+      else
+        format.js { 
+          render json: @time_accounting.errors.full_messages,
+                 status: :unprocessable_entity 
+        }
+      end
     end
   end
 
