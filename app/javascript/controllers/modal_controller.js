@@ -1,14 +1,21 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "modalForm" ]
+  static targets = [ "modalForm", "modalView" ]
 
   open() {
-    let action_url = this.modalFormTarget.getAttribute('data-actionurl')
-    let modal_id = this.modalFormTarget.getAttribute("data-modalId")
+    let modal_id = this.modalViewTarget.getAttribute("data-modalId")
+    console.log(modal_id)
     let modal_element = document.getElementById(modal_id)
-    let form = modal_element.querySelector('form')
-    form.setAttribute('action', action_url) 
+    console.log(modal_element)
+
+    if (this.hasModalFormTarget) {
+      let action_url = this.modalFormTarget.getAttribute('data-actionurl')
+      let form = modal_element.querySelector('form')
+      form.setAttribute('action', action_url) 
+    }
+
+    console.log("trigger modal element: ")
     $(modal_element).modal()
   }
 }

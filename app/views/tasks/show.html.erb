@@ -9,69 +9,7 @@
     </div>
   </div>
   <div class="card-body">
-    <table class="table table-sm table-hover table-borderless autowidth">
-    
-      <tr>
-        <th class="w25"><%= t('attributes.subject')%>:</th>
-        <td class="w-100"><%= @task.subject %></td>
-      </tr>
-    
-      <tr>
-        <th class="w25"><%= t('attributes.description')%>:</th>
-        <td><%= @task.description %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.state')%>:</th>
-        <td><%= @task.state %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.responsible')%>:</th>
-        <td><%= @task.responsible %></td>
-      </tr>
-
-      <tr>
-        <th><%= t('attributes.org_unit')%>:</th>
-        <td><%= @task.org_unit %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.list')%>:</th>
-        <td><%= @task.list %></td>
-      </tr>
-
-      <tr>
-        <th><%= t('attributes.priority')%>:</th>
-        <td><%= t(@task.priority, scope: 'titracka.priority') %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.start')%> 
-            <i class="fas fa-long-arrow-alt-right"></i>
-            <%= t('attributes.deadline')%>:</th>
-        <td><%= @task.start %>
-            <i class="fas fa-long-arrow-alt-right"></i>
-            <%= @task.deadline %></td>
-      </tr>
-    
-    
-      <tr>
-        <th><%= t('attributes.resubmission')%>:</th>
-        <td><%= @task.resubmission %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.private')%>:</th>
-        <td><%= @task.private %></td>
-      </tr>
-
-      <tr>
-        <th><%= t('attributes.owner')%>:</th>
-        <td><%= @task.user %></td>
-      </tr>
-        </table>
-
+    <%= render partial: 'show_task', locals: {task: @task} %>
     <div role="toolbar">
       <%= back_link %>
       <%= new_link Task %>
