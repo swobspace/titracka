@@ -81,3 +81,5 @@ gem 'rails-controller-testing'
 # gem 'daemons'
 gem 'exception_notification'
 
+
+gem "stimulus_reflex", "~> 3.3"
