@@ -1,5 +1,6 @@
 <%= render partial: 'time_accountings/modal_form',
            locals: { time_accounting: TimeAccounting.new(date: Date.today) } %>
+<%= render partial: 'tasks/show_modal' %>
 
 <h1><%= t('controller.tasks') %></h1>
 

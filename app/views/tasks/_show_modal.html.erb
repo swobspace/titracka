@@ -9,9 +9,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= render partial: 'show_task', locals: {task: @task} %>
+      <%= render partial: 'show_task', locals: {task: (@task || Task.new)} %>
       <div class="modal-footer">
-        <%= f.button :submit, class: 'btn btn-primary' %>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
       </div>

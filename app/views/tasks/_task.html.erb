@@ -11,10 +11,11 @@
     <p class="mb-1"><%= truncate(strip_tags(task.description.to_s), length: 100) %></p>
   </div>
   <div class="d-flex w-100 justify-content-between small">
-    <div data-controller='modal'>
-      <span data-target="modal.modalView"
-            data-action="click->modal#open"
-            data-modalId="showTaskModal">
+    <div data-controller='task'
+            id=<%= dom_id(task) %>
+            data-modalId="showTaskModal"
+     >
+      <span data-action="click->task#show">
         <%= icon_show %>
       </span>
     </div>
