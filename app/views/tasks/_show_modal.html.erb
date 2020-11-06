@@ -9,7 +9,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= render partial: 'show_task', locals: {task: (@task || Task.new)} %>
+      <div class="modal-body" data-reflex-root="showTaskModalTable">
+        <%= render partial: 'show_task', locals: {task: (@task || Task.new)} %>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
