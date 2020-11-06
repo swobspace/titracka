@@ -75,7 +75,7 @@ class Ability
   # common reader functions
   #
   def reader_common
-    can :navigate, [:lists, :tasks, :activities]
+    can :navigate, [:lists, :tasks, :time_accountings]
     can :read, [List, Task, TimeAccounting, Workday], user_id: @user.id
     can :read, [Task], responsible_id: @user.id
   end
@@ -107,7 +107,7 @@ class Ability
   # common manager functions
   #
   def user_common
-    can :navigate, [:lists, :tasks, :activities]
+    can :navigate, [:lists, :tasks, :time_accountings]
     # can [:read], AdUser
     can :create, [Task, TimeAccounting, Workday]
     can :manage, [List, Task, TimeAccounting, Workday], user_id: @user.id
