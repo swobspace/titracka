@@ -3,5 +3,4 @@ roles:
   - name: OrgaAdmin
   - name: UserAdmin
   - name: Manager
-  - name: Member
   - name: Reader
