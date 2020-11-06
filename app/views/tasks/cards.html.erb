@@ -13,7 +13,7 @@
         </div>
 
         <%= content_tag :ul, class: 'list-group list-group-flsh dropzone px-1', data: { id: column.id, target: 'draggable.column' } do %>
-          <%= render column.tasks, column: column %>
+          <%= render column.tasks.accessible_by(current_ability, :read), column: column %>
         <% end %>
       </div>
     </div>
