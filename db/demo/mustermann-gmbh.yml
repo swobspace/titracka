@@ -1,0 +1,46 @@
+# Mustermann GmbH
+# 
+# to import:
+# rails console production
+# irb:1> config = YAML::load_file(File.join(Rails.root, 'db', 'demo', 'mustermann-gmbh.yml'))
+# irb:2> Contact.create(config['contacts'])
+#
+
+users:
+  - username: mmax
+    sn: Mustermann
+    givenname: Max
+    password: test9999
+    password_confirmation: test9999
+  - username: mfritz
+    sn: Mustermann
+    givenname: Fritz
+    password: test9999
+    password_confirmation: test9999
+  - username: mcaro
+    sn: Mustermann
+    givenname: Carola
+    password: test9999
+    password_confirmation: test9999
+  - username: mfrank
+    sn: Mustermann
+    givenname: Frank
+    password: test9999
+    password_confirmation: test9999
+  - username: mheike
+    sn: Mustermann
+    givenname: Heike
+    password: test9999
+    password_confirmation: test9999
+  - username: mjudas
+    sn: Mustermann
+    givenname: Judas
+    password: test9999
+    password_confirmation: test9999
+
+org_units:
+  - name: Mustermann GmbH
+  - name: IT
+  - name: Perso
+  - name: Fibu
+
