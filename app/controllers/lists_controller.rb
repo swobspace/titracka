@@ -5,7 +5,6 @@ class ListsController < ApplicationController
 
   # GET /lists
   def index
-    @lists = List.all
     respond_with(@lists)
   end
 

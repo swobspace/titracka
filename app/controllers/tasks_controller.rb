@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     if @taskable
-      @tasks = @taskable.tasks
+      @tasks = @taskable.tasks.accessible_by(current_ability, :read)
     end
     if params[:view] == 'cards'
       @columns = State.all
