@@ -17,10 +17,10 @@ class WorkdaysController < ApplicationController
 
   def by_date
     @workday = @current_user.workdays.where(date: params[:date]).first
-    authorize! :read, @workday
     if @workday.nil?
       redirect_to new_workday_path(date: params[:date])
     else
+      authorize! :read, @workday
       set_daystuff
       render :show
     end
