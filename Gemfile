@@ -83,3 +83,4 @@ gem 'exception_notification'
 
 
 gem "stimulus_reflex", "~> 3.3"
+gem "activerecord-session_store"
