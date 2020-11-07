@@ -1,0 +1,17 @@
+admin:
+  name: Admin
+
+orga_admin:
+  name: OrgaAdmin
+
+user_admin:
+  name: UserAdmin
+
+manager:
+  name: Manager
+
+member:
+  name: Member
+
+reader:
+  name: Reader

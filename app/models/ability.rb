@@ -85,6 +85,7 @@ class Ability
   #
   def reader_ou(ou_ids)
     can :read, [List, Task], org_unit_id: ou_ids
+    can :read_on, OrgUnit, id: ou_ids
   end
 
   #
@@ -117,12 +118,13 @@ class Ability
   # org_unit specific rights
   #
   def member_ou(ou_ids)
-    can [:work_on], OrgUnit, id: ou_ids
+    can [:read_on, :work_on], OrgUnit, id: ou_ids
   end
 
   def manager_ou(ou_ids)
-    can [:work_on], OrgUnit, id: ou_ids
+    can [:read_on, :work_on], OrgUnit, id: ou_ids
     can :create, [List, Task, TimeAccounting, Workday]
+    can :read, TimeAccounting, task: { org_unit_id: ou_ids }
     can :manage, [List, Task], org_unit_id: ou_ids
   end
 
@@ -144,7 +146,7 @@ class Ability
   #
   def user_admin
     # -- org stuff
-    can [:navigate], [:dashboard, Wobauth::User]
+    can [:navigate], [Wobauth::User]
     # can [:read], AdUser
 
     # -- user stuff
