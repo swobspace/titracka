@@ -3,6 +3,7 @@ require_relative '../../lib/wobauth/admin_ability'
 
 class Ability
   include CanCan::Ability
+  attr_reader :rights, :uid
 
   CONFIGURATION_MODELS =
     Titracka::CONFIGURATION_CONTROLLER.map{|c| c.singularize.camelize.constantize}
@@ -25,6 +26,7 @@ class Ability
     if @user.nil?
       nobody
     else
+      @uid = @user.id
       add_rights(@user.authorities.valid(Date.today))
       add_rights(@user.group_authorities.valid(Date.today))
 
@@ -110,7 +112,7 @@ class Ability
   def user_common
     can :navigate, [:lists, :tasks, :time_accountings]
     # can [:read], AdUser
-    can :create, [Task, TimeAccounting, Workday]
+    can :create, [List, Task, TimeAccounting, Workday]
     can :manage, [List, Task, TimeAccounting, Workday], user_id: @user.id
   end
 
@@ -123,7 +125,6 @@ class Ability
 
   def manager_ou(ou_ids)
     can [:read_on, :work_on], OrgUnit, id: ou_ids
-    can :create, [List, Task, TimeAccounting, Workday]
     can :read, TimeAccounting, task: { org_unit_id: ou_ids }
     can :manage, [List, Task], org_unit_id: ou_ids
   end
