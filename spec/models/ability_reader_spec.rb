@@ -187,14 +187,16 @@ end
 RSpec.describe "User", :type => :model do
   fixtures 'wobauth/roles'
 
-  subject(:ability) { Ability.new(user) }
+  subject(:ability) { Ability.new(@user) }
   include_context "basic variables"
+  before(:each) do
+    @user = myuser
+  end
 
   describe "with role Reader assigned to user" do
-    let(:user) { FactoryBot.create(:user) }
     let!(:authority) {
       FactoryBot.create(:authority,
-	authorizable: user,
+	authorizable: @user,
 	role: wobauth_roles(:reader),
         authorized_for: ou_1)
     }
@@ -202,9 +204,8 @@ RSpec.describe "User", :type => :model do
   end
 
   describe "with role Reader assigned to group" do
-    let(:user) { FactoryBot.create(:user) }
     let(:group) { FactoryBot.create(:group) }
-    let!(:membership) { FactoryBot.create(:membership, user: user, group: group) }
+    let!(:membership) { FactoryBot.create(:membership, user: @user, group: group) }
     let!(:authority) {
       FactoryBot.create(:authority,
 	authorizable: group,
