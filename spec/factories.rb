@@ -8,7 +8,7 @@ FactoryBot.define do
   end
 
   factory :list do
-    name { "Some Task" }
+    name { "Some List" }
     association :user
   end
 
@@ -54,7 +54,7 @@ FactoryBot.define do
   end
 
   factory :time_accounting do
-    description { "Some activity" }
+    description { "Some Activity" }
     date { Date.today.to_s }
     duration { 30 }
     association :user
