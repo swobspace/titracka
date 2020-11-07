@@ -15,7 +15,6 @@ export default class extends Controller {
   onPostError(event) {
     let [data, status, xhr] = event.detail
     let error_msg = "ERROR:: " + data.join("; ")
-    console.log(error_msg)
     this.errorSuccessTarget.classList.add("alert", "alert-danger")
     this.errorSuccessTarget.innerText = error_msg
   }

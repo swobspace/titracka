@@ -14,7 +14,7 @@ export default class extends Controller {
       onSelect: function(date) {
         var value = picker.toString()
         var newurl = url + value
-        console.log(newurl)
+        // console.log(newurl)
         Turbolinks.clearCache();
         Turbolinks.visit(newurl);
       },
@@ -30,6 +30,6 @@ export default class extends Controller {
   }
 
   set_date(event) {
-    console.log("clicked")
+    // console.log("clicked")
   }
 }
