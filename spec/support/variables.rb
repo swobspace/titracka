@@ -37,4 +37,6 @@ RSpec.shared_context "basic variables" do
   let(:tac_u0) { FactoryBot.create(:time_accounting, user_id: myuser.id)}
   let(:tac_xu0) { FactoryBot.create(:time_accounting, user_id: anybody.id)}
 
+  let(:wday_u0) { FactoryBot.create(:workday, user_id: myuser.id) }
+  let(:wday_xu0) { FactoryBot.create(:workday, user_id: anybody.id) }
 end

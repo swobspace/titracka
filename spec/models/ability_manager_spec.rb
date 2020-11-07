@@ -164,6 +164,15 @@ RSpec.shared_examples "a Manager" do
       end
     end
   end
+
+  describe "Workdays" do
+    it { is_expected.to be_able_to(:create, Workday.new) }
+
+    [:read, :update, :destroy, :manage].each do |action|
+      it { is_expected.to be_able_to(action, wday_u0) }
+      it { is_expected.not_to be_able_to(action, wday_xu0) }
+    end
+  end
 end
 
 RSpec.describe "User", :type => :model do
