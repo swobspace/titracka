@@ -11,7 +11,9 @@ Wobauth.setup do |config|
   # depends on your application ...
   # default: []
   #
-  config.authorized_for_types = [ "OrgUnit", "List"]
+  # config.authorized_for_types = [ "OrgUnit", "List"]
+  # only OrgUnit for now, stay tuned
+  config.authorized_for_types = [ "OrgUnit"]
   config.authorized_for_group_method = :all
   #
   # or for ancestry trees:
