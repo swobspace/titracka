@@ -1,0 +1,55 @@
+## Apache-Setup
+
+Die Kombination Apache2.4 + Passenger unterstützt leider keine Websockets. Das
+Setup ist daher etwas aufwendiger: Apache dient als Frontend (wg.
+Authentifikation u.a.) und Proxy-Server, Passenger Standalone bedient die
+Anwendung.
+
+### Apache ###
+
+[[apache-conf]]
+./etc/apache2/conf-available/titracka-proxy.conf
+----
+Alias "/titracka" "/var/srv/www/titracka/current/public"
+
+<Directory "/var/srv/www/titracka/current/public">
+  AllowOverride All
+  order allow,deny
+  allow from all
+  Require all Granted
+  Options -MultiViews
+</Directory>
+
+<Location "/titracka/">
+  ProxyPass http://127.0.0.1:4000/
+  ProxyPassReverse http://127.0.0.1:4000/
+  SetEnv SECRET_KEY_BASE ***************
+</Location>
+
+<Location /titracka/cable>
+  ProxyPass ws://server.example.com:4000/cable
+  ProxyPassReverse ws://server.example.com:4000/cable
+</Location>
+
+<Proxy *>
+  Order deny,allow
+  Allow from all
+</Proxy>
+----
+
+### Passenger Standalone ###
+
+[[passenger]]
+./var/srv/www/titracka/shared/config/Passenger.json
+----
+{
+  "address": "127.0.0.1",
+  "environment": "production",
+  "daemonize": true,
+  "port": "4000",
+  "envvars": {
+     "RAILS_RELATIVE_URL_ROOT": "/titracka",
+     "SCRIPT_NAME": "/titracka"
+   }
+}
+----
