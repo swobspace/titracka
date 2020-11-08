@@ -1,4 +1,5 @@
 class List < ApplicationRecord
+  include ListConcerns
   # -- associations
   belongs_to :org_unit, optional: true
   belongs_to :user, optional: false, inverse_of: :tasks, class_name: 'Wobauth::User'
