@@ -9,14 +9,18 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <ul class="list-group" data-controller="dateselector" data-dateselector-url="<%= root_path %>">
-        <li class="list-group-item" data-target="dateselector.date"> 
-          <input type="hidden" data-target="dateselector.field">
-          <button class="btn btn-secondary">
-            <i class="far fa-calendar-alt"></i>
-          </button>
-          <span class="ml-3">Zeiterfassung</span>
-        </li>
+      <ul class="list-group">
+        <% if can? :create, Workday %>
+          <div data-controller="dateselector" data-dateselector-url="<%= root_path %>">
+            <li class="list-group-item" data-target="dateselector.date"> 
+              <input type="hidden" data-target="dateselector.field">
+              <button class="btn btn-secondary">
+                <i class="far fa-calendar-alt"></i>
+              </button>
+              <span class="ml-3">Zeiterfassung</span>
+            </li>
+          </div>
+        <% end %>
       </ul>
     </div>
   </div>
