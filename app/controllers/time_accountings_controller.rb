@@ -19,7 +19,7 @@ class TimeAccountingsController < ApplicationController
   # GET /time_accountings/new
   def new
     if @time_accountable
-      @time_accounting = @time_accountable.time_accountings.new
+      @time_accounting = @time_accountable.time_accountings.new(date: Date.today.to_s)
     else
       @time_accounting = TimeAccounting.new(date: Date.today.to_s)
     end
