@@ -55,4 +55,12 @@ module Titracka
     end
   end
 
+  def self.remote_user
+    if CONFIG['remote_user'].present?
+      CONFIG['remote_user']
+    else
+      "REMOTE_USER"
+    end
+  end
+
 end
