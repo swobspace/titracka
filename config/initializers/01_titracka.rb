@@ -63,4 +63,12 @@ module Titracka
     end
   end
 
+  def self.action_cable_allowed_request_origins
+    if CONFIG['action_cable_allowed_request_origins'].present?
+      Array(CONFIG['action_cable_allowed_request_origins'])
+    else
+      [ 'http://localhost', 'https://localhost' ]
+    end
+  end
+
 end
