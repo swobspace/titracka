@@ -118,6 +118,4 @@ Rails.application.configure do
   config.after_initialize do
     PaperTrail.enabled = true
   end
-
-  config.action_cable.allowed_request_origins = Titracka.action_cable_allowed_request_origins
 end
