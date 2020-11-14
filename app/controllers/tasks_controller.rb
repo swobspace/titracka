@@ -9,7 +9,8 @@ class TasksController < ApplicationController
       @tasks = @taskable.tasks.accessible_by(current_ability, :read)
     end
     if params[:view] == 'cards'
-      @columns = State.all
+      @columns = State.not_archived
+      @tasks_per_column = @tasks.group_by(&:state_id)
       render template: 'tasks/cards'
     else
       respond_with(@tasks)

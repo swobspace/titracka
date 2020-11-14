@@ -1,0 +1,22 @@
+<%= render partial: 'time_accountings/modal_form',
+           locals: { time_accounting: TimeAccounting.new(date: Date.today) } %>
+<%= render partial: 'tasks/show_modal' %>
+
+<h1><%= t('controller.tasks') %></h1>
+
+<%= content_tag :div, class: :row, data: { controller: 'draggable' } do %>
+  <% columns.each do |column| %>
+    <div class='card-deck col px-1'>
+      <div class='card border-0 bg-light'>
+        <div class="card-header text-center border">
+          <%= column.name %>
+        </div>
+
+        <%= content_tag :ul, class: 'list-group list-group-flsh dropzone px-1', data: { id: column.id, target: 'draggable.column' } do %>
+          <%= render(tasks_per_column[column.id], column: column) if tasks_per_column[column.id].present? %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
