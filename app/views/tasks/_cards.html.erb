@@ -2,8 +2,6 @@
            locals: { time_accounting: TimeAccounting.new(date: Date.today) } %>
 <%= render partial: 'tasks/show_modal' %>
 
-<h1><%= t('controller.tasks') %></h1>
-
 <%= content_tag :div, class: :row, data: { controller: 'draggable' } do %>
   <% columns.each do |column| %>
     <div class='card-deck col px-1'>
