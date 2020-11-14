@@ -1,0 +1,74 @@
+== Installationsvoraussetzungen für Titracka
+_Stand 2020-11-15_
+
+[[system]]
+=== System
+
+Hardware oder virtuelle Maschine::
+  * x86_64 Architektur (Standard-Intel oder AMD-Prozessor)
+  * mind. 8 GByte Memory, besser 16 GByte
+  * mind. 2 Prozessorkerne
+  * Storage: >= 20 GByte (abhängig von den zu erwartenden Dateimengen; 50
+GByte oder mehr sinnvoll wg. Datensicherung).
+Betriebssystem::
+  * Ubuntu LTS x86_64, aktuelle Version (z.Z. 20.04)
+  * Minimal-Ubuntu-Server-Installation
+Datenbank::
+  * Datenbank: MariaDB (MySQL nur nach Absprache)
+  * Andere Datenbanken auf Anfrage (z.B. PostgreSQL)
+Webserver::
+  * Apache 2.4 oder neuer
+  * Passenger standalone
+Benutzer::
+  * Benutzer `wob` mit sudo-Rechten
+  * Benutzer `deploy` ohne sudo-Rechte; unter diesem Benutzer läuft die
+    Anwendung
+
+[[systemzugang]]
+=== Systemzugang
+
+Für Installation und Betrieb sind zwei Benutzer `wob` und `deploy`
+erforderlich. Der Benutzer `wob` benötigt während der Installationsphase
+Root-Rechte (via sudo) Das System muss per SSH vom Standort Waldbreitbach aus
+über VPN erreichbar sein, entweder über einen festen VPN-Tunnel (ipsec) oder
+alternativ über OpenVPN.
+
+Das System benötigt Internetzugang für die Installation und Aktualisierung von
+Systemsoftware (Ubuntu-Paketquellen) und Ruby-Gems (rubygems.org, github.com,
+u.a.). Die Nutzung eines Proxys mit User/Passwort und die Einschränkung auf
+nutzbare URLs ist möglich; genutzte Protokolle sind http/https.
+
+[[datensicherung]]
+=== Datensicherung
+Die Datensicherung erfolgt auf mehreren Ebenen:
+
+Systemsicherung:: Sicherung des Gesamtsystem
+Systemkonfiguration:: Sicherung der Systemkonfigurationsdaten im Verzeichnis /etc
+Anwendungsdaten:: alle für die Anwendung notwendige Daten
+
+[[systembackup]]
+==== Systemsicherung
+
+Eine Sicherung des Gesamtsystems wird nicht mit eingerichtet. Bitte sichern Sie
+das Gesamtsystem regelmäßig wie Ihre anderen Systeme auch (Images, Snapshots, etc).
+
+[[systemkonfiguration]]
+==== Systemkonfiguration
+
+Die Sicherung von Änderungen an der Systemkonfiguration im Verzeichnis ``/etc`
+erfolgt mittels `etckeeper` über ein lokales Git-Repository. Die Anbindung an
+einen vorhandenen Git-Server ist ebenfalls möglich.
+
+[[sicherung-der-anwendungsdaten]]
+==== Sicherung der Anwendungsdaten
+
+Die Sicherung der Anwendungsdaten (Datenbank, Dateien) erfolgt über das
+Ruby-Gem „backup“, als Storage sind möglich:
+
+* Remote Server via Netzwerk: (Protokolle: FTP, SFTP, SCP, oder RSync)
+* Lokaler Storage, auch gemountete Filesysteme (z.B. Windows-Dateiserver
+via smbfs).
+
+Gesichert wird die Datenbank als SQL-Dump, die Dateien als `tar`-Archiv.
+Eine Verschlüsselung des Backups ist möglich, Versionierung nach
+Absprache.
