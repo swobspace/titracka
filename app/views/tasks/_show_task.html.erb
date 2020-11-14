@@ -36,11 +36,13 @@
 
   <tr>
     <th><%= t('attributes.start')%> 
-        <i class="fas fa-long-arrow-alt-right"></i>
+        &#x21A6;
         <%= t('attributes.deadline')%>:</th>
-    <td><%= task.start %>
-        <i class="fas fa-long-arrow-alt-right"></i>
-        <%= task.deadline %></td>
+    <td>
+      <span> <%= task.start %> </span>
+      <span> <%= "&#x21A6; #{task.deadline}".html_safe if task.deadline.present? %> </span>
+
+    </td>
   </tr>
 
   <tr>
