@@ -62,6 +62,7 @@ de:
       list: Liste
       lists/task: Aufgabe
       org_unit: Organisationseinheit
+      org_units/task: Aufgabe
       state: Status
       states/task: Aufgabe
       tag: Tag
@@ -120,6 +121,7 @@ de:
     lists: Listen
     lists/tasks: Aufgaben
     org_units: Organisationseinheiten
+    org_units/tasks: Aufgaben
     states: Status
     states/tasks: Aufgaben
     tags: Tags

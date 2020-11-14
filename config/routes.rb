@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :lists do
     resources :tasks, module: :lists
   end
-  resources :org_units
+  resources :org_units do
+    resources :tasks, module: :org_units
+  end
   resources :tasks do
     resources :time_accountings, module: :tasks
   end
