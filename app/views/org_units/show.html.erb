@@ -1,28 +1,19 @@
-<div class="card">
+<div class="card mb-2">
   <div class="card-header">
-    <div class="subtitle float-none"><%= t('activerecord.models.org_unit') %>:</div>
-    <h4 class="title float-left"><%= @org_unit %></h4>
+    <div class="d-flex w-100 justify-content-between">
+      <h4 class="title"><%= @org_unit %></h4>
 
-    <div role="toolbar" class="float-right">
-      <%= edit_link(@org_unit) %>
-      <%= delete_link(@org_unit) %>
-    </div>
-
-  </div>
-
-  <div class="card-body">
-    <table class="table table-borderless table-hover autowidth">
-    
-      <tr>
-        <th class="w-25"><%= t('attributes.parent')%>:</th>
-        <td><%= @org_unit.parent %></td>
-      </tr>
-    
-    </table>
-
-    <div role="toolbar">
-      <%= back_link %>
-      <%= new_link OrgUnit %>
+      <div role="toolbar">
+        <%= back_link %>
+        <%= edit_link(@org_unit) %>
+        <%= delete_link(@org_unit) %>
+      </div>
     </div>
   </div>
 </div>
+
+<div class="ml-2 mb-3">
+  <%= render 'tasks/cards', columns: @columns, tasks_per_column: @tasks_per_column %>
+</div>
+<%# new_link [@org_unit, Task] %>
+
