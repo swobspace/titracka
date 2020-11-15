@@ -9,7 +9,7 @@
         <%= t('controller.org_units') %> /
         <%= t('controller.lists') %>
       </div>
-      <div class="card-body">
+      <div class="card-body py-0">
         <nav class="d-sm-block pl-0 py-3 sidebar" id="org_unit_tree" data-target="dashboard.tree">
           <%= arranged_tree_as_list( @elements, sort_by: [:position],
                 open_id: params[:clicked]) do |element| %>
