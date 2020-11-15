@@ -42,6 +42,11 @@ export default class extends ApplicationController {
     lists.parent('li').each(function(index) {
       $(that.treeTarget).jstree(true).set_type($(this), 'list')
     })
+  }
 
+  afterCardboard(element) {
+    let clicked = this.treeTarget.querySelectorAll('li > a.jstree-clicked')
+    clicked.forEach(element => element.classList.remove('jstree-clicked'))
+    element.classList.add('jstree-clicked')
   }
 }
