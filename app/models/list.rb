@@ -6,6 +6,7 @@ class List < ApplicationRecord
   has_many :tasks, dependent: :restrict_with_error
 
   # -- configuration
+  acts_as_list scope: [:org_unit_id]
   # -- validations and callbacks
   validates :name, :user_id, presence: true
 
