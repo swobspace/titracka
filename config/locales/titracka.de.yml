@@ -35,6 +35,7 @@ de:
       'critical': sehr hoch
       notset: nicht bearbeitet
     csv_export: CSV-Export
+    new_org_unit: Neue OE
     new_list: Neue Liste
     new_task: Neue Aufgabe
     new_time_accounting: Neue Aktivität
