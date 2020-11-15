@@ -4,7 +4,6 @@ class OrgUnitsController < ApplicationController
 
   # GET /org_units
   def index
-    @org_units = OrgUnit.all
     respond_with(@org_units)
   end
 

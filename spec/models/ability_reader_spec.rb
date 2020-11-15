@@ -4,8 +4,8 @@ require "cancan/matchers"
 configuration_models =
   Titracka::CONFIGURATION_CONTROLLER.map{|c| c.singularize.camelize.constantize}
 
-data_models = [ List, Task, TimeAccounting, Workday ]
-navigation = [:lists, :tasks, :time_accountings, :configuration]
+data_models = [ OrgUnit, List, Task, TimeAccounting, Workday ]
+navigation = [:org_units, :lists, :tasks, :time_accountings, :configuration]
 
 RSpec.shared_examples "a Reader" do
   # -- readable, not writable
@@ -15,20 +15,14 @@ RSpec.shared_examples "a Reader" do
   # it { is_expected.to be_able_to(:read, AdUser.new) }
 
   context "working with own org_units" do
-    it { is_expected.not_to be_able_to(:read_on, ou_0) }
-    it { is_expected.to be_able_to(:read_on, ou_1) }
-    it { is_expected.to be_able_to(:read_on, ou_2) }
-    it { is_expected.not_to be_able_to(:work_on, ou_0) }
-    it { is_expected.not_to be_able_to(:work_on, ou_1) }
-    it { is_expected.not_to be_able_to(:work_on, ou_2) }
+    it { is_expected.not_to be_able_to(:read, ou_0) }
+    it { is_expected.to be_able_to(:read, ou_1) }
+    it { is_expected.to be_able_to(:read, ou_2) }
   end
   context "working with foreign org_units" do
-    it { is_expected.not_to be_able_to(:read_on, ou_x0) }
-    it { is_expected.not_to be_able_to(:read_on, ou_x1) }
-    it { is_expected.not_to be_able_to(:read_on, ou_x2) }
-    it { is_expected.not_to be_able_to(:work_on, ou_x0) }
-    it { is_expected.not_to be_able_to(:work_on, ou_x1) }
-    it { is_expected.not_to be_able_to(:work_on, ou_x2) }
+    it { is_expected.not_to be_able_to(:read, ou_x0) }
+    it { is_expected.not_to be_able_to(:read, ou_x1) }
+    it { is_expected.not_to be_able_to(:read, ou_x2) }
   end
 
   # 

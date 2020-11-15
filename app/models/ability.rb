@@ -77,7 +77,7 @@ class Ability
   # common reader functions
   #
   def reader_common
-    can :navigate, [:lists, :tasks, :time_accountings]
+    can :navigate, [:org_units, :lists, :tasks, :time_accountings]
     can :read, [List, Task, TimeAccounting, Workday], user_id: @user.id
     can :read, [Task], responsible_id: @user.id
   end
@@ -87,7 +87,7 @@ class Ability
   #
   def reader_ou(ou_ids)
     can :read, [List, Task], org_unit_id: ou_ids
-    can :read_on, OrgUnit, id: ou_ids
+    can :read, OrgUnit, id: ou_ids
   end
 
   #
@@ -110,7 +110,7 @@ class Ability
   # common manager functions
   #
   def user_common
-    can :navigate, [:lists, :tasks, :time_accountings]
+    can :navigate, [:org_units, :lists, :tasks, :time_accountings]
     # can [:read], AdUser
     can :create, [List, Task, TimeAccounting, Workday]
     can :manage, [List, Task, TimeAccounting, Workday], user_id: @user.id
@@ -120,11 +120,11 @@ class Ability
   # org_unit specific rights
   #
   def member_ou(ou_ids)
-    can [:read_on, :work_on], OrgUnit, id: ou_ids
+    can :read, OrgUnit, id: ou_ids
   end
 
   def manager_ou(ou_ids)
-    can [:read_on, :work_on], OrgUnit, id: ou_ids
+    can :read, OrgUnit, id: ou_ids
     can :read, TimeAccounting, task: { org_unit_id: ou_ids }
     can :manage, [List, Task], org_unit_id: ou_ids
   end
@@ -135,7 +135,8 @@ class Ability
   def orga_admin
     # -- org stuff
     can [:manage], CONFIGURATION_MODELS
-    can [:navigate], [:dashboard, Wobauth::User]
+    can [:manage], OrgUnit
+    can [:navigate], [:dashboard, :org_units, Wobauth::User]
     # can [:read], AdUser
 
     # -- user stuff
@@ -147,7 +148,7 @@ class Ability
   #
   def user_admin
     # -- org stuff
-    can [:navigate], [Wobauth::User]
+    can [:navigate], [:org_units, Wobauth::User]
     # can [:read], AdUser
 
     # -- user stuff

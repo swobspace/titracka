@@ -2,7 +2,7 @@ require 'rails_helper'
 require "cancan/matchers"
 
 configuration_models = 
-  Titracka::CONFIGURATION_CONTROLLER.map{|c| c.singularize.camelize.constantize}
+  Titracka::CONFIGURATION_CONTROLLER.map{|c| c.singularize.camelize.constantize} + [ OrgUnit]
 
 data_models = [ List, Task, TimeAccounting, Workday ]
 navigation = [:lists, :tasks, :time_accountings]
@@ -26,6 +26,7 @@ RSpec.shared_examples "an OrgaAdmin with application Ability" do
     it { is_expected.not_to be_able_to(:navigate, navi) }
   end
   it { is_expected.to be_able_to(:navigate, :configuration) }
+  it { is_expected.to be_able_to(:navigate, :org_units) }
   it { is_expected.to be_able_to(:navigate, Wobauth::User) }
 
   # -- nor readable, not writeable

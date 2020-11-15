@@ -4,7 +4,7 @@ require "cancan/matchers"
 configuration_models = 
   Titracka::CONFIGURATION_CONTROLLER.map{|c| c.singularize.camelize.constantize}
 
-data_models = [ List, Task, TimeAccounting, Workday ]
+data_models = [ OrgUnit, List, Task, TimeAccounting, Workday ]
 navigation = [:lists, :tasks, :time_accountings]
 
 admin_models = [ Wobauth::User, Wobauth::Group, Wobauth::Authority, Wobauth::Membership, Wobauth::Role ]
@@ -26,6 +26,7 @@ RSpec.shared_examples "an UserAdmin with application Ability" do
     it { is_expected.not_to be_able_to(:navigate, navi) }
   end
   it { is_expected.to be_able_to(:navigate, :configuration) }
+  it { is_expected.to be_able_to(:navigate, :org_units) }
   it { is_expected.to be_able_to(:navigate, Wobauth::User) }
 
   # -- nor readable, not writeable
