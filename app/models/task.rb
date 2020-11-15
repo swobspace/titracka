@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  include TaskConcerns
   # -- associations
   belongs_to :state
   belongs_to :user, optional: false, inverse_of: :tasks, class_name: 'Wobauth::User'
