@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @org_units = arrange_with_lists(OrgUnit.accessible_by(current_ability, :read).arrange)
+    @elements = arrange_with_lists(OrgUnit.accessible_by(current_ability, :read).arrange)
   end
 
   private

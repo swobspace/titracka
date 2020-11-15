@@ -6,23 +6,24 @@
    <div class="col-auto">
      <div class="card" data-controller="dashboard">
       <div class="card-header">
-        <%= t('controller.org_units') %>
+        <%= t('controller.org_units') %> /
+        <%= t('controller.lists') %>
       </div>
       <div class="card-body">
         <nav class="d-sm-block pl-0 py-3 sidebar" id="org_unit_tree" data-target="dashboard.tree">
-          <%= arranged_tree_as_list( @org_units, sort_by: [:position],
-                open_id: params[:clicked]) do |org_unit| %>
-            <%= link_to " #{org_unit.name}", "#",
+          <%= arranged_tree_as_list( @elements, sort_by: [:position],
+                open_id: params[:clicked]) do |element| %>
+            <%= link_to " #{element.name}", "#",
                   remote: true,
                   data: {
                     reflex: "click->DashboardReflex#cardboard",
                     reflex_root: "#tasksCardboard",
-                    org_unit_id: ( org_unit.kind_of? OrgUnit) ? org_unit.id : nil,
-                    list_id: ( org_unit.kind_of? List) ? org_unit.id : nil,
+                    element_id: element.id,
+                    element_type: element.class.name.underscore.to_s
                   },
-                  id: dom_id(org_unit),
-                  class: (org_unit.class.name.underscore +
-                          if org_unit.id == params[:clicked].to_i
+                  id: dom_id(element),
+                  class: (element.class.name.underscore +
+                          if element.id == params[:clicked].to_i
                             " jstree-clicked"
                            end.to_s)
             %>
