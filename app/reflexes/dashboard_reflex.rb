@@ -22,4 +22,10 @@ class DashboardReflex < ApplicationReflex
   #
   # Learn more at: https://docs.stimulusreflex.com
 
+  def cardboard
+    @org_unit = OrgUnit.find(element.dataset[:org_unit_id])
+    @columns = State.not_archived
+    @tasks_per_column = @org_unit.tasks.group_by(&:state_id)
+  end
+
 end

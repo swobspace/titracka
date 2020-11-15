@@ -7,13 +7,13 @@ export default class extends ApplicationController {
   connect () {
     super.connect()
     $(this.treeTarget).jstree({
-      "plugins" : [ "contextmenu", "types", "search" ],
+      "plugins" : [ "types", "search" ],
       "core": {
         'check_callback': true
       },
       "types": {
 	"default": {
-	  "icon": "fas fa-users fa-fw",
+	  "icon": "fas fa-users fa-xs",
 	  "li_attr": {
 	    "class": 'nav-item'
 	  }
@@ -26,5 +26,6 @@ export default class extends ApplicationController {
 	}
       }
     })
+    $(this.treeTarget).jstree("open_all")
   }
 }

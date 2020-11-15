@@ -3,22 +3,20 @@
 <% end %>
 
 <div class="row">
-   <div class="col-md-5 col-lg-4">
+   <div class="col-auto">
      <div class="card" data-controller="dashboard">
       <div class="card-header">
-        <input id="jstree-search-input" class="form-control w-100"/>
+        <%= t('controller.org_units') %>
       </div>
       <div class="card-body">
         <nav class="d-sm-block pl-0 py-3 sidebar" id="org_unit_tree" data-target="dashboard.tree">
           <%= arranged_tree_as_list(@org_units, sort_by: [:position],
                                                 open_id: params[:clicked]) do |org_unit| %>
-            <%= link_to " #{org_unit.name}",
-                org_unit_tasks_path(
-                  org_unit_id: org_unit.id,
-                  parent: @org_unit&.id
-                ),
+            <%= link_to " #{org_unit.name}", "#",
                   remote: true,
                   data: {
+                    reflex: "click->DashboardReflex#cardboard",
+                    reflex_root: "#tasksCardboard",
                     org_unit_id: org_unit.id
                   },
                   id: dom_id(org_unit),
@@ -32,7 +30,7 @@
       </div>
     </div>
   </div>
-  <div id="dashboard-content" class="col-md-7 ml-md-auto col-lg-8">
+  <div id="dashboard-content" class="col">
     <%= render 'tasks/cards', columns: @columns, tasks_per_column: @tasks_per_column %>
   </div>
 </div>
