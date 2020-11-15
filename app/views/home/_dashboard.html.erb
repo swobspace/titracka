@@ -13,7 +13,7 @@
         <nav class="d-sm-block pl-0 py-3 sidebar" id="org_unit_tree" data-target="dashboard.tree">
           <%= arranged_tree_as_list( @elements, sort_by: [:position],
                 open_id: params[:clicked]) do |element| %>
-            <%= link_to " #{element.name}", "#",
+            <%= link_to " #{element.name} (#{element.tasks.not_archived.count})", "#",
                   remote: true,
                   data: {
                     reflex: "click->DashboardReflex#cardboard",
