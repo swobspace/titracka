@@ -49,7 +49,7 @@ module AncestryHelper
 
         li_classes = options[:li_class]  
               
-        if object.depth == 0
+        if object.respond_to?(:depth) && object.depth == 0
           li_classes += options[:li_class_top]
         else
           li_classes += options[:li_class_children]
@@ -57,7 +57,7 @@ module AncestryHelper
 
         li_open = options[:open_id].to_i
 
-        if object.descendant_ids.include?(li_open)
+        if object.respond_to?(:descendant_ids) && object.descendant_ids.include?(li_open)
           li_classes += ["jstree-open"]
         end
                
@@ -65,7 +65,7 @@ module AncestryHelper
           output << tag.li(capture(object, &block) + arranged_tree_as_list(children, options, &block).html_safe,  :class => li_classes)
         else
           output << tag.li(capture(object, &block), :class => li_classes).html_safe
-          current_depth = object.depth
+          current_depth = ( object.respond_to?(:depth)) ? object.depth : 0
         end
 
     end

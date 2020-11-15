@@ -10,17 +10,18 @@
       </div>
       <div class="card-body">
         <nav class="d-sm-block pl-0 py-3 sidebar" id="org_unit_tree" data-target="dashboard.tree">
-          <%= arranged_tree_as_list(@org_units, sort_by: [:position],
-                                                open_id: params[:clicked]) do |org_unit| %>
+          <%= arranged_tree_as_list( @org_units, sort_by: [:position],
+                open_id: params[:clicked]) do |org_unit| %>
             <%= link_to " #{org_unit.name}", "#",
                   remote: true,
                   data: {
                     reflex: "click->DashboardReflex#cardboard",
                     reflex_root: "#tasksCardboard",
-                    org_unit_id: org_unit.id
+                    org_unit_id: ( org_unit.kind_of? OrgUnit) ? org_unit.id : nil,
+                    list_id: ( org_unit.kind_of? List) ? org_unit.id : nil,
                   },
                   id: dom_id(org_unit),
-                  class: ("org_unit" +
+                  class: (org_unit.class.name.underscore +
                           if org_unit.id == params[:clicked].to_i
                             " jstree-clicked"
                            end.to_s)

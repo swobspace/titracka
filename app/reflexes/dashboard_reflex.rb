@@ -23,9 +23,13 @@ class DashboardReflex < ApplicationReflex
   # Learn more at: https://docs.stimulusreflex.com
 
   def cardboard
-    @org_unit = OrgUnit.find(element.dataset[:org_unit_id])
+    if element.dataset[:org_unit_id].present?
+       @element = OrgUnit.find(element.dataset[:org_unit_id])
+    else
+       @element = List.find(element.dataset[:list_id])
+    end
     @columns = State.not_archived
-    @tasks_per_column = @org_unit.tasks.group_by(&:state_id)
+    @tasks_per_column = @element.tasks.group_by(&:state_id)
   end
 
 end
