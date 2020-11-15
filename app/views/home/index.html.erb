@@ -1,4 +1,4 @@
-<% if @current_user.present? && can?(:read, OrgUnit) %>
+<% if @current_user.present? && @current_user.authorities.present? %>
   <%= render 'dashboard' %>
 <% elsif @current_user.present? %>
   <p>You are logged in, but you have not assigned authorizations. 
