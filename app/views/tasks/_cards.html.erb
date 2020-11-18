@@ -1,7 +1,3 @@
-<%= render partial: 'time_accountings/modal_form',
-           locals: { time_accounting: TimeAccounting.new(date: Date.today) } %>
-<%= render partial: 'tasks/show_modal' %>
-
 <%= content_tag :div, class: :row, id: 'tasksCardboard', data: { controller: 'draggable' } do %>
   <% (columns || []).each do |column| %>
     <div class='card-deck col px-1'>
