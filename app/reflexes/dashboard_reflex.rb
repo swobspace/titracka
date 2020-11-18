@@ -32,6 +32,10 @@ class DashboardReflex < ApplicationReflex
     return if @element.nil?
     @columns = State.not_archived
     @tasks_per_column = @element.tasks.accessible_by(ability).group_by(&:state_id)
+    morph "#dashboardContent", HomeController.render(
+      partial: 'tasks/cards', 
+      locals: { columns: @columns, tasks_per_column: @tasks_per_column }
+    )
   end
 
 end
