@@ -24,14 +24,30 @@ class DashboardReflex < ApplicationReflex
 
   def cardboard
     ability = Ability.new(current_user)
-    if element.dataset[:element_type] == 'org_unit'
-       @element = OrgUnit.accessible_by(ability).where(id: element.dataset[:element_id]).first
-    elsif ['list', 'list_decorator'].include?(element.dataset[:element_type])
-       @element = List.accessible_by(ability).where(id: element.dataset[:element_id]).first
-    end
-    return if @element.nil?
     @columns = State.not_archived
-    @tasks_per_column = @element.tasks.accessible_by(ability).group_by(&:state_id)
+    if element.dataset[:element_type] == 'org_unit'
+      @element = OrgUnit.accessible_by(ability)
+                        .where(id: element.dataset[:element_id])
+                        .first
+      return if @element.nil?
+      @tasks_per_column = @element.tasks
+                                  .accessible_by(ability)
+                                  .group_by(&:state_id)
+
+    elsif ['list', 'list_decorator'].include?(element.dataset[:element_type])
+      @element = List.accessible_by(ability)
+                     .where(id: element.dataset[:element_id])
+                     .first
+      return if @element.nil?
+      @tasks_per_column = @element.tasks
+                                  .accessible_by(ability)
+                                  .group_by(&:state_id)
+
+    elsif element.dataset[:element_type] == 'privateTasks'
+      @tasks_per_column = Task.accessible_by(ability)
+                              .where(org_unit_id: nil, list_id: nil)
+                              .group_by(&:state_id)
+    end
     morph "#dashboardContent", HomeController.render(
       partial: 'tasks/cards', 
       locals: { columns: @columns, tasks_per_column: @tasks_per_column }

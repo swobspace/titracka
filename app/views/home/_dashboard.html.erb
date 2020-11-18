@@ -30,6 +30,21 @@
                            end.to_s)
             %>
           <% end %>
+          <ul role="group">
+            <li role="presentation">
+              <%= link_to " Private", '#',
+                  remote: true,
+                  data: {
+                    reflex: "click->DashboardReflex#cardboard",
+                    reflex_root: "#dashboardContent",
+                    element_id: "privateTasksId",
+                    element_type: "privateTasks"
+                  },
+                  id: "privateTasksId",
+                  class: "privateTasks"
+              %>
+            </li>
+          </ul>
         </nav>
       </div>
     </div>
