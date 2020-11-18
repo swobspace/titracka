@@ -38,7 +38,7 @@ export default class extends ApplicationController {
     org_units.parent('li').each(function(index) {
       $(that.treeTarget).jstree(true).set_type($(this), 'org_unit')
     })
-    let lists = $(this.treeTarget).find('li > a.list')
+    let lists = $(this.treeTarget).find('li > a.list, li > a.list_decorator')
     lists.parent('li').each(function(index) {
       $(that.treeTarget).jstree(true).set_type($(this), 'list')
     })

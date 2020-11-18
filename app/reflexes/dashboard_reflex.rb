@@ -26,7 +26,7 @@ class DashboardReflex < ApplicationReflex
     ability = Ability.new(current_user)
     if element.dataset[:element_type] == 'org_unit'
        @element = OrgUnit.accessible_by(ability).where(id: element.dataset[:element_id]).first
-    elsif element.dataset[:element_type] == 'list'
+    elsif ['list', 'list_decorator'].include?(element.dataset[:element_type])
        @element = List.accessible_by(ability).where(id: element.dataset[:element_id]).first
     end
     return if @element.nil?
