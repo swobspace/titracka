@@ -14,9 +14,13 @@ class HomeController < ApplicationController
       hash[node].merge(arrange_with_lists(children))
     end
     # add lists without assigned org_unit
-    # List.accessible_by(current_ability).where(org_unit_id: nil).each do |list|
-    #   hash.merge({list => {}})
-    # end
-    hash
+    listhash = {}
+    List.accessible_by(current_ability).where(org_unit_id: nil).each do |list|
+      listhash.tap do |h|
+        h[list.decorate] = {}
+      end
+    end
+    Rails.logger.debug("DEBUG:: #{pp listhash}")
+    hash.merge(listhash)
   end
 end
