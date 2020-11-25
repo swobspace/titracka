@@ -1,0 +1,47 @@
+<div class="container" id="taskModalForm">
+  <%= simple_form_for([@taskable, task],
+    remote: true,
+    html: { class: 'form-horizontal card' }) do |f| %>
+
+    <div class="card-header">
+      <%= t('activerecord.models.task') %>
+    </div>
+    <div class="card-body">
+      <%= f.input :subject, label: t('attributes.task')
+	 %>
+      <%= f.input :description, as: :rich_text_area
+	 %>
+      <%= f.association :state, 
+            include_blank: false
+	 %>
+      <%= f.association :responsible,
+          collection: (@users || []),
+          wrapper: :horizontal_select2
+	 %>
+      <%= f.association :org_unit, 
+          collection: (@org_units&.arrange_as_array || []),
+          wrapper: :horizontal_select2
+	 %>
+      <%= f.association :list,
+          collection: (@lists || []),
+          wrapper: :horizontal_select2
+	 %>
+      <%= f.input :priority, collection:
+            Task::PRIORITIES.map {|x| [t(x, scope: 'titracka.priority'), x]},
+              include_blank: false,
+              input_html: {class: 'col-sm-3'}
+	 %>
+      <%= f.input :start, as: :string, wrapper: :horizontal_date
+        %>
+       <%= f.input :deadline, as: :string, wrapper: :horizontal_date
+        %>
+      <%= f.input :resubmission, as: :string, wrapper: :horizontal_date
+	 %>
+      <%= f.input :private
+	 %>
+
+      <%= f.button :submit, class: 'btn btn-primary' %>
+      <%= cancel_button %>
+    </div>
+  <% end %>
+</div>

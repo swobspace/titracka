@@ -8,4 +8,11 @@ class TaskReflex < ApplicationReflex
     )
   end
 
+  def new
+    @task = Task.new
+    morph "#taskModalForm", TasksController.render(
+      partial: 'tasks/form_modal', locals: { task: @task }
+    )
+  end
+
 end

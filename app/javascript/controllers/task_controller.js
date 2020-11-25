@@ -13,4 +13,12 @@ export default class extends ApplicationController {
     $(modal_element).modal()
   }
 
+  afterNew(element) {
+    let modal_id = element.dataset["modalId"]
+    console.log(modal_id)
+    let modal_element = document.getElementById(modal_id)
+    console.log(modal_element)
+    $(modal_element).modal()
+  }
+
 }
