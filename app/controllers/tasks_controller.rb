@@ -40,14 +40,24 @@ class TasksController < ApplicationController
   def create
     @task = @current_user.tasks.new(task_params)
 
-    @task.save
-    respond_with(@task, location: location)
+    respond_with(@task, location: location) do |format|
+      if @task.save
+        format.js { head :created }
+      else
+        format.js { render json: @task.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /tasks/1
   def update
-    @task.update(task_params)
-    respond_with(@task, location: location)
+    respond_with(@task, location: location) do |format|
+      if @task.update(task_params)
+        format.js { head :ok }
+      else
+        format.js { render json: @task.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /tasks/1

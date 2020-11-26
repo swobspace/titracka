@@ -40,21 +40,21 @@ class TimeAccountingsController < ApplicationController
     end
     respond_with(@time_accounting, location: location) do |format|
       if @time_accounting.save
-        format.js {}
+        format.js { head :created }
       else
-        format.js { 
-          render json: @time_accounting.errors.full_messages,
-                 status: :unprocessable_entity 
-        }
+        format.js { render json: @time_accounting.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /time_accountings/1
   def update
-    @time_accounting.update(time_accounting_params)
     respond_with(@time_accounting, location: location) do |format|
-      format.json {}
+      if @time_accounting.update(time_accounting_params)
+        format.js { head :ok }
+      else
+        format.js { render json: @time_accounting.errors.full_messages, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -62,7 +62,7 @@ class TimeAccountingsController < ApplicationController
   def destroy
     @time_accounting.destroy
     respond_with(@time_accounting, location: location) do |format|
-      format.json {}
+      format.js { head :ok}
     end
   end
 

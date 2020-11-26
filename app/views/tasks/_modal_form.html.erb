@@ -1,0 +1,63 @@
+<div class="modal fade" id="formTaskModal" tabindex="-1" role="dialog" 
+     aria-labelledby="formTaskModalLabel" aria-hidden="true"
+     data-controller="form" >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" id="taskModalForm">
+      <div class="modal-header">
+        <h5 class="modal-title" id="formTaskModalLabel">
+          <%= t('activerecord.models.task') %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for([@taskable, task],
+            remote: true,
+            html: { class: 'form-horizontal' },
+            data: {
+              action: "ajax:success->form#onPostSuccess ajax:error->form#onPostError"
+            }
+          ) do |f| %>
+        <div class="modal-body" data-reflex-root="taskModalForm">
+
+          <%= f.input :subject, label: t('attributes.task')
+             %>
+          <%= f.input :description, as: :rich_text_area
+             %>
+          <%= f.association :state, 
+                include_blank: false
+             %>
+          <%= f.association :responsible,
+              collection: (@users || []),
+              wrapper: :horizontal_select2
+             %>
+          <%= f.association :org_unit, 
+              collection: (@org_units&.arrange_as_array || []),
+              wrapper: :horizontal_select2
+             %>
+          <%= f.association :list,
+              collection: (@lists || []),
+              wrapper: :horizontal_select2
+             %>
+          <%= f.input :priority, collection:
+                Task::PRIORITIES.map {|x| [t(x, scope: 'titracka.priority'), x]},
+                  include_blank: false,
+                  input_html: {class: 'col-sm-3'}
+             %>
+          <%= f.input :start, as: :string, wrapper: :horizontal_date
+            %>
+           <%= f.input :deadline, as: :string, wrapper: :horizontal_date
+            %>
+          <%= f.input :resubmission, as: :string, wrapper: :horizontal_date
+             %>
+          <%= f.input :private
+             %>
+          <div data-target="form.errorSuccess" class="" role="alert"></div>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, class: 'btn btn-primary' %>
+          <%= cancel_button %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

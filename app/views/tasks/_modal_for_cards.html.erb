@@ -1,4 +1,5 @@
 <%= render partial: 'time_accountings/modal_form',
            locals: { time_accounting: TimeAccounting.new(date: Date.today) } %>
 <%= render partial: 'tasks/show_modal' %>
-<%= render partial: 'tasks/form_modal' %>
+<%= render partial: 'tasks/modal_form',
+           locals: { task: (@task || Task.new) } %>
