@@ -30,6 +30,7 @@ class DashboardReflex < ApplicationReflex
                         .where(id: element.dataset[:element_id])
                         .first
       return if @element.nil?
+      @filter = "org_unit_id=#{@element.id}"
       @tasks_per_column = @element.tasks
                                   .accessible_by(ability)
                                   .group_by(&:state_id)
@@ -39,18 +40,24 @@ class DashboardReflex < ApplicationReflex
                      .where(id: element.dataset[:element_id])
                      .first
       return if @element.nil?
+      @filter = "list_id=#{@element.id}"
       @tasks_per_column = @element.tasks
                                   .accessible_by(ability)
                                   .group_by(&:state_id)
 
     elsif element.dataset[:element_type] == 'privateTasks'
+      @filter = "private=true"
       @tasks_per_column = Task.accessible_by(ability)
                               .where(org_unit_id: nil, list_id: nil)
                               .group_by(&:state_id)
     end
     morph "#dashboardContent", HomeController.render(
       partial: 'tasks/cards', 
-      locals: { columns: @columns, tasks_per_column: @tasks_per_column }
+      locals: { 
+        columns: @columns, 
+        tasks_per_column: @tasks_per_column,
+        url: "#{request.path}?#{@filter}"
+      }
     )
   end
 

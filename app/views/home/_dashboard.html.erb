@@ -25,7 +25,7 @@
                   },
                   id: dom_id(element),
                   class: (element.class.name.underscore +
-                          if element.id == params[:clicked].to_i
+                          if @element == element
                             " jstree-clicked"
                            end.to_s)
             %>
@@ -41,7 +41,10 @@
                     element_type: "privateTasks"
                   },
                   id: "privateTasksId",
-                  class: "privateTasks"
+                  class: ("privateTasks" +
+                           if params['private'].present?
+                             " jstree-clicked"
+                           end.to_s)
               %>
             </li>
           </ul>
@@ -50,7 +53,8 @@
     </div>
   </div>
   <div id="dashboardContent" class="col">
-    <%= render 'tasks/cards', columns: @columns, tasks_per_column: @tasks_per_column %>
+    <%= render 'tasks/cards', columns: @columns, 
+                              tasks_per_column: @tasks_per_column,
+                              url: root_path(@search_params) %>
   </div>
 </div>
-

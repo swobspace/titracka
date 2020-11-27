@@ -2,4 +2,8 @@
 
 <h1><%= t('controller.tasks') %></h1>
 
-<%= render 'tasks/cards', columns: @columns, tasks_per_column: @tasks_per_column %>
+<%= render 'tasks/cards', 
+      columns: @columns, 
+      tasks_per_column: @tasks_per_column,
+      url: request.url
+ %>
