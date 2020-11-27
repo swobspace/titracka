@@ -43,7 +43,7 @@
         <tbody>
           <% if @workday.pause > 0 %>
             <tr>
-              <td class="text-center align-middle"><%= @workday.date %></td>
+              <td class="text-center align-middle"><%= @workday.date.to_s %></td>
               <td class="text-center align-middle"><%= hourmin(@workday.pause) %></td>
               <td class="text-center align-middle"><%= @workday.pause %></td>
               <td class="align-middle">Pause</td>
@@ -55,7 +55,7 @@
 
           <% @time_accountings.each do |time_accounting| %>
             <%= content_tag_for(:tr, time_accounting) do %>
-              <td class="text-center align-middle"><%= time_accounting.date %></td>
+              <td class="text-center align-middle"><%= time_accounting.date.to_s %></td>
               <td class="text-center align-middle"><%= time_accounting.formatted_duration %></td>
               <td class="text-center align-middle"><%= time_accounting.duration %></td>
               <td class="align-middle"><%= time_accounting.task %></td>
@@ -91,9 +91,9 @@
     <%= back_link %>
     <%= new_link [@workday, TimeAccounting] %>
     <%= link_to raw(%Q[<i class="fas fa-backward"></i>]), 
-          by_date_path(date: 1.day.before(@workday.date)), class: "ml-3 btn btn-secondary" %>
+          by_date_path(date: 1.day.before(@workday.date).to_s), class: "ml-3 btn btn-secondary" %>
     <%= link_to t('titracka.today'), by_date_path(date: Date.today.to_s), class: "btn btn-secondary" %>
     <%= link_to raw(%Q[<i class="fas fa-forward"></i>]), 
-          by_date_path(date: 1.day.after(@workday.date)), class: "btn btn-secondary" %>
+          by_date_path(date: 1.day.after(@workday.date).to_s), class: "btn btn-secondary" %>
   </div>
 </div>
