@@ -19,9 +19,10 @@
           ) do |f| %>
 	<div class="modal-body">
           <%= f.input :description %>
-          <%= f.input :date, as: :string, wrapper: :horizontal_date %>
+          <%= f.input :date, as: :string, wrapper: :horizontal_date,
+                      input_html: { class: 'col-lg-4 col-sm-8' } %>
           <%= f.input :formatted_duration, as: :string, 
-                      input_html: { class: 'col-sm-3' } %>
+                      input_html: { class: 'col-lg-4 col-sm-8' } %>
 
           <div data-target="form.errorSuccess" class="" role="alert"></div>
 	</div>

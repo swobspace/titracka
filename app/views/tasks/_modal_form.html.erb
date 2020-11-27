@@ -41,13 +41,17 @@
           <%= f.input :priority, collection:
                 Task::PRIORITIES.map {|x| [t(x, scope: 'titracka.priority'), x]},
                   include_blank: false,
-                  input_html: {class: 'col-sm-3'}
+                  input_html: {class: 'col-lg-4 col-sm-8'}
              %>
-          <%= f.input :start, as: :string, wrapper: :horizontal_date
+          <%= f.input :start, as: :date, html5: true, wrapper: :horizontal_date,
+                      input_html: { class: 'col-lg-4 col-sm-8'}
+  
             %>
-           <%= f.input :deadline, as: :string, wrapper: :horizontal_date
+           <%= f.input :deadline, as: :date, html5: true, wrapper: :horizontal_date,
+                      input_html: { class: 'col-lg-4 col-sm-8'}
             %>
-          <%= f.input :resubmission, as: :string, wrapper: :horizontal_date
+          <%= f.input :resubmission, as: :date, html5: true, wrapper: :horizontal_date,
+                      input_html: { class: 'col-lg-4 col-sm-8'}
              %>
           <%= f.input :private
              %>
