@@ -25,7 +25,7 @@
     <span> <%= "&#x21A6; #{task.deadline}".html_safe if task.deadline.present? %> </span>
   </div>
   <div class="d-flex w-100 small">
-    <div class="mr-2">
+    <div class="">
       <span id="show_task_<%= task.id %>"
             data-reflex="click->Task#show"
             data-modal-id="showTaskModal"
@@ -33,7 +33,16 @@
         <%= icon_show %>
       </span>
     </div>
-    <div data-controller='modal' class="mr-2">
+    <div data-controller='task' class="ml-2">
+      <span id="edit_task_<%=  task.id %>"
+            data-reflex="click->Task#edit"
+            data-task-id="<%= task.id %>"
+            data-modal-id="formTaskModal"
+            data-reflex-dataset="combined">
+        <%= icon_edit %>
+      </span>
+    </div>
+    <div data-controller='modal' class="ml-2">
       <span data-target="modal.modalForm modal.modalView"
             data-action="click->modal#open"
             data-modalId="timeAccountingModal"

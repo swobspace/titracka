@@ -10,6 +10,8 @@
           <%= column.name %>
           <span id="new_task_to_<%=  column.id %>" class="ml-2"
                 data-reflex="click->Task#new"
+                data-column-type="<%= column.class.name %>"
+                data-column-id="<%= column.id %>"
                 data-modal-id="formTaskModal"
                 data-reflex-dataset="combined">
             <%= icon_new %>

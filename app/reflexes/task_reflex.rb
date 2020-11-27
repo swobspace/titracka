@@ -9,7 +9,15 @@ class TaskReflex < ApplicationReflex
   end
 
   def new
-    @task = Task.new
+    state_id = element.dataset[:column_id].to_i
+    @task = Task.new(state_id: state_id)
+    morph "#taskModalForm", TasksController.render(
+      partial: 'tasks/modal_form', locals: { task: @task }
+    )
+  end
+
+  def edit
+    @task = Task.find(element.dataset[:id].to_i)
     morph "#taskModalForm", TasksController.render(
       partial: 'tasks/modal_form', locals: { task: @task }
     )
