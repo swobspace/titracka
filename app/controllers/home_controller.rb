@@ -28,9 +28,9 @@ class HomeController < ApplicationController
     end
 
     def set_associations
-      @users = Wobauth::User.active.order("sn, givenname")
-      @org_units = OrgUnit.where(id: current_ability.rights.manager.org_units)
-      @lists = List.accessible_by(current_ability, :read).order(:name)
+      @users ||= Wobauth::User.active.order("sn, givenname")
+      @org_units ||= OrgUnit.where(id: current_ability.rights.manager.org_units)
+      @lists ||= List.accessible_by(current_ability, :read).order(:name)
     end
 
     def set_cards
