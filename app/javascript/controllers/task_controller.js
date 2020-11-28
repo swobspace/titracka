@@ -13,16 +13,24 @@ export default class extends ApplicationController {
 
   afterNew(element) {
     this.openModal(element)
+    this.modalElement(element)
+        .querySelectorAll("[data-controller='select2']")
+        .forEach((s) =>  s.select2.connect())
   }
 
   afterEdit(element) {
     this.openModal(element)
+    this.modalElement(element)
+        .querySelectorAll("[data-controller='select2']")
+        .forEach((s) =>  s.select2.connect())
   }
 
   openModal(element) {
-    let modal_id = element.dataset["modalId"]
-    let modal_element = document.getElementById(modal_id)
-    $(modal_element).modal()
+    $(this.modalElement(element)).modal()
   }
 
+  modalElement(element) {
+    let modal_id = element.dataset["modalId"]
+    return document.getElementById(modal_id)
+  }
 }

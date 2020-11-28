@@ -5,6 +5,7 @@ export default class extends Controller {
 
   initialize() {
     $.fn.select2.defaults.set( "theme", "bootstrap" )
+    this.element[this.identifier] = this
   }
 
 
