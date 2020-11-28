@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :add_breadcrumb_show, only: [:show]
-  before_action :set_associations, only: [:new, :edit, :update, :create]
+  before_action :set_associations, only: [:index, :new, :edit, :update, :create]
 
   # GET /tasks
   def index
