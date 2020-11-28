@@ -59,6 +59,7 @@ class HomeController < ApplicationController
                                 .group_by(&:state_id)
       end
       @columns = State.not_archived
+      @filter ||= @search_params.slice("org_unit_id", "list_id", "private")
     end
 
     def search_params

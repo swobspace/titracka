@@ -1,6 +1,7 @@
 <%= content_tag :div, class: :row, id: 'tasksCardboard', 
       data: { 
         controller: 'draggable',
+        filter: filter,
         url: url
       } do %>
   <% (columns || []).each do |column| %>

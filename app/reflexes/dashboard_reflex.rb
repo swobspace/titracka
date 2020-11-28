@@ -25,12 +25,13 @@ class DashboardReflex < ApplicationReflex
   def cardboard
     ability = Ability.new(current_user)
     @columns = State.not_archived
+    @filter = { "#{element.dataset[:element_type]}_id".to_sym => element.dataset[:element_id] }
     if element.dataset[:element_type] == 'org_unit'
       @element = OrgUnit.accessible_by(ability)
                         .where(id: element.dataset[:element_id])
                         .first
       return if @element.nil?
-      @filter = "org_unit_id=#{@element.id}"
+      @url_params = "org_unit_id=#{@element.id}"
       @tasks_per_column = @element.tasks
                                   .accessible_by(ability)
                                   .group_by(&:state_id)
@@ -40,13 +41,14 @@ class DashboardReflex < ApplicationReflex
                      .where(id: element.dataset[:element_id])
                      .first
       return if @element.nil?
-      @filter = "list_id=#{@element.id}"
+      @url_params = "list_id=#{@element.id}"
       @tasks_per_column = @element.tasks
                                   .accessible_by(ability)
                                   .group_by(&:state_id)
 
     elsif element.dataset[:element_type] == 'privateTasks'
-      @filter = "private=true"
+      @filter = { "private" => true }
+      @url_params = "private=true"
       @tasks_per_column = Task.accessible_by(ability)
                               .where(org_unit_id: nil, list_id: nil)
                               .group_by(&:state_id)
@@ -56,7 +58,8 @@ class DashboardReflex < ApplicationReflex
       locals: { 
         columns: @columns, 
         tasks_per_column: @tasks_per_column,
-        url: "#{request.path}?#{@filter}"
+        filter: @filter,
+        url: "#{request.path}?#{@url_params}"
       }
     )
   end

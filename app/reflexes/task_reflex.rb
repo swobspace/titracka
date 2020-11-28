@@ -13,7 +13,9 @@ class TaskReflex < ApplicationReflex
 
   def new
     state_id = element.dataset[:column_id].to_i
-    @task = Task.new(state_id: state_id)
+    Rails.logger.debug("DEBUG:: #{element.dataset.inspect}")
+    filter = JSON.parse(element.dataset[:filter])
+    @task = Task.new({state_id: state_id}.merge(filter))
     morph "#taskModalForm", TasksController.render(
       partial: 'tasks/modal_form',
       locals: { task: @task, users: @users, org_units: @org_units, lists: @lists }

@@ -4,7 +4,7 @@
 <%= render partial: 'tasks/modal_form',
            locals: {
              task: (@task || Task.new),
-             users: (@users || []),
-             org_units: (@org_units || []),
-             lists: (@lists || [])
+             users: @users,
+             org_units: @org_units,
+             lists: @lists
            } %>
