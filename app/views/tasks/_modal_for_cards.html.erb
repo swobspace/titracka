@@ -2,4 +2,9 @@
            locals: { time_accounting: TimeAccounting.new(date: Date.today) } %>
 <%= render partial: 'tasks/show_modal' %>
 <%= render partial: 'tasks/modal_form',
-           locals: { task: (@task || Task.new) } %>
+           locals: {
+             task: (@task || Task.new),
+             users: (@users || []),
+             org_units: (@org_units || []),
+             lists: (@lists || [])
+           } %>
