@@ -23,7 +23,6 @@ class HomeController < ApplicationController
           h[list.decorate] = {}
         end
       end
-      Rails.logger.debug("DEBUG:: #{pp listhash}")
       hash.merge(listhash)
     end
 
