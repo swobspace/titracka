@@ -63,7 +63,7 @@ RSpec.describe "/tasks", type: :request do
 
       it "redirects to the created task" do
         post tasks_url, params: { task: post_attributes }
-        expect(response).to redirect_to(task_url(Task.last))
+        expect(response).to redirect_to(tasks_url)
       end
     end
 
