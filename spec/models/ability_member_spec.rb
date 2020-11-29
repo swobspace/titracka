@@ -29,7 +29,7 @@ RSpec.shared_examples "a Member" do
   # common config models, createable and own editable
   #
 
-  data_models.each do |model|
+  [ List, TimeAccounting, Workday ].each do |model|
     context "with own common config model #{model}" do
       let(:owned) { model.new(user_id: @user.id) }
       it { is_expected.to be_able_to(:read, owned) }
@@ -122,10 +122,32 @@ RSpec.shared_examples "a Member" do
     end
 
     context "tasks owned by user" do
-      [ :read, :update, :destroy, :manage ].each do |action|
+      [ :read, :update ].each do |action|
         it { is_expected.to be_able_to(action, task_u0) }
         it { is_expected.to be_able_to(action, task_u1) }
         it { is_expected.to be_able_to(action, task_u2) }
+        it { is_expected.to be_able_to(action, task_pu0) }
+      end
+      [ :destroy, :manage ].each do |action|
+        it { is_expected.not_to be_able_to(action, task_u0) }
+        it { is_expected.not_to be_able_to(action, task_u1) }
+        it { is_expected.not_to be_able_to(action, task_u2) }
+        it { is_expected.to be_able_to(action, task_pu0) }
+      end
+    end
+
+    context "tasks user is responsible for " do
+      [ :read, :update ].each do |action|
+        it { is_expected.to be_able_to(action, task_r0) }
+        it { is_expected.to be_able_to(action, task_r1) }
+        it { is_expected.to be_able_to(action, task_r2) }
+        it { is_expected.to be_able_to(action, task_pr0) }
+      end
+      [ :destroy, :manage ].each do |action|
+        it { is_expected.not_to be_able_to(action, task_r0) }
+        it { is_expected.not_to be_able_to(action, task_r1) }
+        it { is_expected.not_to be_able_to(action, task_r2) }
+        it { is_expected.to be_able_to(action, task_pr0) }
       end
     end
   end

@@ -30,6 +30,11 @@ RSpec.shared_context "basic variables" do
   let(:task_u0) { FactoryBot.create(:task, subject: "TU0", org_unit: ou_x0, user_id: myuser.id) }
   let(:task_u1) { FactoryBot.create(:task, subject: "TU1", org_unit: ou_x1, user_id: myuser.id) }
   let(:task_u2) { FactoryBot.create(:task, subject: "TU2", org_unit: ou_x2, user_id: myuser.id) }
+  let(:task_r0) { FactoryBot.create(:task, subject: "TU0", org_unit: ou_x0, responsible_id: myuser.id) }
+  let(:task_r1) { FactoryBot.create(:task, subject: "TU1", org_unit: ou_x1, responsible_id: myuser.id) }
+  let(:task_r2) { FactoryBot.create(:task, subject: "TU2", org_unit: ou_x2, responsible_id: myuser.id) }
+  let(:task_pu0) { FactoryBot.create(:task, subject: "TU0", user_id: myuser.id, private: true) }
+  let(:task_pr0) { FactoryBot.create(:task, subject: "TU0", responsible_id: myuser.id, private: true) }
 
   let(:tac_o0) { FactoryBot.create(:time_accounting, task: task_o0) }
   let(:tac_o1) { FactoryBot.create(:time_accounting, task: task_o1) }
