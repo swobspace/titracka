@@ -1,0 +1,144 @@
+== Anhang: Checkliste für den Start
+
+=== Installation
+
+[%header, cols="3,6,1"]
+|===
+| Was
+| Beschreibung
+| OK
+
+| Datensicherung Anwendungsdaten
+| Sicherung der Konfiguration von Daisy, der Datenbank und der hochgeladenen
+  Dateien auf einem extern Medium/Server
+|
+
+| LDAP-Anbindung
+| Anbindung eines vorhandenen Active Directory zur einfachere Anlage von
+  Benutzern und/oder Kontakten, sofern die Daten im Active Directory
+  ausreichend gepflegt sind.
+|
+
+|===
+
+=== Organisationseinheiten
+
+
+[%header, cols="3,6,1"]
+|===
+| Was
+| Beschreibung
+| OK
+
+| Skizze Organisationsstruktur
+| Skizzierung der gewünschten Organisationstruktur auf Papier zur einfacheren
+  Diskussion von Berechtigungen, der Zuordnung von Verarbeitungstätigkeiten,
+  Dokumenten etc. Die Organisationseinheiten, die eigenverantwortlich sind,
+  bitte als "verantwortliche Stelle" explizit kennzeichnen
+|
+
+| OE-Typ
+| Daisy kennt im Auslieferungszustand folgende Typen von
+  Organisationseinheiten: `Gesellschaft`, `Einrichtung`,
+  `Organisationseinheit`. Ist eine Änderung/Ergänzung notwendig?
+  (Anpassungen müssen hier vor Produktivstart festgelegt werden)
+|
+
+| Import OE
+| Sollen die Organisationseinheiten über eine vorbereitete Excel-Tabelle
+  importiert werden oder werden die OEs zu Schulungszwecken direkt manuell
+  angelegt?
+|
+
+|===
+
+NOTE: Für die Anlage von Organisationseinheiten ist die Rolle `OrgaAdmin`
+      erforderlich.
+
+=== Logo für PDF-Ausgabe
+
+[%header, cols="3,6,1"]
+|===
+| Was
+| Beschreibung
+| OK
+
+| Einheitliches Logo?
+| Werden unterschiedliche Logos für verantwortliche Stellen (OEs) benötigt,
+  oder genügt ein zentrales Logo?
+|
+
+| Logo-Größe
+| Das Logo sollte ca. 4x4 cm groß sein (gesamte Bildgröße, ggf. incl. Rand),
+  etwas rechteckig geht auch (z.B. 3,5 cm x 4,5 cm oder ähnlich). Die Breite
+  der Images muss mindestens 1024 Pixel betragen oder größer.
+|
+
+|===
+
+=== Berechtigungen
+
+[%header, cols="3,6,1"]
+|===
+| Was
+| Beschreibung
+| OK
+
+| OEs und Stammdaten
+| Welche zentralen Benutzer legen OEs an und pflegen Stammdaten? (Rolle
+  `OrgaAdmin`)
+|
+
+| Benutzerpflege
+| Welche zentralen Benutzer dürfen User anlegen und Berechtigungen vergeben?
+|
+
+| Admin
+| Soll ein zentraler Benutzer vollständige Admin-Rechte erhalten?
+|
+
+| MHDL-Support
+| Darf die MHDL für den Support einen eigenen OrgaAdmin-Benutzer verwenden?
+  Der OrgaAdmin selbst kann keine Verarbeitungstätigkeiten oder Dokumente zu
+  den Verarbeitungstätigkeiten einsehen. (Sonst: Support via TeamViewer bei
+  einem autorisierten Benutzer)
+|
+
+|===
+
+NOTE: Für die Pflege von Benutzern ist die Rolle `UserAdmin`
+      erforderlich.
+
+=== Stammdaten
+
+Stammdaten sind Dokumentenkategorien, Kategorien von personenbezogenen Daten,
+Kategorien von betroffenen Personen, Rechtsgrundlagen und die verwendete
+Software.
+
+[%header, cols="3,6,1"]
+|===
+| Was
+| Beschreibung
+| OK
+
+| Dokumentenkategorien
+| Import über Excel-Tabelle?
+|
+
+| Datenkategorien
+| Import über Excel-Tabelle?
+|
+
+| Kategorien betroffener Personen
+| Import über Excel-Tabelle?
+|
+
+| Rechtsgrundlagen
+| Import über Excel-Tabelle?
+|
+
+| Software
+| Import über Excel-Tabelle?
+|
+
+|===
