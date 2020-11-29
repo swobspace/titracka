@@ -1,0 +1,29 @@
+<%= content_tag :div, class: :row, id: 'tasksCardboard', 
+      data: { 
+        controller: 'draggable',
+        filter: filter,
+        url: url
+      } do %>
+  <% (columns || []).each do |column| %>
+    <div class='card-deck col px-1'>
+      <div class='card border-0 bg-light'>
+        <div class="card-header text-center border d-flex justify-content-between" data-controller="task">
+          <%= column.name %>
+          <span id="new_task_to_<%=  column.id %>" class="ml-2"
+                data-reflex="click->Task#new"
+                data-column-type="<%= column.class.name %>"
+                data-column-id="<%= column.id %>"
+                data-modal-id="formTaskModal"
+                data-reflex-dataset="combined">
+            <%= icon_new %>
+          </span>
+        </div>
+
+        <%= content_tag :ul, class: 'list-group list-group-flsh dropzone px-1', data: { id: column.id, target: 'draggable.column' } do %>
+          <%= render(tasks_per_column[column.id], column: column) if tasks_per_column[column.id].present? %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+

@@ -7,14 +7,14 @@ export default class extends Controller {
   connect() {
     // const url = this.data.get("url")
     const url = this.data.get("url")
-    var picker = new Pikaday({
+    let picker = new Pikaday({
       field: this.fieldTarget,
       trigger: this.dateTarget,
       format: 'YYYY-MM-DD',
       onSelect: function(date) {
-        var value = picker.toString()
-        var newurl = url + value
-        console.log(newurl)
+        let value = picker.toString()
+        let newurl = url + value
+        // console.log(newurl)
         Turbolinks.clearCache();
         Turbolinks.visit(newurl);
       },
@@ -30,6 +30,6 @@ export default class extends Controller {
   }
 
   set_date(event) {
-    console.log("clicked")
+    // console.log("clicked")
   }
 }

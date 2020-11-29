@@ -3,6 +3,7 @@ require_relative '../../lib/wobauth/admin_ability'
 
 class Ability
   include CanCan::Ability
+  attr_reader :rights, :uid
 
   CONFIGURATION_MODELS =
     Titracka::CONFIGURATION_CONTROLLER.map{|c| c.singularize.camelize.constantize}
@@ -25,6 +26,7 @@ class Ability
     if @user.nil?
       nobody
     else
+      @uid = @user.id
       add_rights(@user.authorities.valid(Date.today))
       add_rights(@user.group_authorities.valid(Date.today))
 
@@ -75,7 +77,7 @@ class Ability
   # common reader functions
   #
   def reader_common
-    can :navigate, [:lists, :tasks, :time_accountings]
+    can :navigate, [:org_units, :lists, :tasks, :time_accountings]
     can :read, [List, Task, TimeAccounting, Workday], user_id: @user.id
     can :read, [Task], responsible_id: @user.id
   end
@@ -85,6 +87,7 @@ class Ability
   #
   def reader_ou(ou_ids)
     can :read, [List, Task], org_unit_id: ou_ids
+    can :read, OrgUnit, id: ou_ids
   end
 
   #
@@ -104,25 +107,29 @@ class Ability
   end
 
   #
-  # common manager functions
+  # common member and manager functions
   #
   def user_common
-    can :navigate, [:lists, :tasks, :time_accountings]
+    can :navigate, [:org_units, :lists, :tasks, :time_accountings]
     # can [:read], AdUser
-    can :create, [Task, TimeAccounting, Workday]
-    can :manage, [List, Task, TimeAccounting, Workday], user_id: @user.id
+    can :create, [List, Task, TimeAccounting, Workday]
+    can [:read, :update], Task, user_id: @user.id
+    can [:read, :update], Task, responsible_id: @user.id
+    can [:manage], Task, user_id: @user.id, private: true
+    can [:manage], Task, responsible_id: @user.id, private: true
+    can :manage, [List, TimeAccounting, Workday], user_id: @user.id
   end
 
   #
   # org_unit specific rights
   #
   def member_ou(ou_ids)
-    can [:work_on], OrgUnit, id: ou_ids
+    # can :read, OrgUnit, id: ou_ids
   end
 
   def manager_ou(ou_ids)
-    can [:work_on], OrgUnit, id: ou_ids
-    can :create, [List, Task, TimeAccounting, Workday]
+    # can :read, OrgUnit, id: ou_ids
+    can :read, TimeAccounting, task: { org_unit_id: ou_ids }
     can :manage, [List, Task], org_unit_id: ou_ids
   end
 
@@ -132,7 +139,8 @@ class Ability
   def orga_admin
     # -- org stuff
     can [:manage], CONFIGURATION_MODELS
-    can [:navigate], [:dashboard, Wobauth::User]
+    can [:manage], OrgUnit
+    can [:navigate], [:dashboard, :org_units, Wobauth::User]
     # can [:read], AdUser
 
     # -- user stuff
@@ -144,7 +152,7 @@ class Ability
   #
   def user_admin
     # -- org stuff
-    can [:navigate], [:dashboard, Wobauth::User]
+    can [:navigate], [:org_units, Wobauth::User]
     # can [:read], AdUser
 
     # -- user stuff

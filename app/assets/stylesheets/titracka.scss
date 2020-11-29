@@ -101,3 +101,18 @@ trix-editor.form-control {
 ul.dropzone {
   min-height: 500px;
 }
+
+.turbolinks-progress-bar {
+  height: 5px;
+  background-color: white;
+}
+
+.jstree-default .jstree-icon {
+  width: 18px !important;
+  height: 18px !important;
+  vertical-align: sub;
+}
+
+a.jstree-anchor.list, a.jstree-anchor.list_decorator {
+  color: #666;
+}

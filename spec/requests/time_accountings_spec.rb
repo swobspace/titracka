@@ -1,4 +1,4 @@
- require 'rails_helper'
+require 'rails_helper'
 
 RSpec.describe "/time_accountings", type: :request do
   let(:user) { FactoryBot.create(:user) }
@@ -59,7 +59,7 @@ RSpec.describe "/time_accountings", type: :request do
 
       it "redirects to the created time_accounting" do
         post time_accountings_url, params: { time_accounting: post_attributes }
-        expect(response).to redirect_to(time_accounting_url(TimeAccounting.last))
+        expect(response).to redirect_to(time_accountings_url)
       end
     end
 

@@ -15,7 +15,7 @@ end
 role_manager = Wobauth::Role.find_by_name("Manager")
 role_orga = Wobauth::Role.find_by_name("OrgaAdmin")
 role_reader = Wobauth::Role.find_by_name("Reader")
-role_it = Wobauth::Role.find_by_name("IT")
+role_member = Wobauth::Role.find_by_name("Member")
 
 Wobauth::User.create(config['users'])
 OrgUnit.create(config['org_units'])
@@ -37,4 +37,5 @@ mcaro  = Wobauth::User.where(username: 'mcaro').first  || raise("user mcaro not 
 mjudas = Wobauth::User.where(username: 'mjudas').first  || raise("user mjudas not found")
 
 Wobauth::Authority.find_or_create_by!(authorizable: mcaro, role: role_manager, authorized_for: ou_mm)
+Wobauth::Authority.find_or_create_by!(authorizable: mmax, role: role_member, authorized_for: ou_mm)
 Wobauth::Authority.find_or_create_by!(authorizable: mfritz, role: role_reader, authorized_for: ou_mm)

@@ -1,28 +1,9 @@
-<h1>Home</h1>
-<% if @current_user.present? && can?(:read, OrgUnit) %>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="list-group">
-        <% @current_user.tasks.joins(:state).where(states: {state: 'open'}).each do |task| %>
-          <%= link_to task.subject, task_path(task), class: 'list-group-item list-group-item-action' %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <ul class="list-group" data-controller="dateselector" data-dateselector-url="<%= root_path %>">
-        <li class="list-group-item" data-target="dateselector.date"> 
-          <input type="hidden" data-target="dateselector.field">
-          <button class="btn btn-secondary">
-            <i class="far fa-calendar-alt"></i>
-          </button>
-          <span class="ml-3">Zeiterfassung</span>
-        </li>
-      </ul>
-    </div>
-  </div>
+<% if @current_user.present? && @current_user.authorities.present? %>
+  <%= render 'dashboard' %>
 <% elsif @current_user.present? %>
   <p>You are logged in, but you have not assigned authorizations. 
      Please contact your admin </p>
 <% else %>
   <p>Not logged in</p>
 <% end %>
+

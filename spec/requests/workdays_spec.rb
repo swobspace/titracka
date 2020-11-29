@@ -14,7 +14,7 @@ RSpec.describe "/workdays", type: :request do
   }
 
   before(:each) do
-    login_user(user: user)
+    login_admin(user: user)
   end
 
   describe "GET /index" do

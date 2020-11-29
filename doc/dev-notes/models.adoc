@@ -57,9 +57,11 @@ bin/rails g scaffold List \
   org_unit:belongs_to \
   name:string:index \
   user:belongs_to \
+  position:integer \
   --no-stylesheets --no-javascripts --no-helper
 
 bin/rails g migration AddUserToList user:belongs_to
+bin/rails g migration AddPositionToList position:integer
 ----
 
 ## TimeAccounting

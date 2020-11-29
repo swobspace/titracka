@@ -1,6 +1,6 @@
 <div class="modal fade" id="timeAccountingModal" tabindex="-1" role="dialog" 
      aria-labelledby="timeAccountingModalLabel" aria-hidden="true"
-     data-controller="form" >
+     data-controller="form" data-form-render-root="tasksCardboard">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -19,9 +19,10 @@
           ) do |f| %>
 	<div class="modal-body">
           <%= f.input :description %>
-          <%= f.input :date, as: :string, wrapper: :horizontal_date %>
+          <%= f.input :date, as: :string, wrapper: :horizontal_date,
+                      input_html: { class: 'col-lg-4 col-sm-8' } %>
           <%= f.input :formatted_duration, as: :string, 
-                      input_html: { class: 'col-sm-3' } %>
+                      input_html: { class: 'col-lg-4 col-sm-8' } %>
 
           <div data-target="form.errorSuccess" class="" role="alert"></div>
 	</div>

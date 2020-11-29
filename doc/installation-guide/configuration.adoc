@@ -1,0 +1,55 @@
+[[configuration]]
+== Konfiguration
+
+=== Zentrale Konfigurationdatei `titracka.yml`
+
+Die Konfigurationsdatei `titracka.yml` ist reserviert für eine spätere
+Konfiguration via Datei. Die Datei muss existieren, kann aber auch zunächst
+leer sein.
+
+[[titracka.yml]]
+.titracka.yml
+[source,yaml]
+----
+# config/titracka.yml
+remote_user: HTTP_X_PROXY_SECURE_USER <!--1-->
+use_ssl: true <!--2-->
+action_cable_allowed_request_origins: <!--3-->
+  - http://titracka.example.com
+  - https://titracka.example.com
+----
+<1> Nur bei Single-Sign-On: User, der die REMOTE_USER-Variable des Apaches bereithält
+<2> Erzwinge SSL; empfohlene Einstellung, sofern Apache2 für SSL konfiguriert ist
+<3> http:// und https:// Site-Urls für den Websocket
+
+[[ldap-anbindung]]
+=== LDAP-Anbindung zur Übernahme von Benutzern und Kontakten
+
+Bei der Anlage von Benutzern und Kontakten besteht die Möglichkeit, Daten aus
+einem vorhandenen Active Directory zu importieren. In der Anwendung wird das
+mit _Benutzer mit Vorlage erstellen_ oder _Kontakt mit Vorlage erstellen_
+bezeichnet.
+
+[[ldap.yml]]
+.titracka.yml
+[source,yaml]
+----
+# config/titracka.yml
+ldap_options:
+  host: 192.0.2.71 <!--1-->
+  port: 3269 <!--2-->
+  base: dc=example,dc=com <!--3-->
+  encryption: :simple_tls
+  auth:
+    method: :simple
+    username: ldapuser <!--4-->
+    password: ldappasswd <!--5-->
+----
+<1> IP-Adresse des Domaincontrollers
+<2> Port für den globalen Katalog: 3268=unverschlüsselt, 3269=via https
+<3> BaseDN des Active Directory
+<4> Benutzer für die LDAP-Abfrage
+<5> Passwort des LDAP-Benutzers
+
+Tipp: der AD-Benutzer sollte ein Domänengast sein und sonst über keine
+weiteren Rechte im Active Directory verfügen.

@@ -1,0 +1,9 @@
+== Titracka - Anwendungsszenarien
+
+=== Tasks einer Organisationseinheit
+
+=== Listen zur projektbezogenen Gruppierung von Tasks einer OE
+
+=== Projekte: Listen ohne OE-Zuordnung
+
+=== Private Tasks für die Zeiterfassung

@@ -1,3 +1,4 @@
+<% if can? :create, Workday %>
 <ul class="navbar-nav mr-auto" data-controller="dateselector" data-dateselector-url="<%= main_app.root_path %>">
   <li class="nav-item" data-target="dateselector.date">
     <input type="hidden" data-target="dateselector.field">
@@ -10,3 +11,4 @@
         class: 'nav-link btn btn-outline-secondary'%>
   </li>
 </ul>
+<% end %>

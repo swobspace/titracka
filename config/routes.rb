@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   get 'home/index'
   get 'home', to: 'home#index'
-  get ':date', to: 'workdays#by_date', as: 'by_date', constraints: {date: /2\d\d\d-\d\d-\d\d/ }
-  get 'workdays/:date', to: 'workdays#by_date', constraints: {date: /2\d\d\d-\d\d-\d\d/ }
+  get ':date', to: 'workdays#by_date', as: 'by_date', constraints: {date: /\d\d\d\d-\d\d-\d\d/ }
+  get 'workdays/:date', to: 'workdays#by_date', constraints: {date: /\d\d\d\d-\d\d-\d\d/ }
   resources :workdays do
     member do
       get 'by_date'
@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :lists do
     resources :tasks, module: :lists
   end
-  resources :org_units
+  resources :org_units do
+    resources :tasks, module: :org_units
+  end
   resources :tasks do
     resources :time_accountings, module: :tasks
   end

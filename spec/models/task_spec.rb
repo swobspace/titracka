@@ -23,4 +23,16 @@ RSpec.describe Task, type: :model do
     f = FactoryBot.create(:task, subject: "Some Task")
     expect("#{f}").to match ("Some Task")
   end
+
+  describe "on save" do
+    let(:ou1) { FactoryBot.create(:org_unit, name: "OU1") }
+    let(:ou2) { FactoryBot.create(:org_unit, name: "OU2") }
+    let(:list) { FactoryBot.create(:list, org_unit: ou1) }
+    it "task gets ou from list" do
+      task = FactoryBot.create(:task, org_unit: ou2)
+      task.update(list: list)
+      task.reload
+      expect(task.org_unit.name).to eq(ou1.name)
+    end
+  end
 end

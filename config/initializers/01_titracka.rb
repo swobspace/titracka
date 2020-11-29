@@ -1,6 +1,6 @@
 module Titracka
   CONFIGURATION_CONTROLLER = [
-    "org_units", "states",
+    "states",
   ]
   CONFIGFILE = File.join(Rails.root, 'config', 'titracka.yml')
   if File.readable? CONFIGFILE
@@ -52,6 +52,22 @@ module Titracka
       CONFIG['use_ssl']
     else
       false
+    end
+  end
+
+  def self.remote_user
+    if CONFIG['remote_user'].present?
+      CONFIG['remote_user']
+    else
+      "REMOTE_USER"
+    end
+  end
+
+  def self.action_cable_allowed_request_origins
+    if CONFIG['action_cable_allowed_request_origins'].present?
+      Array(CONFIG['action_cable_allowed_request_origins'])
+    else
+      [ 'http://localhost', 'https://localhost' ]
     end
   end
 

@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :add_breadcrumb_show, only: [:show]
-  before_action :set_associations, only: [:new, :edit, :update, :create]
+  before_action :set_associations, only: [:index, :new, :edit, :update, :create]
 
   # GET /tasks
   def index
@@ -9,7 +9,8 @@ class TasksController < ApplicationController
       @tasks = @taskable.tasks.accessible_by(current_ability, :read)
     end
     if params[:view] == 'cards'
-      @columns = State.all
+      @columns = State.not_archived
+      @tasks_per_column = @tasks.group_by(&:state_id)
       render template: 'tasks/cards'
     else
       respond_with(@tasks)
@@ -39,14 +40,24 @@ class TasksController < ApplicationController
   def create
     @task = @current_user.tasks.new(task_params)
 
-    @task.save
-    respond_with(@task, location: location)
+    respond_with(@task, location: location) do |format|
+      if @task.save
+        format.js { head :created }
+      else
+        format.js { render json: @task.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /tasks/1
   def update
-    @task.update(task_params)
-    respond_with(@task, location: location)
+    respond_with(@task, location: location) do |format|
+      if @task.update(task_params)
+        format.js { head :ok }
+      else
+        format.js { render json: @task.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /tasks/1
@@ -68,7 +79,7 @@ class TasksController < ApplicationController
 
     def set_associations
       @users = Wobauth::User.active.order("sn, givenname")
-      @org_units = OrgUnit.accessible_by(current_ability, :read)
+      @org_units = OrgUnit.where(id: current_ability.rights.manager.org_units)
       @lists = List.accessible_by(current_ability, :read).order(:name)
     end
 

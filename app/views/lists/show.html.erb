@@ -1,37 +1,28 @@
-<div class="card mb-3">
+<%= render partial: 'tasks/modal_for_cards' %>
+
+<div class="card mb-2">
   <div class="card-header">
-    <div class="subtitle float-none"><%= t('activerecord.models.list') %>:</div>
-    <h4 class="title float-left"><%= @list %></h4>
+    <div class="d-flex w-100 justify-content-between">
+      <h4 class="title"><%= @list %></h4>
+      <span class="subtitle"><%= @list.org_unit %></span>
 
-    <div role="toolbar" class="float-right">
-      <%= edit_link(@list) %>
-      <%= delete_link(@list) %>
+      <div role="toolbar">
+        <%= back_link %>
+        <%= edit_link(@list) %>
+        <%= delete_link(@list) %>
+      </div>
     </div>
-    
-  </div>
-  <div class="card-body">
-    <table class="table table-borderless table-hover autowidth">
-      <tr>
-        <th class="w-25"><%= t('attributes.org_unit')%>:</th>
-        <td><%= @list.org_unit %></td>
-      </tr>
-    </table>
-    <div role="toolbar">
-      <%= back_link %>
-    </div>
-
   </div>
 </div>
 
-<div class="card">
-  <div class="card-header">
-    <h5 class="card-title"><%= t('attributes.tasks')%></h5>
-  </div>
-  <div class="card-body">
-    <%= render partial: 'tasks',
-               locals: { tasks: @list.tasks } %>
+<div class="ml-2 mb-3">
+  <%= render 'tasks/cards',
+      columns: @columns,
+      tasks_per_column: @tasks_per_column,
+      filter: { list_id: @list.id },
+      url: request.url
+ %>
 
-    <%= new_link [@list, Task] %>
-  </div>
 </div>
+<%= new_link [@list, Task] %>
 

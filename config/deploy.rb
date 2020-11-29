@@ -30,7 +30,7 @@ set :deploy_to, config['deploy_to']
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml"
 
-append :linked_files, "config/database.yml", "config/titracka.yml", "config/secrets.yml", "config/master.key", "config/credentials.yml.enc"
+append :linked_files, "config/database.yml", "config/titracka.yml", "config/secrets.yml", "config/master.key", "config/credentials.yml.enc", "config/Passengerfile.json", "tmp/restart.txt"
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"

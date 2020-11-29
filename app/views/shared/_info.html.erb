@@ -6,9 +6,9 @@
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarInfoLink">
       <% if false %>
       <a class="dropdown-item" href="#" target='_blank'><i class="fas fa-fw fa-book"></i> Benutzerhandbuch</a>
-      <a class="dropdown-item" href="#" target='blank'><i class="fas fa-fw fa-book"></i> Administrationshandbuch</a>
-      <div class="dropdown-divider"></div>
       <% end %>
+      <a class="dropdown-item" href="<%= main_app.root_path + 'manual/admin-manual.html' %>" target='blank'><i class="fas fa-fw fa-book"></i> Administrationshandbuch</a>
+      <div class="dropdown-divider"></div>
       <%= link_to raw(%Q[<i class="fas fa-fw fa-info-circle"></i> Über Titracka]), main_app.page_path('about'), class: 'dropdown-item' %>
       <%= link_to raw(%Q[<i class="fas fa-fw fa-exclamation"></i> Changelog]),  main_app.page_path('Changelog'), class: 'dropdown-item' %>
 

@@ -6,6 +6,8 @@ RSpec.describe Titracka, type: :model do
       allow(Titracka::CONFIG).to receive(:[]).with('devise_modules').and_return(nil)
       allow(Titracka::CONFIG).to receive(:[]).with('mail_from').and_return(nil)
       allow(Titracka::CONFIG).to receive(:[]).with('use_ssl').and_return(nil)
+      allow(Titracka::CONFIG).to receive(:[]).with('remote_user').and_return(nil)
+      allow(Titracka::CONFIG).to receive(:[]).with('action_cable_allowed_request_origins').and_return(nil)
     end
     it { expect(Titracka.devise_modules).to contain_exactly(
                                            :remote_user_authenticatable,
@@ -17,6 +19,9 @@ RSpec.describe Titracka, type: :model do
                                          )}
     it { expect(Titracka.mail_from).to eq('root') }
     it { expect(Titracka.use_ssl).to be_falsey }
+    it { expect(Titracka.remote_user).to eq('REMOTE_USER') }
+    it { expect(Titracka.action_cable_allowed_request_origins).to contain_exactly(
+         'http://localhost', 'https://localhost' ) }
   end
 
   describe "::ldap_options" do

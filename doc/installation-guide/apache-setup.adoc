@@ -1,0 +1,115 @@
+## Apache-Setup
+
+Die Kombination Apache 2.4 + Passenger unterstützt leider keine Websockets.
+Das Setup ist daher etwas aufwendiger: Apache dient als Frontend (wg.
+Authentifikation u.a.) und Proxy-Server, Passenger Standalone bedient die
+Anwendung. Der Apache-Server bedient den Anwender per SSL
+
+### Apache ###
+
+[[apache-conf]]
+./etc/apache2/sites-available/titracka
+----
+<VirtualHost *:80>
+  ServerName titracka.example.com
+  ServerAdmin max.mustermann@example.com
+  DocumentRoot /var/srv/www/titracka/public
+  LimitRequestFieldSize 32768
+
+  <Directory /var/srv/www/titracka/public>
+    Require all granted
+  </Directory>
+
+  RequestHeader set X-Proxy-Secure-USER %{REMOTE_USER}s <!--1-->
+
+  <Location "/">
+    ProxyPass http://127.0.0.1:4000/ <!--2-->
+    ProxyPassReverse http://127.0.0.1:4000/ <!--2-->
+  </Location>
+
+  <Location /cable>
+    ProxyPass ws://127.0.0.1:4000/cable <!--2-->
+    ProxyPassReverse ws://127.0.0.1:4000/cable <!--2-->
+  </Location>
+
+  <Proxy *>
+    Order deny,allow
+    Allow from all
+  </Proxy>
+
+  <LocationMatch "/auth/login">
+    AuthName "Titracka"
+    require valid-user
+    AuthType CAS
+    CASScope /titracka/
+  </LocationMatch>
+
+</VirtualHost>
+
+<VirtualHost *:443>
+  ServerName titracka.example.com
+  ServerAdmin max.mustermann@example.com
+  DocumentRoot /var/srv/www/titracka/public
+  LimitRequestFieldSize 32768
+
+  <Directory /var/srv/www/titracka/public>
+    Require all granted
+  </Directory>
+
+  RequestHeader set X-Proxy-Secure-USER %{REMOTE_USER}s <!--1-->
+  RequestHeader set X-Forwarded-Proto https <!--3-->
+
+  <Location "/">
+    ProxyPass http://127.0.0.1:4000/ <!--2-->
+    ProxyPassReverse http://127.0.0.1:4000/ <!--2-->
+  </Location>
+
+  <Location /cable>
+    ProxyPass ws://127.0.0.1:4000/cable <!--2-->
+    ProxyPassReverse ws://127.0.0.1:4000/cable <!--2-->
+  </Location>
+
+  <Proxy *>
+    Order deny,allow
+    Allow from all
+  </Proxy>
+
+  <LocationMatch "/auth/login">
+    AuthName "Titracka"
+    require valid-user
+    AuthType CAS
+    CASScope /titracka/
+  </LocationMatch>
+
+  SSLEngine On
+  SSLCertificateFile /etc/apache2/ssl/****.crt
+  SSLCertificateKeyFile /etc/apache2/ssl/****.key
+  SSLCipherSuite HIGH:!aNULL:!MD5
+  SSLProtocol all -SSLv3 -TLSv1
+
+</VirtualHost>
+----
+<1> Ein via Apache authentifizierter User wird in der Header-Variable X_PROXY_SECURE_USER an die Anwendung für Single-Sign-On weitergereicht
+<2> **SECURITY**: bei Single-Sign-On darf die Anwendung nie direkt erreichbar sein, daher immer `localhost` oder `127.0.0.1` verwenden!
+<3> Verhindert bei `force_ssl=true` eine Endlosschleife, weil die Anwendung über den Proxy ohne https aufgerufen wird und Passenger nicht erkennt, dass SSL verwendet werden soll.
+
+### Passenger Standalone ###
+
+[[passenger]]
+./var/srv/www/titracka/shared/config/Passengerfile.json
+----
+{
+  "address": "127.0.0.1", <!--1-->
+  "environment": "production",
+  "daemonize": true, <!--2-->
+  "port": "4000", <!--3-->
+  "user": "deploy", <!--4-->
+  "envvars": {
+   }
+}
+----
+<1> **SECURITY:** immer localhost oder 127.0.0.1 verwenden.
+<2> Start als Daemon
+<3> Verwendeter Port, identisch zur Apache-Proxy-Konfiguration
+<4> User, unter dem die Anwendung läuft. Sollte identisch sein mit dem
+User, dem das Anwendungsverzeichnis `/var/srv/www/titracka` gehört.

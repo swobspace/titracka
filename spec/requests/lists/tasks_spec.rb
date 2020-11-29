@@ -4,13 +4,14 @@ RSpec.describe "/lists/:id/tasks", type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:list) { FactoryBot.create(:list, user_id: user.id) }
   let(:open) { FactoryBot.create(:state, :open) }
+  let(:ou)   { FactoryBot.create(:org_unit) }
   let(:valid_attributes) {
     FactoryBot.attributes_for(:task, list_id: list.id, user_id: user.id,
-                              state_id: open.id)
+                              state_id: open.id, org_unit_id: ou.id)
   }
   let(:post_attributes) {
     FactoryBot.attributes_for(:task, list_id: list.id,
-                              state_id: open.id)
+                              state_id: open.id, org_unit_id: ou.id)
   }
 
   let(:invalid_attributes) {
@@ -18,7 +19,8 @@ RSpec.describe "/lists/:id/tasks", type: :request do
   }
 
   before(:each) do
-    login_admin
+    login_admin(user: user)
+    allow_any_instance_of(Ability).to receive_message_chain(:rights, :manager, :org_units).and_return([ou.id])
   end
 
   describe "GET /index" do

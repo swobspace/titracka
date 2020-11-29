@@ -4,12 +4,13 @@ class OrgUnitsController < ApplicationController
 
   # GET /org_units
   def index
-    @org_units = OrgUnit.all
     respond_with(@org_units)
   end
 
   # GET /org_units/1
   def show
+    @columns = State.not_archived
+    @tasks_per_column = @org_unit.tasks.group_by(&:state_id)
     respond_with(@org_unit)
   end
 

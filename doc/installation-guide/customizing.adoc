@@ -1,0 +1,17 @@
+== Customizing
+
+WARNING: Die nachfolgenden Einstellungen sollten Sie nicht ohne Rücksprache
+ändern. Fehlende oder falsche Einträge können zu Fehlfunktionen führen und die
+Nutzbarkeit der Software und der erfassten Daten einschränken.
+
+IMPORTANT: Die Customizingeinstellungen sollten bei Bedarf vor der
+Installation festgelegt werden. Nach Produktivschaltung der Software sollten
+bestehende Einträge nicht mehr geändert, sondern nur um weitere Einträge
+ergänzt werden.
+
+[[titracka.something]]
+.Some Thing
+[source,yaml]
+----
+foo: bar
+----

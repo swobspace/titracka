@@ -1,0 +1,22 @@
+== Einführung
+
+Titracka ist ein Acronym für "Time and Task Tracking with Kanban". Tasks
+werden in einem Kanban-Board dargestellt. Zu jedem Task können Kommentare und
+Aktivitäten mit Zeitaufwand erfasst werden. Aktivitäten kann jeder User für
+sich  in einer Tagesansicht anzeigen und bearbeiten.
+
+Tasks können einer organisatorischen Struktur (Organisationseinheiten in
+Baumstruktur) und/oder Listen zugeordnet werden. Listen gruppieren die Tasks
+unterhalb einer OE; ohne Zuordnung eine Organisationseinheit können Listen für
+Projekte genutzt werden, in denen Personen unabhängig von einer
+Organisationsstruktur gemeinsam an projektbezogenen Tasks arbeiten.
+
+Tasks ohne die Zuordnung einer Liste oder einer Organisationseinheit sind
+privat und nur für User mit expliziter Berechtigungsvergabe (Responsible,
+Accountable) einsehbar.
+
+Zu jedem Task kann man Aktivitäten mit Zeitaufwand erfassen. Die eigenen
+Aktivitäten kann sich jeder User in einer Tagesansicht anzeigen; die
+Tagesansicht summiert die Zeit des Tages und die bis dahin erfassen
+Wochenstunden der angezeigten Woche auf. Diese Ansicht kann nur jeder User für
+sich selbst einsehen, andere User haben keinen Zugriff darauf.

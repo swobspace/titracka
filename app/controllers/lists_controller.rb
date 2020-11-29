@@ -10,6 +10,8 @@ class ListsController < ApplicationController
 
   # GET /lists/1
   def show
+    @columns = State.not_archived
+    @tasks_per_column = @list.tasks.group_by(&:state_id)
     respond_with(@list)
   end
 
