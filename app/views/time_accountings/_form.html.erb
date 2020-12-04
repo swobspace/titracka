@@ -8,6 +8,7 @@
     <div class="card-body">
       <%= f.association :task, 
           collection: @tasks,
+          label_method: :name_with_list_or_org_unit,
           wrapper: :horizontal_select2
 	 %>
       <%= f.input :description
