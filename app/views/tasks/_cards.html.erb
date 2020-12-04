@@ -22,7 +22,7 @@
         </div>
 
         <%= content_tag :ul, class: 'list-group list-group-flsh dropzone px-1', data: { id: column.id, target: 'draggable.column' } do %>
-          <%= render(tasks_per_column[column.id], column: column) if tasks_per_column[column.id].present? %>
+          <%= render(tasks_per_column[column.id], column: column, ability: ability) if tasks_per_column[column.id].present? %>
         <% end %>
       </div>
     </div>

@@ -2,7 +2,7 @@
       class: "list-group-item",
       id: "card_task_#{task.id}",
       data: {
-        target: 'draggable.task',
+        target: ('draggable.task' if ability.can?(:update, task)),
         controller: 'task',
         id: task.id,
         url: state_task_path(column, task)
@@ -33,15 +33,17 @@
         <%= icon_show %>
       </span>
     </div>
-    <div data-controller='task' class="ml-2">
-      <span id="open_edit_task_<%=  task.id %>"
-            data-reflex="click->Task#edit"
-            data-task-id="<%= task.id %>"
-            data-modal-id="formTaskModal"
-            data-reflex-dataset="combined">
-        <%= icon_edit %>
-      </span>
-    </div>
+    <% if ability.can? :update, task %>
+      <div data-controller='task' class="ml-2">
+        <span id="open_edit_task_<%=  task.id %>"
+              data-reflex="click->Task#edit"
+              data-task-id="<%= task.id %>"
+              data-modal-id="formTaskModal"
+              data-reflex-dataset="combined">
+          <%= icon_edit %>
+        </span>
+      </div>
+    <% end %>
     <div data-controller='modal' class="ml-2">
       <span data-target="modal.modalForm modal.modalView"
             data-action="click->modal#open"
