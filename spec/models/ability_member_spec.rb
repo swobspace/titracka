@@ -69,11 +69,13 @@ RSpec.shared_examples "a Member" do
       it { is_expected.not_to be_able_to(:manage, list_0) }
 
       it { is_expected.to be_able_to(:read, list_1) }
+      it { is_expected.to be_able_to(:work_on, list_1) }
       it { is_expected.not_to be_able_to(:update, list_1) }
       it { is_expected.not_to be_able_to(:destroy, list_1) }
       it { is_expected.not_to be_able_to(:manage, list_1) }
 
       it { is_expected.to be_able_to(:read, list_2) }
+      it { is_expected.to be_able_to(:work_on, list_2) }
       it { is_expected.not_to be_able_to(:update, list_2) }
       it { is_expected.not_to be_able_to(:destroy, list_2) }
       it { is_expected.not_to be_able_to(:manage, list_2) }
@@ -89,7 +91,7 @@ RSpec.shared_examples "a Member" do
     end
 
     context "lists owned by user" do
-      [ :read, :update, :destroy, :manage ].each do |action|
+      [ :read, :update, :destroy, :work_on, :manage ].each do |action|
         it { is_expected.to be_able_to(action, list_u0) }
         it { is_expected.to be_able_to(action, list_u1) }
         it { is_expected.to be_able_to(action, list_u2) }

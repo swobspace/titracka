@@ -125,6 +125,7 @@ class Ability
   #
   def member_ou(ou_ids)
     can :work_on, OrgUnit, id: ou_ids
+    can :work_on, List, org_unit_id: ou_ids
   end
 
   def manager_ou(ou_ids)
