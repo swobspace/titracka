@@ -59,6 +59,7 @@ class HomeController < ApplicationController
       end
       @columns = State.not_archived
       @filter ||= @search_params.slice("org_unit_id", "list_id", "private")
+      @url = request.url
     end
 
     def search_params

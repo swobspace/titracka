@@ -53,9 +53,10 @@
     </div>
   </div>
   <div id="dashboardContent" class="col">
-    <%= render 'tasks/cards', columns: @columns, 
+    <%= render('tasks/cards', columns: @columns, 
                               tasks_per_column: @tasks_per_column,
                               filter: @filter,
-                              url: root_path(@search_params) %>
+                              ability: current_ability,
+                              url: root_path(@search_params)) if @columns.present? %>
   </div>
 </div>
