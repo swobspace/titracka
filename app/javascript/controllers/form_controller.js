@@ -4,8 +4,6 @@ export default class extends ApplicationController {
   static targets = [ "errorSuccess" ]
 
   connect () {
-    const render_root = this.data.get('renderRoot')
-    const render_url = document.getElementById(render_root).dataset['url']
   }
   onPostSuccess(event) {
     const render_root = this.data.get('renderRoot')
