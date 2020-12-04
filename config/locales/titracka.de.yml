@@ -49,6 +49,8 @@ de:
     reset_table: Tabelle zurücksetzen
     upload: Upload
     add: "%{model} hinzufügen"
+    show: "%{model} anzeigen"
+    edit: "%{model} bearbeiten"
     remove: "%{model} löschen"
     release: "%{model} freigeben"
 

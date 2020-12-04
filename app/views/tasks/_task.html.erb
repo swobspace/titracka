@@ -27,6 +27,7 @@
   <div class="d-flex w-100 small">
     <div class="">
       <span id="show_task_<%= task.id %>"
+            title="<%= t('actions.show', model: Task.model_name.human) %>"
             data-reflex="click->Task#show"
             data-modal-id="showTaskModal"
             data-reflex-dataset="combined">
@@ -36,6 +37,7 @@
     <% if ability.can? :update, task %>
       <div data-controller='task' class="ml-2">
         <span id="open_edit_task_<%=  task.id %>"
+              title="<%= t('actions.edit', model: Task.model_name.human) %>"
               data-reflex="click->Task#edit"
               data-task-id="<%= task.id %>"
               data-modal-id="formTaskModal"
@@ -48,7 +50,8 @@
       <span data-target="modal.modalForm modal.modalView"
             data-action="click->modal#open"
             data-modalId="timeAccountingModal"
-            data-actionurl="<%= task_time_accountings_path(task) %>" >
+            data-actionurl="<%= task_time_accountings_path(task) %>"
+            title="<%= t('actions.add', model: TimeAccounting.model_name.human) %>">
         <i class="far fa-clock"></i>
       </span>
     </div>

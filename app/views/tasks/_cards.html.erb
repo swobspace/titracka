@@ -15,7 +15,9 @@
                   data-column-type="<%= column.class.name %>"
                   data-column-id="<%= column.id %>"
                   data-modal-id="formTaskModal"
-                  data-reflex-dataset="combined">
+                  data-reflex-dataset="combined"
+                  title="<%= t('actions.add', model: Task.model_name.human) %>"
+              >
               <%= icon_new %>
             </span>
           <% end %>
