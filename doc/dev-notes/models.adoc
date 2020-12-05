@@ -96,3 +96,14 @@ bin/rails g scaffold Tag \
   --no-stylesheets --no-javascripts --no-helper
 ----
 
+## Note
+
+using :description as rich text field:
+
+----
+bin/rails g scaffold Note \
+  task:belongs_to \
+  user:belongs_to \
+  date:date \
+  --no-stylesheets --no-javascripts --no-helper
+----
