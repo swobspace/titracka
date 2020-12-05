@@ -32,16 +32,23 @@ RSpec.shared_examples "a Member" do
   end
 
   # 
-  # common config models, createable and own editable
+  # common data models, createable and own editable
   #
 
-  [ List, TimeAccounting, Workday ].each do |model|
+  [ List, Note, TimeAccounting, Workday ].each do |model|
     context "with own common config model #{model}" do
       let(:owned) { model.new(user_id: @user.id) }
       it { is_expected.to be_able_to(:read, owned) }
       it { is_expected.to be_able_to(:update, owned) }
       it { is_expected.to be_able_to(:destroy, owned) }
       it { is_expected.to be_able_to(:manage, owned) }
+    end
+    context "with foreign user on #{model}" do
+      let(:owned) { model.new() }
+      it { is_expected.not_to be_able_to(:read, owned) }
+      it { is_expected.not_to be_able_to(:update, owned) }
+      it { is_expected.not_to be_able_to(:destroy, owned) }
+      it { is_expected.not_to be_able_to(:manage, owned) }
     end
   end
 

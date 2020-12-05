@@ -112,12 +112,12 @@ class Ability
   def user_common
     can :navigate, [:org_units, :lists, :tasks, :time_accountings]
     # can [:read], AdUser
-    can :create, [List, Task, TimeAccounting, Workday]
+    can :create, [List, Note, Task, TimeAccounting, Workday]
     can [:read, :update], Task, user_id: @user.id
     can [:read, :update], Task, responsible_id: @user.id
     can [:manage], Task, user_id: @user.id, private: true
     can [:manage], Task, responsible_id: @user.id, private: true
-    can :manage, [List, TimeAccounting, Workday], user_id: @user.id
+    can :manage, [List, Note, TimeAccounting, Workday], user_id: @user.id
   end
 
   #
