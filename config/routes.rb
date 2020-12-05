@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
   resources :tasks do
     resources :time_accountings, module: :tasks
+    resources :notes, module: :tasks
   end
   resources :states do
     resources :tasks, except: [:index, :show], module: :states
