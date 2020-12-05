@@ -18,6 +18,17 @@
 </div>
 <div class="card">
   <div class="card-header">
+    <h5 class="card-title"><%= t('attributes.notes')%></h5>
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <%= render partial: 'notes/note', collection: @task.notes %>
+    </ul>
+    <%= new_link [@task, Note] %>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
     <h5 class="card-title"><%= t('attributes.time_accountings')%></h5>
   </div>
   <div class="card-body">

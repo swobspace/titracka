@@ -1,0 +1,6 @@
+<li class="list-group-item">
+  <%= note.description %>
+  <div class="d-flex w-100 small text-muted">
+    <%= note.date.to_s %> / <%= note.user.decorate.shortname %>
+  </div>
+</li>

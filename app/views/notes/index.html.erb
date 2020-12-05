@@ -15,6 +15,7 @@
     <thead>
       <tr>
             <th><%= t('attributes.task') %></th>
+            <th><%= t('attributes.description') %></th>
             <th><%= t('attributes.user') %></th>
             <th><%= t('attributes.date') %></th>
             <th class="nosort"><%= t('titracka.action') %></th>
@@ -26,13 +27,15 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
       </tr>
     </tfoot>
     <tbody>
       <% @notes.each do |note| %>
         <%= content_tag_for(:tr, note) do %>
                 <td><%= note.task %></td>
-                <td><%= note.user %></td>
+                <td><%= truncate(strip_tags(note.description.to_s), length: 300)%></td>
+                <td><%= note.user.decorate.shortname %></td>
                 <td><%= note.date %></td>
                 <td class="text-nowrap">
             <%= show_link [@noteable, note] %>

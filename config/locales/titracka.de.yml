@@ -91,6 +91,7 @@ de:
     list_id: Liste
     name: Name
     note: Notiz
+    notes: Notizen
     org_unit: Organisationseinheit
     org_unit_id: Organisationseinheit
     owner: Besitzer
