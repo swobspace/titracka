@@ -1,16 +1,12 @@
 <div class="container">
-  <%= simple_form_for(@note,
+  <%= simple_form_for([@noteable, @note],
     html: { class: 'form-horizontal card' }) do |f| %>
 
     <div class="card-header">
       <%= form_legend %>
     </div>
     <div class="card-body">
-      <%= f.association :task
-	 %>
-      <%= f.association :user
-	 %>
-      <%= f.input :date
+      <%= f.input :description, as: :rich_text_area
 	 %>
 
       <%= f.button :submit, class: 'btn btn-primary' %>

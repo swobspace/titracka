@@ -1,10 +1,10 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
-  before_action :add_breadcrumb_show, only: [:show]
+  # before_action :add_breadcrumb_show, only: [:show]
 
   # GET /notes
   def index
-    @notes = Note.all
+    @notes = @noteable.notes
     respond_with(@notes)
   end
 
@@ -15,7 +15,7 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
-    @note = Note.new
+    @note = @noteable.notes.new
     respond_with(@note)
   end
 
@@ -25,22 +25,34 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = Note.new(note_params)
+    @note = @noteable.notes.build(note_params.merge({date: Date.today, user_id: current_user.id}))
 
-    @note.save
-    respond_with(@note)
+    respond_with(@note, location: location) do |format|
+      if @note.save
+        format.js { head :created }
+      else
+        format.js { render json: @note.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /notes/1
   def update
-    @note.update(note_params)
-    respond_with(@note)
+    respond_with(@note, location: location) do |format|
+      if @note.update(note_params.merge({date: Date.today, user_id: current_user.id}))
+        format.js { head :ok }
+      else
+        format.js { render json: @note.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /notes/1
   def destroy
     @note.destroy
-    respond_with(@note)
+    respond_with(@note, location: location) do |format|
+      format.js { head :ok }
+    end
   end
 
   private
@@ -51,6 +63,11 @@ class NotesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def note_params
-      params.require(:note).permit(:task_id, :user_id, :date)
+      params.require(:note).permit(:task_id, :user_id, :date, :description)
     end
+
+    def location
+      polymorphic_path(@noteable)
+    end
+
 end

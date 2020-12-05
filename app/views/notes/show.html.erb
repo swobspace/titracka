@@ -23,9 +23,9 @@
 
     <div role="toolbar">
       <%= back_link %>
-      <%= edit_link(@note) %>
-      <%= delete_link(@note) %>
-      <%= new_link Note %>
+      <%= edit_link([@noteable, @note]) %>
+      <%= delete_link([@noteable, @note]) %>
+      <%= new_link [@noteable, Note] %>
     </div>
   </div>
 </div>
