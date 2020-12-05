@@ -1,11 +1,5 @@
 == Stammdaten
 
-=== Dokumentenkategorien
+=== Organisationseinheiten
 
-=== Datenkategorien
-
-=== Rechtsgrundlagen
-
-=== Kategorien betroffener Personen
-
-=== Software
+=== Status

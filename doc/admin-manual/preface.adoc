@@ -6,17 +6,24 @@ Aktivitäten mit Zeitaufwand erfasst werden. Aktivitäten kann jeder User für
 sich  in einer Tagesansicht anzeigen und bearbeiten.
 
 Tasks können einer organisatorischen Struktur (Organisationseinheiten in
-Baumstruktur) und/oder Listen zugeordnet werden. Listen gruppieren die Tasks
-unterhalb einer OE; ohne Zuordnung eine Organisationseinheit können Listen für
-Projekte genutzt werden, in denen Personen unabhängig von einer
-Organisationsstruktur gemeinsam an projektbezogenen Tasks arbeiten.
+Baumstruktur) und/oder Listen zugeordnet werden. Ist ein Task einer Liste
+zugeordnet, erbt dieser automatisch die OE der Liste. Tasks ohne die Zuordnung
+einer Liste oder einer Organisationseinheit sind privat und nur für User mit
+expliziter Berechtigungsvergabe (Responsible, Accountable) einsehbar.
 
-Tasks ohne die Zuordnung einer Liste oder einer Organisationseinheit sind
-privat und nur für User mit expliziter Berechtigungsvergabe (Responsible,
-Accountable) einsehbar.
+Listen mit zugeordneter OE gruppieren die Tasks unterhalb einer OE. Listen
+ohne Organisationseinheit können später für Projekte genutzt werden, in denen
+Personen unabhängig von einer Organisationsstruktur gemeinsam an
+projektbezogenen Tasks arbeiten. Das Berechtigungssystem hierzu ist noch nicht
+implementiert, Listen ohne OE sind derzeit ausschließlich privat. Die
+Erstellung eine Liste zu eine OE bleibt der Rolle _Manager_ vorbehalten (siehe
+Abschnitt <<authorities-roles,Rollen>>).
 
 Zu jedem Task kann man Aktivitäten mit Zeitaufwand erfassen. Die eigenen
 Aktivitäten kann sich jeder User in einer Tagesansicht anzeigen; die
 Tagesansicht summiert die Zeit des Tages und die bis dahin erfassen
 Wochenstunden der angezeigten Woche auf. Diese Ansicht kann nur jeder User für
-sich selbst einsehen, andere User haben keinen Zugriff darauf.
+sich selbst einsehen, andere User haben keinen Zugriff darauf. Ansonsten kann
+nur die Rolle _Manager_ zu einer OE die Zeitaufwände einsehen, die auf eine OE
+erfasst wurden. Leserechte für Zeitaufwände zu einer Liste ohne OE sind für
+Listenmanager geplant, werden aber erst in einer späteren Version realisiert.
