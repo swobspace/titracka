@@ -25,6 +25,9 @@ FactoryBot.define do
     trait :open do
       state { 'open'}
     end
+    trait :pending do
+      state { 'pending'}
+    end
     trait :done do
       state { 'done'}
     end
