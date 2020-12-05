@@ -12,6 +12,13 @@ FactoryBot.define do
     association :user
   end
 
+  factory :note do
+    description { "Some Notes" }
+    date { Date.today.to_s }
+    association :user
+    association :task
+  end
+
   factory :org_unit do
     name { "Workers Company" }
   end

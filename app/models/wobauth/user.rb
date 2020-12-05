@@ -3,6 +3,7 @@ class Wobauth::User < ActiveRecord::Base
   has_many :tasks, dependent: :restrict_with_error
   has_many :lists, dependent: :restrict_with_error
   has_many :time_accountings, dependent: :restrict_with_error
+  has_many :notes, dependent: :delete_all
   has_many :responsibilities, dependent: :restrict_with_error
   has_many :workdays, dependent: :restrict_with_error
   # dependencies within wobauth models
