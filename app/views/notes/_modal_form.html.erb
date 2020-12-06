@@ -36,7 +36,7 @@
           </div>
           <div class="modal-footer bg-light">
             <ul class="list-group list-group-flush row" id="showTaskNotesCollection">
-              <%= render partial: 'notes/note', collection: noteable.notes,
+              <%= render partial: 'notes/note', collection: noteable.notes.order("created_at desc"),
                     layout: 'shared/list_group_item_layout' %>
             </ul>
           </div>
