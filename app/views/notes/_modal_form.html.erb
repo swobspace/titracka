@@ -5,29 +5,42 @@
     <div class="modal-content" id="noteModalForm">
       <div class="modal-header">
         <h5 class="modal-title" id="formNoteModalLabel">
-          <%= t('activerecord.models.note') %></h5>
+              <%= noteable&.subject%>
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <% if noteable.present? %>
-      <%= simple_form_for([noteable, note],
-            remote: true,
-            html: { class: 'form-horizontal' },
-            data: {
-              action: "ajax:success->form#onPostSuccess ajax:error->form#onPostError"
-            }
-          ) do |f| %>
-        <div class="modal-body" data-reflex-root="noteModalForm">
-          <%= f.input :description, as: :rich_text_area
-             %>
-          <div data-target="form.errorSuccess" class="" role="alert"></div>
-        </div>
-        <div class="modal-footer">
-          <%= f.button :submit, class: 'btn btn-primary' %>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      <% end %>
+        <%= simple_form_for([noteable, note],
+              remote: true,
+              data: {
+                action: "ajax:success->form#onPostSuccess ajax:error->form#onPostError"
+              }
+            ) do |f| %>
+          <div class="modal-body" data-reflex-root="noteModalForm">
+            <div class="small text-muted">
+              <%= truncate(noteable.description&.to_plain_text, length: 300) %>
+            </div>
+
+            <h5 class="bt mt-2"><%= t('activerecord.models.note') %></h5>
+
+            <%= f.input :description, as: :rich_text_area,
+                  wrapper: :vertical_form, label: nil 
+               %>
+            <div data-target="form.errorSuccess" class="" role="alert"></div>
+            <div role="toolbar" class="">
+              <%= f.button :submit, class: 'btn btn-primary' %>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <ul class="list-group list-group-flush row" id="showTaskNotesCollection">
+              <%= render partial: 'notes/note', collection: noteable.notes,
+                    layout: 'shared/list_group_item_layout' %>
+            </ul>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

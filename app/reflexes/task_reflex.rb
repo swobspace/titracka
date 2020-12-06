@@ -9,6 +9,10 @@ class TaskReflex < ApplicationReflex
     morph "#showTaskModalTable", TasksController.render(
       partial: 'tasks/show_task', locals: { task: @task }
     )
+    morph "#showTaskNotesCollection", NotesController.render(
+      partial: 'notes/note', collection: @task.notes, 
+      layout: '../shared/list_group_item_layout'
+    )
   end
 
   def new
