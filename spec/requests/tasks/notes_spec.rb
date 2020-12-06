@@ -12,7 +12,7 @@ RSpec.describe "/tasks/:id/notes", type: :request do
   }
 
   let(:invalid_attributes) {
-    { date: nil }
+    { description: nil }
   }
 
   before(:each) do

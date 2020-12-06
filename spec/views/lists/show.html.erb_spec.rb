@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe "lists/show", type: :view do
   let!(:state) { FactoryBot.create(:state, :open) }
   before(:each) do
-    @ability = Object.new
-    @ability.extend(CanCan::Ability)
-    allow(controller).to receive(:current_ability) { @ability }
+    @current_ability = Object.new
+    @current_ability.extend(CanCan::Ability)
+    allow(controller).to receive(:current_ability) { @current_ability }
     allow(controller).to receive(:controller_name) { "lists" }
     allow(controller).to receive(:action_name) { "show" }
     org_unit = FactoryBot.create(:org_unit, name: "ACME")
