@@ -10,7 +10,7 @@ class TaskReflex < ApplicationReflex
       partial: 'tasks/show_task', locals: { task: @task }
     )
     morph "#showTaskNotesCollection", NotesController.render(
-      partial: 'notes/note', collection: @task.notes, 
+      partial: 'notes/note', collection: @task.notes.order("created_at desc"), 
       layout: '../shared/list_group_item_layout'
     )
   end
