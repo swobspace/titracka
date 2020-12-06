@@ -1,27 +1,12 @@
 <div class="card">
   <div class="card-header">
-    <h4><%= t('activerecord.models.note') %></h4>
+    <h4><%= t('activerecord.models.note') %> zu Task:
+        <td><%= @note.task %></td>
+    </h4>
   </div>
   <div class="card-body">
-    <table class="table table-bordered table-hover autowidth">
-    
-      <tr>
-        <th><%= t('attributes.task')%>:</th>
-        <td><%= @note.task %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.user')%>:</th>
-        <td><%= @note.user %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.date')%>:</th>
-        <td><%= @note.date %></td>
-      </tr>
-        </table>
-
-    <div role="toolbar">
+      <%= render 'notes/note', note: @note %>
+    <div role="toolbar" class="mt-3">
       <%= back_link %>
       <%= edit_link([@noteable, @note]) %>
       <%= delete_link([@noteable, @note]) %>
