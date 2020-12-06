@@ -23,6 +23,7 @@ de:
       'pre': pre
       'open': offen
       'done': erledigt
+      'pending': wartend
       'archive': archiviert
     tristate:
       'yes': Ja
