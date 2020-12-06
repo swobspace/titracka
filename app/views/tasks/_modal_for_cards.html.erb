@@ -8,3 +8,8 @@
              org_units: @org_units,
              lists: @lists
            } %>
+<%= render partial: 'notes/modal_form',
+           locals: {
+             noteable: @task,
+             note: (@note || Note.new(task: @task))
+           }  %>

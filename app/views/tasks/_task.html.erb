@@ -46,6 +46,16 @@
         </span>
       </div>
     <% end %>
+    <div data-controller='note' class="ml-2">
+      <span id="open_new_task_comment<%=  task.id %>"
+            title="<%= t('actions.add', model: Note.model_name.human) %>"
+            data-reflex="click->Note#new"
+            data-task-id="<%= task.id %>"
+            data-modal-id="formNoteModal"
+            data-reflex-dataset="combined">
+        <i class="far fa-comment"></i>
+      </span>
+    </div>
     <div data-controller='modal' class="ml-2">
       <span data-target="modal.modalForm modal.modalView"
             data-action="click->modal#open"
