@@ -112,23 +112,23 @@ class Ability
   def user_common
     can :navigate, [:org_units, :lists, :tasks, :time_accountings]
     # can [:read], AdUser
-    can :create, [List, Task, TimeAccounting, Workday]
+    can :create, [List, Note, Task, TimeAccounting, Workday]
     can [:read, :update], Task, user_id: @user.id
     can [:read, :update], Task, responsible_id: @user.id
     can [:manage], Task, user_id: @user.id, private: true
     can [:manage], Task, responsible_id: @user.id, private: true
-    can :manage, [List, TimeAccounting, Workday], user_id: @user.id
+    can :manage, [List, Note, TimeAccounting, Workday], user_id: @user.id
   end
 
   #
   # org_unit specific rights
   #
   def member_ou(ou_ids)
-    # can :read, OrgUnit, id: ou_ids
+    can :work_on, OrgUnit, id: ou_ids
+    can :work_on, List, org_unit_id: ou_ids
   end
 
   def manager_ou(ou_ids)
-    # can :read, OrgUnit, id: ou_ids
     can :read, TimeAccounting, task: { org_unit_id: ou_ids }
     can :manage, [List, Task], org_unit_id: ou_ids
   end

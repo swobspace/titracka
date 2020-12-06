@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-header">
+    <h4><%= t('activerecord.models.note') %> zu Task:
+        <td><%= @note.task %></td>
+    </h4>
+  </div>
+  <div class="card-body">
+      <%= render 'notes/note', note: @note %>
+    <div role="toolbar" class="mt-3">
+      <%= back_link %>
+      <%= edit_link([@noteable, @note]) %>
+      <%= delete_link([@noteable, @note]) %>
+      <%= new_link [@noteable, Note] %>
+    </div>
+  </div>
+</div>

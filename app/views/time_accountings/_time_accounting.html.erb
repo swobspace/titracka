@@ -1,0 +1,7 @@
+<div class="d-flex w-100 justify-content-between small text-muted">
+  <span> <%= time_accounting.date %> / <%= time_accounting.duration %> min</span>
+  <span><%= time_accounting.user.decorate.shortname %></span>
+</div>
+<div class="d-flex"> 
+    <%= time_accounting.description %>
+</div>

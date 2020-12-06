@@ -9,11 +9,14 @@ class TaskReflex < ApplicationReflex
     morph "#showTaskModalTable", TasksController.render(
       partial: 'tasks/show_task', locals: { task: @task }
     )
+    morph "#showTaskNotesCollection", NotesController.render(
+      partial: 'notes/note', collection: @task.notes.order("created_at desc"), 
+      layout: '../shared/list_group_item_layout'
+    )
   end
 
   def new
     state_id = element.dataset[:column_id].to_i
-    Rails.logger.debug("DEBUG:: #{element.dataset.inspect}")
     filter = JSON.parse(element.dataset[:filter])
     @task = Task.new({state_id: state_id}.merge(filter))
     morph "#taskModalForm", TasksController.render(

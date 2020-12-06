@@ -23,6 +23,7 @@ de:
       'pre': pre
       'open': offen
       'done': erledigt
+      'pending': wartend
       'archive': archiviert
     tristate:
       'yes': Ja
@@ -49,6 +50,8 @@ de:
     reset_table: Tabelle zurücksetzen
     upload: Upload
     add: "%{model} hinzufügen"
+    show: "%{model} anzeigen"
+    edit: "%{model} bearbeiten"
     remove: "%{model} löschen"
     release: "%{model} freigeben"
 
@@ -62,12 +65,14 @@ de:
       home: Home
       list: Liste
       lists/task: Aufgabe
+      note: Notiz
       org_unit: Organisationseinheit
       org_units/task: Aufgabe
       state: Status
       states/task: Aufgabe
       tag: Tag
       task: Aufgabe
+      tasks/note: Notiz
       tasks/time_accounting: Aktivität
       time_accounting: Aktivität
       user: Benutzer
@@ -86,6 +91,8 @@ de:
     list: Liste
     list_id: Liste
     name: Name
+    note: Notiz
+    notes: Notizen
     org_unit: Organisationseinheit
     org_unit_id: Organisationseinheit
     owner: Besitzer
@@ -121,12 +128,14 @@ de:
     home: Home
     lists: Listen
     lists/tasks: Aufgaben
+    notes: Notizen
     org_units: Organisationseinheiten
     org_units/tasks: Aufgaben
     states: Status
     states/tasks: Aufgaben
     tags: Tags
     tasks: Aufgaben
+    tasks/notes: Notizen
     tasks/time_accountings: Aktivitäten
     time_accountings: Aktivitäten
     users: Benutzer

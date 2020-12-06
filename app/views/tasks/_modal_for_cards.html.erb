@@ -1,10 +1,21 @@
 <%= render partial: 'time_accountings/modal_form',
            locals: { time_accounting: TimeAccounting.new(date: Date.today) } %>
 <%= render partial: 'tasks/show_modal' %>
-<%= render partial: 'tasks/modal_form',
-           locals: {
-             task: (@task || Task.new),
-             users: @users,
-             org_units: @org_units,
-             lists: @lists
-           } %>
+
+<div id="taskModalForm">
+  <%= render partial: 'tasks/modal_form',
+             locals: {
+               task: (@task || Task.new),
+               users: @users,
+               org_units: @org_units,
+               lists: @lists
+             } %>
+</div>
+
+<div id="noteModalForm">
+  <%= render partial: 'notes/modal_form',
+             locals: {
+               noteable: @task,
+               note: (@note || Note.new(task: @task))
+             }  %>
+</div>

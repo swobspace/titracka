@@ -83,6 +83,7 @@ class TimeAccountingsController < ApplicationController
     end
 
     def set_tasks
-      @tasks = Task.accessible_by(current_ability, :read).order(:subject)
+      @tasks = Task.accessible_by(current_ability, :read).includes(:org_unit, :list)
+                   .order("org_units.name asc, lists.name asc, tasks.subject asc").decorate
     end
 end

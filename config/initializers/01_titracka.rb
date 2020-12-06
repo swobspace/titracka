@@ -71,4 +71,27 @@ module Titracka
     end
   end
 
+  def self.host
+    if CONFIG['host'].present?
+      CONFIG['host']
+    else
+      "localhost"
+    end
+  end
+
+  def self.script_name
+    if CONFIG['script_name'].present?
+      CONFIG['script_name']
+    else
+      "/"
+    end
+  end
+
+  # ActionMailer::Base.default_url_options = {
+  #  host: self.host,
+  #  script_name: self.script_name
+  # }
+  Rails.application.routes.default_url_options[:host] = self.host
+  Rails.application.routes.default_url_options[:script_name] = self.script_name
+
 end

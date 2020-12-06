@@ -9,6 +9,7 @@ RSpec.describe "time_accountings/new", type: :view do
     allow(controller).to receive(:action_name) { "new" }
 
     @time_accounting = assign(:time_accounting, FactoryBot.build(:time_accounting))
+    @tasks = [ FactoryBot.create(:task).decorate ]
   end
 
   it "renders new time_accounting form" do

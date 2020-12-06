@@ -19,7 +19,8 @@
       columns: @columns,
       tasks_per_column: @tasks_per_column,
       filter: { org_unit_id: @org_unit.id },
-      url: request.url
+      url: request.url,
+      ability: @current_ability
  %>
 
 </div>

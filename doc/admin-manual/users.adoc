@@ -39,7 +39,7 @@ Leserechte für die _Personalabteilung_ wirken sich dagegen ausschließlich auf
 die _Personalabteilung_ aus, da unter dieser keine weiteren
 Organisationseinheiten zugeordnet sind.
 
-=== Rollen
+=== Rollen [[authorities-roles]]
 
 Rollen beschreiben, welche Tätigkeiten der Benutzer am Ende ausführen darf.
 Die Rollen in Titracka sind nicht änderbar. Folgende Rollen existieren:
@@ -55,12 +55,14 @@ Member:: Leserechte wie Reader; zusätzlich:
 * Löschen von privaten Tasks (ohne zugeordnete Liste oder OE)
 * Das Löschen aller Tasks mit OE-Zuordnung bleibt der Rolle Manager
   vorbehalten.
+* Erstellen und Bearbeiten von Listen, die **keiner** OE zugeordnet sind.
 
 Manager:: Rechte wie Member; zusätzlich:
 * Bearbeiten und Löschen aller Tasks, die seiner Organisationseinheit
   zugeordnet sind, unabhängig von Responsible und Accountable
 * Lesen aller Aktivitäten von Tasks, die seiner Organisationseinheit
   zugeordnet sind.
+* Erstellen und Bearbeiten von Listen zu einer OE.
 
 
 OrgaAdmin:: Vollzugriff auf alle Stammdaten einschließlich der

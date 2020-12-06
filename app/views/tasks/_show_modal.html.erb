@@ -9,10 +9,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" data-reflex-root="showTaskModalTable">
-        <%= render partial: 'tasks/show_task', locals: {task: (@task || Task.new)} %>
+      <div class="modal-body"> 
+        <div id="showTaskModalTable" class="border-bottom pb-2">
+        </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer bg-light">
+        <h5 class="d-flex w-100 mb-0 text-muted"><%= t('controller.notes') %></h5>
+        <ul class="list-group list-group-flush" id="showTaskNotesCollection">
+        </ul>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
       </div>

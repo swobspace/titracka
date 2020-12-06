@@ -1,6 +1,7 @@
  require 'rails_helper'
 
 RSpec.describe "/lists", type: :request do
+  let(:ou)   { FactoryBot.create(:org_unit) }
   let(:user) { FactoryBot.create(:user) }
   let(:valid_attributes) {
     FactoryBot.attributes_for(:list, user_id: user.id)
@@ -15,6 +16,7 @@ RSpec.describe "/lists", type: :request do
 
   before(:each) do
     login_admin
+    allow_any_instance_of(Ability).to receive_message_chain(:rights, :manager, :org_units).and_return([ou.id])
   end
 
   describe "GET /index" do

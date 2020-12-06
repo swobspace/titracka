@@ -57,6 +57,6 @@ class ListsController < ApplicationController
     end
 
     def set_org_units
-      @org_units = OrgUnit.accessible_by(current_ability, :read)
+      @org_units = OrgUnit.where(id: current_ability.rights.manager.org_units)
     end
 end

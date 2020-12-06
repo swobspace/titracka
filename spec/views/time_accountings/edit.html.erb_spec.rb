@@ -7,8 +7,8 @@ RSpec.describe "time_accountings/edit", type: :view do
     allow(controller).to receive(:current_ability) { @ability }
     allow(controller).to receive(:controller_name) { "time_accountings" }
     allow(controller).to receive(:action_name) { "edit" }
-
     @time_accounting = assign(:time_accounting, FactoryBot.create(:time_accounting))
+    @tasks = [ FactoryBot.create(:task).decorate ]
 end
 
   it "renders the edit time_accounting form" do

@@ -12,6 +12,13 @@ FactoryBot.define do
     association :user
   end
 
+  factory :note do
+    description { "Some Notes" }
+    date { Date.today.to_s }
+    association :user
+    association :task
+  end
+
   factory :org_unit do
     name { "Workers Company" }
   end
@@ -24,6 +31,9 @@ FactoryBot.define do
     end
     trait :open do
       state { 'open'}
+    end
+    trait :pending do
+      state { 'pending'}
     end
     trait :done do
       state { 'done'}
