@@ -3,7 +3,7 @@
      data-controller="form" data-form-render-root="tasksCardboard">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content" id="noteModalForm">
-      <div class="modal-header">
+      <div class="modal-header bg-light">
         <h5 class="modal-title" id="formNoteModalLabel">
               <%= noteable&.subject%>
         </h5>
@@ -23,10 +23,10 @@
               <%= truncate(noteable.description&.to_plain_text, length: 300) %>
             </div>
 
-            <h5 class="bt mt-2"><%= t('activerecord.models.note') %></h5>
+            <h5 class="bt mt-3"><%= t('activerecord.models.note') %></h5>
 
             <%= f.input :description, as: :rich_text_area,
-                  wrapper: :vertical_form, label: nil 
+                  wrapper: :vertical_form, label: false
                %>
             <div data-target="form.errorSuccess" class="" role="alert"></div>
             <div role="toolbar" class="">
@@ -34,7 +34,7 @@
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer bg-light">
             <ul class="list-group list-group-flush row" id="showTaskNotesCollection">
               <%= render partial: 'notes/note', collection: noteable.notes,
                     layout: 'shared/list_group_item_layout' %>
