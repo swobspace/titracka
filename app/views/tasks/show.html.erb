@@ -31,12 +31,13 @@
 
 <div class="card mt-3">
   <div class="card-header">
-    <h5 class="card-title"><%= t('attributes.time_accountings')%></h5>
+    <h5 class="card-title mb-0"><%= t('attributes.time_accountings')%></h5>
+    <span class="text-muted small"><%= @task.time_accountings.sum(:duration) %> min</span>
   </div>
   <div class="card-body">
-    <%= render partial: 'time_accountings',
-               locals: { time_accountings: @task.time_accountings } %>
-
+    <ul class="list-group list-group-flush">
+      <%= render partial: 'time_accountings/time_accounting', collection: @task.time_accountings, layout: 'shared/list_group_item_layout' %>
+    </ul>
     <%= new_link [@task, TimeAccounting] %>
   </div>
 </div>
