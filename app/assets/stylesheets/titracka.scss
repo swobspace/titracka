@@ -99,7 +99,11 @@ trix-editor.form-control {
 // - cardboard
 
 ul.dropzone {
-  min-height: 500px;
+  // min-height: 80vh;
+  min-height: 70%;
+  min-height: -webkit-calc(100vh - 250px);
+  min-height: -moz-calc(100vh - 250px);
+  min-height: calc(100vh - 250px);
 }
 
 .turbolinks-progress-bar {
