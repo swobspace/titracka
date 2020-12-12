@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :references
   get 'home/index'
   get 'home', to: 'home#index'
   get ':date', to: 'workdays#by_date', as: 'by_date', constraints: {date: /\d\d\d\d-\d\d-\d\d/ }

@@ -107,3 +107,33 @@ bin/rails g scaffold Note \
   date:date \
   --no-stylesheets --no-javascripts --no-helper
 ----
+
+## Reference
+
+----
+bin/rails g scaffold Reference \
+  name:string \
+  identifier_name:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+## ReferenceUrl
+
+----
+bin/rails g model ReferenceUrl \
+  reference:belongs_to \
+  name:string \
+  url:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+## CrossReference
+
+----
+bin/rails g model CrossReference \
+  task:belongs_to \
+  reference:belongs_to \
+  identifier:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
