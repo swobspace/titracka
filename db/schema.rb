@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_104139) do
+ActiveRecord::Schema.define(version: 2020_12_12_105825) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -73,6 +73,15 @@ ActiveRecord::Schema.define(version: 2020_12_12_104139) do
     t.integer "position", default: 0
     t.index ["ancestry"], name: "index_org_units_on_ancestry"
     t.index ["name"], name: "index_org_units_on_name"
+  end
+
+  create_table "reference_urls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "reference_id", null: false
+    t.string "name", default: ""
+    t.string "url", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reference_id"], name: "index_reference_urls_on_reference_id"
   end
 
   create_table "references", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
