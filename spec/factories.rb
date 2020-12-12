@@ -23,6 +23,11 @@ FactoryBot.define do
     name { "Workers Company" }
   end
 
+  factory :reference do
+    name { generate(:aname) }
+    identifier_name { "Number" }
+  end
+
   factory :state do
     name { generate(:aname) }
     state { 'open' }
