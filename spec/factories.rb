@@ -28,6 +28,12 @@ FactoryBot.define do
     identifier_name { "Number" }
   end
 
+  factory :reference_url do
+    association :reference
+    name { "Web" }
+    url { "https://example.com" }
+  end
+
   factory :state do
     name { generate(:aname) }
     state { 'open' }
