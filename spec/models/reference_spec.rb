@@ -5,6 +5,7 @@ RSpec.describe Reference, type: :model do
   it { is_expected.to have_many(:reference_urls).dependent(:delete_all) }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:identifier_name) }
+  it { is_expected.to accept_nested_attributes_for(:reference_urls).allow_destroy(true) }
 
   it "should get plain factory working" do
     f = FactoryBot.create(:reference)
