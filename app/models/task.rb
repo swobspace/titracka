@@ -8,6 +8,7 @@ class Task < ApplicationRecord
   belongs_to :list, optional: true
   has_many :time_accountings, dependent: :restrict_with_error
   has_many :notes, dependent: :delete_all
+  has_many :cross_references, dependent: :delete_all
 
   # -- configuration
   has_rich_text :description

@@ -7,6 +7,7 @@ RSpec.describe Task, type: :model do
   it { is_expected.to belong_to(:list).optional }
   it { is_expected.to have_many(:time_accountings).dependent(:restrict_with_error) }
   it { is_expected.to have_many(:notes).dependent(:delete_all) }
+  it { is_expected.to have_many(:cross_references).dependent(:delete_all) }
   it { is_expected.to have_rich_text(:description) }
   it { is_expected.to validate_presence_of(:subject) }
   it { is_expected.to validate_presence_of(:user_id) }
