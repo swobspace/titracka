@@ -41,7 +41,7 @@ de:
     new_task: Neue Aufgabe
     new_time_accounting: Neue Aktivität
     add_reference_url: URL hinzufügen
-    add_cross_reference: Cross-Referenz hinzufügen
+    add_cross_reference: Querverweis hinzufügen
     url_hint: "https://my.domain/path?###IDENTIFIER###"
 
   actions:
@@ -65,7 +65,7 @@ de:
 
   activerecord:
     models:
-      cross_reference: CrossReferenz
+      cross_reference: Querverweis
       home: Home
       list: Liste
       lists/task: Aufgabe
@@ -86,8 +86,8 @@ de:
       workdays/time_accounting: Aktivität
 
   attributes:
-    cross_reference: Cross-Referenz
-    cross_references: Cross-Referenz
+    cross_reference: Querverweis
+    cross_references: Querverweise
     date: Datum
     deadline: Zieltermin
     description: Beschreibung
@@ -139,7 +139,7 @@ de:
     work_start: Tagesbeginn
 
   controller:
-    cross_references: Cross-Referenzen
+    cross_references: Querverweise
     home: Home
     lists: Listen
     lists/tasks: Aufgaben
