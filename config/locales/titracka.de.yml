@@ -87,6 +87,7 @@ de:
 
   attributes:
     cross_reference: Cross-Referenz
+    cross_references: Cross-Referenz
     date: Datum
     deadline: Zieltermin
     description: Beschreibung

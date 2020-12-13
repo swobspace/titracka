@@ -26,11 +26,13 @@
             <th class="notvisible"><%= t('attributes.list') %></th>
             <th><%= t('attributes.private') %></th>
             <th class="notvisible"><%= t('attributes.owner') %></th>
+            <th class=""><%= t('attributes.cross_references') %></th>
             <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -61,6 +63,7 @@
                 <td><%= task.list %></td>
                 <td><%= task.private %></td>
                 <td><%= task.user %></td>
+                <td><%= task.cross_references.join("<br/>").html_safe %></td>
                 <td class="text-nowrap">
             <%= show_link task %>
             <%= edit_link task %>
