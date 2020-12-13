@@ -13,6 +13,7 @@ RSpec.describe Task, type: :model do
   it { is_expected.to validate_presence_of(:user_id) }
   it { is_expected.to validate_presence_of(:state_id) }
   it { is_expected.to validate_inclusion_of(:priority).in_array(Task::PRIORITIES) }
+  it { is_expected.to accept_nested_attributes_for(:cross_references).allow_destroy(true) }
 
   it "should get plain factory working" do
     f = FactoryBot.create(:task)

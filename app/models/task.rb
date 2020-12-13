@@ -20,6 +20,11 @@ class Task < ApplicationRecord
   validates :subject, :state_id, :user_id, presence: true
   validates :priority, inclusion: PRIORITIES, allow_blank: false
 
+  accepts_nested_attributes_for :cross_references,
+    allow_destroy: true,
+    reject_if: proc {|attributes| attributes['reference_id'].blank? || attributes['identifier'].blank?}
+
+
   def to_s
     "#{subject}"
   end
