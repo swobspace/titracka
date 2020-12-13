@@ -1,4 +1,12 @@
 class CrossReference < ApplicationRecord
-  belongs_to :task
-  belongs_to :reference
+  # -- associations
+  belongs_to :task, optional: false
+  belongs_to :reference, optional: false
+  # -- validations and callbacks
+  validates :identifier, presence: true
+
+  def to_s
+    "#{identifier}"
+  end
+
 end

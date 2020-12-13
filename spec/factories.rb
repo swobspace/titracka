@@ -7,6 +7,12 @@ FactoryBot.define do
     "mail_#{n}@example.net"
   end
 
+  factory :cross_reference do
+    association :reference
+    association :task
+    identifier { "12345678" }
+  end
+
   factory :list do
     name { "Some List" }
     association :user
