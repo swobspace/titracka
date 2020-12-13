@@ -40,6 +40,9 @@ de:
     new_list: Neue Liste
     new_task: Neue Aufgabe
     new_time_accounting: Neue Aktivität
+    add_reference_url: URL hinzufügen
+    add_cross_reference: Cross-Referenz hinzufügen
+    url_hint: "https://my.domain/path?###IDENTIFIER###"
 
   actions:
     destroy: Datensatz löschen
