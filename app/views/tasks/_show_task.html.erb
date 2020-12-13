@@ -62,6 +62,6 @@
 
   <tr>
     <th><%= t('attributes.cross_references')%>:</th>
-    <td><%= task.cross_references.join("<br/>").html_safe %></td>
+    <td><%= task.cross_references.map{|xref| xref.decorate.with_links }.join("<br/>").html_safe %></td>
   </tr>
 </table>
