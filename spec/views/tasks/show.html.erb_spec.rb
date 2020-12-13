@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "tasks/show", type: :view do
+  let(:reference) { FactoryBot.create(:reference, name: "DontDoIt") }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -16,7 +17,11 @@ RSpec.describe "tasks/show", type: :view do
       responsible: nil,
       org_unit: nil,
       list: nil,
-      private: false
+      private: false,
+      cross_references_attributes: [
+        reference_id: reference.id,
+        identifier: "166375"
+      ]
     ))
   end
 
@@ -26,5 +31,6 @@ RSpec.describe "tasks/show", type: :view do
     expect(rendered).to match(/niedrig/)
     expect(rendered).to match(/Open/)
     expect(rendered).to match(/false/)
+    expect(rendered).to match(/DontDoIt#166375/)
   end
 end

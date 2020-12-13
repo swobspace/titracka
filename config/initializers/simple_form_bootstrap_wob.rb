@@ -23,7 +23,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'col-sm-3 form-control-label'
 
     b.wrapper :grid_wrapper, tag: 'div', class: 'col-sm-9' do |ba|
-      ba.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid', data: {target: 'select2.input'}
+      ba.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid', data: {"select2-target": 'input'}
       ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
       ba.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
     end

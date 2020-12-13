@@ -1,0 +1,42 @@
+<div class="container">
+  <%= simple_form_for(@reference,
+    html: { class: 'form-horizontal card' }) do |form| %>
+
+    <div class="card-header">
+      <%= form_legend %>
+    </div>
+    <div class="card-body">
+      <%= form.input :name
+	 %>
+      <%= form.input :identifier_name
+	 %>
+
+      <div class="form-group row">
+        <label for="reference_urls_attributes" class="col-sm-3 col-form-label">
+          <%=t('controller.reference_urls') %>
+        </label>
+        <div class="col-sm-9">
+          <div data-controller="nested-form">
+            <template data-nested-form-target='template'>
+              <%= form.fields_for :reference_urls, ReferenceUrl.new, 
+                    child_index: 'TEMPLATE_RECORD' do |refurl| %>
+                <%= render 'reference_url_fields', form: refurl %>
+              <% end %>
+            </template>
+
+            <%= form.fields_for :reference_urls do |refurl| %>
+              <%= render 'reference_url_fields', form: refurl %>
+            <% end %>
+
+            <div data-nested-form-target="add_item">
+              <%= link_to t('titracka.add_reference_url'), "#", data: { action: "nested-form#add_association" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%= form.button :submit, class: 'btn btn-primary' %>
+      <%= cancel_button %>
+    </div>
+  <% end %>
+</div>

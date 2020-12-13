@@ -2,7 +2,7 @@
       class: "list-group-item",
       id: "card_task_#{task.id}",
       data: {
-        target: ('draggable.task' if ability.can?(:update, task)),
+        "draggable-target": ('task' if ability.can?(:update, task)),
         controller: 'task',
         id: task.id,
         url: state_task_path(column, task)
@@ -57,7 +57,7 @@
       </span>
     </div>
     <div data-controller='modal' class="ml-2">
-      <span data-target="modal.modalForm modal.modalView"
+      <span data-modal-target="modalForm modal.modalView"
             data-action="click->modal#open"
             data-modalId="timeAccountingModal"
             data-actionurl="<%= task_time_accountings_path(task) %>"

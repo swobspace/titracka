@@ -4,6 +4,7 @@ RSpec.describe "/tasks", type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:open) { FactoryBot.create(:state, :open) }
   let(:ou)   { FactoryBot.create(:org_unit) }
+  let(:reference) { FactoryBot.create(:reference) }
   let(:valid_attributes) {
     FactoryBot.attributes_for(:task, user_id: user.id, state_id: open.id, 
                                      org_unit_id: ou.id)
@@ -83,9 +84,15 @@ RSpec.describe "/tasks", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        { subject: "new subject", priority: "high" , description: "some text"}
-      }
+      let(:new_attributes) {{
+        subject: "new subject", 
+        priority: "high" , 
+        description: "some text",
+        cross_references_attributes: [
+          reference_id: reference.id,
+          identifier: "1234321"
+        ]
+      }}
 
       it "updates the requested task" do
         task = Task.create! valid_attributes
@@ -94,6 +101,8 @@ RSpec.describe "/tasks", type: :request do
         expect(task.subject).to eq("new subject")
         expect(task.priority).to eq("high")
         expect(task.description.to_s).to eq("<div class=\"trix-content\">\n  some text\n</div>\n")
+        expect(task.cross_references.first.reference_id).to eq(reference.id)
+        expect(task.cross_references.first.identifier).to eq("1234321")
       end
 
       it "redirects to the task" do

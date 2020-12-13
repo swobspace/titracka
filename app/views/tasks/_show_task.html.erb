@@ -59,4 +59,9 @@
     <th><%= t('attributes.owner')%>:</th>
     <td><%= task.user %></td>
   </tr>
+
+  <tr>
+    <th><%= t('attributes.cross_references')%>:</th>
+    <td><%= task.cross_references.map{|xref| xref.decorate.with_links }.join("<br/>").html_safe %></td>
+  </tr>
 </table>

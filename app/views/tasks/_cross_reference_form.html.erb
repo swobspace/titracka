@@ -1,0 +1,24 @@
+<div class="form-group row">
+  <label for="cross_references_attributes" class="col-sm-3 col-form-label">
+    <%=t('controller.cross_references') %>
+  </label>
+  <div class="col-sm-9">
+    <div data-controller="nested-form">
+      <template data-nested-form-target='template'>
+        <%= form.fields_for :cross_references, CrossReference.new,
+              child_index: 'TEMPLATE_RECORD' do |xref| %>
+          <%= render 'tasks/cross_reference_fields', form: xref %>
+        <% end %>
+      </template>
+
+      <%= form.fields_for :cross_references do |xref| %>
+        <%= render 'tasks/cross_reference_fields', form: xref %>
+      <% end %>
+
+      <div data-nested-form-target="add_item">
+        <%= link_to t('titracka.add_cross_reference'), "#", data: { action: "nested-form#add_association" } %>
+      </div>
+    </div>
+  </div>
+</div>
+

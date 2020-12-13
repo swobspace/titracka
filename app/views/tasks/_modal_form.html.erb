@@ -16,49 +16,50 @@
             data: {
               action: "ajax:success->form#onPostSuccess ajax:error->form#onPostError"
             }
-          ) do |f| %>
+          ) do |form| %>
         <div class="modal-body">
 
-          <%= f.input :subject, label: t('attributes.task')
+          <%= form.input :subject, label: t('attributes.task')
              %>
-          <%= f.input :description, as: :rich_text_area
+          <%= form.input :description, as: :rich_text_area
              %>
-          <%= f.association :state,
+          <%= form.association :state,
                 include_blank: false
              %>
-          <%= f.association :responsible,
+          <%= form.association :responsible,
               collection: users,
               wrapper: :horizontal_select2
              %>
-          <%= f.association :org_unit,
+          <%= form.association :org_unit,
               collection: org_units&.arrange_as_array,
               wrapper: :horizontal_select2
              %>
-          <%= f.association :list,
+          <%= form.association :list,
               collection: lists,
               wrapper: :horizontal_select2
              %>
-          <%= f.input :priority, collection:
+          <%= render 'tasks/cross_reference_form', form: form %>
+          <%= form.input :priority, collection:
                 Task::PRIORITIES.map {|x| [t(x, scope: 'titracka.priority'), x]},
                   include_blank: false,
                   input_html: {class: 'col-lg-4 col-sm-8'}
              %>
-          <%= f.input :start, as: :date, html5: true, wrapper: :horizontal_date,
+          <%= form.input :start, as: :date, html5: true, wrapper: :horizontal_date,
                       input_html: { class: 'col-lg-4 col-sm-8'}
 
             %>
-           <%= f.input :deadline, as: :date, html5: true, wrapper: :horizontal_date,
+           <%= form.input :deadline, as: :date, html5: true, wrapper: :horizontal_date,
                       input_html: { class: 'col-lg-4 col-sm-8'}
             %>
-          <%= f.input :resubmission, as: :date, html5: true, wrapper: :horizontal_date,
+          <%= form.input :resubmission, as: :date, html5: true, wrapper: :horizontal_date,
                       input_html: { class: 'col-lg-4 col-sm-8'}
              %>
-          <%= f.input :private
+          <%= form.input :private
              %>
-          <div data-target="form.errorSuccess" class="" role="alert"></div>
+          <div data-form-target="errorSuccess" class="" role="alert"></div>
         </div>
         <div class="modal-footer">
-          <%= f.button :submit, class: 'btn btn-primary' %>
+          <%= form.button :submit, class: 'btn btn-primary' %>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       <% end %>

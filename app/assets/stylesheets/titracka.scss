@@ -99,7 +99,11 @@ trix-editor.form-control {
 // - cardboard
 
 ul.dropzone {
-  min-height: 500px;
+  // min-height: 80vh;
+  min-height: 70%;
+  min-height: -webkit-calc(100vh - 250px);
+  min-height: -moz-calc(100vh - 250px);
+  min-height: calc(100vh - 250px);
 }
 
 .turbolinks-progress-bar {
@@ -116,3 +120,8 @@ ul.dropzone {
 a.jstree-anchor.list, a.jstree-anchor.list_decorator {
   color: #666;
 }
+
+.w-10 { width: 10%; }
+.w-15 { width: 15%; }
+.w-20 { width: 20%; }
+.w-33 { width: 33%; }

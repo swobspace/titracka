@@ -7,6 +7,12 @@ FactoryBot.define do
     "mail_#{n}@example.net"
   end
 
+  factory :cross_reference do
+    association :reference
+    association :task
+    identifier { "12345678" }
+  end
+
   factory :list do
     name { "Some List" }
     association :user
@@ -21,6 +27,17 @@ FactoryBot.define do
 
   factory :org_unit do
     name { "Workers Company" }
+  end
+
+  factory :reference do
+    name { generate(:aname) }
+    identifier_name { "Number" }
+  end
+
+  factory :reference_url do
+    association :reference
+    name { "Web" }
+    url { "https://example.com" }
   end
 
   factory :state do

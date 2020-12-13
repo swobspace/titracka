@@ -8,6 +8,7 @@ class Task < ApplicationRecord
   belongs_to :list, optional: true
   has_many :time_accountings, dependent: :restrict_with_error
   has_many :notes, dependent: :delete_all
+  has_many :cross_references, dependent: :delete_all
 
   # -- configuration
   has_rich_text :description
@@ -18,6 +19,11 @@ class Task < ApplicationRecord
 
   validates :subject, :state_id, :user_id, presence: true
   validates :priority, inclusion: PRIORITIES, allow_blank: false
+
+  accepts_nested_attributes_for :cross_references,
+    allow_destroy: true,
+    reject_if: proc {|attributes| attributes['reference_id'].blank? || attributes['identifier'].blank?}
+
 
   def to_s
     "#{subject}"

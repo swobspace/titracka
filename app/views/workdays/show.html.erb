@@ -10,8 +10,8 @@
     </h3>
 
     <div role="toolbar">
-      <input type="hidden" data-target="dateselector.field">
-      <button class="btn btn-secondary" data-target="dateselector.date">
+      <input type="hidden" data-dateselector-target="field">
+      <button class="btn btn-secondary" data-dateselector-target="date">
         <i class="far fa-calendar-alt"></i>
       </button>
 
@@ -26,7 +26,7 @@
             id: "time_accountings_table",
             class: "table table-striped table-bordered table-responsive-xl",
             data: {
-              target: 'datatables.datatable',
+              "datatables-target": 'datatable',
               order: [[0, 'desc']].to_json
             } do %>
         <thead>

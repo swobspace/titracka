@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "tasks/index", type: :view do
+  let(:reference) { FactoryBot.create(:reference, name: "DontDoIt") }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -19,7 +20,11 @@ RSpec.describe "tasks/index", type: :view do
         org_unit: nil,
         state: state,
         list: nil,
-        private: false
+        private: false, 
+        cross_references_attributes: [
+          reference_id: reference.id,
+          identifier: "676274"
+        ]
       ),
       FactoryBot.create(:task,
         subject: "Subject",
@@ -28,7 +33,11 @@ RSpec.describe "tasks/index", type: :view do
         org_unit: nil,
         state: state,
         list: nil,
-        private: false
+        private: false,
+        cross_references_attributes: [
+          reference_id: reference.id,
+          identifier: "456048"
+        ]
       )
     ])
   end
@@ -41,5 +50,7 @@ RSpec.describe "tasks/index", type: :view do
     assert_select "tr>td", text: "Bombadil, Tom (tom)".to_s, count: 2
     assert_select "tr>td", text: "Open".to_s, count: 2
     assert_select "tr>td", text: false.to_s, count: 2
+    assert_select "tr>td", text: "DontDoIt#676274".to_s, count: 1
+    assert_select "tr>td", text: "DontDoIt#456048".to_s, count: 1
   end
 end

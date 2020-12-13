@@ -40,6 +40,9 @@ de:
     new_list: Neue Liste
     new_task: Neue Aufgabe
     new_time_accounting: Neue Aktivität
+    add_reference_url: URL hinzufügen
+    add_cross_reference: Querverweis hinzufügen
+    url_hint: "https://my.domain/path?###IDENTIFIER###"
 
   actions:
     destroy: Datensatz löschen
@@ -62,12 +65,15 @@ de:
 
   activerecord:
     models:
+      cross_reference: Querverweis
       home: Home
       list: Liste
       lists/task: Aufgabe
       note: Notiz
       org_unit: Organisationseinheit
       org_units/task: Aufgabe
+      reference: Referenz
+      reference_url: Referenz-URL
       state: Status
       states/task: Aufgabe
       tag: Tag
@@ -80,6 +86,8 @@ de:
       workdays/time_accounting: Aktivität
 
   attributes:
+    cross_reference: Querverweis
+    cross_references: Querverweise
     date: Datum
     deadline: Zieltermin
     description: Beschreibung
@@ -88,6 +96,8 @@ de:
     formatted_duration: Dauer (HH:MM)
     givenname: Vorname
     home: Home
+    identifier: Identifier
+    identifier_name: Name des Identifier
     list: Liste
     list_id: Liste
     name: Name
@@ -100,6 +110,9 @@ de:
     pause: Pause
     priority: Priorität
     private: privat
+    reference: Referenz
+    reference_url: Referenz-URL
+    reference_urls: Referenz-URLs
     responsible: Verantwortlich
     responsible_id: Verantwortlich
     resubmission: Wiedervorlage
@@ -118,6 +131,7 @@ de:
     time_accounting_id: Aktivität
     time_accountings: Aktivitäten
     time_accounting_ids: Aktivitäten
+    url: URL
     username: Username
     user: Benutzer
     user_id: Benutzer
@@ -125,12 +139,15 @@ de:
     work_start: Tagesbeginn
 
   controller:
+    cross_references: Querverweise
     home: Home
     lists: Listen
     lists/tasks: Aufgaben
     notes: Notizen
     org_units: Organisationseinheiten
     org_units/tasks: Aufgaben
+    references: Referenzen
+    reference_urls: Referenz-URLs
     states: Status
     states/tasks: Aufgaben
     tags: Tags

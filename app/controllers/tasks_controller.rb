@@ -74,7 +74,14 @@ class TasksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:subject, :start, :deadline, :resubmission, :priority, :responsible_id, :org_unit_id, :state_id, :list_id, :private, :description)
+      params.require(:task).permit(
+        :subject, :start, :deadline, :resubmission, :priority, 
+        :responsible_id, :org_unit_id, :state_id, :list_id, 
+        :private, :description,
+        cross_references_attributes: [
+          :_destroy, :id, :reference_id, :identifier
+        ]
+      )
     end
 
     def set_associations
