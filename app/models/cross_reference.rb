@@ -6,7 +6,7 @@ class CrossReference < ApplicationRecord
   validates :identifier, presence: true
 
   def to_s
-    "#{identifier}"
+    "#{reference.name}##{identifier}"
   end
 
 end
