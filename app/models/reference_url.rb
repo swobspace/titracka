@@ -6,7 +6,7 @@ class ReferenceUrl < ApplicationRecord
   validates :name, :url, presence: true
 
   def to_s
-    "#{name} [#{url}]"
+    "#{name} [ #{url} ]"
   end
 
 end

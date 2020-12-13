@@ -14,7 +14,7 @@ RSpec.describe ReferenceUrl, type: :model do
 
   it "to_s returns value" do
     f = FactoryBot.create(:reference_url, name: "Web", url: "https://example.com?#bla#")
-    expect("#{f}").to match ("Web [https://example.com?#bla#]")
+    expect("#{f}").to match ("Web [ https://example.com?#bla# ]")
   end
 
 end
