@@ -3,18 +3,23 @@
     <h4><%= t('activerecord.models.reference') %></h4>
   </div>
   <div class="card-body">
-    <table class="table table-bordered table-hover autowidth">
+    <table class="table table-borderless table-hover table-sm">
     
       <tr>
-        <th><%= t('attributes.name')%>:</th>
+        <th class="w-15"><%= t('attributes.name')%>:</th>
         <td><%= @reference.name %></td>
       </tr>
     
       <tr>
-        <th><%= t('attributes.identifier_name')%>:</th>
+        <th class="w-15"><%= t('attributes.identifier_name')%>:</th>
         <td><%= @reference.identifier_name %></td>
       </tr>
-        </table>
+
+      <tr>
+        <th class="w-15"><%= t('attributes.reference_urls')%>:</th>
+        <td><%= @reference.reference_urls.join("<br/>").html_safe %></td>
+      </tr>
+    </table>
 
     <div role="toolbar">
       <%= back_link %>

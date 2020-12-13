@@ -111,6 +111,7 @@ de:
     private: privat
     reference: Referenz
     reference_url: Referenz-URL
+    reference_urls: Referenz-URLs
     responsible: Verantwortlich
     responsible_id: Verantwortlich
     resubmission: Wiedervorlage

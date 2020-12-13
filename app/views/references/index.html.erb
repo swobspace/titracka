@@ -14,16 +14,18 @@
         } do %>
     <thead>
       <tr>
-            <th><%= t('attributes.name') %></th>
-            <th><%= t('attributes.identifier_name') %></th>
-            <th class="nosort"><%= t('titracka.action') %></th>
+        <th><%= t('attributes.name') %></th>
+        <th><%= t('attributes.identifier_name') %></th>
+        <th><%= t('attributes.reference_urls') %></th>
+        <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
-    <tfoot>
+    <tfoot class="search">
       <tr>
-            <th></th>
-            <th></th>
-            <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </tfoot>
     <tbody>
@@ -31,6 +33,7 @@
         <%= content_tag_for(:tr, reference) do %>
                 <td><%= reference.name %></td>
                 <td><%= reference.identifier_name %></td>
+                <td><%= reference.reference_urls.join('<br/>').html_safe %></td>
                 <td class="text-nowrap">
             <%= show_link reference %>
             <%= edit_link reference %>
