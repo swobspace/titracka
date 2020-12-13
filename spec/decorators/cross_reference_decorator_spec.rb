@@ -23,6 +23,7 @@ RSpec.describe CrossReferenceDecorator do
       reference_id: reference.id,
       identifier: "776508"
     )}
+    it { expect(cross_reference.decorate.with_links).to match("DontDoIT#776508:") }
     it "get linked strings" do
       expect(decorated.all('a').map{|a| a['href']}).to contain_exactly(
         "https://example.com/dontdoit/776508",
