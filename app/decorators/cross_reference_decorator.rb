@@ -7,7 +7,7 @@ class CrossReferenceDecorator < Draper::Decorator
       refurl.url.gsub(/###IDENTIFIER###/, object.identifier),
       target: :blank
     end
-    "#{object.to_s}: #{linked.join("; ")}".html_safe
+    "#{object.to_s}: #{linked.join(" / ")}".html_safe
   end
 
 end
