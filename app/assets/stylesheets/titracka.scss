@@ -136,20 +136,22 @@ i.clapse {
   height: 1em;
 }
 i.clapse:before {
-  content: "\f0de";
+  content: "\f422";
+  color: #aaa;
   font-weight: 900;
   font-family: "Font Awesome 5 Free";
-  font-size: x-large;
+  // font-size: x-large;
   font-style: normal;
   position: absolute;
-  top:0;
+  top:-0.8em;
 }
 i.clapse.collapsed:before {
-  content: "\f0dd";
+  content: "\f424";
+  color: #aaa;
   font-weight: 900;
   font-family: "Font Awesome 5 Free";
-  font-size: x-large;
+  //ont-size: x-large;
   font-style: normal;
   position: absolute;
-  top:0;
+  top:-0.8em;
 }

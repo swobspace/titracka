@@ -8,6 +8,9 @@
         id: task.id,
         url: state_task_path(column, task)
       } do %>
+  <span data-action="click->toggle#toggle" class="float-right">
+    <i data-toggle-target="content" class="clapse"></i>
+  </span>
   <div class=""
        id="task_subject_<%= task.id %>"
        data-reflex="click->Task#show"
@@ -69,11 +72,6 @@
             data-actionurl="<%= task_time_accountings_path(task) %>"
             title="<%= t('actions.add', model: TimeAccounting.model_name.human) %>">
         <i class="far fa-clock"></i>
-      </span>
-    </div>
-    <div class="ml-2">
-      <span data-action="click->toggle#toggle">
-        <i data-toggle-target="content" class="clapse"></i>
       </span>
     </div>
   </div>
