@@ -125,3 +125,31 @@ a.jstree-anchor.list, a.jstree-anchor.list_decorator {
 .w-15 { width: 15%; }
 .w-20 { width: 20%; }
 .w-33 { width: 33%; }
+
+div.collapsed {
+  display: none;
+}
+
+i.clapse {
+  position: relative;
+  width: 1em;
+  height: 1em;
+}
+i.clapse:before {
+  content: "\f0de";
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  font-size: x-large;
+  font-style: normal;
+  position: absolute;
+  top:0;
+}
+i.clapse.collapsed:before {
+  content: "\f0dd";
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  font-size: x-large;
+  font-style: normal;
+  position: absolute;
+  top:0;
+}

@@ -3,7 +3,8 @@
       id: "card_task_#{task.id}",
       data: {
         "draggable-target": ('task' if ability.can?(:update, task)),
-        controller: 'task',
+        controller: 'task toggle',
+        'toggle-collapse-class': 'collapsed',
         id: task.id,
         url: state_task_path(column, task)
       } do %>
@@ -13,18 +14,20 @@
        data-modal-id="showTaskModal"
        data-reflex-dataset="combined">
     <div class="d-flex w-100"><%= task.subject %></div>
-    <div class="d-flex w-100 justify-content-between small">
-      <p class="mb-1"><%= truncate(strip_tags(task.description.to_s), length: 100) %></p>
-    </div>
-    <div class="d-flex w-100 small text-muted">
-     <%= task.cross_references.join(" ") %>
-    </div>
-    <div class="d-flex w-100 justify-content-between small text-muted">
-     <%= raci(task) %>
-    </div>
-    <div class="d-flex w-100 justify-content-between small text-muted">
-      <span> <%= task.start %> </span>
-      <span> <%= "&#x21A6; #{task.deadline}".html_safe if task.deadline.present? %> </span>
+    <div data-toggle-target="content">
+      <div class="d-flex w-100 justify-content-between small">
+        <p class="mb-1"><%= truncate(strip_tags(task.description.to_s), length: 100) %></p>
+      </div>
+      <div class="d-flex w-100 small text-muted">
+       <%= task.cross_references.join(" ") %>
+      </div>
+      <div class="d-flex w-100 justify-content-between small text-muted">
+       <%= raci(task) %>
+      </div>
+      <div class="d-flex w-100 justify-content-between small text-muted">
+        <span> <%= task.start %> </span>
+        <span> <%= "&#x21A6; #{task.deadline}".html_safe if task.deadline.present? %> </span>
+      </div>
     </div>
   </div>
   <div class="d-flex w-100 small">
@@ -66,6 +69,11 @@
             data-actionurl="<%= task_time_accountings_path(task) %>"
             title="<%= t('actions.add', model: TimeAccounting.model_name.human) %>">
         <i class="far fa-clock"></i>
+      </span>
+    </div>
+    <div class="ml-2">
+      <span data-action="click->toggle#toggle">
+        <i data-toggle-target="content" class="clapse"></i>
       </span>
     </div>
   </div>

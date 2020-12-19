@@ -1,6 +1,7 @@
 <%= content_tag :div, class: :row, id: 'tasksCardboard', 
       data: { 
-        controller: 'draggable',
+        controller: 'draggable toggle',
+        "toggle-collapse-class": "collapsed",
         filter: filter,
         url: url
       } do %>
