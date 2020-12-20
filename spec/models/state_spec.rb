@@ -32,6 +32,9 @@ RSpec.describe State, type: :model do
     describe "#open" do
       it { expect(State.open).to contain_exactly(s_open, s_pending) }
     end
+    describe "#active" do
+      it { expect(State.active).to contain_exactly(s_pre, s_open, s_pending) }
+    end
 
   end
 
