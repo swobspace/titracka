@@ -11,7 +11,7 @@
         <div class="card-header text-center border d-flex justify-content-between" data-controller="task">
           <%= column.name %>
           <% if ability.can? :create, Task %>
-            <span id="new_task_to_<%=  column.id %>" class="ml-2"
+            <span id="new_task_to_<%=  column.id %>" class="ml-2 text-primary mr-n2"
                   data-reflex="click->Task#new"
                   data-column-type="<%= column.class.name %>"
                   data-column-id="<%= column.id %>"

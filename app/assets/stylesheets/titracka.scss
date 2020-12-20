@@ -136,8 +136,10 @@ i.clapse {
   height: 1em;
 }
 i.clapse:before {
-  content: "\f422";
-  color: #aaa;
+  // content: "\f422";
+  // content: "\f2d1";
+  content: "\f077";
+  // color: #bbb;
   font-weight: 900;
   font-family: "Font Awesome 5 Free";
   // font-size: x-large;
@@ -146,8 +148,10 @@ i.clapse:before {
   top:-0.8em;
 }
 i.clapse.collapsed:before {
-  content: "\f424";
-  color: #aaa;
+  // content: "\f424";
+  // content: "\f2d0";
+  content: "\f078";
+  // color: #bbb;
   font-weight: 900;
   font-family: "Font Awesome 5 Free";
   //ont-size: x-large;
