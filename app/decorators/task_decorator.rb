@@ -8,10 +8,10 @@ class TaskDecorator < Draper::Decorator
 
   def phase
     # listed, starting needs start.present?
-    if object.start.present? and object.start < Date.today
-      if object.start < 10.days.before(Date.today)
+    if object.start.present? and object.start > Date.today
+      if object.start > 10.days.after(Date.today)
         "listed"
-      elsif object.start.present? and object.start >= 10.days.before(Date.today) 
+      elsif object.start <= 10.days.after(Date.today) 
         "starting"
       end
     elsif object.deadline.present?

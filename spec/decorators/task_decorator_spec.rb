@@ -31,16 +31,16 @@ RSpec.describe TaskDecorator do
       let(:task) { FactoryBot.create(:task, :open) }
       it { expect(decorated.phase).to eq("active") }
     end
-    describe "start == today - 20days" do
-      let(:task) { FactoryBot.create(:task, :open, start: 20.days.before(Date.today)) }
+    describe "start == today + 20days" do
+      let(:task) { FactoryBot.create(:task, :open, start: 20.days.after(Date.today)) }
       it { expect(decorated.phase).to eq("listed") }
-    end
-    describe "start == today - 5days" do
-      let(:task) { FactoryBot.create(:task, :open, start: 5.days.before(Date.today)) }
-      it { expect(decorated.phase).to eq("starting") }
     end
     describe "start == today + 5days" do
       let(:task) { FactoryBot.create(:task, :open, start: 5.days.after(Date.today)) }
+      it { expect(decorated.phase).to eq("starting") }
+    end
+    describe "start == today - 5days" do
+      let(:task) { FactoryBot.create(:task, :open, start: 5.days.before(Date.today)) }
       it { expect(decorated.phase).to eq("active") }
     end
     describe "start == today" do
