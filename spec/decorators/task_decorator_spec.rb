@@ -60,6 +60,10 @@ RSpec.describe TaskDecorator do
       let(:task) { FactoryBot.create(:task, :open, deadline: Date.yesterday) }
       it { expect(decorated.phase).to eq("overdue") }
     end
+    describe "deadline == yesterday, but closed" do
+      let(:task) { FactoryBot.create(:task, :done, deadline: Date.yesterday) }
+      it { expect(decorated.phase).to eq("inactive") }
+    end
 
   end
 

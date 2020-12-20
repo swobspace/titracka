@@ -7,6 +7,8 @@ class TaskDecorator < Draper::Decorator
   end
 
   def phase
+    # inactive
+    return "inactive" unless object.state.active?
     # listed, starting needs start.present?
     if object.start.present? and object.start > Date.today
       if object.start > 10.days.after(Date.today)
@@ -14,6 +16,7 @@ class TaskDecorator < Draper::Decorator
       elsif object.start <= 10.days.after(Date.today) 
         "starting"
       end
+    # overdue and landing needs deadline.present?
     elsif object.deadline.present?
       if object.deadline > 10.days.after(Date.today)
         "active"

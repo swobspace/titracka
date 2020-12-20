@@ -19,4 +19,8 @@ class State < ApplicationRecord
     "#{name}"
   end
 
+  def active?
+    State::ACTIVE.include?(self.state)
+  end
+
 end
