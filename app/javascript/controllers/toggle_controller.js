@@ -13,4 +13,17 @@ export default class extends ApplicationController {
     this.contentTargets.forEach((t) => t.classList.toggle(this.collapseClass))
   }
 
+  toggleAll(event) {
+    const clapse = this.collapseClass
+    const collapse = event.target.classList.contains(clapse)
+    
+    document.querySelectorAll('[data-toggle-target="content"]').forEach(function(t) {
+      if (collapse) {
+        t.classList.remove(clapse)
+      } else {
+        t.classList.add(clapse)
+      }
+    })
+  }
+
 }
