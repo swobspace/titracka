@@ -1,30 +1,38 @@
 <%= content_tag :li,
-      class: "list-group-item",
+      class: "list-group-item mb-2 pb-1",
       id: "card_task_#{task.id}",
       data: {
         "draggable-target": ('task' if ability.can?(:update, task)),
-        controller: 'task',
+        controller: 'task toggle',
+        'toggle-collapse-class': 'collapsed',
         id: task.id,
         url: state_task_path(column, task)
       } do %>
-  <div class="d-flex w-100 justify-content-between"
+  <span data-action="click->toggle#toggle" class="float-right">
+    <i data-toggle-target="content" class="clapse icon-color"></i>
+  </span>
+  <div class=""
        id="task_subject_<%= task.id %>"
        data-reflex="click->Task#show"
        data-modal-id="showTaskModal"
        data-reflex-dataset="combined">
-    <p><%= task.subject %></p>
+    <div class="d-flex w-100"><%= task.subject %></div>
+    <div data-toggle-target="content">
+      <div class="d-flex w-100 justify-content-between small text-muted">
+        <p class="mb-1"><%= truncate(strip_tags(task.description.to_s), length: 300) %></p>
+      </div>
+      <div class="d-flex w-100 small text-muted">
+       <%= task.cross_references.join(" ") %>
+      </div>
+      <div class="d-flex w-100 justify-content-between small text-muted">
+       <%= raci(task) %>
+      </div>
+      <div class="d-flex w-100 justify-content-between small timeline">
+        <%= timeline(task) %>
+      </div>
+    </div>
   </div>
-  <div class="d-flex w-100 justify-content-between small">
-    <p class="mb-1"><%= truncate(strip_tags(task.description.to_s), length: 100) %></p>
-  </div>
-  <div class="d-flex w-100 justify-content-between small text-muted">
-   <%= raci(task) %>
-  </div>
-  <div class="d-flex w-100 justify-content-between small text-muted">
-    <span> <%= task.start %> </span>
-    <span> <%= "&#x21A6; #{task.deadline}".html_safe if task.deadline.present? %> </span>
-  </div>
-  <div class="d-flex w-100 small">
+  <div class="d-flex w-100 small icon-color pt-1 mt-1">
     <div class="">
       <span id="show_task_<%= task.id %>"
             title="<%= t('actions.show', model: Task.model_name.human) %>"
@@ -57,7 +65,7 @@
       </span>
     </div>
     <div data-controller='modal' class="ml-2">
-      <span data-modal-target="modalForm modal.modalView"
+      <span data-modal-target="modalForm modalView"
             data-action="click->modal#open"
             data-modalId="timeAccountingModal"
             data-actionurl="<%= task_time_accountings_path(task) %>"

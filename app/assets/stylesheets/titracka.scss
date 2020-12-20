@@ -125,3 +125,59 @@ a.jstree-anchor.list, a.jstree-anchor.list_decorator {
 .w-15 { width: 15%; }
 .w-20 { width: 20%; }
 .w-33 { width: 33%; }
+
+div.collapsed {
+  display: none;
+}
+
+i.clapse {
+  position: relative;
+  width: 1em;
+  height: 1em;
+}
+i.clapse:before {
+  // content: "\f422";
+  // content: "\f2d1";
+  content: "\f077";
+  // color: #bbb;
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  // font-size: x-large;
+  font-style: normal;
+  position: absolute;
+  top:-0.8em;
+}
+i.clapse.collapsed:before {
+  // content: "\f424";
+  // content: "\f2d0";
+  content: "\f078";
+  // color: #bbb;
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  //ont-size: x-large;
+  font-style: normal;
+  position: absolute;
+  top:-0.8em;
+}
+.icon-color {
+  // color: #992828; // hue: 0 ; saturation: 74; value: 60
+
+  // color: #176775; // primary
+  // color: #489BA8; // info
+
+  color: #666;
+  //color: #312799; // hue: 245 ; saturation: 74; value: 60
+  // color: #802121; // hue: 0 ; saturation: 74; value: 50
+  //color: #FF7D7D; // hue: 0 ; saturation: 51; value: 100
+  // color: #CC3535; // value: 80; saturation:74; hue: 0
+  // color: #CC353F; // value: 80; saturation:74; hue: 356
+  // color: #CC525A; // value: 80; saturation:60; hue: 356
+}
+
+.timeline {
+  .listed { color: grey; }
+  .starting { color: darkgreen; }
+  .active { color: green; }
+  .landing { color: darkorange; }
+  .overdue { color: red; }
+}

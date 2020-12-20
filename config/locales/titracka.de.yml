@@ -43,6 +43,8 @@ de:
     add_reference_url: URL hinzufügen
     add_cross_reference: Querverweis hinzufügen
     url_hint: "https://my.domain/path?###IDENTIFIER###"
+    collapse: minimieren
+    expand: maximieren
 
   actions:
     destroy: Datensatz löschen

@@ -1,6 +1,10 @@
+<div data-controller="toggle" data-toggle-collapse-class="collapsed">
+  <i data-toggle-target="content" data-action="click->toggle#toggleAll" class="clapse float-right"></i>
+</div>
 <%= content_tag :div, class: :row, id: 'tasksCardboard', 
       data: { 
-        controller: 'draggable',
+        controller: 'draggable toggle',
+        "toggle-collapse-class": "collapsed",
         filter: filter,
         url: url
       } do %>
@@ -10,7 +14,7 @@
         <div class="card-header text-center border d-flex justify-content-between" data-controller="task">
           <%= column.name %>
           <% if ability.can? :create, Task %>
-            <span id="new_task_to_<%=  column.id %>" class="ml-2"
+            <span id="new_task_to_<%=  column.id %>" class="ml-2 icon-color mr-n2"
                   data-reflex="click->Task#new"
                   data-column-type="<%= column.class.name %>"
                   data-column-id="<%= column.id %>"

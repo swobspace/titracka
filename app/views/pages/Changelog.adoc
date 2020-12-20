@@ -1,5 +1,12 @@
 = Changelog
 
+=== 0.3.2 / 2020-12-20
+
+----
+- show references in cards
+- collapse/expand cards
+----
+
 === 0.3.0 / 2020-12-13
 
 ----
