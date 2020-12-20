@@ -9,7 +9,7 @@
         url: state_task_path(column, task)
       } do %>
   <span data-action="click->toggle#toggle" class="float-right">
-    <i data-toggle-target="content" class="clapse text-primary"></i>
+    <i data-toggle-target="content" class="clapse icon-color"></i>
   </span>
   <div class=""
        id="task_subject_<%= task.id %>"
@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-  <div class="d-flex w-100 small text-primary pt-1 mt-1">
+  <div class="d-flex w-100 small icon-color pt-1 mt-1">
     <div class="">
       <span id="show_task_<%= task.id %>"
             title="<%= t('actions.show', model: Task.model_name.human) %>"
