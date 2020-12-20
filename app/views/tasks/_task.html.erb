@@ -27,9 +27,8 @@
       <div class="d-flex w-100 justify-content-between small text-muted">
        <%= raci(task) %>
       </div>
-      <div class="d-flex w-100 justify-content-between small text-muted">
-        <span> <%= task.start %> </span>
-        <span> <%= "&#x21A6; #{task.deadline}".html_safe if task.deadline.present? %> </span>
+      <div class="d-flex w-100 justify-content-between small timeline">
+        <%= timeline(task) %>
       </div>
     </div>
   </div>

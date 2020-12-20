@@ -160,10 +160,24 @@ i.clapse.collapsed:before {
   top:-0.8em;
 }
 .icon-color {
-  color: #802121; // hue: 0 ; saturation: 74; value: 50
   // color: #992828; // hue: 0 ; saturation: 74; value: 60
+
+  // color: #176775; // primary
+  // color: #489BA8; // info
+
+  color: #666;
+  //color: #312799; // hue: 245 ; saturation: 74; value: 60
+  // color: #802121; // hue: 0 ; saturation: 74; value: 50
   //color: #FF7D7D; // hue: 0 ; saturation: 51; value: 100
   // color: #CC3535; // value: 80; saturation:74; hue: 0
   // color: #CC353F; // value: 80; saturation:74; hue: 356
   // color: #CC525A; // value: 80; saturation:60; hue: 356
+}
+
+.timeline {
+  .listed { color: grey; }
+  .starting { color: dark-green; }
+  .active { color: green; }
+  .landing { color: dark-yellow; }
+  .overdue { color: red; }
 }
