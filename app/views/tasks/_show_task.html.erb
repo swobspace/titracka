@@ -35,13 +35,10 @@
   </tr>
 
   <tr>
-    <th><%= t('attributes.start')%> 
-        &#x21A6;
+    <th><%= t('attributes.start')%> /
         <%= t('attributes.deadline')%>:</th>
-    <td>
-      <span> <%= task.start %> </span>
-      <span> <%= "&#x21A6; #{task.deadline}".html_safe if task.deadline.present? %> </span>
-
+    <td class="timeline">
+        <%= timeline(task, full: true) %>
     </td>
   </tr>
 
