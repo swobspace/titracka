@@ -16,6 +16,6 @@
   <%= render partial: 'notes/modal_form',
              locals: {
                noteable: @task,
-               note: (@note || Note.new(task: @task))
+               note: (@note || Note.new)
              }  %>
 </div>
