@@ -31,6 +31,14 @@ RSpec.describe "/tasks", type: :request do
     end
   end
 
+  describe "GET /index?view=cards" do
+    it "renders a successful response" do
+      Task.create! valid_attributes
+      get tasks_url(view: 'cards')
+      expect(response).to be_successful
+    end
+  end
+
   describe "GET /show" do
     it "renders a successful response" do
       task = Task.create! valid_attributes
