@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/swobspace/wobapphelpers
-  revision: 8afa0a4070a0a63e3cf47d2f183b0ecb81681199
+  revision: 0a2b38d481dbb916950e2671dd140f8a8c1d036f
   branch: develop
   specs:
     wobapphelpers (4.1.2)
@@ -177,7 +177,7 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
-    ffi (1.14.0)
+    ffi (1.14.2)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
     formatador (0.2.5)
@@ -317,7 +317,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
-    rake (13.0.2)
+    rake (13.0.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
