@@ -27,7 +27,7 @@ class TasksController < ApplicationController
     if @taskable
       @task = @taskable.tasks.new(priority: 'normal')
     else
-      @task = Task.new(priority: 'normal')
+      @task = @current_user.tasks.new(priority: 'normal')
     end
     respond_with(@task)
   end
@@ -38,7 +38,7 @@ class TasksController < ApplicationController
 
   # POST /tasks
   def create
-    @task = @current_user.tasks.new(task_params)
+    @task = Task.new(task_params)
 
     respond_with(@task, location: location) do |format|
       if @task.save
@@ -75,7 +75,7 @@ class TasksController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def task_params
       params.require(:task).permit(
-        :subject, :start, :deadline, :resubmission, :priority, 
+        :subject, :start, :deadline, :resubmission, :priority, :user_id,
         :responsible_id, :org_unit_id, :state_id, :list_id, 
         :private, :description,
         cross_references_attributes: [

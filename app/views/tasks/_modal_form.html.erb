@@ -26,10 +26,15 @@
           <%= form.association :state,
                 include_blank: false
              %>
+          <%= form.association :user,
+              label: t('attributes.owner'),
+              collection: users,
+              wrapper: :horizontal_select2
+	     %>
           <%= form.association :responsible,
               collection: users,
               wrapper: :horizontal_select2
-             %>
+	     %>
           <%= form.association :org_unit,
               collection: org_units&.arrange_as_array,
               wrapper: :horizontal_select2

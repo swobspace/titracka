@@ -22,7 +22,7 @@ class TaskReflex < ApplicationReflex
     else
       filter = {}
     end
-    @task = Task.new({state_id: state_id, priority: 'normal'}.merge(filter))
+    @task = current_user.tasks.new({state_id: state_id, priority: 'normal'}.merge(filter))
     morph "#taskModalForm", TasksController.render(
       partial: 'tasks/modal_form',
       locals: { task: @task, users: @users, org_units: @org_units, lists: @lists }
