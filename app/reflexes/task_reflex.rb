@@ -41,7 +41,7 @@ class TaskReflex < ApplicationReflex
 
     def set_associations
       @users ||= Wobauth::User.active.order("sn, givenname")
-      @org_units ||= OrgUnit.where(id: @ability.rights.manager.org_units)
+      @org_units ||= OrgUnit.accessible_by(current_ability, :work_on)
       @lists ||= List.accessible_by(@ability, :read).order(:name)
     end
 end

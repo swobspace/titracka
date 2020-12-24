@@ -29,7 +29,7 @@ class HomeController < ApplicationController
 
     def set_associations
       @users ||= Wobauth::User.active.order("sn, givenname")
-      @org_units ||= OrgUnit.where(id: current_ability.rights.manager.org_units)
+      @org_units ||= OrgUnit.accessible_by(current_ability, :work_on)
       @lists ||= List.accessible_by(current_ability, :read).order(:name)
     end
 
