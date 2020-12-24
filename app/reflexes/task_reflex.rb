@@ -17,7 +17,11 @@ class TaskReflex < ApplicationReflex
 
   def new
     state_id = element.dataset[:column_id].to_i
-    filter = JSON.parse(element.dataset[:filter])
+    if element.dataset[:filter].present?
+      filter = JSON.parse(element.dataset[:filter])
+    else
+      filter = {}
+    end
     @task = Task.new({state_id: state_id, priority: 'normal'}.merge(filter))
     morph "#taskModalForm", TasksController.render(
       partial: 'tasks/modal_form',
