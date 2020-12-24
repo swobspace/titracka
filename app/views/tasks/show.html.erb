@@ -17,28 +17,33 @@
   </div>
 </div>
 
-<div class="card mt-3">
-  <div class="card-header">
-    <h5 class="card-title"><%= t('attributes.notes')%></h5>
+<div class="row">
+  <div class="col-sm-12 col-lg-6">
+    <div class="card mt-3">
+      <div class="card-header">
+        <h5 class="card-title"><%= t('attributes.notes')%></h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <%= render partial: 'notes/note', collection: @task.notes.order("created_at desc"), layout: 'shared/list_group_item_layout' %>
+        </ul>
+        <%= new_link [@task, Note] %>
+      </div>
+    </div>
   </div>
-  <div class="card-body">
-    <ul class="list-group list-group-flush">
-      <%= render partial: 'notes/note', collection: @task.notes.order("created_at desc"), layout: 'shared/list_group_item_layout' %>
-    </ul>
-    <%= new_link [@task, Note] %>
+
+  <div class="col-sm-12 col-lg-6">
+    <div class="card mt-3">
+      <div class="card-header">
+        <h5 class="card-title mb-0"><%= t('attributes.time_accountings')%></h5>
+        <span class="text-muted small"><%= @task.time_accountings.sum(:duration) %> min</span>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <%= render partial: 'time_accountings/time_accounting', collection: @task.time_accountings, layout: 'shared/list_group_item_layout' %>
+        </ul>
+        <%= new_link [@task, TimeAccounting] %>
+      </div>
+    </div>
   </div>
 </div>
-
-<div class="card mt-3">
-  <div class="card-header">
-    <h5 class="card-title mb-0"><%= t('attributes.time_accountings')%></h5>
-    <span class="text-muted small"><%= @task.time_accountings.sum(:duration) %> min</span>
-  </div>
-  <div class="card-body">
-    <ul class="list-group list-group-flush">
-      <%= render partial: 'time_accountings/time_accounting', collection: @task.time_accountings, layout: 'shared/list_group_item_layout' %>
-    </ul>
-    <%= new_link [@task, TimeAccounting] %>
-  </div>
-</div>
-
