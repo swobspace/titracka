@@ -15,11 +15,6 @@
   </tr>
 
   <tr>
-    <th><%= t('attributes.responsible')%>:</th>
-    <td><%= task.responsible %></td>
-  </tr>
-
-  <tr>
     <th><%= t('attributes.org_unit')%>:</th>
     <td><%= task.org_unit %></td>
   </tr>
@@ -53,8 +48,8 @@
   </tr>
 
   <tr>
-    <th><%= t('attributes.owner')%>:</th>
-    <td><%= task.user %></td>
+    <th><%= t('attributes.rasci')%>:</th>
+    <td><%= raci(task) %></td>
   </tr>
 
   <tr>

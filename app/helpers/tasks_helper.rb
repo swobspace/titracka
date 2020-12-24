@@ -1,10 +1,15 @@
 module TasksHelper
-  def raci(task)
-    output = ""
-    if task.responsible.present?
-      output += %Q[<span class="responsible">R: #{task.responsible.decorate.shortname}</span>]
+  def raci(task, options = {})
+    options = options.symbolize_keys
+    fields = options.fetch(:fields) { "RA" }
+    output = []
+    if task.responsible.present? and fields.include?("R")
+      output << %Q[<span class="responsible">R: #{task.responsible.decorate.shortname}</span>]
     end
-    output.html_safe
+    if task.user.present? and fields.include?("A")
+      output << %Q[<span class="owner">A: #{task.user.decorate.shortname}</span>]
+    end
+    output.join("<br />").html_safe
   end
 
   def timeline(task, options = {})
