@@ -1,5 +1,15 @@
 = Changelog
 
+=== 0.4.0 / 2020-12-24
+
+.Christmas Edition ;-)
+----
+- Member can create Task for OrgUnit
+- User/Owner -> Accountable (RASCI)
+- make Accountable editable
+- fix minor bugs
+----
+
 === 0.3.2 / 2020-12-20
 
 ----
