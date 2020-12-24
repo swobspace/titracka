@@ -129,6 +129,7 @@ class Ability
   end
 
   def manager_ou(ou_ids)
+    can :work_on, OrgUnit, id: ou_ids
     can :read, TimeAccounting, task: { org_unit_id: ou_ids }
     can :manage, [List, Task], org_unit_id: ou_ids
   end
