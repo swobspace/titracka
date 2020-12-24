@@ -5,7 +5,6 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @task = Task.new(priority: 'normal')
     if @taskable
       @tasks = @taskable.tasks.accessible_by(current_ability, :read)
     end
