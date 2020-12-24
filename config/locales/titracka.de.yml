@@ -107,7 +107,7 @@ de:
     notes: Notizen
     org_unit: Organisationseinheit
     org_unit_id: Organisationseinheit
-    owner: Besitzer
+    owner: Accountable
     parent: Parent
     pause: Pause
     priority: Priorität
@@ -115,8 +115,9 @@ de:
     reference: Referenz
     reference_url: Referenz-URL
     reference_urls: Referenz-URLs
-    responsible: Verantwortlich
-    responsible_id: Verantwortlich
+    rasci: RASCI
+    responsible: Responsible
+    responsible_id: Responsible
     resubmission: Wiedervorlage
     sn: Nachname
     start: Beginn

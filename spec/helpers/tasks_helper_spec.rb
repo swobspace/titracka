@@ -3,13 +3,15 @@ require "cancan/matchers"
 
 RSpec.describe TasksHelper, :type => :helper do
   include Devise::Test::ControllerHelpers
-  let(:responsible) { FactoryBot.create(:user, sn: "Mustermann", givenname: "Max") }
+  let(:owner) { FactoryBot.create(:user, sn: "Mustergirl", givenname: "Caro") }
+  let(:responsible) { FactoryBot.create(:user, sn: "Musterman", givenname: "Max") }
 
   describe "#raci" do
-    let(:task) { FactoryBot.create(:task, responsible: responsible) }
+    let(:task) { FactoryBot.create(:task, user: owner, responsible: responsible) }
     subject { Capybara.string(helper.raci(task)) }
     it "shows responsible enclosed in <span>" do
-      expect(subject.find("span.responsible").text).to match("Mustermann, Max")
+      expect(subject.find("span.owner").text).to match("Mustergirl, Caro")
+      expect(subject.find("span.responsible").text).to match("Musterman, Max")
     end
   end
 

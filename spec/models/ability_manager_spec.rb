@@ -18,11 +18,17 @@ RSpec.shared_examples "a Manager" do
     it { is_expected.not_to be_able_to(:read, ou_0) }
     it { is_expected.to be_able_to(:read, ou_1) }
     it { is_expected.to be_able_to(:read, ou_2) }
+    it { is_expected.not_to be_able_to(:work_on, ou_0) }
+    it { is_expected.to be_able_to(:work_on, ou_1) }
+    it { is_expected.to be_able_to(:work_on, ou_2) }
   end
   context "working with foreign org_units" do
     it { is_expected.not_to be_able_to(:read, ou_x0) }
     it { is_expected.not_to be_able_to(:read, ou_x1) }
     it { is_expected.not_to be_able_to(:read, ou_x2) }
+    it { is_expected.not_to be_able_to(:work_on, ou_x0) }
+    it { is_expected.not_to be_able_to(:work_on, ou_x1) }
+    it { is_expected.not_to be_able_to(:work_on, ou_x2) }
   end
 
   # 
@@ -58,16 +64,19 @@ RSpec.shared_examples "a Manager" do
 
     context "within own org_unit tree" do
       it { is_expected.not_to be_able_to(:read, list_0) }
+      it { is_expected.not_to be_able_to(:work_on, list_0) }
       it { is_expected.not_to be_able_to(:update, list_0) }
       it { is_expected.not_to be_able_to(:destroy, list_0) }
       it { is_expected.not_to be_able_to(:manage, list_0) }
 
       it { is_expected.to be_able_to(:read, list_1) }
+      it { is_expected.to be_able_to(:work_on, list_1) }
       it { is_expected.to be_able_to(:update, list_1) }
       it { is_expected.to be_able_to(:destroy, list_1) }
       it { is_expected.to be_able_to(:manage, list_1) }
 
       it { is_expected.to be_able_to(:read, list_2) }
+      it { is_expected.to be_able_to(:work_on, list_2) }
       it { is_expected.to be_able_to(:update, list_2) }
       it { is_expected.to be_able_to(:destroy, list_2) }
       it { is_expected.to be_able_to(:manage, list_2) }
@@ -83,7 +92,7 @@ RSpec.shared_examples "a Manager" do
     end
 
     context "lists owned by user" do
-      [ :read, :update, :destroy, :manage ].each do |action|
+      [ :read, :update, :destroy, :work_on, :manage ].each do |action|
         it { is_expected.to be_able_to(action, list_u0) }
         it { is_expected.to be_able_to(action, list_u1) }
         it { is_expected.to be_able_to(action, list_u2) }

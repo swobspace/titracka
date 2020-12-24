@@ -71,6 +71,7 @@ RSpec.shared_examples "a Member" do
 
     context "within own org_unit tree" do
       it { is_expected.not_to be_able_to(:read, list_0) }
+      it { is_expected.not_to be_able_to(:work_on, list_0) }
       it { is_expected.not_to be_able_to(:update, list_0) }
       it { is_expected.not_to be_able_to(:destroy, list_0) }
       it { is_expected.not_to be_able_to(:manage, list_0) }

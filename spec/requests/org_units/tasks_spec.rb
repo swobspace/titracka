@@ -8,10 +8,6 @@ RSpec.describe "/org_units/:id/tasks", type: :request do
     FactoryBot.attributes_for(:task, org_unit_id: org_unit.id, user_id: user.id,
                               state_id: open.id)
   }
-  let(:post_attributes) {
-    FactoryBot.attributes_for(:task, org_unit_id: org_unit.id,
-                              state_id: open.id)
-  }
 
   let(:invalid_attributes) {
     { state_id: nil, subject: nil }
@@ -57,12 +53,12 @@ RSpec.describe "/org_units/:id/tasks", type: :request do
     context "with valid parameters" do
       it "creates a new Task" do
         expect {
-          post org_unit_tasks_url(org_unit), params: { task: post_attributes }
+          post org_unit_tasks_url(org_unit), params: { task: valid_attributes }
         }.to change(Task, :count).by(1)
       end
 
       it "redirects to the created task" do
-        post org_unit_tasks_url(org_unit), params: { task: post_attributes }
+        post org_unit_tasks_url(org_unit), params: { task: valid_attributes }
         expect(response).to redirect_to(org_unit_url(org_unit))
       end
     end

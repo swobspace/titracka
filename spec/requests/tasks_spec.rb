@@ -10,10 +10,6 @@ RSpec.describe "/tasks", type: :request do
                                      org_unit_id: ou.id)
   }
 
-  let(:post_attributes) {
-    FactoryBot.attributes_for(:task, state_id: open.id, org_unit_id: ou.id)
-  }
-
   let(:invalid_attributes) {
     { subject: nil, state_id: nil, priority: 'wrong' }
   }
@@ -27,6 +23,14 @@ RSpec.describe "/tasks", type: :request do
     it "renders a successful response" do
       Task.create! valid_attributes
       get tasks_url
+      expect(response).to be_successful
+    end
+  end
+
+  describe "GET /index?view=cards" do
+    it "renders a successful response" do
+      Task.create! valid_attributes
+      get tasks_url(view: 'cards')
       expect(response).to be_successful
     end
   end
@@ -58,12 +62,12 @@ RSpec.describe "/tasks", type: :request do
     context "with valid parameters" do
       it "creates a new Task" do
         expect {
-          post tasks_url, params: { task: post_attributes }
+          post tasks_url, params: { task: valid_attributes }
         }.to change(Task, :count).by(1)
       end
 
       it "redirects to the created task" do
-        post tasks_url, params: { task: post_attributes }
+        post tasks_url, params: { task: valid_attributes }
         expect(response).to redirect_to(tasks_url)
       end
     end

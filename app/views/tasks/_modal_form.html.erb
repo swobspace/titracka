@@ -26,10 +26,15 @@
           <%= form.association :state,
                 include_blank: false
              %>
+          <%= form.association :user,
+              label: t('attributes.owner'),
+              collection: users,
+              wrapper: :horizontal_select2
+	     %>
           <%= form.association :responsible,
               collection: users,
               wrapper: :horizontal_select2
-             %>
+	     %>
           <%= form.association :org_unit,
               collection: org_units&.arrange_as_array,
               wrapper: :horizontal_select2
@@ -42,7 +47,7 @@
           <%= form.input :priority, collection:
                 Task::PRIORITIES.map {|x| [t(x, scope: 'titracka.priority'), x]},
                   include_blank: false,
-                  input_html: {value: (task.priority || 'normal'), class: 'col-lg-4 col-sm-8'}
+                  input_html: {class: 'col-lg-4 col-sm-8'}
              %>
           <%= form.input :start, as: :date, html5: true, wrapper: :horizontal_date,
                       input_html: { class: 'col-lg-4 col-sm-8'}

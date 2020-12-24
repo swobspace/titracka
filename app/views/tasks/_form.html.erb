@@ -13,10 +13,6 @@
       <%= form.association :state, 
             include_blank: false
 	 %>
-      <%= form.association :responsible,
-          collection: @users,
-          wrapper: :horizontal_select2
-	 %>
       <%= form.association :org_unit, 
           collection: @org_units.arrange_as_array,
           wrapper: :horizontal_select2
@@ -25,11 +21,20 @@
           collection: @lists,
           wrapper: :horizontal_select2
 	 %>
+      <%= form.association :user,
+          label: t('attributes.owner'),
+          collection: @users,
+          wrapper: :horizontal_select2
+	 %>
+      <%= form.association :responsible,
+          collection: @users,
+          wrapper: :horizontal_select2
+	 %>
       <%= render 'cross_reference_form', form: form %>
       <%= form.input :priority, collection:
             Task::PRIORITIES.map {|x| [t(x, scope: 'titracka.priority'), x]},
               include_blank: false,
-              input_html: {value: (@task.priority || 'normal'), class: 'col-sm-3'}
+              input_html: {class: 'col-sm-3'}
 	 %>
       <%= form.input :start, as: :string, wrapper: :horizontal_date
         %>

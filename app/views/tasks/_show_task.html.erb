@@ -1,7 +1,7 @@
 <table class="table table-sm table-hover table-borderless autowidth" id="task_<%=task.id%>_table">
   <tr>
     <th class="w25"><%= t('attributes.subject')%>:</th>
-    <td class="w-100"><%= task.subject %></td>
+    <td class="w-100"><%= task.subject %>  <%= link_to icon_link, task %></td>
   </tr>
 
   <tr>
@@ -12,11 +12,6 @@
   <tr>
     <th><%= t('attributes.state')%>:</th>
     <td><%= task.state %></td>
-  </tr>
-
-  <tr>
-    <th><%= t('attributes.responsible')%>:</th>
-    <td><%= task.responsible %></td>
   </tr>
 
   <tr>
@@ -53,8 +48,8 @@
   </tr>
 
   <tr>
-    <th><%= t('attributes.owner')%>:</th>
-    <td><%= task.user %></td>
+    <th><%= t('attributes.rasci')%>:</th>
+    <td><%= raci(task) %></td>
   </tr>
 
   <tr>

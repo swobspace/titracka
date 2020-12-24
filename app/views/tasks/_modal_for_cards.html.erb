@@ -3,19 +3,7 @@
 <%= render partial: 'tasks/show_modal' %>
 
 <div id="taskModalForm">
-  <%= render partial: 'tasks/modal_form',
-             locals: {
-               task: (@task || Task.new),
-               users: @users,
-               org_units: @org_units,
-               lists: @lists
-             } %>
 </div>
 
 <div id="noteModalForm">
-  <%= render partial: 'notes/modal_form',
-             locals: {
-               noteable: @task,
-               note: (@note || Note.new(task: @task))
-             }  %>
 </div>

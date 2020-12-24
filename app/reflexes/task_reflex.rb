@@ -17,8 +17,12 @@ class TaskReflex < ApplicationReflex
 
   def new
     state_id = element.dataset[:column_id].to_i
-    filter = JSON.parse(element.dataset[:filter])
-    @task = Task.new({state_id: state_id}.merge(filter))
+    if element.dataset[:filter].present?
+      filter = JSON.parse(element.dataset[:filter])
+    else
+      filter = {}
+    end
+    @task = current_user.tasks.new({state_id: state_id, priority: 'normal'}.merge(filter))
     morph "#taskModalForm", TasksController.render(
       partial: 'tasks/modal_form',
       locals: { task: @task, users: @users, org_units: @org_units, lists: @lists }
@@ -41,7 +45,7 @@ class TaskReflex < ApplicationReflex
 
     def set_associations
       @users ||= Wobauth::User.active.order("sn, givenname")
-      @org_units ||= OrgUnit.where(id: @ability.rights.manager.org_units)
+      @org_units ||= OrgUnit.accessible_by(current_ability, :work_on)
       @lists ||= List.accessible_by(@ability, :read).order(:name)
     end
 end
