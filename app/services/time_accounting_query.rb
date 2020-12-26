@@ -46,7 +46,7 @@ private
     search_options.each do |key,value|
       case key 
       when *string_fields
-        query = query.where("time_accountins.#{key} LIKE ?", "%#{value}%")
+        query = query.where("time_accountings.#{key} LIKE ?", "%#{value}%")
       when :user_id
        query = query.where(user_id: value)
       when :date
