@@ -4,17 +4,19 @@
   </div>
   <div class="card-body">
     <table class="table table-bordered table-hover autowidth">
-    
       <tr>
         <th><%= t('attributes.name')%>:</th>
         <td><%= @state.name %></td>
       </tr>
-    
       <tr>
         <th><%= t('attributes.state')%>:</th>
         <td><%= t(@state.state, scope: 'titracka.state') %></td>
       </tr>
-        </table>
+      <tr>
+        <th><%= t('attributes.position')%>:</th>
+        <td><%= @state.position %></td>
+      </tr>
+    </table>
 
     <div role="toolbar">
       <%= back_link %>

@@ -89,7 +89,7 @@ RSpec.describe "/states", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        { name: 'blub', state: 'archive' }
+        { name: 'blub', state: 'archive', position: 2 }
       }
 
       it "updates the requested state" do
@@ -98,6 +98,7 @@ RSpec.describe "/states", type: :request do
         state.reload
         expect(state.name).to eq("blub")
         expect(state.state).to eq("archive")
+        expect(state.position).to eq(2)
       end
 
       it "redirects to the state" do

@@ -1,8 +1,10 @@
 class State < ApplicationRecord
   # -- associations
   has_many :tasks, dependent: :restrict_with_error
+  default_scope { order(:position) }
 
   # -- configuration
+  acts_as_list
   STATES = [ "pre", "open", "pending", "done", "archive" ]
   NOT_ARCHIVED = [ "pre", "open", "pending", "done" ]
   OPEN = [ "open", "pending" ]

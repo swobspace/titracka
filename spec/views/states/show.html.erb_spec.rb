@@ -18,5 +18,6 @@ RSpec.describe "states/show", type: :view do
     render
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/offen/)
+    expect(rendered).to match(/1/)
   end
 end
