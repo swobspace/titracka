@@ -6,6 +6,14 @@ RSpec.describe TasksController, type: :routing do
       expect(get: "/tasks").to route_to("tasks#index")
     end
 
+    it "routes to #index (:post)" do
+      expect(post: "/tasks.json").to route_to(controller: 'tasks', action: 'index', format: "json")
+    end
+
+    it "routes to #search" do
+      expect(:get => "/tasks/search_form").to route_to("tasks#search_form")
+    end
+
     it "routes to #new" do
       expect(get: "/tasks/new").to route_to("tasks#new")
     end
@@ -17,7 +25,6 @@ RSpec.describe TasksController, type: :routing do
     it "routes to #edit" do
       expect(get: "/tasks/1/edit").to route_to("tasks#edit", id: "1")
     end
-
 
     it "routes to #create" do
       expect(post: "/tasks").to route_to("tasks#create")

@@ -91,6 +91,34 @@ RSpec.describe TaskQuery do
     it_behaves_like "a task query"
   end # :priority hoch
 
+  context "with :org_unit_id" do
+    subject { TaskQuery.new(tasks, {org_unit_id: ou1.id}) }
+    before(:each) do
+      @matching = [to1, tl1]
+      @nonmatching = [t1, t2, to2, tl2, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :org_unit_id ou1.id
+
+  context "with :subtree and org_unit_id" do
+    subject { TaskQuery.new(tasks, {org_unit_id: ou1.id, subtree: true}) }
+    before(:each) do
+      @matching = [to1, tl1, done1, archiv2]
+      @nonmatching = [t1, t2, to2, tl2]
+    end
+    it_behaves_like "a task query"
+  end # :org_unit_id ou1.id and subtree
+
+  context "with :list_id" do
+    subject { TaskQuery.new(tasks, {list_id: list2.id}) }
+    before(:each) do
+      @matching = [tl2]
+      @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :list_id list2.id
+
+
   context "with :responsible_id" do
     subject { TaskQuery.new(tasks, {responsible_id: mcaro.id}) }
     before(:each) do

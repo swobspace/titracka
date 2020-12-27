@@ -14,6 +14,7 @@ de:
     restore: zurücksetzen
     search: Suche
     search_documents: Suche Dokumente
+    search_tasks: Suche Aufgaben
     sort_helper: Sortierhilfe
     sort_alphanum: "%{model} alphabetisch sortieren"
     really_sort_alphanum: "Wollen Sie wirklich %{model} alphabetisch sortieren? Dieser Schritt kann nicht rückgängig gemacht werden"
@@ -100,6 +101,7 @@ de:
     home: Home
     identifier: Identifier
     identifier_name: Name des Identifier
+    limit: Limit
     list: Liste
     list_id: Liste
     name: Name
@@ -124,6 +126,7 @@ de:
     state: Status
     state_id: Status
     subject: Gegenstand
+    subtree: Unterbaum 
     tag: Tag
     tag_id: Tag
     task: Aufgabe

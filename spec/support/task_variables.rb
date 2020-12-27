@@ -13,6 +13,7 @@ shared_context "task variables" do
 
   let(:pending) { FactoryBot.create(:state, name: "Warten auf", state: 'pending')}
   let(:ou1)  { FactoryBot.create(:org_unit, name: "Mustermann GmbH" )}
+  let(:ou11)  { FactoryBot.create(:org_unit, name: "Controlling", parent: ou1 )}
   let(:ou2)  { FactoryBot.create(:org_unit, name: "ACME Ltd" )}
   let(:list1) { FactoryBot.create(:list, name: "Mustermanns global list", org_unit: ou1)}
   let(:list2) { FactoryBot.create(:list, name: "ACME list", org_unit: ou2)}
@@ -53,7 +54,7 @@ shared_context "task variables" do
   let!(:tl2) { FactoryBot.create(:task,
     state: pending,
     subject: "ACME global list task",
-    list: list1,
+    list: list2,
     start: "2020-07-17",
     deadline: "2020-12-24",
   )}
@@ -61,9 +62,11 @@ shared_context "task variables" do
   let!(:done1) { FactoryBot.create(:task, :done,
     subject: "Task1 done!",
     responsible: mmax,
+    org_unit: ou11,
   )}
   let!(:archiv2) { FactoryBot.create(:task, :archive,
     subject: "Task2 done!",
     responsible: mcaro,
+    org_unit: ou11
   )}
 end

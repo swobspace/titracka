@@ -8,6 +8,9 @@ class TasksController < ApplicationController
     if @taskable
       @tasks = @taskable.tasks.accessible_by(current_ability, :read)
     end
+    if search_params.present?
+      @tasks = TaskQuery.new(@tasks.joins(:state), search_params).all
+    end
     if params[:view] == 'cards'
       @columns = State.not_archived
       @tasks_per_column = @tasks.group_by(&:state_id)
@@ -15,6 +18,9 @@ class TasksController < ApplicationController
     else
       respond_with(@tasks)
     end
+  end
+
+  def search_form
   end
 
   # GET /tasks/1
@@ -92,5 +98,20 @@ class TasksController < ApplicationController
 
     def location
       polymorphic_path(@taskable || @task)
+    end
+
+    def search_params
+      searchparms = params.permit(*submit_parms,
+        :id, :list_id, :org_unit_id, :user_id, :responsible_id, :state_id,
+        :start, :to_start, :from_start, :deadline, :to_deadline, :from_deadline,
+        :submission, :to_submission, :from_submission, :subtree,
+        :subject, :user, :responsible, :status, :state, :priority, :private,
+        :has_references, :limit, :search
+      ).to_hash
+      searchparms.reject{|k, v| (v.blank? || submit_parms.include?(k))}
+    end
+
+    def submit_parms
+      [ "utf8", "authenticity_token", "commit", "format", "view" ]
     end
 end

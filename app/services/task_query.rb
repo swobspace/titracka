@@ -10,6 +10,7 @@ class TaskQuery
   # * :responsible_id - integer
   # * :list_id - integer
   # * :org_unit_id - integer
+  # * :subtree - boolean, only in combination with org_unit_id
   # * :state_id - integer
   # * :start - datestring (2020-02-03)
   # * :resubmission - datestring (2020-02-03)
@@ -56,6 +57,7 @@ private
   def build_query
     query = relation
     search_string = [] # for global search_option :search
+    subtree = search_options.fetch(:subtree, false)
     search_value  = search_options.fetch(:search, false) # for global option :search
     search_options.each do |key,value|
       case key 
@@ -64,6 +66,14 @@ private
       # 1:1 matching
       when *id_fields
        query = query.where(key.to_sym => value)
+     when :org_unit_id
+        if subtree
+          query = query.where(org_unit_id: subtree_ids(value))
+        else
+          query = query.where(org_unit_id: value)
+        end
+      when :subtree
+        # ignore key here
       when *date_fields
         query = query.where("tasks.#{key} like ?", "%#{value}%")
       when *(date_fields("from"))
@@ -88,7 +98,7 @@ private
         query = query.where(private: to_boolean(value))
       when :has_references
         if to_boolean(value) == true
-          query = query.where(id: CrossReference.pluck(:task_id))
+          query = query.where(id: relation.joins(:cross_references).pluck(:task_id).uniq)
         end
       when :id
         query = query.where(id: value.to_i)
@@ -138,7 +148,7 @@ private
   end
 
   def id_fields
-    [:user_id, :responsible_id, :org_unit_id, :list_id, :state_id]
+    [:user_id, :responsible_id, :list_id, :state_id]
   end
 
   def user_ids(value)
@@ -161,6 +171,10 @@ private
     return true if ['ja', 'true', '1', 'yes', 'on', 't'].include?(value.to_s.downcase)
     return false if ['nein', 'false', '0', 'no', 'off', 'f'].include?(value.to_s.downcase)
     return nil
+  end
+
+  def subtree_ids(value)
+    OrgUnit.where(id: value).first.subtree_ids
   end
 
 end
