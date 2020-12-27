@@ -1,5 +1,11 @@
 = Changelog
 
+=== 0.4.2 / 2020-12-27
+
+----
+- Search for tasks implemented
+----
+
 === 0.4.0 / 2020-12-24
 
 .Christmas Edition ;-)
