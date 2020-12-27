@@ -7,6 +7,7 @@ de:
   titracka:
     action: Aktion
     cardboard: Cardboard
+    list: Liste
     configuration: Konfiguration
     change_columns: Spalten ändern
     today: heute
@@ -46,6 +47,7 @@ de:
     url_hint: "https://my.domain/path?###IDENTIFIER###"
     collapse: minimieren
     expand: maximieren
+    include_subtree: Unterbaum mit einschließen
 
   actions:
     destroy: Datensatz löschen
@@ -97,6 +99,9 @@ de:
     displayname: Anzeigename
     duration: Dauer
     formatted_duration: Dauer (HH:MM)
+    from_start: Start von
+    from_deadline: Deadline von
+    from_resubmission: Wiedervorlage von
     givenname: Vorname
     home: Home
     identifier: Identifier
@@ -137,6 +142,9 @@ de:
     time_accounting_id: Aktivität
     time_accountings: Aktivitäten
     time_accounting_ids: Aktivitäten
+    to_start: Start bis
+    to_deadline: Deadline bis
+    to_resubmission: Wiedervorlage bis
     url: URL
     username: Username
     user: Benutzer

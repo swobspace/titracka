@@ -49,7 +49,7 @@
           <div class="form-check">
             <%= check_box_tag :subtree, "1", false, class: "form-check-input" %>
             <label class="form-check-label" for="subtree">
-              <%= t('attributes.subtree') %>
+              <%= t('titracka.include_subtree') %>
             </label>
           </div>
 	</div>
@@ -104,9 +104,57 @@
 	</div>
       </div>
 
+      <div class="form-group form-row">
+        <label for="start" class="col-sm-2 col-form-label"><%=t('attributes.start')%></label>
+        <div class="input-group col-sm-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">&geq;</div>
+          </div>
+          <input class="form-control" type="date" name="from_start" id="from_start" autocomplete="off" placeholder="<%= t('attributes.from_start')%>">
+        </div>
+        <div class="input-group col-sm-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">&leq;</div>
+          </div>
+          <input class="form-control" type="date" name="to_start" id="to_start" autocomplete="off" placeholder="<%= t('attributes.to_start')%>">
+        </div>
+      </div>
+
+      <div class="form-group form-row">
+        <label for="deadline" class="col-sm-2 col-form-label"><%=t('attributes.deadline')%></label>
+        <div class="input-group col-sm-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">&geq;</div>
+          </div>
+          <input class="form-control" type="date" name="from_deadline" id="from_deadline" autocomplete="off" placeholder="<%= t('attributes.from_deadline')%>">
+        </div>
+        <div class="input-group col-sm-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">&leq;</div>
+          </div>
+          <input class="form-control" type="date" name="to_deadline" id="to_deadline" autocomplete="off" placeholder="<%= t('attributes.to_deadline')%>">
+        </div>
+      </div>
+
+      <div class="form-group form-row">
+        <label for="resubmission" class="col-sm-2 col-form-label"><%=t('attributes.resubmission')%></label>
+        <div class="input-group col-sm-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">&geq;</div>
+          </div>
+          <input class="form-control" type="date" name="from_resubmission" id="from_resubmission" autocomplete="off" placeholder="<%= t('attributes.from_resubmission')%>">
+        </div>
+        <div class="input-group col-sm-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">&leq;</div>
+          </div>
+          <input class="form-control" type="date" name="to_resubmission" id="to_resubmission" autocomplete="off" placeholder="<%= t('attributes.to_resubmission')%>">
+        </div>
+      </div>
+
       <div class="form-group row">
 	<%= label_tag :limit, t('attributes.limit'), class: "col-sm-2 col-form-label" %>
-	<div class="col-sm-10">
+	<div class="col-sm-3">
 	  <%= text_field_tag :limit, 100,  class: "form-control" %>
 	</div>
       </div>
@@ -122,6 +170,25 @@
 	</div>
       </div>
 
+      <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Darstellung</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="view" id="view1" value="cards" checked>
+              <label class="form-check-label" for="view1">
+                <%= t('titracka.cardboard') %>
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="view" id="view2" value="list">
+              <label class="form-check-label" for="view2">
+                <%= t('titracka.list') %>
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
 
       <hr />
 
