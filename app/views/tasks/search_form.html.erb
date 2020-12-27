@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
+
 <div class="container">
   <%= form_tag(tasks_path, method: :get, role: "form",
         class: 'form-horizontal card') do |f| %>
