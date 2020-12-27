@@ -35,6 +35,23 @@ RSpec.describe "/tasks", type: :request do
     end
   end
 
+  describe "GET /index?org_unit_id=ou.id" do
+    it "renders a successful response" do
+      Task.create! valid_attributes
+      get tasks_url(org_unit_id: ou.to_param)
+      expect(response).to be_successful
+    end
+  end
+
+  describe "GET /search_form" do
+    it "renders a successful response" do
+      Task.create! valid_attributes
+      get search_form_tasks_url
+      expect(response).to be_successful
+    end
+  end
+
+
   describe "GET /show" do
     it "renders a successful response" do
       task = Task.create! valid_attributes

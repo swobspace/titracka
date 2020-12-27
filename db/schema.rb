@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_081937) do
+ActiveRecord::Schema.define(version: 2020_12_26_104145) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 2020_12_13_081937) do
     t.string "state", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position", default: 0
     t.index ["name"], name: "index_states_on_name"
     t.index ["state"], name: "index_states_on_state"
   end

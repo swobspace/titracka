@@ -10,17 +10,19 @@
         class: "table table-bordered table-responsive-xl",
         data: {
           "datatables-target": 'datatable',
-          order: [[0, 'desc']].to_json
+          order: [[2, 'asc']].to_json
         } do %>
     <thead>
       <tr>
             <th><%= t('attributes.name') %></th>
             <th><%= t('attributes.state') %></th>
+            <th><%= t('attributes.position') %></th>
             <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -31,6 +33,7 @@
         <%= content_tag_for(:tr, state) do %>
                 <td><%= state.name %></td>
                 <td><%= t(state.state, scope: 'titracka.state') %></td>
+                <td><%= state.position %></td>
                 <td class="text-nowrap">
             <%= show_link state %>
             <%= edit_link state %>

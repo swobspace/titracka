@@ -29,13 +29,16 @@ bin/rails g migration AddUserToTask user:belongs_to
 
 ## State
 
-state = ( 'pre' | 'open' | 'done' | 'archive' )
+state = ( 'pre' | 'open' | 'done' | 'pending' | 'archive' )
 
 ----
 bin/rails g scaffold State \
   name:string:index \
   state:string:index \
+  position:integer \
   --no-stylesheets --no-javascripts --no-helper
+
+# bin/rails g migration AddPositionToState position:integer
 ----
 
 ## OrgUnit

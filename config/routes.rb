@@ -17,7 +17,13 @@ Rails.application.routes.draw do
   resources :org_units do
     resources :tasks, module: :org_units
   end
+  post "tasks", to: "tasks#index", constraints: lambda {|req| req.format == :json}
   resources :tasks do
+    collection do
+      # get :search
+      # post :search
+      get :search_form
+    end
     resources :time_accountings, module: :tasks
     resources :notes, module: :tasks
   end

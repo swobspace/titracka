@@ -1,6 +1,7 @@
 class WorkdaysController < ApplicationController
   before_action :set_workday, only: [:show, :edit, :update, :destroy]
   # before_action :add_breadcrumb_show, only: [:show]
+  before_action :mostly_wanted_tasks, only: [:show, :by_date]
 
   # GET /workdays
   def index
@@ -76,5 +77,12 @@ class WorkdaysController < ApplicationController
                   .sum(:duration)
       @end_of_work = (@workday.work_start || @workday.date.to_time.beginning_of_day) + 
                        @work_sum.minutes + @workday.pause.minutes
+    end
+
+    def mostly_wanted_tasks
+      @tasks = Task.accessible_by(current_ability)
+                   .joins(:time_accountings)
+                   .order("time_accountings.date desc")
+                   .distinct.limit(10)
     end
 end

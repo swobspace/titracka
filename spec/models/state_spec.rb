@@ -12,6 +12,8 @@ RSpec.describe State, type: :model do
     expect(f).to validate_uniqueness_of(:name).case_insensitive
     expect(f).to be_valid
     expect(g).to be_valid
+    expect(f.position).to eq(1)
+    expect(g.position).to eq(2)
   end
 
   it "to_s returns value" do

@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
+
 <div class="container">
   <%= simple_form_for(@state,
     html: { class: 'form-horizontal card' }) do |f| %>
@@ -6,13 +10,13 @@
       <%= form_legend %>
     </div>
     <div class="card-body">
-      <%= f.input :name
-	 %>
+      <%= f.input :name %>
       <%= f.input :state, collection:
            State::STATES.map {|x| [t(x, scope: 'titracka.state'), x]},
               include_blank: false,
               input_html: {class: 'col-sm-3'}
 	 %>
+      <%= f.input :position %>
 
       <%= f.button :submit, class: 'btn btn-primary' %>
       <%= cancel_button %>

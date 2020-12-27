@@ -11,13 +11,16 @@
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
             t('controller.tasks')),
           main_app.tasks_path, class: "dropdown-item" %>
-      <% if can? :create, List %>
+      <%=link_to raw('<span class="fas fa-fw fa-search" aria-hidden="true"></span> ' +
+                      t('titracka.search')),
+            main_app.search_form_tasks_path, class: 'dropdown-item' %>
+      <% if can? :create, Task %>
+        <div class="dropdown-divider"></div>
         <%= link_to raw('<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
                         t('titracka.new_task')),
               main_app.new_task_path,
               class: "dropdown-item" %>
       <% end %>
-
     </div>
   </li>
 <% end %>

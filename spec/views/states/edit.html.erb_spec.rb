@@ -17,6 +17,7 @@ RSpec.describe "states/edit", type: :view do
     assert_select "form[action=?][method=?]", state_path(@state), "post" do
       assert_select "input[name=?]", "state[name]"
       assert_select "select[name=?]", "state[state]"
+      assert_select "input[name=?]", "state[position]"
     end
   end
 end
