@@ -11,11 +11,13 @@ shared_context "task variables" do
     username: "mcaro"
   )}
 
+  let(:pending) { FactoryBot.create(:state, name: "Warten auf", state: 'pending')}
   let(:ou1)  { FactoryBot.create(:org_unit, name: "Mustermann GmbH" )}
   let(:ou2)  { FactoryBot.create(:org_unit, name: "ACME Ltd" )}
   let(:list1) { FactoryBot.create(:list, name: "Mustermanns global list", org_unit: ou1)}
   let(:list2) { FactoryBot.create(:list, name: "ACME list", org_unit: ou2)}
   let(:list3) { FactoryBot.create(:list, name: "Caro's private list", user: mcaro)}
+  let(:ref)   { FactoryBot.create(:reference) }
 
   let!(:t1) { FactoryBot.create(:task, :open,
     subject: "Maxs task",
@@ -28,6 +30,7 @@ shared_context "task variables" do
     subject: "Caros task",
     user: mcaro,
     responsible: mcaro,
+    private: true,
   )}
   let!(:to1) { FactoryBot.create(:task, :open, 
     subject: "MM task",
@@ -45,13 +48,16 @@ shared_context "task variables" do
     list: list1,
     start: "2020-02-17",
     deadline: "2020-07-01",
+    priority: 'high',
   )}
-  let!(:tl2) { FactoryBot.create(:task, :open, 
+  let!(:tl2) { FactoryBot.create(:task,
+    state: pending,
     subject: "ACME global list task",
     list: list1,
     start: "2020-07-17",
     deadline: "2020-12-24",
   )}
+  let!(:xref) { FactoryBot.create(:cross_reference, task: tl2, reference: ref) }
   let!(:done1) { FactoryBot.create(:task, :done,
     subject: "Task1 done!",
     responsible: mmax,

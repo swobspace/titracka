@@ -17,8 +17,14 @@ class TaskQuery
   # * :from_(start|deadline|resubmission) - datestring
   # * :to_(start|deadline|resubmission) - datestring
   # * :user - name
+  # * :responsible - name
+  # * :state - string
   # * :id - integer
   # * :limit - limit result (integer)
+  #
+  # please note:
+  #   .joins(:state)
+  # must exist in relation
   #
   def initialize(relation, search_options = {})
     @relation       = relation
@@ -68,6 +74,22 @@ private
         query = query.where("tasks.#{column} < ?", value)
       when :user
         query = query.where(user_id: user_ids(value)) if user_ids(value).present?
+      when :responsible
+        query = query.where(responsible_id: user_ids(value)) if user_ids(value).present?
+      when :status
+        query = query.where("states.name like ?",  "%#{value}%")
+      when :state
+        query = query.where("states.state in (?)",
+                            i18n_search(value, I18n.t('titracka.state')))
+      when :priority
+        query = query.where("tasks.priority in (?)",
+                            i18n_search(value, I18n.t('titracka.priority')))
+      when :private
+        query = query.where(private: to_boolean(value))
+      when :has_references
+        if to_boolean(value) == true
+          query = query.where(id: CrossReference.pluck(:task_id))
+        end
       when :id
         query = query.where(id: value.to_i)
       when :limit
@@ -77,6 +99,10 @@ private
           search_string << "tasks.#{term} LIKE :search"
         end
         search_string << "tasks.user_id IN (:uids)"  if user_ids(value)
+        search_string << "tasks.responsible_id IN (:uids)"  if user_ids(value)
+        search_string << "states.name LIKE :search"
+        search_string << "states.state IN (:states)" if i18n_search(value, I18n.t('titracka.state'))
+
       else
         raise ArgumentError, "unknown search option #{key}"
       end
@@ -84,7 +110,8 @@ private
     if search_value
       query = query.where(search_string.join(' or '), 
                           search: "%#{search_value}%",
-                          uids: user_ids(search_value)
+                          uids: user_ids(search_value),
+                          states: i18n_search(search_value, I18n.t('titracka.state'))
                          )
      end
     if limit > 0
@@ -117,6 +144,23 @@ private
   def user_ids(value)
     ids = Wobauth::User.where("sn like :val or givenname like :val or email like :val or displayname like :val", val: "%#{value}%").pluck(:id)
     ids
+  end
+
+  # example: i18n_search('offen', I18n.t('titracka.state')) => 'done'
+  def i18n_search(value, translation = {})
+    result = []
+    translation.each_pair do |k,v|
+      if (v =~ /#{value}/i) || value == k.to_s
+        result << ((k == :notset) ? '' : k)
+      end
+    end
+    result
+  end
+
+  def to_boolean(value)
+    return true if ['ja', 'true', '1', 'yes', 'on', 't'].include?(value.to_s.downcase)
+    return false if ['nein', 'false', '0', 'no', 'off', 'f'].include?(value.to_s.downcase)
+    return nil
   end
 
 end

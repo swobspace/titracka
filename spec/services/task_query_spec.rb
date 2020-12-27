@@ -27,7 +27,7 @@ end
 
 RSpec.describe TaskQuery do
   include_context "task variables"
-  let(:tasks) { Task.all }
+  let(:tasks) { Task.joins(:state).all }
 
   # check for class methods
   it { expect(TaskQuery.respond_to? :new).to be_truthy}
@@ -55,6 +55,42 @@ RSpec.describe TaskQuery do
     end
   end
 
+  context "with :private yes" do
+    subject { TaskQuery.new(tasks, {private: 'yes'}) }
+    before(:each) do
+      @matching = [t2]
+      @nonmatching = [t1, to1, to2, tl1, tl2, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :state offen
+
+  context "with :state offen" do
+    subject { TaskQuery.new(tasks, {state: 'offen'}) }
+    before(:each) do
+      @matching = [t1, t2, to1, to2, tl1 ]
+      @nonmatching = [tl2, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :state offen
+
+  context "with :status warten" do
+    subject { TaskQuery.new(tasks, {status: 'warten'}) }
+    before(:each) do
+      @matching = [tl2 ]
+      @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :status wartend
+
+  context "with :priority hoch" do
+    subject { TaskQuery.new(tasks, {priority: 'hoch'}) }
+    before(:each) do
+      @matching = [ tl1 ]
+      @nonmatching = [t1, t2, to1, to2, tl2, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :priority hoch
+
   context "with :responsible_id" do
     subject { TaskQuery.new(tasks, {responsible_id: mcaro.id}) }
     before(:each) do
@@ -81,6 +117,16 @@ RSpec.describe TaskQuery do
     end
     it_behaves_like "a task query"
   end # :user 'caro'
+
+  context "with :responsible" do
+    subject { TaskQuery.new(tasks, {responsible: 'max'}) }
+    before(:each) do
+      @matching = [t1, done1] 
+      @nonmatching = [t2, to1, to2, tl1, tl2, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :user 'caro'
+
 
   context "with :start 2020-02" do
     subject { TaskQuery.new(tasks, {start: "2020-02"}) }
@@ -137,12 +183,28 @@ RSpec.describe TaskQuery do
     it_behaves_like "a task query"
   end # :subject mm
 
+  context "with :has_references true" do
+    subject { TaskQuery.new(tasks, {has_references: true}) }
+    before(:each) do
+      @matching = [tl2]
+      @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :state offen
+
+
   describe "#all" do
     context "using :search'" do
-      it "searches for sn" do
+      it "searches for max" do
         search = TaskQuery.new(tasks, {search: 'max'})
-        expect(search.all).to contain_exactly(t1, to1)
+        expect(search.all).to contain_exactly(t1, to1, done1)
       end
+
+      it "searches for status" do
+        search = TaskQuery.new(tasks, {search: 'warten'})
+        expect(search.all).to contain_exactly(tl2)
+      end
+   
     end
   end
 end
