@@ -104,7 +104,7 @@ class TasksController < ApplicationController
       searchparms = params.permit(*submit_parms,
         :id, :list_id, :org_unit_id, :user_id, :responsible_id, :state_id,
         :start, :to_start, :from_start, :deadline, :to_deadline, :from_deadline,
-        :submission, :to_submission, :from_submission, :subtree,
+        :resubmission, :to_resubmission, :from_resubmission, :subtree,
         :subject, :user, :responsible, :status, :state, :priority, :private,
         :has_references, :limit, :search
       ).to_hash
