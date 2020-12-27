@@ -36,7 +36,6 @@ de:
       'normal': normal
       'high': hoch
       'critical': sehr hoch
-      notset: nicht bearbeitet
     csv_export: CSV-Export
     new_org_unit: Neue OE
     new_list: Neue Liste

@@ -12,6 +12,7 @@ class TaskQuery
   # * :org_unit_id - integer
   # * :subtree - boolean, only in combination with org_unit_id
   # * :state_id - integer
+  # * :state_ids - Array(integer)
   # * :start - datestring (2020-02-03)
   # * :resubmission - datestring (2020-02-03)
   # * :deadline - datestring (2020-02-03)
@@ -20,6 +21,8 @@ class TaskQuery
   # * :user - name
   # * :responsible - name
   # * :state - string
+  # * :priority - string
+  # * :priority_ids - Array(string)
   # * :id - integer
   # * :limit - limit result (integer)
   #
@@ -91,9 +94,13 @@ private
       when :state
         query = query.where("states.state in (?)",
                             i18n_search(value, I18n.t('titracka.state')))
+      when :state_ids
+        query = query.where("tasks.state_id IN (?)", Array(value).map(&:to_i))
       when :priority
         query = query.where("tasks.priority in (?)",
                             i18n_search(value, I18n.t('titracka.priority')))
+      when :priority_ids
+        query = query.where("tasks.priority in (?)", Array(value).map(&:to_s))
       when :private
         query = query.where(private: to_boolean(value))
       when :has_references

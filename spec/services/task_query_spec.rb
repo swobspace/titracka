@@ -62,7 +62,7 @@ RSpec.describe TaskQuery do
       @nonmatching = [t1, to1, to2, tl1, tl2, done1, archiv2]
     end
     it_behaves_like "a task query"
-  end # :state offen
+  end # :private yes
 
   context "with :state offen" do
     subject { TaskQuery.new(tasks, {state: 'offen'}) }
@@ -72,6 +72,24 @@ RSpec.describe TaskQuery do
     end
     it_behaves_like "a task query"
   end # :state offen
+
+  context "with :state_id pending" do
+    subject { TaskQuery.new(tasks, {state_id: pending.id}) }
+    before(:each) do
+      @matching = [tl2 ]
+      @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :state_id pending
+
+  context "with :state_ids pending, done, archive" do
+    subject { TaskQuery.new(tasks, {state_ids: State.where(state: ['pending', 'done', 'archive']).ids })}
+    before(:each) do
+      @matching = [tl2, done1, archiv2 ]
+      @nonmatching = [t1, t2, to1, to2, tl1]
+    end
+    it_behaves_like "a task query"
+  end # :state_id pending
 
   context "with :status warten" do
     subject { TaskQuery.new(tasks, {status: 'warten'}) }
@@ -85,11 +103,20 @@ RSpec.describe TaskQuery do
   context "with :priority hoch" do
     subject { TaskQuery.new(tasks, {priority: 'hoch'}) }
     before(:each) do
-      @matching = [ tl1 ]
-      @nonmatching = [t1, t2, to1, to2, tl2, done1, archiv2]
+      @matching = [ tl1, tl2 ]
+      @nonmatching = [t1, t2, to1, to2, done1, archiv2]
     end
     it_behaves_like "a task query"
   end # :priority hoch
+
+  context "with :priority_ids high, critical" do
+    subject { TaskQuery.new(tasks, {priority_ids: ['high', 'critical']}) }
+    before(:each) do
+      @matching = [ tl1, tl2 ]
+      @nonmatching = [t1, t2, to1, to2, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :priority_ids high, critical
 
   context "with :org_unit_id" do
     subject { TaskQuery.new(tasks, {org_unit_id: ou1.id}) }
@@ -218,7 +245,7 @@ RSpec.describe TaskQuery do
       @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
     end
     it_behaves_like "a task query"
-  end # :state offen
+  end # :has_references
 
 
   describe "#all" do

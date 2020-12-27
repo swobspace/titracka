@@ -57,6 +57,7 @@ shared_context "task variables" do
     list: list2,
     start: "2020-07-17",
     deadline: "2020-12-24",
+    priority: 'critical',
   )}
   let!(:xref) { FactoryBot.create(:cross_reference, task: tl2, reference: ref) }
   let!(:done1) { FactoryBot.create(:task, :done,

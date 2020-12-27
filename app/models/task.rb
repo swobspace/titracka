@@ -12,7 +12,7 @@ class Task < ApplicationRecord
 
   # -- configuration
   has_rich_text :description
-  PRIORITIES = ["low", "normal", "high"]
+  PRIORITIES = ["low", "normal", "high", "critical"]
 
   # -- validations and callbacks
   before_save :set_org_unit
