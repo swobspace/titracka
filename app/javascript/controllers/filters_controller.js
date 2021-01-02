@@ -15,6 +15,13 @@ export default class extends ApplicationController {
   }
 
   get params() {
-    return this.filterTargets.map((t) => `${t.name}=${t.value}`).join("&");
+    return this.filterTargets.map(function(t) {
+      // return only params.present?
+      if (t.value !== '') {
+        return `${t.name}=${t.value}`
+      } else {
+        return ''
+      }
+    }).filter(String).join("&");
   }
 }
