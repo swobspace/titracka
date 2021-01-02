@@ -47,6 +47,7 @@ de:
     collapse: minimieren
     expand: maximieren
     include_subtree: Unterbaum mit einschließen
+    not_selected: nichts ausgewählt
 
   actions:
     destroy: Datensatz löschen

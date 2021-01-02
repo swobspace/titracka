@@ -1,11 +1,16 @@
 <%= render partial: 'tasks/modal_for_cards' %>
 
-<h1><%= t('controller.tasks') %></h1>
-
-<%= render 'tasks/cards', 
-      columns: @columns, 
-      tasks_per_column: @tasks_per_column,
-      filter: nil,
-      url: request.url,
-      ability: @current_ability
- %>
+<div class="row">
+  <div class="col-3">
+    <%= render 'tasks/filters' %>
+  </div>
+  <div class="col">
+    <%= render 'tasks/cards', 
+          columns: @columns, 
+          tasks_per_column: @tasks_per_column,
+          filter: nil,
+          url: request.url,
+          ability: @current_ability
+     %>
+  </div>
+</div>
