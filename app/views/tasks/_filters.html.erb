@@ -1,33 +1,108 @@
-<div class="card px-2 mb-2 bg-light" data-controller="filters">
-  <%= hidden_field_tag :view, 'cards',
-      data: {
-        'filters-target': 'filter',
-      }
-   %>
-  <div class="form-group col">
-    <%= label_tag :org_unit_id, t('attributes.org_unit'), class: "col-form-label" %> 
-    <%= select_tag "org_unit_id",
-          options_from_collection_for_select(OrgUnit.accessible_by(current_ability, :read), 'id', 'name_for_selects', params[:org_unit_id]),
-          include_blank: t('titracka.not_selected'),
-          class: 'form-control select2',
-          data: { 
-            action: "filters#filter",
-            'filters-target': 'filter',
-            'select2-target': 'input' 
-          }
-    %>
-  </div>
-  <div class="form-group col">
-    <%= label_tag :list_id, t('attributes.list'), class: "col-form-label" %> 
-    <%= select_tag "list_id",
-          options_from_collection_for_select(List.accessible_by(current_ability, :read), 'id', 'name_for_selects', params[:list_id]),
-          include_blank: t('titracka.not_selected'),
-          class: 'form-control select2',
-          data: { 
-            action: "filters#filter",
-            'filters-target': 'filter',
-            'select2-target': 'input' 
-          }
-    %>
+<div class="card bg-light" data-controller="select2 filters">
+  <div class="card-body">
+    <%= hidden_field_tag :view, 'cards',
+        data: {
+          'filters-target': 'filter',
+        }
+     %>
+
+    <div class="form-group">
+      <%= label_tag :status, t('attributes.state'), class: "form-label" %>
+      <%= select_tag "state_ids",
+            options_from_collection_for_select(State.all, :id, :name, Array(params[:state_ids])),
+            include_blank: '--',
+            multiple: true,
+            class: 'form-control select2',
+            data: { 
+              action: "jquery:change->filters#filter",
+              'filters-target': 'filter',
+              'select2-target': 'input'
+            }
+        %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :org_unit_id, t('attributes.org_unit'), class: "form-label" %> 
+      <%= select_tag "org_unit_id",
+            options_from_collection_for_select(OrgUnit.accessible_by(current_ability, :read), 'id', 'name_for_selects', params[:org_unit_id]),
+            include_blank: "--",
+            class: 'form-control select2',
+            data: { 
+              action: "jquery:change->filters#filter",
+              'filters-target': 'filter',
+              'select2-target': 'input'
+            }
+      %>
+    </div>
+    <% if false %>
+    <div class="form-group">
+      <div class="form-check">
+        <%= check_box_tag :subtree, "1", false, class: "form-check-input",
+            data: { 
+              action: "jquery:change->filters#filter",
+              'filters-target': 'filter'
+            }
+        %>
+        <label class="form-check-label" for="subtree">
+          <%= t('titracka.include_subtree') %>
+        </label>
+      </div>
+    </div>
+    <% end %>
+    <div class="form-group">
+      <%= label_tag :list_id, t('attributes.list'), class: "form-label" %> 
+      <%= select_tag "list_id",
+            options_from_collection_for_select(List.accessible_by(current_ability, :read), 'id', 'name_for_selects', params[:list_id]),
+            include_blank: "--",
+            class: 'form-control select2',
+            data: { 
+              action: "jquery:change->filters#filter",
+              'filters-target': 'filter',
+              'select2-target': 'input'
+            }
+      %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :user_id, t('attributes.owner'), class: "form-label" %>
+      <%= select_tag "user_id",
+            options_from_collection_for_select(Wobauth::User.all, 'id', 'name', params[:user_id]),
+            include_blank: "--",
+            class: 'form-control select2',
+            data: { 
+              action: "jquery:change->filters#filter",
+              'filters-target': 'filter',
+              'select2-target': 'input'
+            }
+
+      %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :responsible_id, t('attributes.responsible'), class: "form-label" %>
+      <%= select_tag "responsible_id",
+            options_from_collection_for_select(Wobauth::User.all, 'id', 'name', params[:responsible_id]),
+            class: 'form-control select2',
+            include_blank: "--",
+            data: { 
+              action: "jquery:change->filters#filter",
+              'filters-target': 'filter',
+              'select2-target': 'input'
+            }
+      %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :priority, t('attributes.priority'), class: "form-label" %>
+      <%= select_tag "priority",
+            options_for_select(t('titracka.priority').map {|k,v| [v,k]}, params[:priority]),
+            class: 'form-control select2',
+            include_blank: '--',
+            data: { 
+              action: "jquery:change->filters#filter",
+              'filters-target': 'filter',
+              'select2-target': 'input'
+            }
+      %>
+    </div>
   </div>
 </div>
