@@ -18,7 +18,7 @@ export default class extends Controller {
 	  }
 	)
 	data.event.target.dispatchEvent(delegatedEvent)
-	console.log(delegatedEvent);
+	// console.log(delegatedEvent);
       }
       $(document).on(eventName, handler)
     }
