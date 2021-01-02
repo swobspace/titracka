@@ -4,7 +4,7 @@
       data: {
         "draggable-target": ('task' if ability.can?(:update, task)),
         controller: 'task toggle',
-        'toggle-collapse-class': 'collapsed',
+        'toggle-toggle-class': 'hidden',
         id: task.id,
         url: state_task_path(column, task)
       } do %>

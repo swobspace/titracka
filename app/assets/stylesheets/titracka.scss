@@ -126,11 +126,12 @@ a.jstree-anchor.list, a.jstree-anchor.list_decorator {
 .w-20 { width: 20%; }
 .w-33 { width: 33%; }
 
-div.collapsed {
-  display: none;
+.hidden {
+  display: none !important;
 }
 
 i.clapse {
+  display: inline !important;
   position: relative;
   width: 1em;
   height: 1em;
@@ -147,7 +148,7 @@ i.clapse:before {
   position: absolute;
   top:-0.8em;
 }
-i.clapse.collapsed:before {
+i.clapse.hidden:before {
   // content: "\f424";
   // content: "\f2d0";
   content: "\f078";

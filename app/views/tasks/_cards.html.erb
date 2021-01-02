@@ -1,10 +1,10 @@
-<div data-controller="toggle" data-toggle-collapse-class="collapsed">
+<div data-controller="toggle" data-toggle-toggle-class="hidden">
   <i data-toggle-target="content" data-action="click->toggle#toggleAll" class="clapse float-right"></i>
 </div>
 <%= content_tag :div, class: :row, id: 'tasksCardboard', 
       data: { 
         controller: 'draggable toggle',
-        "toggle-collapse-class": "collapsed",
+        "toggle-toggle-class": "hidden",
         filter: filter,
         url: url
       } do %>
