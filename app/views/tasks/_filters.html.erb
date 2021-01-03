@@ -8,9 +8,9 @@
 
     <div class="form-group">
       <%= label_tag :status, t('attributes.state'), class: "form-label" %>
-      <div class="relative" data-controller="toggle checkbox-list"
-                            data-toggle-toggle-class="hidden" >
-        <button class="form-control text-left btn bg-white border w-100" 
+      <div data-controller="toggle checkbox-list"
+           data-toggle-toggle-class="hidden" >
+        <button class="toggler form-control text-left btn bg-white border w-100" 
           data-action="toggle#toggle"
           data-checkbox-list-target="count" >
           --
@@ -66,7 +66,7 @@
             }
       %>
     </div>
-    <% if false %>
+
     <div class="form-group">
       <div class="form-check">
         <input name="subtree" type="hidden" value="false"/>
@@ -82,7 +82,7 @@
         </label>
       </div>
     </div>
-    <% end %>
+
     <div class="form-group">
       <%= label_tag :list_id, t('attributes.list'), class: "form-label" %> 
       <%= select_tag "list_id",
