@@ -139,7 +139,8 @@ i.clapse {
 i.clapse:before {
   // content: "\f422";
   // content: "\f2d1";
-  content: "\f077";
+  // content: "\f077";
+  content: "\f0d8";
   // color: #bbb;
   font-weight: 900;
   font-family: "Font Awesome 5 Free";
@@ -151,7 +152,8 @@ i.clapse:before {
 i.clapse.hidden:before {
   // content: "\f424";
   // content: "\f2d0";
-  content: "\f078";
+  //content: "\f078";
+  content: "\f0d7";
   // color: #bbb;
   font-weight: 900;
   font-family: "Font Awesome 5 Free";
@@ -201,3 +203,5 @@ button.toggler::after {
   // top:-0.8em;
   right: 0.8em;
 }
+.priority-high { border-left: 4px solid red !important; }
+.priority-critical { border-left: 4px solid purple !important; }
