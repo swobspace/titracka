@@ -24,6 +24,8 @@ export default class extends ApplicationController {
       if (t.matches('[type="checkbox"]')) {
         if (t.checked) {
           return `${t.name}=${t.value}`
+        } else {
+          return ''
         }
       } 
       else if (t.value !== '') {
