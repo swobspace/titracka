@@ -60,7 +60,7 @@ private
   def build_query
     query = relation
     search_string = [] # for global search_option :search
-    subtree = search_options.fetch(:subtree, false)
+    subtree = to_boolean(search_options.fetch(:subtree, false))
     search_value  = search_options.fetch(:search, false) # for global option :search
     search_options.each do |key,value|
       case key 

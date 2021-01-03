@@ -1,7 +1,7 @@
 import ApplicationController from './application_controller'
 export default class extends ApplicationController {
   static targets = ["content"]
-  static classes = ["collapse"]
+  static classes = ["toggle"]
 
   connect () {
     super.connect()
@@ -9,19 +9,19 @@ export default class extends ApplicationController {
   }
 
   toggle() {
-    // this.contentTarget.classList.toggle(this.collapseClass)
-    this.contentTargets.forEach((t) => t.classList.toggle(this.collapseClass))
+    // this.contentTarget.classList.toggle(this.toggleClass)
+    this.contentTargets.forEach((t) => t.classList.toggle(this.toggleClass))
   }
 
   toggleAll(event) {
-    const clapse = this.collapseClass
-    const collapse = event.target.classList.contains(clapse)
+    const tclass = this.toggleClass
+    const applied = event.target.classList.contains(tclass)
     
     document.querySelectorAll('[data-toggle-target="content"]').forEach(function(t) {
-      if (collapse) {
-        t.classList.remove(clapse)
+      if (applied) {
+        t.classList.remove(tclass)
       } else {
-        t.classList.add(clapse)
+        t.classList.add(tclass)
       }
     })
   }
