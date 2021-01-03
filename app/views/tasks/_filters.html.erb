@@ -54,6 +54,53 @@
     </div>
 
     <div class="form-group">
+      <%= label_tag :priority, t('attributes.priority'), class: "form-label" %>
+      <div data-controller="toggle checkbox-list"
+           data-toggle-toggle-class="hidden" >
+        <button class="toggler form-control text-left btn bg-white border w-100" 
+          data-action="toggle#toggle"
+          data-checkbox-list-target="count" >
+          --
+        </button>
+        <div class="hidden checkboxing p-2 border bg-white" data-toggle-target="content">
+          <div class="flex flex-col">
+            <div class="checkboxing-header d-flex justify-content-between">
+
+              <button class="btn btn-sm btn-outline-secondary"
+                data-action="checkbox-list#checkNone filters#filter"
+              >
+                <%= t('titracka.clear_selection') %>
+              </button>
+            </div>
+
+            <div class="checkboxing-list my-2">
+              <% t('titracka.priority').each_pair do |prio,translation| %>
+                <%= content_tag(:div, class: "form-check") do %>
+                  <%= check_box_tag 'priority_ids[]', prio, 
+                        params.fetch(:priority_ids, []).include?(prio.to_s),
+                        class: "form-check-input mr-2",
+                        data: { 
+                          'filters-target': 'filter' ,
+                          'action': 'checkbox-list#onChecked'
+                        } %>
+                  <%= label_tag prio, translation, class: "form-check-label" %>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="checkboxing-action-footer">
+              <button class="p-2 w-100 btn btn-sm btn-primary"
+                data-action="filters#filter"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
       <%= label_tag :org_unit_id, t('attributes.org_unit'), class: "form-label" %> 
       <%= select_tag "org_unit_id",
             options_from_collection_for_select(OrgUnit.accessible_by(current_ability, :read), 'id', 'name_for_selects', params[:org_unit_id]),
@@ -125,18 +172,5 @@
       %>
     </div>
 
-    <div class="form-group">
-      <%= label_tag :priority, t('attributes.priority'), class: "form-label" %>
-      <%= select_tag "priority",
-            options_for_select(t('titracka.priority').map {|k,v| [v,k]}, params[:priority]),
-            class: 'form-control select2',
-            include_blank: '--',
-            data: { 
-              action: "jquery:change->filters#filter",
-              'filters-target': 'filter',
-              'select2-target': 'input'
-            }
-      %>
-    </div>
   </div>
 </div>
