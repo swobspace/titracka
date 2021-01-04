@@ -4,7 +4,7 @@
         action: "ajax:success->form#onPostSuccess ajax:error->form#onPostError"
       }
     ) do |f| %>
-    <h5 class="bt mt-3"><%= t('activerecord.models.note') %></h5>
+    <h5 class="bt mt-3"><%= t('actions.add', model: t('activerecord.models.note')) %></h5>
 
     <%= f.input :description, as: :rich_text_area,
           wrapper: :vertical_form, label: false
@@ -12,7 +12,6 @@
     <div data-form-target="errorSuccess" class="" role="alert"></div>
     <div role="toolbar" class="">
       <%= f.button :submit, class: 'btn btn-primary' %>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     </div>
 <% end %>
 
