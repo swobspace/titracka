@@ -6,9 +6,11 @@ class TaskQuery
 
   ##
   # possible search options:
+  # * :subject - string
   # * :user_id - integer
   # * :responsible_id - integer
   # * :list_id - integer
+  # * :without_lists - boolean
   # * :org_unit_id - integer
   # * :subtree - boolean, only in combination with org_unit_id
   # * :state_id - integer
@@ -24,6 +26,7 @@ class TaskQuery
   # * :priority - string
   # * :priority_ids - Array(string)
   # * :id - integer
+  # * :cross_reference - integer: search for cross_references.identifier
   # * :limit - limit result (integer)
   #
   # please note:
@@ -61,22 +64,26 @@ private
     query = relation
     search_string = [] # for global search_option :search
     subtree = to_boolean(search_options.fetch(:subtree, false))
+    without_lists = to_boolean(search_options.fetch(:without_lists, false))
     search_value  = search_options.fetch(:search, false) # for global option :search
     search_options.each do |key,value|
       case key 
+      when :subtree, :without_lists
+        # ignore key here
       when *string_fields
         query = query.where("tasks.#{key} LIKE ?", "%#{value}%")
       # 1:1 matching
       when *id_fields
        query = query.where(key.to_sym => value)
-     when :org_unit_id
+      when :org_unit_id
         if subtree
           query = query.where(org_unit_id: subtree_ids(value))
         else
           query = query.where(org_unit_id: value)
         end
-      when :subtree
-        # ignore key here
+        if without_lists
+          query = query.where(list_id: nil)
+        end
       when *date_fields
         query = query.where("tasks.#{key} like ?", "%#{value}%")
       when *(date_fields("from"))
