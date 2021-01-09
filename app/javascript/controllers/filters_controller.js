@@ -12,10 +12,16 @@ export default class extends ApplicationController {
 
   filter() {
     const url = `${window.location.pathname}?${this.params}`;
-
     Turbolinks.clearCache();
     Turbolinks.visit(url);
   }
+
+  reset() {
+    const url = `${window.location.pathname}`;
+    Turbolinks.clearCache();
+    Turbolinks.visit(url);
+  }
+
 
   get params() {
     // console.log(this.filterTargets.map((t) => `${t.name}=${t.value}`).join("&"))
