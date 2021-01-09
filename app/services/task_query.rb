@@ -107,6 +107,11 @@ private
         if to_boolean(value) == true
           query = query.where(id: relation.joins(:cross_references).pluck(:task_id).uniq)
         end
+      when :cross_reference
+        query = query.where(
+                  id: relation.joins(:cross_references)
+                              .where("cross_references.identifier like ?", "%#{value}%")
+                              .pluck(:task_id).uniq)
       when :id
         query = query.where(id: value.to_i)
       when :limit
