@@ -9,6 +9,27 @@
     <%= f.input :description, as: :rich_text_area,
           wrapper: :vertical_form, label: false
        %>
+    <div class="form-group">
+      <%= label_tag :mail_to, t('attributes.mail_to'), class: "form-label" %>
+      <%= select_tag "mail_to", 
+            options_for_select(mailaddresses_for_select(task, current_user)),
+            class: 'form-control'
+      %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "email subject prefix" %>
+      <div class="form-check">
+        <%= radio_button_tag :subject_prefix, "task", class: "form-check-input" %>
+        <%= label_tag "Task ID", nil, class: "form-check-label" %>
+      </div>
+      <% task.cross_references.each do |xref| %>
+        <div class="form-check">
+          <%= radio_button_tag :subject_prefix, xref.id, class: "form-check-input" %>
+          <%= label_tag xref.to_s, nil, class: "form-check-label" %>
+        </div>
+      <% end %>
+    </div>
+
     <div data-form-target="errorSuccess" class="" role="alert"></div>
     <div role="toolbar" class="">
       <%= f.button :submit, class: 'btn btn-primary' %>
