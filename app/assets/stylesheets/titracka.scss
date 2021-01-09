@@ -129,6 +129,11 @@ a.jstree-anchor.list, a.jstree-anchor.list_decorator {
 .hidden {
   display: none !important;
 }
+span.fold {
+  padding: .5em .75em;
+  width: 2.5em;
+  height: 2em;
+}
 
 i.clapse {
   display: inline !important;

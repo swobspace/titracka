@@ -1,16 +1,22 @@
 <%= render partial: 'tasks/modal_for_cards' %>
 
-<div class="row">
-  <div class="col-sm-4 col-lg-3 col-xl-2">
-    <%= render 'tasks/filters' %>
-  </div>
-  <div class="col">
-    <%= render 'tasks/cards', 
-          columns: @columns, 
-          tasks_per_column: @tasks_per_column,
-          filter: nil,
-          url: request.url,
-          ability: @current_ability
-     %>
+<div data-controller="toggle" data-toggle-toggle-class="d-none">
+
+  <div class="row">
+  <span data-action="click->toggle#toggle" class="fold">
+    <i class="fas fa-filter icon-color"></i>
+  </span>
+    <div class="d-print-none pr-3" data-toggle-target="content">
+      <%= render 'tasks/filters' %>
+    </div>
+    <div class="col pl-0">
+      <%= render 'tasks/cards', 
+            columns: @columns, 
+            tasks_per_column: @tasks_per_column,
+            filter: nil,
+            url: request.url,
+            ability: @current_ability
+       %>
+    </div>
   </div>
 </div>
