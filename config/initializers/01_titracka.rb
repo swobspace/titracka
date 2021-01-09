@@ -87,6 +87,14 @@ module Titracka
     end
   end
 
+  def self.mail_to
+    if CONFIG['mail_to'].present?
+      Array(CONFIG['mail_to'])
+    else
+      []
+    end
+  end
+
   # ActionMailer::Base.default_url_options = {
   #  host: self.host,
   #  script_name: self.script_name
