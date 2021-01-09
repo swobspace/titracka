@@ -106,7 +106,7 @@ class TasksController < ApplicationController
         :start, :to_start, :from_start, :deadline, :to_deadline, :from_deadline,
         :resubmission, :to_resubmission, :from_resubmission, :subtree,
         :subject, :user, :responsible, :status, :state, :priority, :private,
-        :has_references, :limit, :search, :cross_reference,
+        :has_references, :limit, :search, :cross_reference, :without_lists,
         priority_ids: [], state_ids: [],
       ).to_hash
       searchparms.reject{|k, v| (v.blank? || submit_parms.include?(k))}

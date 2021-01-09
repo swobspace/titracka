@@ -144,6 +144,19 @@
           <%= t('titracka.include_subtree') %>
         </label>
       </div>
+      <div class="form-check">
+        <input name="without_lists" type="hidden" value="false"/>
+        <%= check_box_tag "without_lists", "true", (params[:without_lists] == "true"),
+            class: "form-check-input",
+            data: { 
+              action: "change->filters#filter",
+              'filters-target': 'filter'
+            }
+        %>
+        <label class="form-check-label" for="subtree">
+          <%= t('titracka.without_lists') %>
+        </label>
+      </div>
     </div>
 
     <div class="form-group">
@@ -198,9 +211,9 @@
             }
       %>
     </div>
-    <button class="btn btn-sm btn-outline-secondary"
+    <button class="btn btn-sm btn-outline-secondary mt-2"
       data-action="filters#reset" >
-      <%= t('titracka.clear_selection') %>
+      <%= t('titracka.clear_all_filters') %>
     </button>
   </div>
 </div>

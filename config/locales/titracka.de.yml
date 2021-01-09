@@ -49,7 +49,9 @@ de:
     include_subtree: Unterbaum mit einschließen
     not_selected: nichts ausgewählt
     clear_selection: "Auswahl löschen"
+    clear_all_filters: "Alle Filter löschen"
     task_id: Nummer der Aufgabe
+    without_lists: nur OEs ohne Liste
 
   actions:
     destroy: Datensatz löschen
