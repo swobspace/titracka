@@ -6,8 +6,14 @@ class TaskReflex < ApplicationReflex
 
   def show
     @task = Task.find(element.dataset[:id].to_i)
+    morph "#showTaskModalHeader", TasksController.render(
+      partial: 'tasks/modal_task_header', locals: { task: @task }
+    )
     morph "#showTaskModalTable", TasksController.render(
       partial: 'tasks/show_task', locals: { task: @task }
+    )
+    morph "#newTaskNote", TasksController.render(
+      partial: 'tasks/note_form', locals: { task: @task }
     )
     morph "#showTaskNotesCollection", NotesController.render(
       partial: 'notes/note', collection: @task.notes.order("created_at desc"), 

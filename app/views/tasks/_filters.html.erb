@@ -1,10 +1,26 @@
 <div class="card bg-light" data-controller="select2 filters">
   <div class="card-body">
-    <%= hidden_field_tag :view, 'cards',
-        data: {
-          'filters-target': 'filter',
-        }
-     %>
+    <div class="form-group">
+      <%= label_tag :subject, t('attributes.title'), class: "form-label" %> 
+      <%= text_field_tag "subject", nil, 
+            class: 'form-control',
+            data: { 
+              action: "change->filters#filter",
+              'filters-target': 'filter'
+            }
+      %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :id, t('titracka.task_id'), class: "form-label" %> 
+      <%= text_field_tag "id", nil, 
+            class: 'form-control',
+            data: { 
+              action: "change->filters#filter",
+              'filters-target': 'filter'
+            }
+      %>
+    </div>
 
     <div class="form-group">
       <%= label_tag :status, t('attributes.state'), class: "form-label" %>
@@ -120,12 +136,25 @@
         <%= check_box_tag "subtree", "true", (params[:subtree] == "true"),
             class: "form-check-input",
             data: { 
-              action: "jquery:change->filters#filter",
+              action: "change->filters#filter",
               'filters-target': 'filter'
             }
         %>
         <label class="form-check-label" for="subtree">
           <%= t('titracka.include_subtree') %>
+        </label>
+      </div>
+      <div class="form-check">
+        <input name="without_lists" type="hidden" value="false"/>
+        <%= check_box_tag "without_lists", "true", (params[:without_lists] == "true"),
+            class: "form-check-input",
+            data: { 
+              action: "change->filters#filter",
+              'filters-target': 'filter'
+            }
+        %>
+        <label class="form-check-label" for="subtree">
+          <%= t('titracka.without_lists') %>
         </label>
       </div>
     </div>
@@ -172,5 +201,19 @@
       %>
     </div>
 
+    <div class="form-group">
+      <%= label_tag :cross_reference, t('attributes.cross_reference'), class: "form-label" %> 
+      <%= text_field_tag "cross_reference", nil, 
+            class: 'form-control',
+            data: { 
+              action: "change->filters#filter",
+              'filters-target': 'filter'
+            }
+      %>
+    </div>
+    <button class="btn btn-sm btn-outline-secondary mt-2"
+      data-action="filters#reset" >
+      <%= t('titracka.clear_all_filters') %>
+    </button>
   </div>
 </div>

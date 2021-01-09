@@ -6,6 +6,10 @@ RSpec.describe TasksController, type: :routing do
       expect(get: "/tasks").to route_to("tasks#index")
     end
 
+    it "routes to #index" do
+      expect(get: "/cards").to route_to("tasks#index", view: "cards")
+    end
+
     it "routes to #index (:post)" do
       expect(post: "/tasks.json").to route_to(controller: 'tasks', action: 'index', format: "json")
     end

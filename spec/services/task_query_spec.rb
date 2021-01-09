@@ -55,6 +55,15 @@ RSpec.describe TaskQuery do
     end
   end
 
+  context "with :id" do
+    subject { TaskQuery.new(tasks, {id: to1.to_param}) }
+    before(:each) do
+      @matching = [to1]
+      @nonmatching = [t1, t2, to2, tl1, tl2, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :private yes
+
   context "with :private yes" do
     subject { TaskQuery.new(tasks, {private: 'yes'}) }
     before(:each) do
@@ -123,6 +132,15 @@ RSpec.describe TaskQuery do
     before(:each) do
       @matching = [to1, tl1]
       @nonmatching = [t1, t2, to2, tl2, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :org_unit_id ou1.id
+
+  context "with :org_unit_id, without_lists" do
+    subject { TaskQuery.new(tasks, {org_unit_id: ou1.id, without_lists: true}) }
+    before(:each) do
+      @matching = [to1]
+      @nonmatching = [t1, t2, to2, tl1, tl2, done1, archiv2]
     end
     it_behaves_like "a task query"
   end # :org_unit_id ou1.id
@@ -238,6 +256,15 @@ RSpec.describe TaskQuery do
     it_behaves_like "a task query"
   end # :subject mm
 
+  context "with :cross_reference" do
+    subject { TaskQuery.new(tasks, {cross_reference: 4711}) }
+    before(:each) do
+      @matching = [tl2]
+      @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :cross_reference
+
   context "with :has_references true" do
     subject { TaskQuery.new(tasks, {has_references: true}) }
     before(:each) do
@@ -246,7 +273,6 @@ RSpec.describe TaskQuery do
     end
     it_behaves_like "a task query"
   end # :has_references
-
 
   describe "#all" do
     context "using :search'" do

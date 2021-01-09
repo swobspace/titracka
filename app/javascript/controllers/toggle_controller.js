@@ -17,7 +17,7 @@ export default class extends ApplicationController {
     const tclass = this.toggleClass
     const applied = event.target.classList.contains(tclass)
     
-    document.querySelectorAll('[data-toggle-target="content"]').forEach(function(t) {
+    this.element.querySelectorAll('[data-toggle-target="content"]').forEach(function(t) {
       if (applied) {
         t.classList.remove(tclass)
       } else {
