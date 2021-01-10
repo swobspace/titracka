@@ -7,6 +7,7 @@ RSpec.describe "notes/new", type: :view do
     allow(controller).to receive(:current_ability) { @ability }
     allow(controller).to receive(:controller_name) { "notes" }
     allow(controller).to receive(:action_name) { "new" }
+    allow(controller).to receive(:current_user) { nil }
 
     @noteable = FactoryBot.create(:task)
     @note = assign(:note, FactoryBot.build(:note))
