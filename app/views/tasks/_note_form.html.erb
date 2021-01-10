@@ -9,25 +9,32 @@
     <%= f.input :description, as: :rich_text_area,
           wrapper: :vertical_form, label: false
        %>
-    <div class="form-group">
-      <%= label_tag :mail_to, t('attributes.mail_to'), class: "form-label" %>
-      <%= select_tag "mail_to", 
-            options_for_select(mailaddresses_for_select(task, current_user)),
-            class: 'form-control'
-      %>
-    </div>
-    <div class="form-group">
-      <%= label_tag "email subject prefix" %>
-      <div class="form-check">
-        <%= radio_button_tag :subject_prefix, "task", class: "form-check-input" %>
-        <%= label_tag "Task ID", nil, class: "form-check-label" %>
+
+    <div class="form-group row">
+      <%= label_tag :mail_to, t('attributes.mail_to'), class: "form-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= select_tag "mail_to", 
+              options_for_select(mailaddresses_for_select(task, current_user)),
+              prompt: t('titracka.no_email'),
+              class: 'form-control'
+        %>
       </div>
-      <% task.cross_references.each do |xref| %>
+    </div>
+
+    <div class="form-group row">
+      <%= label_tag "email subject prefix", nil, class: "col-sm-2" %>
+      <div class="col-sm-10">
         <div class="form-check">
-          <%= radio_button_tag :subject_prefix, xref.id, class: "form-check-input" %>
-          <%= label_tag xref.to_s, nil, class: "form-check-label" %>
+          <%= radio_button_tag :subject_prefix, "task", class: "form-check-input" %>
+          <%= label_tag :subject_prefix, "Titracka task id", class: "form-check-label" %>
         </div>
-      <% end %>
+        <% task.cross_references.each do |xref| %>
+          <div class="form-check">
+            <%= radio_button_tag :subject_prefix, xref.id, class: "form-check-input" %>
+            <%= label_tag :subject_prefix, xref.to_s, class: "form-check-label" %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
     <div data-form-target="errorSuccess" class="" role="alert"></div>
