@@ -52,6 +52,7 @@ de:
     clear_all_filters: "Alle Filter löschen"
     task_id: Nummer der Aufgabe
     without_lists: nur OEs ohne Liste
+    no_email: keine E-Mail senden
 
   actions:
     destroy: Datensatz löschen
@@ -114,6 +115,7 @@ de:
     limit: Limit
     list: Liste
     list_id: Liste
+    mail_to: E-Mail an
     name: Name
     note: Notiz
     notes: Notizen

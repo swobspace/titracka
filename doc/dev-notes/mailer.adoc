@@ -1,0 +1,7 @@
+= Mailer
+
+== NoteMailer
+
+----
+bin/rails generate mailer NoteMailer send_note
+----

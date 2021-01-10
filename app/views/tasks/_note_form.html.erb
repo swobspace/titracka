@@ -9,6 +9,8 @@
     <%= f.input :description, as: :rich_text_area,
           wrapper: :vertical_form, label: false
        %>
+
+    <%= render 'notes/mail_form_fields', task: task %>
     <div data-form-target="errorSuccess" class="" role="alert"></div>
     <div role="toolbar" class="">
       <%= f.button :submit, class: 'btn btn-primary' %>

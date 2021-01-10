@@ -25,4 +25,21 @@ module TasksHelper
     end
     output.html_safe
   end
+
+  def mailaddresses_for_select(task, current_user = nil)
+    addresses = Titracka.mail_to
+    addresses << email_for_select(current_user)
+    addresses << email_for_select(task.user)
+    addresses << email_for_select(task.responsible)
+    addresses.uniq.compact
+  end
+
+private
+  def email_for_select(user)
+    if user.blank? || user.email.blank?
+      nil
+    else
+      user.email
+    end
+  end
 end

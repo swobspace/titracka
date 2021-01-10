@@ -8,6 +8,7 @@ RSpec.describe Titracka, type: :model do
       allow(Titracka::CONFIG).to receive(:[]).with('use_ssl').and_return(nil)
       allow(Titracka::CONFIG).to receive(:[]).with('host').and_return(nil)
       allow(Titracka::CONFIG).to receive(:[]).with('script_name').and_return(nil)
+      allow(Titracka::CONFIG).to receive(:[]).with('mail_to').and_return(nil)
 
       allow(Titracka::CONFIG).to receive(:[]).with('remote_user').and_return(nil)
       allow(Titracka::CONFIG).to receive(:[]).with('action_cable_allowed_request_origins').and_return(nil)
@@ -25,6 +26,7 @@ RSpec.describe Titracka, type: :model do
     it { expect(Titracka.mail_from).to eq('root') }
     it { expect(Titracka.use_ssl).to be_falsey }
     it { expect(Titracka.remote_user).to eq('REMOTE_USER') }
+    it { expect(Titracka.mail_to).to eq([]) }
     it { expect(Titracka.action_cable_allowed_request_origins).to contain_exactly(
          'http://localhost', 'https://localhost' ) }
   end

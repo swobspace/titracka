@@ -1,0 +1,5 @@
+<%= @note.date %> / <%= @note.user %>
+
+<%= @note.description.to_plain_text %>
+
+Titracka: <%= "#{I18n.t('attributes.task')} ##{@note.task.id}" %>, <%= task_url(@note.task) %>
