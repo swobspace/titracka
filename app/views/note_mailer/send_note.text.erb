@@ -1,3 +1,5 @@
-Note#send_note
+<%= @note.date %> / <%= @note.user %>
 
-<%= @greeting %>, find me in app/views/note_mailer/send_note.text.erb
+<%= @note.description.to_plain_text %>
+
+Titracka: <%= "#{I18n.t('attributes.task')} ##{@note.task.id}" %>, <%= task_url(@note.task) %>

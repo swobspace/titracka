@@ -8,10 +8,11 @@ class NoteMailer < ApplicationMailer
   def send_note(note, options = {})
     @note = note
     options = options.symbolize_keys
+    mail_from = options.fetch(:mail_from) { Titracka.mail_from }
     mail_to = options.fetch(:mail_to)
     prefix  = options.fetch(:prefix) { "" }
     subject = options.fetch(:subject) { @note.task.subject }
 
-    mail to: mail_to, subject: [prefix, subject].compact.join(" ")
+    mail from: mail_from, to: mail_to, subject: [prefix, subject].compact.join(" ")
   end
 end
