@@ -13,6 +13,8 @@
       <%= f.input :description, as: :rich_text_area
 	 %>
 
+      <%= render 'notes/mail_form_fields', task: @note.task %>
+
       <%= f.button :submit, class: 'btn btn-primary' %>
       <%= cancel_button %>
     </div>
