@@ -29,6 +29,7 @@ class NotesController < ApplicationController
 
     respond_with(@note, location: location) do |format|
       if @note.save
+        email_note(@note)
         format.js { head :created }
       else
         format.js { render json: @note.errors.full_messages, status: :unprocessable_entity }
@@ -70,4 +71,21 @@ class NotesController < ApplicationController
       polymorphic_path(@noteable)
     end
 
+    def email_note(note)
+      return if note.blank?
+      if params[:mail_to].present?
+        sender = (current_user.email.present?) ? current_user.email : Titracka.mail_from
+        if params[:subject_prefix] == "task_id"
+          prefix = note.task.id
+        else
+          prefix = params[:subject_prefix]
+        end
+        NoteMailer.send_note(note, 
+                             mail_from: sender,
+                             mail_to: params[:mail_to], 
+                             prefix: prefix
+                            )
+                  .deliver_later
+      end
+    end
 end
