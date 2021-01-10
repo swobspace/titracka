@@ -27,8 +27,7 @@ module TasksHelper
   end
 
   def mailaddresses_for_select(task, current_user = nil)
-    addresses = [""]
-    addresses << Titracka.mail_to
+    addresses = Titracka.mail_to
     addresses << email_for_select(current_user)
     addresses << email_for_select(task.user)
     addresses << email_for_select(task.responsible)
