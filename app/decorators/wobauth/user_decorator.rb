@@ -9,5 +9,16 @@ module Wobauth
         "#{object.sn}, #{object.givenname}"
       end
     end
+
+    def working_time(options = {})
+      options = options.symbolize_keys
+      if day = options.fetch(:day, false)
+        object.time_accountings.where(date: day).sum(:duration)
+      elsif day = options.fetch(:week, false)
+        day = Date.parse(day)
+        week = (day.beginning_of_week .. day.end_of_week)
+        object.time_accountings.where(date: week).sum(:duration)
+      end
+    end
   end
 end
