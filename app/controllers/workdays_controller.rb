@@ -70,11 +70,7 @@ class WorkdaysController < ApplicationController
     def set_daystuff
       @time_accountings = @current_user.time_accountings.where(date: @workday.date)
       @work_sum = @time_accountings.sum(:duration)
-      @week_sum = @current_user
-                  .time_accountings 
-                  .where(date: 
-                    (@workday.date.beginning_of_week .. @workday.date.end_of_week))
-                  .sum(:duration)
+      @week_sum = @current_user.decorate.working_time(week: @workday.date)
       @end_of_work = (@workday.work_start || @workday.date.to_time.beginning_of_day) + 
                        @work_sum.minutes + @workday.pause.minutes
     end
@@ -84,5 +80,7 @@ class WorkdaysController < ApplicationController
                    .joins(:time_accountings)
                    .order("time_accountings.date desc")
                    .distinct.limit(10)
+      @columns = State.not_archived
+      @tasks_per_column = @tasks.group_by(&:state_id)
     end
 end
