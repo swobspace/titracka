@@ -6,7 +6,7 @@
         controller: 'task toggle',
         'toggle-toggle-class': 'hidden',
         id: task.id,
-        url: state_task_path(column, task)
+        url: state_task_path(task.state, task)
       } do %>
   <span data-action="click->toggle#toggle" class="float-right">
     <i data-toggle-target="content" class="clapse icon-color"></i>

@@ -80,5 +80,7 @@ class WorkdaysController < ApplicationController
                    .joins(:time_accountings)
                    .order("time_accountings.date desc")
                    .distinct.limit(10)
+      @columns = State.not_archived
+      @tasks_per_column = @tasks.group_by(&:state_id)
     end
 end

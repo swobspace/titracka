@@ -2,7 +2,10 @@
   <meta name="turbolinks-cache-control" content="no-cache">
 <% end %>
 
-<div class="row">
+<%= render partial: 'tasks/modal_for_cards' %>
+
+
+<div class="row" id="tasksCardboard">
   <div class="col-sm-9">
     <div class="card">
       <div class="card-header d-flex w-100 justify-content-between"
@@ -135,4 +138,14 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="mt-2">
+  <% @tasks.each_slice(5) do |tasks| %>
+    <div class="card-group">
+      <% tasks.each do |task| %>
+        <%= render 'workdays/task', task: task, ability: @current_ability %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
