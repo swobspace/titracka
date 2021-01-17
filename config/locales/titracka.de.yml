@@ -139,6 +139,7 @@ de:
     state_id: Status
     subject: Gegenstand
     subtree: Unterbaum 
+    sum: Summe
     tag: Tag
     tag_id: Tag
     task: Aufgabe
@@ -156,6 +157,8 @@ de:
     username: Username
     user: Benutzer
     user_id: Benutzer
+    week: Woche
+    weekday: Wochentag
     workday: Arbeitstag
     work_start: Tagesbeginn
 
