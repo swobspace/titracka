@@ -31,7 +31,7 @@ Organisationseinheiten. Ein Beispiel:
 
 [[auth-ou-baum-mustermann]]
 .Organisationseinheiten in Baumstruktur
-image::images/mustermann-oe-baum.png[OE Baum, {w-33}]
+image::mustermann-oe-baum.png[OE Baum, {w-33}]
 
 Leserechte auf die _Mustermann GmbH_ gelten auch für die darunter liegenden
 Organisationseinheiten _Finanz- und Rechnungswesen_ sowie _Personalabteilung_.
@@ -99,7 +99,7 @@ Organisationsbaum).
 
 [[admin-menu]]
 .Admin-Menü
-image::images/titracka-menu-admin.png[Übersicht Benutzer]
+image::titracka-menu-admin.png[Übersicht Benutzer]
 
 Die Pflege von Benutzern und Berechtigungen ist im Admin-Menü
 zusammengefasst. Über das das Menü _Admin->Benutzer_ gelangt man in die
@@ -107,14 +107,14 @@ zusammengefasst. Über das das Menü _Admin->Benutzer_ gelangt man in die
 
 [[users-index]]
 .Übersicht Benutzer
-image::images/users-index.png[Übersicht Benutzer]
+image::users-index.png[Übersicht Benutzer]
 
 Über den Button _Benutzer erstellen_ (unterhalb der Tabelle) gelangt man in
 das Formular für die Anlage eines neuen Benutzers.
 
 [[users-new]]
 .Neuen Benutzer anlegen
-image::images/users-new.png[Neuen Benutzer anlegen]
+image::users-new.png[Neuen Benutzer anlegen]
 
 Die einzige Pflichtangabe ist der Benutzername, sinnvollerweise gibt man Name,
 Vorname und die E-Mail-Adresse ebenfalls noch mit an und dazu ein temporäres
@@ -123,7 +123,7 @@ Nach der Anlage gelangt man in die Anzeige des angelegten Benutzers:
 
 [[users-show]]
 .Benutzer anzeigen
-image::images/users-show.png[Anzeige Benutzer]
+image::users-show.png[Anzeige Benutzer]
 
 Von hier aus kann man direkt Berechtigungen vergeben. Im Abschnitt
 _Berechtigungen_ werden die direkt dem User zugeordneten Berechtigungen
@@ -133,7 +133,7 @@ Benutzer ist über diesen Weg bereits ausgewählt.
 
 [[users-auth-new]]
 .Benutzerbezogene Berechtigung vergeben
-image::images/users-auth-new.png[Benutzerberechtigung vergeben]
+image::users-auth-new.png[Benutzerberechtigung vergeben]
 
 Neben der Auswahl der Rolle und der Organisationseinheit hat man auch die
 Möglichkeit, die Zugriffsrechte zeitlich zu befristen. Bei unbefristeten
@@ -144,7 +144,7 @@ Nach dem Speichern wird die neue Berechtigung beim User angezeigt.
 
 [[users-show-auth-assigned]]
 .Anzeige der angelegten Berechtigung beim User
-image::images/users-show-auth-assigned.png[Anzeige der angelegten Berechtigung beim User]
+image::users-show-auth-assigned.png[Anzeige der angelegten Berechtigung beim User]
 
 === Anlage von Gruppen
 
@@ -153,14 +153,14 @@ erstellen_ unterhalb der Übersichtstabelle:
 
 [[groups-index]]
 .Übersicht Gruppen
-image::images/groups-index.png[Übersicht Group]
+image::groups-index.png[Übersicht Group]
 
 Für die Pflege einer Gruppe wird nur ein Name und eine kurze Beschreibung
 benötigt.
 
 [[group-new]]
 .Neue Gruppe anlegen
-image::images/group-new.png[Neue Gruppe anlegen]
+image::group-new.png[Neue Gruppe anlegen]
 
 Nach der Anlage der Gruppe gelangt man in die Anzeige der Gruppe, von dort aus
 kann man neue Berechtigungen der Gruppe zuweisen oder Mitglieder der Gruppe
@@ -168,15 +168,15 @@ hinzufügen.
 
 [[group-show]]
 .Gruppe anzeigen
-image::images/group-show.png[Gruppe anzeigen]
+image::group-show.png[Gruppe anzeigen]
 
 [[group-auth-new]]
 .Neue Berechtigung für eine Gruppe anlegen
-image::images/group-auth-new.png[Neue Berechtigung für Gruppe anlegen]
+image::group-auth-new.png[Neue Berechtigung für Gruppe anlegen]
 
 Die vergebenen Berechtigungen werden schließlich in der Ansicht der Gruppe
 angezeigt, im Bild zu sehen ist nur der Ausschnitt der Berechtigungen.
 
 [[group-auth-show-assigned]]
 .Anzeige der Gruppenberechtigung
-image::images/group-auth-show-assigned.png[Anzeige der Gruppenberechtigung]
+image::group-auth-show-assigned.png[Anzeige der Gruppenberechtigung]

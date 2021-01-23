@@ -1,4 +1,4 @@
-== Einführung
+= Einführung
 
 Titracka ist ein Acronym für "Time and Task Tracking with Kanban". Tasks
 werden in einem Kanban-Board dargestellt. Zu jedem Task können Kommentare und
@@ -17,7 +17,7 @@ Personen unabhängig von einer Organisationsstruktur gemeinsam an
 projektbezogenen Tasks arbeiten. Das Berechtigungssystem hierzu ist noch nicht
 implementiert, Listen ohne OE sind derzeit ausschließlich privat. Die
 Erstellung eine Liste zu eine OE bleibt der Rolle _Manager_ vorbehalten (siehe
-Abschnitt <<authorities-roles,Rollen>>).
+Abschnitt xref:titracka:admin-manual:users.adoc[Rollen]).
 
 Zu jedem Task kann man Aktivitäten mit Zeitaufwand erfassen. Die eigenen
 Aktivitäten kann sich jeder User in einer Tagesansicht anzeigen; die
