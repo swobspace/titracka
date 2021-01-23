@@ -1,5 +1,12 @@
 = Changelog
 
+=== 0.5.6 / 2021-01-23
+
+----
+- Workdays / most used tasks: fix task selection, improve display
+- Workdays / weekly overview: add links to date for direct navigation
+----
+
 === 0.5.4 / 2021-01-17
 
 ----
