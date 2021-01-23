@@ -76,11 +76,9 @@ class WorkdaysController < ApplicationController
     end
 
     def mostly_wanted_tasks
-      @tasks = Task.accessible_by(current_ability)
-                   .joins(:time_accountings)
-                   .order("time_accountings.date desc")
-                   .distinct.limit(10)
-      @columns = State.not_archived
-      @tasks_per_column = @tasks.group_by(&:state_id)
+      @tasks ||= RecentTasksQuery.new(user_id: @current_user.id).tasks
+      @columns ||= State.not_archived
+      @tasks_per_column ||= @tasks.group_by(&:state_id)
     end
+
 end

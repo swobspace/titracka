@@ -53,6 +53,7 @@ de:
     task_id: Nummer der Aufgabe
     without_lists: nur OEs ohne Liste
     no_email: keine E-Mail senden
+    recent_used_tasks: Zuletzt genutzte Tasks
 
   actions:
     destroy: Datensatz löschen

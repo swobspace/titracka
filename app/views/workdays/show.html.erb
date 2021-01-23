@@ -121,7 +121,7 @@
           <tbody>
             <% (@workday.date.beginning_of_week .. @workday.date.end_of_week).each do |wday| %>
               <%= content_tag :tr do %>
-                <td class="text-center"><%= wday.to_s %></td>
+                <td class="text-center"><%= link_to wday.to_s, by_date_path(wday.to_s) %></td>
                 <td class="text-center"><%= wday.strftime("%a") %></td>
                 <td class="text-right"><%= hourmin(@current_user.decorate.working_time(day:wday)) %></td>
               <% end %>
@@ -140,7 +140,12 @@
   </div>
 </div>
 
-<div class="mt-2">
+<div class="card mt-3 border-0">
+  <div class="card-header border mr-1 ml-1">
+    <h4 class="card-title mb-0"><%= t('titracka.recent_used_tasks') %></h4>
+  </div>
+  <div class="card-body m-0 p-0">
+<div class="">
   <% @tasks.each_slice(5) do |tasks| %>
     <div class="card-group">
       <% tasks.each do |task| %>
@@ -148,4 +153,6 @@
       <% end %>
     </div>
   <% end %>
+</div>
+</div>
 </div>

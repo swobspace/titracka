@@ -7,6 +7,8 @@ RSpec.describe "workdays/show", type: :view do
     allow(controller).to receive(:current_ability) { @ability }
     allow(controller).to receive(:controller_name) { "workdays" }
     allow(controller).to receive(:action_name) { "show" }
+    allow(controller).to receive(:can?).with(any_args).and_return(true)
+    @current_ability = @ability
 
     @current_user = FactoryBot.create(:user, sn: "Mustermann", 
                                       givenname: "Max", username: 'mmax')
@@ -25,6 +27,7 @@ RSpec.describe "workdays/show", type: :view do
     ))
     @work_sum = @time_accountings.map{|x| x.duration}.sum
     @end_of_work = @workday.work_start + @work_sum.minutes + @workday.pause.minutes
+    @tasks = Array(task)
   end
 
   it "renders attributes in <p>" do
