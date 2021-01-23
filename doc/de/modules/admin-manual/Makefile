@@ -17,7 +17,7 @@ DOCUMENT = admin-manual
 
 .PHONY: all
 
-all: pdf html sync-images
+all: pdf
 
 pdf:
 	$(MAKE) $(DOCUMENT).pdf

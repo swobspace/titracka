@@ -5,7 +5,7 @@
 :sectnums:
 :showcomments:
 :code_dir: code
-:image_dir: pics
+:imagesdir: images
 :author: Wolfgang Barth
 :Email: Wolfgang.Barth@marienhaus.de
 :revision: 0.0.1
@@ -50,16 +50,13 @@ link:admin-manual.pdf[Admin-Manual]
 endif::[]
 
 
-[%nonfacing]
-include::preface.adoc[]
-
 // Quickstart
 //[%nonfacing]
 //include::quickstart.adoc[]
 
 // use_cases
 [%nonfacing]
-include::use_cases.adoc[]
+include::./pages/use_cases.adoc[]
 
 // OrgUnits
 //[%nonfacing]
@@ -67,7 +64,7 @@ include::use_cases.adoc[]
 
 // Users
 //[%nonfacing]
-include::users.adoc[]
+include::./pages/users.adoc[]
 
 // master data
 // [%nonfacing]
