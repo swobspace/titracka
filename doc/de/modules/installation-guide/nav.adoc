@@ -1,0 +1,8 @@
+.Installation Guide
+* xref:requirements.adoc[Requirements]
+* xref:setup.adoc[Setup]
+* xref:apache-setup.adoc[Apache setup]
+* xref:configuration.adoc[Configuration]
+* xref:database-setup.adoc[Database Setup]
+* xref:database-mariadb.adoc[MariaDB Setup]
+* xref:customization.adoc[Customization]

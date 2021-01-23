@@ -1,4 +1,4 @@
-== Einführung
+= Einführung
 
 Titracka ist ein Acronym für "Time and Task Tracking with Kanban". Tasks
 werden in einem Kanban-Board dargestellt. Zu jedem Task können Kommentare und

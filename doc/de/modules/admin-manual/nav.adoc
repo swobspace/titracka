@@ -1,0 +1,7 @@
+.Admin Manual
+// * xref:quickstart.adoc[Quickstart]
+* xref:use_cases.adoc[Use Cases]
+* xref:orgunits.adoc[Organisationseinheiten]
+* xref:users.adoc[Rollen und Berechtigungen]
+* xref:master_data.adoc[Stammdaten]
+// * xref:rollout.adoc[Deployment]

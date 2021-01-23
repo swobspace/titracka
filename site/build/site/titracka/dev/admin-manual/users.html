@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Titracka Documentation</title>
+    <link rel="canonical" href="http://localhost/titracka/dev/admin-manual/users.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="http://localhost">Titracka Documentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="titracka" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Titracka</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Welcome</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Admin Manual</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="preface.html">Vorwort</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="use_cases.html">Use Cases</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="orgunits.html">Organisationseinheiten</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="users.html">Rollen und Berechtigungen</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="master_data.html">Stammdaten</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Installation Guide</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation-guide/requirements.html">Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation-guide/setup.html">Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation-guide/apache-setup.html">Apache setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation-guide/configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation-guide/database-setup.html">Database Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation-guide/database-mariadb.html">MariaDB Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="#customization.adoc">Customization</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Titracka</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Titracka</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Titracka</a></li>
+    <li>Admin Manual</li>
+    <li><a href="users.html">Rollen und Berechtigungen</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/wob/doc/Projects/github/titracka/doc/modules/admin-manual/pages/users.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_benutzer_und_berechtigungen"><a class="anchor" href="#_benutzer_und_berechtigungen"></a>Benutzer und Berechtigungen</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="authorities-basics"><a class="anchor" href="#authorities-basics"></a>Das Berechtigungskonzept</h3>
+<div class="paragraph">
+<p>Berechtigungen vergibt man an einen Benutzer oder an eine Gruppe. Zur
+Berechtigung gehört eine Rolle, die beschreibt, welche Art von Tätigkeiten der
+Benutzer oder die Gruppe ausführen dürfen, und eine zugeordnete
+Organisationseinheit, auf die diese Berechtigung angewandt wird. Das
+Berechtigungstripel bildet einen einzelnen Berechtigungsdatensatz ab.</p>
+</div>
+<div class="listingblock">
+<div class="title">Das Berechtigungstripel</div>
+<div class="content">
+<pre>User/Gruppe + Rolle + Organisationseinheit</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Man kann einem User oder einer Gruppe beliebig viele solcher Berechtigungen
+vergeben, etwa Bearbeitungsrechte für eine bestimmte Organisationseinheit und
+Leserechte für den gesamten Organisationsbaum.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Die Anlage von Gruppen und die Vergabe von Berechtigungen an Gruppen
+lohnt sich immer dann, wenn mehrere Personen immer dieselben Rechte erhalten
+sollen und die Rechte sich aus mehreren Berechtigungstripeln zusammensetzen.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Gruppen- und Benutzerrechte können beliebig kombiniert werden, z.B. eine
+Gruppe für nur Lesen und die direkte Vergabe von Pflegeberechtigungen an
+einzelne Benutzer.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Rechte auf Organisationseinheiten gelten nicht nur für die jeweilige
+Organisationseinheit, sondern auch für alle darunter liegenden
+Organisationseinheiten. Ein Beispiel:</p>
+</div>
+<div id="auth-ou-baum-mustermann" class="imageblock">
+<div class="content">
+<img src="_images/images/mustermann-oe-baum.png" alt="OE Baum" width="{w-33}">
+</div>
+<div class="title">Figure 1. Organisationseinheiten in Baumstruktur</div>
+</div>
+<div class="paragraph">
+<p>Leserechte auf die <em>Mustermann GmbH</em> gelten auch für die darunter liegenden
+Organisationseinheiten <em>Finanz- und Rechnungswesen</em> sowie <em>Personalabteilung</em>.
+Leserechte für die <em>Personalabteilung</em> wirken sich dagegen ausschließlich auf
+die <em>Personalabteilung</em> aus, da unter dieser keine weiteren
+Organisationseinheiten zugeordnet sind.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="authorities-roles"><a class="anchor" href="#authorities-roles"></a>Rollen</h3>
+<div class="paragraph">
+<p>Rollen beschreiben, welche Tätigkeiten der Benutzer am Ende ausführen darf.
+Die Rollen in Titracka sind nicht änderbar. Folgende Rollen existieren:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Reader</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Leserechte auf alles, was der Organisationseinheit zugeordnet wurde:
+Tasks und Listen.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Member</dt>
+<dd>
+<p>Leserechte wie Reader; zusätzlich:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Erstellen und Bearbeiten von Tasks, in denen der User als Responsible oder
+Accountable zugeordnet ist.</p>
+</li>
+<li>
+<p>Erstellen und Bearbeiten von Aktivitäten zu allen Tasks, zu denen der User Leserechte hat.</p>
+</li>
+<li>
+<p>Löschen von privaten Tasks (ohne zugeordnete Liste oder OE)</p>
+</li>
+<li>
+<p>Das Löschen aller Tasks mit OE-Zuordnung bleibt der Rolle Manager
+vorbehalten.</p>
+</li>
+<li>
+<p>Erstellen und Bearbeiten von Listen, die <strong>keiner</strong> OE zugeordnet sind.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Manager</dt>
+<dd>
+<p>Rechte wie Member; zusätzlich:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Bearbeiten und Löschen aller Tasks, die seiner Organisationseinheit
+zugeordnet sind, unabhängig von Responsible und Accountable</p>
+</li>
+<li>
+<p>Lesen aller Aktivitäten von Tasks, die seiner Organisationseinheit
+zugeordnet sind.</p>
+</li>
+<li>
+<p>Erstellen und Bearbeiten von Listen zu einer OE.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">OrgaAdmin</dt>
+<dd>
+<p>Vollzugriff auf alle Stammdaten einschließlich der
+Organisationseinheiten. Eine Berechtigung mit dieser Rolle erfolgt ohne Angabe
+einer Organisationseinheit (und damit ohne Einschränkung auf bestimmte
+Organisationseinheiten). Ein OrgaAdmin hat keinen Zugriff auf Listen, Tasks,
+und Aktivitäten. Bei Bedarf ist hier eine weitere Berechtigung mit der Rolle
+Reader, Member oder Manager zu vergeben.</p>
+</dd>
+<dt class="hdlist1">UserAdmin</dt>
+<dd>
+<p>Anlage von Benutzern und Gruppen sowie die Vergabe von
+Berechtigungen. Ein UserAdmin hat keinen Zugriff Listen, Tasks und
+Aktivitäten. bei Bedarf ist hier eine weitere Berechtigung mit der Rolle
+Reader, Member oder Manager zu vergeben.</p>
+</dd>
+<dt class="hdlist1">Admin</dt>
+<dd>
+<p>Zentraler Administrator mit vollen Zugriffsrechten auf alle Daten. Die
+Rolle Admin sollte nur an ein oder zwei Personen vergeben werden und nicht für
+die normale Bearbeitung von Daten verwendet werden (d.h. separater
+Admin-Benutzer). In den allermeisten Fällen können administrative Tätigkeiten
+mit den Rollen <em>OrgaAdmin</em> und <em>UserAdmin</em> durchgeführt werden.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Über die Rollen-Berechtigungen hinaus hat jeder eingeloggte Benutzer,
+der über mindestens eine Berechtigung verfügt, Leserechte auf alle Datensätze
+unter <em>Konfiguration</em>, dazu gehören Organisationseinheiten und Status.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Legen Sie die Berechtigungsvergabe (welche Personengruppe bekommt welche
+Berechtigung) sowie den Workflow für Vergabe, Änderung und Entzug von
+Berechtigungen schriftlich in einem Berechtigungskonzept fest. Dokumentieren
+Sie ebenfalls schriftlich alle Benutzer mit administrativen
+Privilegien (Admin-Rollen und/oder Vollzugriff auf den gesamten
+Organisationsbaum).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_anlage_von_benutzern"><a class="anchor" href="#_anlage_von_benutzern"></a>Anlage von Benutzern</h3>
+<div id="admin-menu" class="imageblock">
+<div class="content">
+<img src="_images/images/titracka-menu-admin.png" alt="Übersicht Benutzer">
+</div>
+<div class="title">Figure 2. Admin-Menü</div>
+</div>
+<div class="paragraph">
+<p>Die Pflege von Benutzern und Berechtigungen ist im Admin-Menü
+zusammengefasst. Über das das Menü <em>Admin&#8594;Benutzer</em> gelangt man in die
+Übersicht der bereits vorhandenen Benutzer.</p>
+</div>
+<div id="users-index" class="imageblock">
+<div class="content">
+<img src="_images/images/users-index.png" alt="Übersicht Benutzer">
+</div>
+<div class="title">Figure 3. Übersicht Benutzer</div>
+</div>
+<div class="paragraph">
+<p>Über den Button <em>Benutzer erstellen</em> (unterhalb der Tabelle) gelangt man in
+das Formular für die Anlage eines neuen Benutzers.</p>
+</div>
+<div id="users-new" class="imageblock">
+<div class="content">
+<img src="_images/images/users-new.png" alt="Neuen Benutzer anlegen">
+</div>
+<div class="title">Figure 4. Neuen Benutzer anlegen</div>
+</div>
+<div class="paragraph">
+<p>Die einzige Pflichtangabe ist der Benutzername, sinnvollerweise gibt man Name,
+Vorname und die E-Mail-Adresse ebenfalls noch mit an und dazu ein temporäres
+Passwort, das der Benutzer bei der ersten Anmeldung dann selbst ändern kann.
+Nach der Anlage gelangt man in die Anzeige des angelegten Benutzers:</p>
+</div>
+<div id="users-show" class="imageblock">
+<div class="content">
+<img src="_images/images/users-show.png" alt="Anzeige Benutzer">
+</div>
+<div class="title">Figure 5. Benutzer anzeigen</div>
+</div>
+<div class="paragraph">
+<p>Von hier aus kann man direkt Berechtigungen vergeben. Im Abschnitt
+<em>Berechtigungen</em> werden die direkt dem User zugeordneten Berechtigungen
+angezeigt, im Abschnitt <em>Gruppen</em> die zuwiesenen Gruppen. Über Berechtigung
+erstellen gelangt man in das Formular für die Berechtigungsvergabe, der
+Benutzer ist über diesen Weg bereits ausgewählt.</p>
+</div>
+<div id="users-auth-new" class="imageblock">
+<div class="content">
+<img src="_images/images/users-auth-new.png" alt="Benutzerberechtigung vergeben">
+</div>
+<div class="title">Figure 6. Benutzerbezogene Berechtigung vergeben</div>
+</div>
+<div class="paragraph">
+<p>Neben der Auswahl der Rolle und der Organisationseinheit hat man auch die
+Möglichkeit, die Zugriffsrechte zeitlich zu befristen. Bei unbefristeten
+Berechtigungen bleiben die beiden Felder <code>gültig von</code> und <code>gültig bis</code> einfach
+leer.</p>
+</div>
+<div class="paragraph">
+<p>Nach dem Speichern wird die neue Berechtigung beim User angezeigt.</p>
+</div>
+<div id="users-show-auth-assigned" class="imageblock">
+<div class="content">
+<img src="_images/images/users-show-auth-assigned.png" alt="Anzeige der angelegten Berechtigung beim User">
+</div>
+<div class="title">Figure 7. Anzeige der angelegten Berechtigung beim User</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_anlage_von_gruppen"><a class="anchor" href="#_anlage_von_gruppen"></a>Anlage von Gruppen</h3>
+<div class="paragraph">
+<p>Die Anlage von Gruppen erfolgt wie bei Benutzern über den Button <em>Gruppe
+erstellen</em> unterhalb der Übersichtstabelle:</p>
+</div>
+<div id="groups-index" class="imageblock">
+<div class="content">
+<img src="_images/images/groups-index.png" alt="Übersicht Group">
+</div>
+<div class="title">Figure 8. Übersicht Gruppen</div>
+</div>
+<div class="paragraph">
+<p>Für die Pflege einer Gruppe wird nur ein Name und eine kurze Beschreibung
+benötigt.</p>
+</div>
+<div id="group-new" class="imageblock">
+<div class="content">
+<img src="_images/images/group-new.png" alt="Neue Gruppe anlegen">
+</div>
+<div class="title">Figure 9. Neue Gruppe anlegen</div>
+</div>
+<div class="paragraph">
+<p>Nach der Anlage der Gruppe gelangt man in die Anzeige der Gruppe, von dort aus
+kann man neue Berechtigungen der Gruppe zuweisen oder Mitglieder der Gruppe
+hinzufügen.</p>
+</div>
+<div id="group-show" class="imageblock">
+<div class="content">
+<img src="_images/images/group-show.png" alt="Gruppe anzeigen">
+</div>
+<div class="title">Figure 10. Gruppe anzeigen</div>
+</div>
+<div id="group-auth-new" class="imageblock">
+<div class="content">
+<img src="_images/images/group-auth-new.png" alt="Neue Berechtigung für Gruppe anlegen">
+</div>
+<div class="title">Figure 11. Neue Berechtigung für eine Gruppe anlegen</div>
+</div>
+<div class="paragraph">
+<p>Die vergebenen Berechtigungen werden schließlich in der Ansicht der Gruppe
+angezeigt, im Bild zu sehen ist nur der Ausschnitt der Berechtigungen.</p>
+</div>
+<div id="group-auth-show-assigned" class="imageblock">
+<div class="content">
+<img src="_images/images/group-auth-show-assigned.png" alt="Anzeige der Gruppenberechtigung">
+</div>
+<div class="title">Figure 12. Anzeige der Gruppenberechtigung</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
