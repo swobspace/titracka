@@ -6,3 +6,21 @@ nav:
 - modules/admin-manual/nav.adoc
 - modules/installation-guide/nav.adoc
 
+asciidoc.attributes:
+  lang: de-DE
+  author: Wolfgang Barth
+  Email: Wolfgang.Barth@marienhaus.de
+  revision: 0.0.2
+  revdate: 2021-01-23
+  rights:  Copyright 2020-2021 (C) Wolfgang Barth
+  language: de-DE
+  toc-title: Inhalt
+  chapter-label: Kapitel
+  figure-caption: Abbildung
+  w-20: width='20%'
+  w-25: width='25%'
+  w-33: width='33%'
+  w-50: width='50%'
+  w-66: width='66%'
+  w-75: width='75%'
+

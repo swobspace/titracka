@@ -5,4 +5,4 @@
 * xref:configuration.adoc[Configuration]
 * xref:database-setup.adoc[Database Setup]
 * xref:database-mariadb.adoc[MariaDB Setup]
-* xref:customization.adoc[Customization]
+// * xref:customization.adoc[Customization]
