@@ -16,7 +16,10 @@
       <%= f.input :pause, 
             input_html: { class: 'col-sm-3'}
 	 %>
-
+      <%= f.association :day_type, label_method: :to_str
+         %>
+      <%= f.input :comment
+         %>
       <%= f.button :submit, class: 'btn btn-primary' %>
       <%= cancel_button %>
     </div>

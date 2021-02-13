@@ -1,5 +1,11 @@
 = Changelog
 
+=== 0.5.8 / 2021-02-13
+
+----
+- Workdays / DayType (like F, U, K, ÜF, GF etc.) and comment added
+----
+
 === 0.5.6 / 2021-01-23
 
 ----

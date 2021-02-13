@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_26_104145) do
+ActiveRecord::Schema.define(version: 2021_02_13_111106) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 2020_12_26_104145) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["reference_id"], name: "index_cross_references_on_reference_id"
     t.index ["task_id"], name: "index_cross_references_on_task_id"
+  end
+
+  create_table "day_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "abbrev", default: "", null: false
+    t.string "description", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["abbrev"], name: "index_day_types_on_abbrev"
   end
 
   create_table "lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -242,7 +250,10 @@ ActiveRecord::Schema.define(version: 2020_12_26_104145) do
     t.integer "pause", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "day_type_id"
+    t.string "comment", default: ""
     t.index ["date", "user_id"], name: "index_workdays_on_date_and_user_id", unique: true
+    t.index ["day_type_id"], name: "index_workdays_on_day_type_id"
     t.index ["user_id"], name: "index_workdays_on_user_id"
   end
 

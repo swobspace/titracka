@@ -13,6 +13,10 @@ FactoryBot.define do
     identifier { "12345678" }
   end
 
+  factory :day_type do
+    abbrev { generate(:aname) }
+  end
+
   factory :list do
     name { "Some List" }
     association :user

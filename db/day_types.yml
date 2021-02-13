@@ -1,0 +1,19 @@
+# data_types / example
+# 
+# to import:
+# rails console production
+# config = YAML::load_file(File.join(Rails.root, 'db', 'day_types.yml'))
+# DayType.create(config['day_types'])
+#
+
+day_types:
+  - abbrev: K
+    description: Krank
+  - abbrev: AZV
+    description: AZV Tag
+  - abbrev: U
+    description: Jahresurlaub
+  - abbrev: ÜF
+    description: Überstundenausgleich
+  - abbrev: GF
+    description: Gesetzlicher Feiertag

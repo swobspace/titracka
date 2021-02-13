@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "workdays/show", type: :view do
+  let(:ho) { FactoryBot.create(:day_type, abbrev: "HO", description: "HomeOffice") }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -23,7 +24,9 @@ RSpec.describe "workdays/show", type: :view do
       user: @current_user,
       pause: 20,
       work_start: '7:40',
-      date: Date.today.to_s
+      date: Date.today.to_s,
+      day_type: ho,
+      comment: "Working from home"
     ))
     @work_sum = @time_accountings.map{|x| x.duration}.sum
     @end_of_work = @workday.work_start + @work_sum.minutes + @workday.pause.minutes
@@ -38,5 +41,8 @@ RSpec.describe "workdays/show", type: :view do
     expect(rendered).to match(/#{Date.today.to_s}/)
     expect(rendered).to match(/02:30/)
     expect(rendered).to match(/10:30/)
+    expect(rendered).to match(/HO/)
+    expect(rendered).to match(/HomeOffice/)
+    expect(rendered).to match(/Working from home/)
   end
 end

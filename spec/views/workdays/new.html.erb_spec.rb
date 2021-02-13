@@ -19,6 +19,8 @@ RSpec.describe "workdays/new", type: :view do
       assert_select "input[name=?]", "workday[date]"
       assert_select "input[name=?]", "workday[work_start]"
       assert_select "input[name=?]", "workday[pause]"
+      assert_select "select[name=?]", "workday[day_type_id]"
+      assert_select "input[name=?]", "workday[comment]"
     end
   end
 end

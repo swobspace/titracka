@@ -1,6 +1,7 @@
  require 'rails_helper'
 
 RSpec.describe "/workdays", type: :request do
+  let(:day_type) { FactoryBot.create(:day_type) }
   let(:user) { FactoryBot.create(:user) }
   let(:valid_attributes) {
     FactoryBot.attributes_for(:workday, user_id: user.id) 
@@ -86,15 +87,19 @@ RSpec.describe "/workdays", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        { work_start: '07:00' }
-      }
+      let(:new_attributes) {{
+        work_start: '07:00' ,
+        day_type_id: day_type.id,
+        comment: "brabbelfasel"
+      }}
 
       it "updates the requested workday" do
         workday = Workday.create! valid_attributes
         patch workday_url(workday), params: { workday: new_attributes }
         workday.reload
         expect(workday.work_start.to_s).to match("07:00")
+        expect(workday.day_type_id).to eq(day_type.id)
+        expect(workday.comment).to eq("brabbelfasel")
       end
 
       it "redirects to the workday" do
