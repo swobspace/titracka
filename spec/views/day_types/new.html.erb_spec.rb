@@ -2,10 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "day_types/new", type: :view do
   before(:each) do
-    assign(:day_type, DayType.new(
-      abbrev: "MyString",
-      description: "MyString"
-    ))
+    @ability = Object.new
+    @ability.extend(CanCan::Ability)
+    allow(controller).to receive(:current_ability) { @ability }
+    allow(controller).to receive(:controller_name) { "day_types" }
+    allow(controller).to receive(:action_name) { "new" }
+
+    assign(:day_type, FactoryBot.build(:day_type))
   end
 
   it "renders new day_type form" do

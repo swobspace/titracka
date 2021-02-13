@@ -77,6 +77,7 @@ de:
   activerecord:
     models:
       cross_reference: Querverweis
+      day_type: Tagestyp
       home: Home
       list: Liste
       lists/task: Aufgabe
@@ -97,9 +98,11 @@ de:
       workdays/time_accounting: Aktivität
 
   attributes:
+    abbrev: Kürzel
     cross_reference: Querverweis
     cross_references: Querverweise
     date: Datum
+    day_type: Tagestyp
     deadline: Zieltermin
     description: Beschreibung
     displayname: Anzeigename
@@ -165,6 +168,7 @@ de:
 
   controller:
     cross_references: Querverweise
+    day_types: Tagestyp
     home: Home
     lists: Listen
     lists/tasks: Aufgaben
