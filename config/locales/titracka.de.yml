@@ -99,6 +99,7 @@ de:
 
   attributes:
     abbrev: Kürzel
+    comment: Bemerkung
     cross_reference: Querverweis
     cross_references: Querverweise
     date: Datum
@@ -157,6 +158,7 @@ de:
     to_start: Start bis
     to_deadline: Deadline bis
     to_resubmission: Wiedervorlage bis
+    type: Typ
     url: URL
     username: Username
     user: Benutzer
