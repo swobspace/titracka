@@ -19,9 +19,9 @@ class TimeAccountingsController < ApplicationController
   # GET /time_accountings/new
   def new
     if @time_accountable
-      @time_accounting = @time_accountable.time_accountings.new(date: Date.today.to_s)
+      @time_accounting = @time_accountable.time_accountings.new(date: accounting_date)
     else
-      @time_accounting = TimeAccounting.new(date: Date.today.to_s)
+      @time_accounting = TimeAccounting.new(date: accounting_date)
     end
     respond_with(@time_accounting)
   end
@@ -85,5 +85,8 @@ class TimeAccountingsController < ApplicationController
     def set_tasks
       @tasks = Task.accessible_by(current_ability, :read).includes(:org_unit, :list)
                    .order("org_units.name asc, lists.name asc, tasks.subject asc").decorate
+    end
+    def accounting_date
+      Date.today
     end
 end
