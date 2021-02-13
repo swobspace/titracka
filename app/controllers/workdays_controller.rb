@@ -65,7 +65,7 @@ class WorkdaysController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def workday_params
-      params.require(:workday).permit(:date, :work_start, :pause)
+      params.require(:workday).permit(:date, :work_start, :pause, :comment, :day_type_id)
     end
     def set_daystuff
       @time_accountings = @current_user.time_accountings.where(date: @workday.date)
