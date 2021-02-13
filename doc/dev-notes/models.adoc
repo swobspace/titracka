@@ -87,9 +87,21 @@ bin/rails g scaffold Workday \
   date:date:index \
   work_start:time \
   pause:integer \
+  daytype:belongs_to \
   --no-stylesheets --no-javascripts --no-helper
+
+bin/rails g migration AddDayTypeToWorkday daytype:belongs_to
 ----
 
+
+## DayType
+
+----
+bin/rails g scaffold DayType \
+  abbrev:string:index \
+  description:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
 
 ## Tag
 
@@ -98,6 +110,7 @@ bin/rails g scaffold Tag \
   name:string:index \
   --no-stylesheets --no-javascripts --no-helper
 ----
+
 
 ## Note
 
