@@ -18,5 +18,10 @@ RSpec.describe DayType, type: :model do
     expect("#{f}").to match ("K")
   end
 
+  it "to_str returns value" do
+    f = FactoryBot.create(:day_type, abbrev: "K", description: "Krankmeldung")
+    expect("#{f.to_str}").to match ("K / Krankmeldung")
+  end
+
 
 end

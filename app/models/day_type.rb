@@ -10,4 +10,8 @@ class DayType < ApplicationRecord
     "#{abbrev}"
   end
 
+  def to_str
+    "#{abbrev} / #{description}"
+  end
+
 end
