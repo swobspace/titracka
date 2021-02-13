@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "workdays/index", type: :view do
+  let(:homeoffice) { FactoryBot.create(:day_type, abbrev: "HO", description: "HomeOffice") }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -16,6 +17,7 @@ RSpec.describe "workdays/index", type: :view do
                           user: @current_user,
                           duration: 50,
                           task: task
+
                         )
     @time_accountings += FactoryBot.create_list(:time_accounting, 3,
                           date: 2.day.before(Date.today),
@@ -26,11 +28,17 @@ RSpec.describe "workdays/index", type: :view do
     assign(:workdays, [
       Workday.create!(
         user: @current_user,
-        date: 1.day.before(Date.today)
+        date: 1.day.before(Date.today),
+        pause: 42,
+        day_type: homeoffice,
+        comment: "Working from Home"
       ).decorate,
       Workday.create!(
         user: @current_user,
-        date: 2.day.before(Date.today)
+        date: 2.day.before(Date.today),
+        pause: 42,
+        day_type: homeoffice,
+        comment: "Working from Home"
       ).decorate
     ])
   end
@@ -41,5 +49,7 @@ RSpec.describe "workdays/index", type: :view do
     assert_select "tr>td", text: 2.day.before(Date.today).to_s, count: 1
     assert_select "tr>td", text: "02:00".to_s, count: 1
     assert_select "tr>td", text: "02:30".to_s, count: 1
+    assert_select "tr>td", text: "42".to_s, count: 2
+    assert_select "tr>td", text: "HO".to_s, count: 2
   end
 end

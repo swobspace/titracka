@@ -10,9 +10,13 @@
     <div class="card">
       <div class="card-header d-flex w-100 justify-content-between"
         data-controller="dateselector" data-dateselector-url="<%= root_path %>">
-        <h3 class="title">
-          <%= t('date.day_names')[@workday.date.wday] %>, <%= @workday.date.to_s %>
-        </h3>
+        <div class="w-75">
+          <h3 class="title">
+            <%= t('date.day_names')[@workday.date.wday] %>, <%= @workday.date.to_s %>
+          </h3>
+          <div class="text-muted"><%= @workday.day_type&.to_str %></div>
+          <div class="text-muted"><%= @workday.comment %></div>
+        </div>
 
         <div role="toolbar">
           <input type="hidden" data-dateselector-target="field">
@@ -24,6 +28,7 @@
           <%= delete_link(@workday) %>
         </div>
       </div>
+
       <div class="card-body">
         <div data-controller="">
           <%= content_tag :table, role: :datatable,
@@ -115,6 +120,7 @@
             <tr>
              <th class="text-center"><%= t('attributes.date') %></th>
              <th class="text-center"><%= t('attributes.weekday') %></th>
+             <th class="text-center"><%= t('attributes.type') %></th>
              <th class="text-right"><%= t('attributes.duration') %></th>
             </tr>
           </thead>
@@ -123,12 +129,14 @@
               <%= content_tag :tr do %>
                 <td class="text-center"><%= link_to wday.to_s, by_date_path(wday.to_s) %></td>
                 <td class="text-center"><%= wday.strftime("%a") %></td>
+                <td class="text-center"><%= @current_user.workdays.where(date: wday).first&.day_type %></td>
                 <td class="text-right"><%= hourmin(@current_user.decorate.working_time(day:wday)) %></td>
               <% end %>
             <% end %>
           </tbody>
           <tfoot>
             <tr>
+             <th></th>
              <th></th>
              <th class="text-center"><%= t('attributes.sum') %></th>
              <th class="text-right"><%= hourmin(@week_sum) %></th>
