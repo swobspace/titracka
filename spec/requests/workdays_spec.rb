@@ -89,7 +89,7 @@ RSpec.describe "/workdays", type: :request do
     context "with valid parameters" do
       let(:new_attributes) {{
         work_start: '07:00' ,
-        day_type_id: day_type,
+        day_type_id: day_type.id,
         comment: "brabbelfasel"
       }}
 
