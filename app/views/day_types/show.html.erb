@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">
+    <h4><%= t('activerecord.models.day_type') %></h4>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover autowidth">
+    
+      <tr>
+        <th><%= t('attributes.abbrev')%>:</th>
+        <td><%= @day_type.abbrev %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.description')%>:</th>
+        <td><%= @day_type.description %></td>
+      </tr>
+        </table>
+
+    <div role="toolbar">
+      <%= back_link %>
+      <%= edit_link(@day_type) %>
+      <%= delete_link(@day_type) %>
+      <%= new_link DayType %>
+    </div>
+  </div>
+</div>

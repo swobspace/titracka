@@ -1,0 +1,2 @@
+class DayType < ApplicationRecord
+end
