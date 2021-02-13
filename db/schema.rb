@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_13_102339) do
+ActiveRecord::Schema.define(version: 2021_02_13_111106) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -251,6 +251,7 @@ ActiveRecord::Schema.define(version: 2021_02_13_102339) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "day_type_id"
+    t.string "comment", default: ""
     t.index ["date", "user_id"], name: "index_workdays_on_date_and_user_id", unique: true
     t.index ["day_type_id"], name: "index_workdays_on_day_type_id"
     t.index ["user_id"], name: "index_workdays_on_user_id"

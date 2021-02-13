@@ -87,10 +87,12 @@ bin/rails g scaffold Workday \
   date:date:index \
   work_start:time \
   pause:integer \
-  daytype:belongs_to \
+  day_type:belongs_to \
+  comment:string \
   --no-stylesheets --no-javascripts --no-helper
 
 bin/rails g migration AddDayTypeToWorkday day_type:belongs_to
+bin/rails g migration AddCommentToWorkday comment:string
 ----
 
 
