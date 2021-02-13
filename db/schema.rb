@@ -250,9 +250,9 @@ ActiveRecord::Schema.define(version: 2021_02_13_102339) do
     t.integer "pause", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "daytype_id", null: false
+    t.bigint "day_type_id"
     t.index ["date", "user_id"], name: "index_workdays_on_date_and_user_id", unique: true
-    t.index ["daytype_id"], name: "index_workdays_on_daytype_id"
+    t.index ["day_type_id"], name: "index_workdays_on_day_type_id"
     t.index ["user_id"], name: "index_workdays_on_user_id"
   end
 

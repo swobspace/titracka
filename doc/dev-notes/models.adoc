@@ -90,7 +90,7 @@ bin/rails g scaffold Workday \
   daytype:belongs_to \
   --no-stylesheets --no-javascripts --no-helper
 
-bin/rails g migration AddDayTypeToWorkday daytype:belongs_to
+bin/rails g migration AddDayTypeToWorkday day_type:belongs_to
 ----
 
 
