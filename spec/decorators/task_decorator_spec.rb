@@ -67,4 +67,44 @@ RSpec.describe TaskDecorator do
 
   end
 
+  describe "#statistics" do
+    let(:owner)   { FactoryBot.create(:user) }
+    let(:foreign)   { FactoryBot.create(:user) }
+    let(:task) { FactoryBot.create(:task, :open)}
+    let!(:t1) { FactoryBot.create(:time_accounting,
+      task: task,
+      user: owner,
+      duration: 4,
+      date: "2019-11-04"
+    )}
+    let!(:t2) { FactoryBot.create(:time_accounting,
+      task: task,
+      user: owner,
+      duration: 8,
+      date: "2020-11-04"
+    )}
+    let!(:t3) { FactoryBot.create(:time_accounting,
+      task: task,
+      user: foreign,
+      duration: 16,
+      date: "2020-11-04"
+    )}
+    let!(:t4) { FactoryBot.create(:time_accounting,
+      task: task,
+      user: owner,
+      duration: 32,
+      date: "2020-11-30"
+    )}
+    let!(:t5) { FactoryBot.create(:time_accounting,
+      task: task,
+      user: owner,
+      duration: 64,
+      date: "2021-01-04"
+    )}
+
+    it { expect(decorated.statistics).to eq([2020, 11] => 56, [2021, 1] => 64)}
+
+    it { expect(decorated.statistics(owner)).to eq([2020, 11] => 40, [2021, 1] => 64)}
+  end
+
 end
