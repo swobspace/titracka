@@ -85,7 +85,7 @@ class TasksController < ApplicationController
         :responsible_id, :org_unit_id, :state_id, :list_id, 
         :private, :description,
         cross_references_attributes: [
-          :_destroy, :id, :reference_id, :identifier
+          :_destroy, :id, :reference_id, :identifier, :subject
         ]
       )
     end
