@@ -1,5 +1,12 @@
 = Changelog
 
+=== 0.5.9 / 2021-05-02
+
+----
+- Workdays#show: add link to task from daily activities table
+- CrossReference: add subject for better identification of multiple references
+----
+
 === 0.5.8 / 2021-02-13
 
 ----
