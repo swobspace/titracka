@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_13_111106) do
+ActiveRecord::Schema.define(version: 2021_05_02_114729) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_02_13_111106) do
     t.string "identifier", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "subject", default: ""
     t.index ["reference_id"], name: "index_cross_references_on_reference_id"
     t.index ["task_id"], name: "index_cross_references_on_task_id"
   end
