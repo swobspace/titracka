@@ -42,7 +42,7 @@ end
 group :test do
   gem 'shoulda-matchers', require: false
   gem 'factory_bot_rails'
-  gem 'database_rewinder'
+  # gem 'database_rewinder'
   gem 'capybara'
   gem 'apparition'
   gem 'launchy'

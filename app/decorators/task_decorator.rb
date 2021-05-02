@@ -30,4 +30,19 @@ class TaskDecorator < Draper::Decorator
     end
   end
 
+  def statistics(options = {})
+    user = options.fetch(:user, nil)
+    resolution = options.fetch(:resolution, 'month')
+    query = object.time_accountings
+    unless user.nil?
+      query = query.where(user_id: user.id)
+    end 
+    query = query.where("date > ?", 1.year.before(Date.today).beginning_of_year)
+                 .group("year(date)")
+    if resolution == 'month'
+      query = query.group("month(date)")
+    end
+    query.sum(:duration)
+  end
+
 end

@@ -51,7 +51,7 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
@@ -66,10 +66,10 @@ RSpec.configure do |config|
   config.include RequestMacros, type: :request
   config.include RequestMacros, type: :feature
 
-  config.before(:suite) do
-    DatabaseRewinder.clean_all
-  end
-  config.after(:each) do
-    DatabaseRewinder.clean
-  end
+  # config.before(:suite) do
+  #   DatabaseRewinder.clean_all
+  # end
+  # config.after(:each) do
+  #   DatabaseRewinder.clean
+  # end
 end

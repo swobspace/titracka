@@ -67,7 +67,9 @@
                   <td class="text-center align-middle"><%= time_accounting.date.to_s %></td>
                   <td class="text-center align-middle"><%= time_accounting.formatted_duration %></td>
                   <td class="text-center align-middle"><%= time_accounting.duration %></td>
-                  <td class="align-middle"><%= time_accounting.task %></td>
+                  <td class="align-middle">
+                    <%= link_to(time_accounting.task, task_path(time_accounting.task)) %>
+                  </td>
                   <td class="align-middle"><%= time_accounting.description %></td>
                   <td class="align-middle"><%= time_accounting.user %></td>
                   <td class="text-nowrap text-right">

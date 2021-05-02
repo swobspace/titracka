@@ -23,6 +23,7 @@ RSpec.describe "tasks/show", type: :view do
         identifier: "166375"
       ]
     ))
+    @current_user = FactoryBot.create(:user, sn: "Mustermann", givenname: "Max")
   end
 
   it "renders attributes in <p>" do

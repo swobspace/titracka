@@ -152,6 +152,9 @@ bin/rails g model CrossReference \
   task:belongs_to \
   reference:belongs_to \
   identifier:string \
+  subject:string \
   --no-stylesheets --no-javascripts --no-helper
+
+bin/rails g migration AddSubjectToCrossReference subject:string
 ----
 

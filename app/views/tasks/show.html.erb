@@ -8,11 +8,44 @@
       <%= delete_link(@task) %>
     </div>
   </div>
-  <div class="card-body">
-    <%= render partial: 'show_task', locals: {task: @task} %>
-    <div role="toolbar">
-      <%= back_link %>
-      <%= new_link Task %>
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="card-body">
+        <%= render partial: 'show_task', locals: {task: @task} %>
+        <div role="toolbar">
+          <%= back_link %>
+          <%= new_link Task %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card-body">
+        <%= content_tag :table, class: "table table-sm" do %> 
+          <thead>
+            <tr class="bg-light">
+              <th class="text-center text-monospace">Period</th>
+              <th class="text-center text-monospace">HH:MM</th>
+            </tr>
+          </thead>
+          <tbody>
+          <h5 class="card-title text-center"><%= @current_user.decorate.shortname %></h5>
+            <% @task.decorate.statistics(user: @current_user).each do |time,sum| %>
+              <tr>
+                <td class="text-center text-monospace"><%= sprintf("%4d-%02d", *time )%></td>
+                <td class="text-center text-monospace"><%= hourmin(sum) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+          <tfoot>
+            <% @task.decorate.statistics(user: @current_user, resolution: 'year').each do |time,sum| %>
+              <tr class="bg-light">
+                <td class="text-center text-monospace text-bold"><%= time %></td>
+                <td class="text-center text-monospace text-bold"><%= hourmin(sum) %></td>
+              </tr>
+            <% end %>
+          </tfoot>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
@@ -38,10 +71,31 @@
         <h5 class="card-title mb-0"><%= t('attributes.time_accountings')%></h5>
         <span class="text-muted small"><%= @task.time_accountings.sum(:duration) %> min</span>
       </div>
-      <div class="card-body">
-        <ul class="list-group list-group-flush">
-          <%= render partial: 'time_accountings/time_accounting', collection: @task.time_accountings, layout: 'shared/list_group_item_layout' %>
-        </ul>
+       <div class="card-body" data-controller="datatables">
+        <%= content_tag :table, role: :datatable,
+              id: "time_accountings_table",
+              class: "table table-sm table-bordered table-responsive-xl",
+              data: {
+                "datatables-target": 'datatable',
+                order: [[0, 'desc']].to_json
+              } do %>
+          <thead>
+            <th class="text-center"><%= t('attributes.date')%></th>
+            <th class="text-center"><%= t('attributes.duration') %></th>
+            <th><%= t('attributes.description') %></th>
+            <th><%= t('attributes.user') %></th>
+          </thead>
+          <tbody>
+            <% @task.time_accountings.each do |time_accounting| %>
+              <%= content_tag_for(:tr, time_accounting) do %>
+                <td class="text-center align-middle"><%= time_accounting.date.to_s %></td>
+                <td class="text-center align-middle"><%= time_accounting.duration %></td>
+                <td class="align-middle"><%= time_accounting.description %></td>
+                <td class="align-middle"><%= time_accounting.user.decorate.shortname %></td>
+              <% end %>
+            <% end %>
+          </tbody>
+        <% end %>
         <%= new_link [@task, TimeAccounting] %>
       </div>
     </div>
