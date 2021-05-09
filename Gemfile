@@ -28,6 +28,8 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'meta_request'
   gem 'libnotify'
+  gem 'railroady'
+  gem 'rails-plantuml-generator', git: 'https://github.com/HappyKadaver/rails-plantuml-generator'
 end
 
 group :test, :development do
@@ -35,7 +37,7 @@ group :test, :development do
   gem 'dotenv'
   gem 'guard-rspec', require: false
   gem 'byebug'
-  gem 'railroady'
+
   gem 'json_spec', require: false
 end
 

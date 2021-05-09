@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="940px" preserveAspectRatio="none" style="width:530px;height:940px;" version="1.1" viewBox="0 0 530 940" width="530px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f15lo3b0ql7c9" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0" />
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+        </filter>
+    </defs>
+    <g>
+        <!--MD5=[db024eadf81e667c611a5b21a210a7ac]
+class DayType-->
+        <rect codeLine="6" fill="#FEFECE" filter="url(#f15lo3b0ql7c9)" height="86.4141" id="DayType" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="84" x="7.5" y="299" />
+        <ellipse cx="22.5" cy="315" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M25.4688,320.6406 Q24.8906,320.9375 24.25,321.0781 Q23.6094,321.2344 22.9063,321.2344 Q20.4063,321.2344 19.0781,319.5938 Q17.7656,317.9375 17.7656,314.8125 Q17.7656,311.6875 19.0781,310.0313 Q20.4063,308.375 22.9063,308.375 Q23.6094,308.375 24.25,308.5313 Q24.9063,308.6875 25.4688,308.9844 L25.4688,311.7031 Q24.8438,311.125 24.25,310.8594 Q23.6563,310.5781 23.0313,310.5781 Q21.6875,310.5781 21,311.6563 Q20.3125,312.7188 20.3125,314.8125 Q20.3125,316.9063 21,317.9844 Q21.6875,319.0469 23.0313,319.0469 Q23.6563,319.0469 24.25,318.7813 Q24.8438,318.5 25.4688,317.9219 L25.4688,320.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="52" x="36.5" y="319.1543">DayType</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="8.5" x2="90.5" y1="331" y2="331" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="10" x="13.5" y="345.2104">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="39" x="13.5" y="358.0151">abbrev</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="63" x="13.5" y="370.8198">description</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="8.5" x2="90.5" y1="377.4141" y2="377.4141" />
+        <!--MD5=[b34797a66dc35cbf1d65f7e3ca75530e]
+class Task-->
+        <rect codeLine="12" fill="#FEFECE" filter="url(#f15lo3b0ql7c9)" height="163.2422" id="Task" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="109" x="293" y="445" />
+        <ellipse cx="329.6" cy="461" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M332.5688,466.6406 Q331.9906,466.9375 331.35,467.0781 Q330.7094,467.2344 330.0063,467.2344 Q327.5063,467.2344 326.1781,465.5938 Q324.8656,463.9375 324.8656,460.8125 Q324.8656,457.6875 326.1781,456.0313 Q327.5063,454.375 330.0063,454.375 Q330.7094,454.375 331.35,454.5313 Q332.0063,454.6875 332.5688,454.9844 L332.5688,457.7031 Q331.9438,457.125 331.35,456.8594 Q330.7563,456.5781 330.1313,456.5781 Q328.7875,456.5781 328.1,457.6563 Q327.4125,458.7188 327.4125,460.8125 Q327.4125,462.9063 328.1,463.9844 Q328.7875,465.0469 330.1313,465.0469 Q330.7563,465.0469 331.35,464.7813 Q331.9438,464.5 332.5688,463.9219 L332.5688,466.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="29" x="348.4" y="465.1543">Task</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="294" x2="401" y1="477" y2="477" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="10" x="299" y="491.2104">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="41" x="299" y="504.0151">subject</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="299" y="516.8198">start</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="48" x="299" y="529.6245">deadline</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="78" x="299" y="542.4292">resubmission</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="40" x="299" y="555.2339">priority</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="39" x="299" y="568.0386">private</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="97" x="299" y="580.8433">«responsible_id»</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="56" x="299" y="593.6479">«user_id»</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="294" x2="401" y1="600.2422" y2="600.2422" />
+        <!--MD5=[5d3c9bb25b1b07c105e03cfa5bc0b7ee]
+class Note-->
+        <rect codeLine="24" fill="#FEFECE" filter="url(#f15lo3b0ql7c9)" height="86.4141" id="Note" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="68" x="159.5" y="674.5" />
+        <ellipse cx="177.2" cy="690.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M180.1688,696.1406 Q179.5906,696.4375 178.95,696.5781 Q178.3094,696.7344 177.6063,696.7344 Q175.1063,696.7344 173.7781,695.0938 Q172.4656,693.4375 172.4656,690.3125 Q172.4656,687.1875 173.7781,685.5313 Q175.1063,683.875 177.6063,683.875 Q178.3094,683.875 178.95,684.0313 Q179.6063,684.1875 180.1688,684.4844 L180.1688,687.2031 Q179.5438,686.625 178.95,686.3594 Q178.3563,686.0781 177.7313,686.0781 Q176.3875,686.0781 175.7,687.1563 Q175.0125,688.2188 175.0125,690.3125 Q175.0125,692.4063 175.7,693.4844 Q176.3875,694.5469 177.7313,694.5469 Q178.3563,694.5469 178.95,694.2813 Q179.5438,694 180.1688,693.4219 L180.1688,696.1406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="30" x="191.8" y="694.6543">Note</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="160.5" x2="226.5" y1="706.5" y2="706.5" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="10" x="165.5" y="720.7104">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="25" x="165.5" y="733.5151">date</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="56" x="165.5" y="746.3198">«user_id»</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="160.5" x2="226.5" y1="752.9141" y2="752.9141" />
+        <!--MD5=[3a7cf800944e5f3d9e9c59d889c61f3b]
+class Reference-->
+        <rect codeLine="30" fill="#FEFECE" filter="url(#f15lo3b0ql7c9)" height="86.4141" id="Reference" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="100" x="297.5" y="153" />
+        <ellipse cx="314.3" cy="169" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M317.2688,174.6406 Q316.6906,174.9375 316.05,175.0781 Q315.4094,175.2344 314.7063,175.2344 Q312.2063,175.2344 310.8781,173.5938 Q309.5656,171.9375 309.5656,168.8125 Q309.5656,165.6875 310.8781,164.0313 Q312.2063,162.375 314.7063,162.375 Q315.4094,162.375 316.05,162.5313 Q316.7063,162.6875 317.2688,162.9844 L317.2688,165.7031 Q316.6438,165.125 316.05,164.8594 Q315.4563,164.5781 314.8313,164.5781 Q313.4875,164.5781 312.8,165.6563 Q312.1125,166.7188 312.1125,168.8125 Q312.1125,170.9063 312.8,171.9844 Q313.4875,173.0469 314.8313,173.0469 Q315.4563,173.0469 316.05,172.7813 Q316.6438,172.5 317.2688,171.9219 L317.2688,174.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="64" x="328.7" y="173.1543">Reference</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="298.5" x2="396.5" y1="185" y2="185" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="10" x="303.5" y="199.2104">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="32" x="303.5" y="212.0151">name</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="88" x="303.5" y="224.8198">identifier_name</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="298.5" x2="396.5" y1="231.4141" y2="231.4141" />
+        <!--MD5=[c75d54c3252f9ad10577b44949635903]
+class CrossReference-->
+        <rect codeLine="36" fill="#FEFECE" filter="url(#f15lo3b0ql7c9)" height="86.4141" id="CrossReference" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="131" x="385" y="299" />
+        <ellipse cx="400" cy="315" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M402.9688,320.6406 Q402.3906,320.9375 401.75,321.0781 Q401.1094,321.2344 400.4063,321.2344 Q397.9063,321.2344 396.5781,319.5938 Q395.2656,317.9375 395.2656,314.8125 Q395.2656,311.6875 396.5781,310.0313 Q397.9063,308.375 400.4063,308.375 Q401.1094,308.375 401.75,308.5313 Q402.4063,308.6875 402.9688,308.9844 L402.9688,311.7031 Q402.3438,311.125 401.75,310.8594 Q401.1563,310.5781 400.5313,310.5781 Q399.1875,310.5781 398.5,311.6563 Q397.8125,312.7188 397.8125,314.8125 Q397.8125,316.9063 398.5,317.9844 Q399.1875,319.0469 400.5313,319.0469 Q401.1563,319.0469 401.75,318.7813 Q402.3438,318.5 402.9688,317.9219 L402.9688,320.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="99" x="414" y="319.1543">CrossReference</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="386" x2="515" y1="331" y2="331" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="10" x="391" y="345.2104">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="50" x="391" y="358.0151">identifier</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="41" x="391" y="370.8198">subject</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="386" x2="515" y1="377.4141" y2="377.4141" />
+        <!--MD5=[f8981284a77188a7069c64e72794150c]
+class Workday-->
+        <rect codeLine="42" fill="#FEFECE" filter="url(#f15lo3b0ql7c9)" height="124.8281" id="Workday" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="85" x="7" y="464" />
+        <ellipse cx="22" cy="480" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M24.9688,485.6406 Q24.3906,485.9375 23.75,486.0781 Q23.1094,486.2344 22.4063,486.2344 Q19.9063,486.2344 18.5781,484.5938 Q17.2656,482.9375 17.2656,479.8125 Q17.2656,476.6875 18.5781,475.0313 Q19.9063,473.375 22.4063,473.375 Q23.1094,473.375 23.75,473.5313 Q24.4063,473.6875 24.9688,473.9844 L24.9688,476.7031 Q24.3438,476.125 23.75,475.8594 Q23.1563,475.5781 22.5313,475.5781 Q21.1875,475.5781 20.5,476.6563 Q19.8125,477.7188 19.8125,479.8125 Q19.8125,481.9063 20.5,482.9844 Q21.1875,484.0469 22.5313,484.0469 Q23.1563,484.0469 23.75,483.7813 Q24.3438,483.5 24.9688,482.9219 L24.9688,485.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="53" x="36" y="484.1543">Workday</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="91" y1="496" y2="496" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="10" x="13" y="510.2104">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="25" x="13" y="523.0151">date</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="60" x="13" y="535.8198">work_start</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="35" x="13" y="548.6245">pause</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="53" x="13" y="561.4292">comment</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="56" x="13" y="574.2339">«user_id»</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="91" y1="580.8281" y2="580.8281" />
+        <!--MD5=[3d4177ac58b4411586d067f34e84928f]
+class List-->
+        <rect codeLine="51" fill="#FEFECE" filter="url(#f15lo3b0ql7c9)" height="99.2188" id="List" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="68" x="262.5" y="668" />
+        <ellipse cx="284.25" cy="684" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M287.2188,689.6406 Q286.6406,689.9375 286,690.0781 Q285.3594,690.2344 284.6563,690.2344 Q282.1563,690.2344 280.8281,688.5938 Q279.5156,686.9375 279.5156,683.8125 Q279.5156,680.6875 280.8281,679.0313 Q282.1563,677.375 284.6563,677.375 Q285.3594,677.375 286,677.5313 Q286.6563,677.6875 287.2188,677.9844 L287.2188,680.7031 Q286.5938,680.125 286,679.8594 Q285.4063,679.5781 284.7813,679.5781 Q283.4375,679.5781 282.75,680.6563 Q282.0625,681.7188 282.0625,683.8125 Q282.0625,685.9063 282.75,686.9844 Q283.4375,688.0469 284.7813,688.0469 Q285.4063,688.0469 286,687.7813 Q286.5938,687.5 287.2188,686.9219 L287.2188,689.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="21" x="299.75" y="688.1543">List</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="263.5" x2="329.5" y1="700" y2="700" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="10" x="268.5" y="714.2104">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="32" x="268.5" y="727.0151">name</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="45" x="268.5" y="739.8198">position</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="56" x="268.5" y="752.6245">«user_id»</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="263.5" x2="329.5" y1="759.2188" y2="759.2188" />
+        <!--MD5=[60d6b92408f98aed8df94d5c6e04aa63]
+class State-->
+        <rect codeLine="58" fill="#FEFECE" filter="url(#f15lo3b0ql7c9)" height="99.2188" id="State" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="66" x="365.5" y="668" />
+        <ellipse cx="380.5" cy="684" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M383.4688,689.6406 Q382.8906,689.9375 382.25,690.0781 Q381.6094,690.2344 380.9063,690.2344 Q378.4063,690.2344 377.0781,688.5938 Q375.7656,686.9375 375.7656,683.8125 Q375.7656,680.6875 377.0781,679.0313 Q378.4063,677.375 380.9063,677.375 Q381.6094,677.375 382.25,677.5313 Q382.9063,677.6875 383.4688,677.9844 L383.4688,680.7031 Q382.8438,680.125 382.25,679.8594 Q381.6563,679.5781 381.0313,679.5781 Q379.6875,679.5781 379,680.6563 Q378.3125,681.7188 378.3125,683.8125 Q378.3125,685.9063 379,686.9844 Q379.6875,688.0469 381.0313,688.0469 Q381.6563,688.0469 382.25,687.7813 Q382.8438,687.5 383.4688,686.9219 L383.4688,689.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="34" x="394.5" y="688.1543">State</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="366.5" x2="430.5" y1="700" y2="700" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="10" x="371.5" y="714.2104">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="32" x="371.5" y="727.0151">name</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="371.5" y="739.8198">state</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="45" x="371.5" y="752.6245">position</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="366.5" x2="430.5" y1="759.2188" y2="759.2188" />
+        <!--MD5=[60fd822749fd86911bb4871628fad6cc]
+class ReferenceUrl-->
+        <rect codeLine="65" fill="#FEFECE" filter="url(#f15lo3b0ql7c9)" height="86.4141" id="ReferenceUrl" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="113" x="291" y="7" />
+        <ellipse cx="306" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M308.9688,28.6406 Q308.3906,28.9375 307.75,29.0781 Q307.1094,29.2344 306.4063,29.2344 Q303.9063,29.2344 302.5781,27.5938 Q301.2656,25.9375 301.2656,22.8125 Q301.2656,19.6875 302.5781,18.0313 Q303.9063,16.375 306.4063,16.375 Q307.1094,16.375 307.75,16.5313 Q308.4063,16.6875 308.9688,16.9844 L308.9688,19.7031 Q308.3438,19.125 307.75,18.8594 Q307.1563,18.5781 306.5313,18.5781 Q305.1875,18.5781 304.5,19.6563 Q303.8125,20.7188 303.8125,22.8125 Q303.8125,24.9063 304.5,25.9844 Q305.1875,27.0469 306.5313,27.0469 Q307.1563,27.0469 307.75,26.7813 Q308.3438,26.5 308.9688,25.9219 L308.9688,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="81" x="320" y="27.1543">ReferenceUrl</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="292" x2="403" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="10" x="297" y="53.2104">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="32" x="297" y="66.0151">name</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="15" x="297" y="78.8198">url</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="292" x2="403" y1="85.4141" y2="85.4141" />
+        <!--MD5=[3bc20ecb96031ee8df8eb28f55bc3c63]
+class TimeAccounting-->
+        <rect codeLine="71" fill="#FEFECE" filter="url(#f15lo3b0ql7c9)" height="112.0234" id="TimeAccounting" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="131" x="127" y="470.5" />
+        <ellipse cx="142" cy="486.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M144.9688,492.1406 Q144.3906,492.4375 143.75,492.5781 Q143.1094,492.7344 142.4063,492.7344 Q139.9063,492.7344 138.5781,491.0938 Q137.2656,489.4375 137.2656,486.3125 Q137.2656,483.1875 138.5781,481.5313 Q139.9063,479.875 142.4063,479.875 Q143.1094,479.875 143.75,480.0313 Q144.4063,480.1875 144.9688,480.4844 L144.9688,483.2031 Q144.3438,482.625 143.75,482.3594 Q143.1563,482.0781 142.5313,482.0781 Q141.1875,482.0781 140.5,483.1563 Q139.8125,484.2188 139.8125,486.3125 Q139.8125,488.4063 140.5,489.4844 Q141.1875,490.5469 142.5313,490.5469 Q143.1563,490.5469 143.75,490.2813 Q144.3438,490 144.9688,489.4219 L144.9688,492.1406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="99" x="156" y="490.6543">TimeAccounting</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="128" x2="257" y1="502.5" y2="502.5" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="10" x="133" y="516.7104">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="63" x="133" y="529.5151">description</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="25" x="133" y="542.3198">date</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="47" x="133" y="555.1245">duration</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="56" x="133" y="567.9292">«user_id»</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="128" x2="257" y1="574.5234" y2="574.5234" />
+        <!--MD5=[62b9acf3964d03004683203a9653efe8]
+class OrgUnit-->
+        <rect codeLine="79" fill="#FEFECE" filter="url(#f15lo3b0ql7c9)" height="99.2188" id="OrgUnit" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="79" x="351" y="827" />
+        <ellipse cx="366" cy="843" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M368.9688,848.6406 Q368.3906,848.9375 367.75,849.0781 Q367.1094,849.2344 366.4063,849.2344 Q363.9063,849.2344 362.5781,847.5938 Q361.2656,845.9375 361.2656,842.8125 Q361.2656,839.6875 362.5781,838.0313 Q363.9063,836.375 366.4063,836.375 Q367.1094,836.375 367.75,836.5313 Q368.4063,836.6875 368.9688,836.9844 L368.9688,839.7031 Q368.3438,839.125 367.75,838.8594 Q367.1563,838.5781 366.5313,838.5781 Q365.1875,838.5781 364.5,839.6563 Q363.8125,840.7188 363.8125,842.8125 Q363.8125,844.9063 364.5,845.9844 Q365.1875,847.0469 366.5313,847.0469 Q367.1563,847.0469 367.75,846.7813 Q368.3438,846.5 368.9688,845.9219 L368.9688,848.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="47" x="380" y="847.1543">OrgUnit</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="352" x2="429" y1="859" y2="859" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="10" x="357" y="873.2104">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="32" x="357" y="886.0151">name</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="49" x="357" y="898.8198">ancestry</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="45" x="357" y="911.6245">position</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="352" x2="429" y1="918.2188" y2="918.2188" />
+        <ellipse cx="347.5" cy="342" fill="#000000" rx="2" ry="2" style="stroke:none;stroke-width:1.0;" />
+        <!--MD5=[67d0c84992266d18fb65859409ef7eb4]
+link DayType to Workday-->
+        <path codeLine="86" d="M49.5,385.33 C49.5,408.6 49.5,437.9 49.5,463.68 " fill="none" id="DayType-Workday" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="40.8625" y="405.4755">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="42.1172" y="453.0723">*</text>
+        <!--MD5=[f4480fde34404bc784556a9de0e60a06]
+link Task to State-->
+        <path codeLine="87" d="M369.28,608.2 C374.75,628.47 380.45,649.6 385.35,667.76 " fill="none" id="Task-State" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="363.9081" y="628.2064">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="374.9383" y="656.7715">1</text>
+        <!--MD5=[28f89ab5910b59cad6bf4fbb92dd5550]
+link Task to List-->
+        <path codeLine="88" d="M325.72,608.2 C320.25,628.47 314.55,649.6 309.65,667.76 " fill="none" id="Task-List" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="316.4685" y="628.2064">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="302.9367" y="656.7715">1</text>
+        <!--MD5=[0d8b2aeb23be51043d750b2cb9f45736]
+link Task to Note-->
+        <path codeLine="89" d="M292.99,594.4 C271.18,621.16 246.74,651.16 227.54,674.72 " fill="none" id="Task-Note" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="277.1277" y="599.5758">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="225.5982" y="663.436">*</text>
+        <!--MD5=[3355d9b1b27a56f63accdbf1866a6318]
+link Reference to apoint18-->
+        <path d="M347.5,239.04 C347.5,278.22 347.5,331.81 347.5,339.95 " fill="none" id="Reference-apoint18" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="339.9203" y="259.4543">*</text>
+        <!--MD5=[e2befef5a350cccae2da6022d43554b6]
+link apoint18 to Task-->
+        <path d="M347.5,344.17 C347.5,352.19 347.5,400.32 347.5,444.98 " fill="none" id="apoint18-Task" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="339.1313" y="433.8353">1</text>
+        <!--MD5=[f8a416cb0c40ee6a6c04ab5d97c7ef69]
+link apoint18 to CrossReference-->
+        <path d="M349.51,342 C361.21,342 372.92,342 384.62,342 " fill="none" id="apoint18-CrossReference" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" />
+        <!--MD5=[c87ae8b1b6c6e9ed3fb25e00db0b473b]
+link Workday to TimeAccounting-->
+        <path codeLine="94" d="M92.23,526.5 C103.72,526.5 115.21,526.5 126.7,526.5 " fill="none" id="Workday-TimeAccounting" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="112.1203" y="522.7526">*</text>
+        <!--MD5=[774a975e48186265490df77e6d808be3]
+link List to OrgUnit-->
+        <path codeLine="95" d="M325.73,767.32 C337.1,786.31 350.1,808.02 361.45,826.98 " fill="none" id="List-OrgUnit" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="322.3483" y="787.4415">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="348.8023" y="816.0224">1</text>
+        <!--MD5=[452c3400d9c04025f7d5d1f8382c8a39]
+link ReferenceUrl to Reference-->
+        <path codeLine="96" d="M347.5,93.04 C347.5,111.8 347.5,133.86 347.5,152.66 " fill="none" id="ReferenceUrl-Reference" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="339.9203" y="113.4543">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="338.8875" y="141.9205">1</text>
+        <!--MD5=[e148e1ce552a95ebd0e3d4fd032f5503]
+link TimeAccounting to Task-->
+        <path codeLine="97" d="M258.19,526.5 C269.71,526.5 281.22,526.5 292.73,526.5 " fill="none" id="TimeAccounting-Task" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="266.1901" y="522.706">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="276.8328" y="522.5517">1</text>
+        <!--MD5=[729e5416ae3ffa8c82fee0e3f7228e90]
+link OrgUnit to Task-->
+        <path codeLine="98" d="M423.64,826.88 C434.06,808.88 444.22,787.78 449.5,767 C460.34,724.36 463.09,709.85 449.5,668 C439.77,638.04 420.99,609.13 402.17,585.4 " fill="none" id="OrgUnit-Task" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="419.7378" y="815.9084">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="409.9866" y="589.3664">*</text>
+        <!--MD5=[43cffad6aa61516a6b23f1b31e64cbcd]
+@startuml
+top to bottom direction
+skinparam defaultTextAlignment center
+skinparam roundCorner 15
+
+
+class DayType  {
+    id
+    abbrev
+    description
+}
+
+class Task  {
+    id
+    subject
+    start
+    deadline
+    resubmission
+    priority
+    private
+    <<responsible_id>>
+    <<user_id>>
+}
+
+class Note  {
+    id
+    date
+    <<user_id>>
+}
+
+class Reference  {
+    id
+    name
+    identifier_name
+}
+
+class CrossReference  {
+    id
+    identifier
+    subject
+}
+
+class Workday  {
+    id
+    date
+    work_start
+    pause
+    comment
+    <<user_id>>
+}
+
+class List  {
+    id
+    name
+    position
+    <<user_id>>
+}
+
+class State  {
+    id
+    name
+    state
+    position
+}
+
+class ReferenceUrl  {
+    id
+    name
+    url
+}
+
+class TimeAccounting  {
+    id
+    description
+    date
+    duration
+    <<user_id>>
+}
+
+class OrgUnit  {
+    id
+    name
+    ancestry
+    position
+}
+
+DayType "1" - - "*" Workday
+Task "*" - - "1" State
+Task "*" - - "1" List
+Task "1" - - "*" Note
+
+Reference "*" - - "1" Task
+(Reference, Task) . CrossReference
+
+Workday - "*" TimeAccounting
+List "*" - - "1" OrgUnit
+ReferenceUrl "*" - - "1" Reference
+TimeAccounting "*" - "1" Task
+OrgUnit "1" - - "*" Task
+
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 08:55:08 CET 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: de
+Country: DE
+-->
+    </g>
+</svg>
