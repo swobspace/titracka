@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/HappyKadaver/rails-plantuml-generator
+  revision: 87d5103c16b5a3e6a99543f5c028a5ec154c0192
+  specs:
+    rails-plantuml-generator (0.5.2)
+      rails (>= 3)
+
+GIT
   remote: https://github.com/swobspace/wobapphelpers
   revision: 0a2b38d481dbb916950e2671dd140f8a8c1d036f
   branch: develop
@@ -465,6 +472,7 @@ DEPENDENCIES
   rails (~> 6.0.0)
   rails-controller-testing
   rails-i18n (~> 6.0.0)
+  rails-plantuml-generator!
   record_tag_helper (~> 1.0)
   redis (>= 4.0)
   rspec-rails
