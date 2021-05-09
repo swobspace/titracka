@@ -1,0 +1,101 @@
+@startuml
+top to bottom direction
+skinparam defaultTextAlignment center
+skinparam roundCorner 15
+
+
+class DayType  {
+    id
+    abbrev
+    description
+}
+
+class Task  {
+    id
+    subject
+    start
+    deadline
+    resubmission
+    priority
+    private
+    <<responsible_id>>
+    <<user_id>>
+}
+
+class Note  {
+    id
+    date
+    <<user_id>>
+}
+
+class Reference  {
+    id
+    name
+    identifier_name
+}
+
+class CrossReference  {
+    id
+    identifier
+    subject
+}
+
+class Workday  {
+    id
+    date
+    work_start
+    pause
+    comment
+    <<user_id>>
+}
+
+class List  {
+    id
+    name
+    position
+    <<user_id>>
+}
+
+class State  {
+    id
+    name
+    state
+    position
+}
+
+class ReferenceUrl  {
+    id
+    name
+    url
+}
+
+class TimeAccounting  {
+    id
+    description
+    date
+    duration
+    <<user_id>>
+}
+
+class OrgUnit  {
+    id
+    name
+    ancestry
+    position
+}
+
+DayType "1" -- "*" Workday
+Task "*" -- "1" State
+Task "*" -- "1" List
+Task "1" -- "*" Note
+
+Reference "*" -- "1" Task
+(Reference, Task) . CrossReference
+
+Workday - "*" TimeAccounting
+List "*" -- "1" OrgUnit
+ReferenceUrl "*" -- "1" Reference
+TimeAccounting "*" - "1" Task
+OrgUnit "1" -- "*" Task
+
+@enduml
