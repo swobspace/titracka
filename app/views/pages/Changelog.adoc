@@ -1,5 +1,11 @@
 = Changelog
 
+=== 0.6.0 / 2021-05-09
+
+----
+Security update for Rails
+----
+
 === 0.5.9 / 2021-05-02
 
 ----
