@@ -26,7 +26,8 @@ group :development do
   gem 'guard-bundler'
   gem 'web-console', '>= 4.1.0'
   gem 'listen', '~> 3.3'
-  gem 'meta_request'
+  # 2021-07-03: meta_request is broken for rails 6.1, waiting for next release
+  # gem 'meta_request'
   gem 'libnotify'
   gem 'railroady'
   gem 'rails-plantuml-generator', git: 'https://github.com/HappyKadaver/rails-plantuml-generator'
