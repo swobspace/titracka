@@ -28,7 +28,7 @@
     </tfoot>
     <tbody>
       <% @org_units.each do |org_unit| %>
-        <%= content_tag_for(:tr, org_unit) do %>
+        <%= content_tag(:tr, id: dom_id(org_unit)) do %>
           <td><%= org_unit.name %></td>
           <td><%= org_unit.parent %></td>
           <td class="text-nowrap">

@@ -28,7 +28,7 @@
     </tfoot>
     <tbody>
       <% @day_types.each do |day_type| %>
-        <%= content_tag_for(:tr, day_type) do %>
+        <%= content_tag(:tr, id: dom_id(day_type), class: dom_class(day_type)) do %>
                 <td><%= day_type.abbrev %></td>
                 <td><%= day_type.description %></td>
                 <td class="text-nowrap">
