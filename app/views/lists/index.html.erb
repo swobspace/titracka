@@ -28,7 +28,7 @@
     </tfoot>
     <tbody>
       <% @lists.each do |list| %>
-        <%= content_tag_for(:tr, list) do %>
+        <%= content_tag(:tr, id: dom_id(list), class: dom_class(list)) do %>
                 <td><%= list.org_unit %></td>
                 <td><%= list.name %></td>
                 <td class="text-nowrap">

@@ -2,17 +2,17 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_114729) do
+ActiveRecord::Schema.define(version: 2021_07_03_095529) do
 
-  create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "action_text_rich_texts", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
     t.string "record_type", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -40,10 +40,17 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
     t.datetime "created_at", null: false
+    t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "cross_references", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_variant_records", charset: "utf8", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "cross_references", charset: "utf8", force: :cascade do |t|
     t.bigint "task_id", null: false
     t.bigint "reference_id", null: false
     t.string "identifier", default: ""
@@ -54,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["task_id"], name: "index_cross_references_on_task_id"
   end
 
-  create_table "day_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "day_types", charset: "utf8", force: :cascade do |t|
     t.string "abbrev", default: "", null: false
     t.string "description", default: ""
     t.datetime "created_at", precision: 6, null: false
@@ -62,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["abbrev"], name: "index_day_types_on_abbrev"
   end
 
-  create_table "lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "lists", charset: "utf8", force: :cascade do |t|
     t.bigint "org_unit_id"
     t.string "name", default: ""
     t.datetime "created_at", precision: 6, null: false
@@ -74,7 +81,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
-  create_table "notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "notes", charset: "utf8", force: :cascade do |t|
     t.bigint "task_id", null: false
     t.bigint "user_id", null: false
     t.date "date"
@@ -84,7 +91,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
-  create_table "org_units", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "org_units", charset: "utf8", force: :cascade do |t|
     t.string "name", default: ""
     t.string "ancestry"
     t.datetime "created_at", precision: 6, null: false
@@ -94,7 +101,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["name"], name: "index_org_units_on_name"
   end
 
-  create_table "reference_urls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "reference_urls", charset: "utf8", force: :cascade do |t|
     t.bigint "reference_id", null: false
     t.string "name", default: ""
     t.string "url", default: ""
@@ -103,14 +110,14 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["reference_id"], name: "index_reference_urls_on_reference_id"
   end
 
-  create_table "references", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "references", charset: "utf8", force: :cascade do |t|
     t.string "name", default: ""
     t.string "identifier_name", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "sessions", charset: "utf8", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
     t.datetime "created_at", precision: 6, null: false
@@ -119,7 +126,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "states", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "states", charset: "utf8", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "state", default: ""
     t.datetime "created_at", precision: 6, null: false
@@ -129,7 +136,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["state"], name: "index_states_on_state"
   end
 
-  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "tasks", charset: "utf8", force: :cascade do |t|
     t.string "subject"
     t.date "start"
     t.date "deadline"
@@ -154,7 +161,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
-  create_table "time_accountings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "time_accountings", charset: "utf8", force: :cascade do |t|
     t.bigint "task_id"
     t.bigint "user_id"
     t.string "description", default: ""
@@ -167,7 +174,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["user_id"], name: "index_time_accountings_on_user_id"
   end
 
-  create_table "versions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "versions", charset: "utf8", force: :cascade do |t|
     t.string "item_type", null: false
     t.bigint "item_id", null: false
     t.string "event", null: false
@@ -177,7 +184,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  create_table "wobauth_authorities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "wobauth_authorities", charset: "utf8", force: :cascade do |t|
     t.bigint "authorizable_id"
     t.string "authorizable_type"
     t.bigint "role_id"
@@ -192,14 +199,14 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["role_id"], name: "index_wobauth_authorities_on_role_id"
   end
 
-  create_table "wobauth_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "wobauth_groups", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "wobauth_memberships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "wobauth_memberships", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "group_id"
     t.boolean "auto", default: false
@@ -209,13 +216,13 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["user_id"], name: "index_wobauth_memberships_on_user_id"
   end
 
-  create_table "wobauth_roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "wobauth_roles", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "wobauth_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "wobauth_users", charset: "utf8", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.text "gruppen"
     t.string "sn"
@@ -244,7 +251,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
     t.index ["username"], name: "index_wobauth_users_on_username", unique: true
   end
 
-  create_table "workdays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "workdays", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.date "date"
     t.time "work_start"
@@ -259,4 +266,5 @@ ActiveRecord::Schema.define(version: 2021_05_02_114729) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end

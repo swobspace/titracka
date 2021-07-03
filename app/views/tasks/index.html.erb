@@ -50,7 +50,7 @@
     </tfoot>
     <tbody>
       <% @tasks.each do |task| %>
-        <%= content_tag_for(:tr, task) do %>
+        <%= content_tag(:tr, id: dom_id(task)) do %>
                 <td><%= task.subject %></td>
                 <td><%= truncate(strip_tags(task.description.to_s), length: 300)%></td>
                 <td><%= task.state %></td>
