@@ -63,7 +63,7 @@
               <% end %>
 
               <% @time_accountings.each do |time_accounting| %>
-                <%= content_tag_for(:tr, time_accounting) do %>
+                <%= content_tag(:tr, id: dom_id(time_accounting), class: dom_class(time_accounting)) do %>
                   <td class="text-center align-middle"><%= time_accounting.date.to_s %></td>
                   <td class="text-center align-middle"><%= time_accounting.formatted_duration %></td>
                   <td class="text-center align-middle"><%= time_accounting.duration %></td>

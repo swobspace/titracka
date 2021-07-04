@@ -40,7 +40,7 @@
     </tfoot>
     <tbody>
       <% @workdays.each do |workday| %>
-        <%= content_tag_for(:tr, workday) do %>
+        <%= content_tag(:tr, id: dom_id(workday), class: dom_class(workday)) do %>
           <td class="text-center align-middle"><%= workday.date %></td>
           <td class="text-center align-middle"><%= workday.day_type %></td>
           <td class="text-center align-middle"><%= hourmin(workday.duration) %></td>

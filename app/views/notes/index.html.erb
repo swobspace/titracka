@@ -32,7 +32,7 @@
     </tfoot>
     <tbody>
       <% @notes.each do |note| %>
-        <%= content_tag_for(:tr, note) do %>
+        <%= content_tag(:tr, id: dom_id(note)) do %>
                 <td><%= note.task %></td>
                 <td><%= truncate(strip_tags(note.description.to_s), length: 300)%></td>
                 <td><%= note.user.decorate.shortname %></td>

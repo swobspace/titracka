@@ -30,7 +30,7 @@
     </tfoot>
     <tbody>
       <% @references.each do |reference| %>
-        <%= content_tag_for(:tr, reference) do %>
+        <%= content_tag(:tr, id: dom_id(reference), class: dom_class(reference)) do %>
                 <td><%= reference.name %></td>
                 <td><%= reference.identifier_name %></td>
                 <td><%= reference.reference_urls.join('<br/>').html_safe %></td>
