@@ -90,3 +90,5 @@ gem "stimulus_reflex", "~> 3.3"
 # gem "activerecord-session_store"
 gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
 gem "hiredis"
+gem "prawn"
+gem "prawn-markup"

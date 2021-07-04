@@ -25,7 +25,21 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   def show
-    respond_with(@task)
+    respond_with(@task) do |format|
+      format.pdf do
+        # just for testing, no real world usage for now
+        path = File.join(Rails.root, 'app', 'views', 'tasks', 'show_pdf.html.erb')
+        template = File.open(path).read
+        string = ERB.new(template).result(binding)
+        Rails.logger.debug(string)
+        pdf = Prawn::Document.new
+        pdf.markup(string)
+        send_data pdf.render, :filename => "Task.pdf",
+                              :disposition => 'inline',
+                              :type => 'application/pdf'
+      end
+
+    end
   end
 
   # GET /tasks/new
