@@ -1,0 +1,19 @@
+name: dev-notes
+title: DevNotes
+version: master
+nav:
+- modules/ROOT/nav.adoc
+
+asciidoc:
+  attributes:
+    lang: de-DE
+    author: Wolfgang Barth
+    Email: wob@swobspace.net
+    revision: 0.1.0
+    revdate: 2021-09-05
+    rights:  Copyright 2021 (C) Wolfgang Barth
+    language: de-DE
+    toc-title: Inhalt
+    chapter-label: Kapitel
+    figure-caption: Abbildung
+

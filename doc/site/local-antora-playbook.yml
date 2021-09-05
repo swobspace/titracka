@@ -3,12 +3,16 @@ site:
   start_page: titracka::index.adoc
 content:
   sources:
-  - url: ..
+  - url: ../..
     branches: HEAD
     edit_url: ~
     start_path: doc/de
+  - url: ../..
+    branches: HEAD
+    edit_url: ~
+    start_path: doc/dev-notes
 output:
-  dir: ../public/docs
+  dir: ../../public/docs
 ui:
   bundle:
     url: ./ui-bundle/ui-bundle.zip
