@@ -1,14 +1,16 @@
-## Apache-Setup
+= Apache-Setup
+:imagesdir: ../images
 
 Die Kombination Apache 2.4 + Passenger unterstützt leider keine Websockets.
 Das Setup ist daher etwas aufwendiger: Apache dient als Frontend (wg.
 Authentifikation u.a.) und Proxy-Server, Passenger Standalone bedient die
 Anwendung. Der Apache-Server bedient den Anwender per SSL
 
-### Apache ###
+== Apache
 
 [[apache-conf]]
 ./etc/apache2/sites-available/titracka
+[source,apache]
 ----
 <VirtualHost *:80>
   ServerName titracka.example.com
@@ -93,10 +95,11 @@ Anwendung. Der Apache-Server bedient den Anwender per SSL
 <2> **SECURITY**: bei Single-Sign-On darf die Anwendung nie direkt erreichbar sein, daher immer `localhost` oder `127.0.0.1` verwenden!
 <3> Verhindert bei `force_ssl=true` eine Endlosschleife, weil die Anwendung über den Proxy ohne https aufgerufen wird und Passenger nicht erkennt, dass SSL verwendet werden soll.
 
-### Passenger Standalone ###
+== Passenger Standalone
 
 [[passenger]]
 ./var/srv/www/titracka/shared/config/Passengerfile.json
+[source,json]
 ----
 {
   "address": "127.0.0.1", <!--1-->
@@ -113,3 +116,26 @@ Anwendung. Der Apache-Server bedient den Anwender per SSL
 <3> Verwendeter Port, identisch zur Apache-Proxy-Konfiguration
 <4> User, unter dem die Anwendung läuft. Sollte identisch sein mit dem
 User, dem das Anwendungsverzeichnis `/var/srv/www/titracka` gehört.
+
+=== Start Passenger with systemd
+
+[source,ini]
+----
+[Unit]
+Description="Titracka startup passenger standalone
+ConditionPathExists=/usr/bin/passenger
+Wants=network.target
+After=syslog.target network.target
+
+[Service]
+Environment=PATH=/opt/ruby/2.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+WorkingDirectory=/var/srv/www/titracka/current
+# Parameters see ${WorkingDirectory}/Passenger.json
+ExecStart=/usr/bin/passenger start
+ExecStop=/usr/bin/passenger stop
+User=deploy
+Group=deploy
+
+[Install]
+WantedBy=multi-user.target
+----

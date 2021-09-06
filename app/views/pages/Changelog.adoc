@@ -1,5 +1,12 @@
 = Changelog
 
+=== 0.6.2 / 2021-09-06
+
+----
+- Upgrade gems
+- starting with developer docs via ansible
+----
+
 === 0.6.1 / 2021-07-04
 
 ----

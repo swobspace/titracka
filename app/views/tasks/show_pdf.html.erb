@@ -1,0 +1,36 @@
+<h2><%= @task %></h2>
+<p>
+<b><%= t('attributes.description')%>:</b>
+    <p><%= @task.description %></p>
+</p>
+
+    <b><%= t('attributes.state')%>:</b>
+    <p><%= @task.state %></p>
+
+    <b><%= t('attributes.org_unit')%>:</b>
+    <p><%= @task.org_unit %></p>
+
+    <b><%= t('attributes.list')%>:</b>
+    <p><%= @task.list %></p>
+
+    <b><%= t('attributes.priority')%>:</b>
+    <p><%= t(@task.priority, scope: 'titracka.priority') %></p>
+
+    <b><%= t('attributes.start')%> /
+        <%= t('attributes.deadline')%>:</b>
+    <td class="timeline">
+        <%= @task.start %>
+        <%= @task.deadline %>
+    </p>
+
+    <b><%= t('attributes.resubmission')%>:</b>
+    <p><%= @task.resubmission %></p>
+
+    <b><%= t('attributes.private')%>:</b>
+    <p><%= @task.private %></p>
+
+    <b><%= t('attributes.rasci')%>:</b>
+    <p><%= @task.responsible %></p>
+
+    <b><%= t('attributes.cross_references')%>:</b>
+    <p><%= @task.cross_references.map{|xref| xref.decorate.with_links }.join("<br/>").html_safe %></p>

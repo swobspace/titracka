@@ -76,7 +76,7 @@ Rails.application.configure do
 
   # --- wob
   config.cache_store = :redis_cache_store, {driver: :hiredis, url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }}
-  config.action_view.raise_on_missing_translations = true
+  config.i18n.raise_on_missing_translations = true
   config.colorize_logging = false
   config.action_mailer.delivery_method = :sendmail
   # -- strong parameters

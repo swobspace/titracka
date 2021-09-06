@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Titracka Dokumentation</title>
+    <title>Apache-Setup :: Titracka Dokumentation</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -89,6 +89,14 @@
     <span class="version">de</span>
   </div>
   <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../dev-notes/index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../dev-notes/index.html">master</a>
+        </li>
+      </ul>
+    </li>
     <li class="component is-current">
       <a class="title" href="../index.html">Titracka</a>
       <ul class="versions">
@@ -120,8 +128,8 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<div class="sect1">
-<h2 id="_apache_setup"><a class="anchor" href="#_apache_setup"></a>Apache-Setup</h2>
+<h1 class="page">Apache-Setup</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Die Kombination Apache 2.4 + Passenger unterstützt leider keine Websockets.
@@ -129,12 +137,15 @@ Das Setup ist daher etwas aufwendiger: Apache dient als Frontend (wg.
 Authentifikation u.a.) und Proxy-Server, Passenger Standalone bedient die
 Anwendung. Der Apache-Server bedient den Anwender per SSL</p>
 </div>
-<div class="sect2">
-<h3 id="_apache"><a class="anchor" href="#_apache"></a>Apache</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_apache"><a class="anchor" href="#_apache"></a>Apache</h2>
+<div class="sectionbody">
 <div id="apache-conf" class="listingblock">
 <div class="title">/etc/apache2/sites-available/titracka</div>
 <div class="content">
-<pre>&lt;VirtualHost *:80&gt;
+<pre class="highlightjs highlight"><code class="language-apache hljs" data-lang="apache">&lt;VirtualHost *:80&gt;
   ServerName titracka.example.com
   ServerAdmin max.mustermann@example.com
   DocumentRoot /var/srv/www/titracka/public
@@ -211,7 +222,7 @@ Anwendung. Der Apache-Server bedient den Anwender per SSL</p>
   SSLCipherSuite HIGH:!aNULL:!MD5
   SSLProtocol all -SSLv3 -TLSv1
 
-&lt;/VirtualHost&gt;</pre>
+&lt;/VirtualHost&gt;</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -231,12 +242,14 @@ Anwendung. Der Apache-Server bedient den Anwender per SSL</p>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_passenger_standalone"><a class="anchor" href="#_passenger_standalone"></a>Passenger Standalone</h3>
+</div>
+<div class="sect1">
+<h2 id="_passenger_standalone"><a class="anchor" href="#_passenger_standalone"></a>Passenger Standalone</h2>
+<div class="sectionbody">
 <div id="passenger" class="listingblock">
 <div class="title">/var/srv/www/titracka/shared/config/Passengerfile.json</div>
 <div class="content">
-<pre>{
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "address": "127.0.0.1", <i class="conum" data-value="1"></i><b>(1)</b>
   "environment": "production",
   "daemonize": true, <i class="conum" data-value="2"></i><b>(2)</b>
@@ -244,7 +257,7 @@ Anwendung. Der Apache-Server bedient den Anwender per SSL</p>
   "user": "deploy", <i class="conum" data-value="4"></i><b>(4)</b>
   "envvars": {
    }
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -267,6 +280,29 @@ Anwendung. Der Apache-Server bedient den Anwender per SSL</p>
 User, dem das Anwendungsverzeichnis <code>/var/srv/www/titracka</code> gehört.</td>
 </tr>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_start_passenger_with_systemd"><a class="anchor" href="#_start_passenger_with_systemd"></a>Start Passenger with systemd</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">[Unit]
+Description="Titracka startup passenger standalone
+ConditionPathExists=/usr/bin/passenger
+Wants=network.target
+After=syslog.target network.target
+
+[Service]
+Environment=PATH=/opt/ruby/2.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+WorkingDirectory=/var/srv/www/titracka/current
+# Parameters see ${WorkingDirectory}/Passenger.json
+ExecStart=/usr/bin/passenger start
+ExecStop=/usr/bin/passenger stop
+User=deploy
+Group=deploy
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+</div>
 </div>
 </div>
 </div>
