@@ -1,5 +1,8 @@
 import ApplicationController from './application_controller'
-import { Jstree } from 'jstree'
+import '../src/jquery.js'
+import jstree from 'jstree'
+import 'jstree/dist/themes/default/style.min.css'
+
 
 export default class extends ApplicationController {
   static targets = [ "tree" ]

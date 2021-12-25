@@ -1,5 +1,10 @@
 import { Controller } from "stimulus"
 
+import '../src/jquery.js'
+
+import select2 from 'select2'
+select2(window, $)
+
 export default class extends Controller {
   static targets = [ "input" ]
 
