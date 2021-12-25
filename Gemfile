@@ -4,7 +4,6 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'sqlite3', '~> 1.4'
 gem 'puma', '~> 5.1'
 gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'sprockets', '~> 4'
 gem 'sprockets-rails', require: 'sprockets/railtie'
@@ -92,3 +91,5 @@ gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
 gem "hiredis"
 gem "prawn"
 gem "prawn-markup"
+
+gem "jsbundling-rails", "~> 1.0"
