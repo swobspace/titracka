@@ -1,8 +1,8 @@
 <% if can? :create, Workday %>
 <ul class="navbar-nav mr-auto" data-controller="dateselector" data-dateselector-url="<%= main_app.root_path %>">
-  <li class="nav-item" data-dateselector-target="date">
-    <input type="hidden" data-dateselector-target="field">
-    <button class="nav-link btn btn-outline-secondary mr-1">
+  <li class="nav-item">
+    <button class="nav-link btn btn-outline-secondary mr-1" 
+            data-dateselector-target="date">
       <i class="far fa-calendar-alt"></i>
     </button>
   </li>
