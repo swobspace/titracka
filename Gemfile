@@ -55,7 +55,6 @@ group :production do
 end
 
 gem 'simple_form'
-gem 'font-awesome-sass', '>=4.7', '< 6'
 gem 'devise-remote-user'
 gem 'paper_trail'
 gem 'cancancan'

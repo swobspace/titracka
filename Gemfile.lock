@@ -452,7 +452,6 @@ DEPENDENCIES
   draper
   exception_notification
   factory_bot_rails
-  font-awesome-sass (>= 4.7, < 6)
   guard
   guard-bundler
   guard-livereload
