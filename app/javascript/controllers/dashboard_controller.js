@@ -7,7 +7,7 @@ export default class extends ApplicationController {
   static targets = [ "tree" ]
 
   initialize() {
-    $.jstree.defaults.core.themes.url = true
+    $.jstree.defaults.core.themes.url = false
   }
 
   connect () {
