@@ -40,9 +40,9 @@ class TimeAccountingsController < ApplicationController
     end
     respond_with(@time_accounting, location: location) do |format|
       if @time_accounting.save
-        format.js { head :created }
+        format.turbo_stream
       else
-        format.js { render json: @time_accounting.errors.full_messages, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity }
       end
     end
   end

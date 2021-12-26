@@ -45,25 +45,24 @@
       </span>
     </div>
     <% if ability.can? :update, task %>
-      <div data-controller='task' class="ml-2">
-        <span id="open_edit_task_<%=  task.id %>"
-              title="<%= t('actions.edit', model: Task.model_name.human) %>"
-              data-reflex="click->Task#edit"
-              data-task-id="<%= task.id %>"
-              data-modal-id="formTaskModal"
-              data-reflex-dataset="combined">
-          <%= icon_edit %>
-        </span>
-      </div>
+      <%= link_to icon_edit, 
+                  edit_task_path(task),
+                  data: {
+                    controller: :modal,
+                    'modal-modal-id-value': 'sharedModal',
+                    action: 'click->modal#open',
+                    'turbo-frame': "modal-body"
+                  }
+       %>
     <% end %>
-    <div data-controller='modal' class="ml-2">
-      <span data-modal-target="modalForm modalView"
-            data-action="click->modal#open"
-            data-modalId="timeAccountingModal"
-            data-actionurl="<%= task_time_accountings_path(task) %>"
-            title="<%= t('actions.add', model: TimeAccounting.model_name.human) %>">
-        <i class="far fa-clock"></i>
-      </span>
-    </div>
+    <%= link_to raw('<i class="far fa-clock"></i>'),
+                new_task_time_accounting_path(task),
+                data: {
+                  controller: :modal,
+                  'modal-modal-id-value': 'sharedModal',
+                  action: 'click->modal#open',
+                  'turbo-frame': "modal-body"
+                }
+     %>
   </div>
 <% end %>
