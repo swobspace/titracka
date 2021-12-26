@@ -28,7 +28,6 @@
     "select2": "4",
     "select2-bootstrap-5-theme": "^1.2.0",
     "stimulus": "^3.0.0",
-    "stimulus_reflex": "^3.5.0pre8",
     "trix": "^1.2.0",
     "turbolinks": "^5.2.0"
   },

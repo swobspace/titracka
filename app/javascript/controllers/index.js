@@ -1,12 +1,7 @@
 // app/javascript/controllers/index.js
 
 import { Application } from "stimulus"
-import StimulusReflex from 'stimulus_reflex'
-import consumer from '../channels/consumer'
-import controller from './application_controller'
-
 const application = Application.start()
-StimulusReflex.initialize(application, { consumer, controller, debug: false })
 
 application.warnings = true
 application.debug = false
