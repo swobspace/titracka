@@ -1,11 +1,14 @@
 <div class="card">
   <div class="card-header">
-    <div class="subtitle float-none"><%= t('activerecord.models.task') %>: #<%= @task.id %></div>
-    <h4 class="title float-left"><%= @task %></h4>
-
-    <div role="toolbar" class="float-right">
-      <%= edit_link(@task) %>
-      <%= delete_link(@task) %>
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <span class="subtitle"><%= t('activerecord.models.task') %>: #<%= @task.id %></span>
+        <h4 class="title"><%= @task %></h4>
+      </div>
+      <div role="toolbar" class="pt-3">
+        <%= edit_link(@task) %>
+        <%= delete_link(@task) %>
+      </div>
     </div>
   </div>
   <div class="row">
