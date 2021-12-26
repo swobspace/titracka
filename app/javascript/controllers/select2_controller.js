@@ -9,7 +9,7 @@ export default class extends Controller {
   static targets = [ "input" ]
 
   initialize() {
-    $.fn.select2.defaults.set( "theme", "bootstrap" )
+    $.fn.select2.defaults.set( "theme", "bootstrap-5" )
     this.element[this.identifier] = this
 
     const delegate = function (eventName, parameters) {
