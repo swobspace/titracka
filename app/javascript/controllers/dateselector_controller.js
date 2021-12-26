@@ -15,7 +15,6 @@ export default class extends Controller {
 
   connect() {
     const url = this.data.get("url")
-    console.log(url)
     flatpickr(this.dateTarget, {
       defaultDate: new Date(),
       dateFormat: "Y-m-d",
