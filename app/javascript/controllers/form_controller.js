@@ -16,7 +16,7 @@ export default class extends Controller {
        $(this.element).modal("toggle")
        this.element.querySelector('form').reset()
     }
-    Turbolinks.visit(render_url)
+    Turbo.visit(render_url)
   }
   onPostError(event) {
     let [data, status, xhr] = event.detail

@@ -9,7 +9,6 @@ require("trix")
 require("@rails/actiontext")
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
 
 import "./controllers"

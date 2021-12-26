@@ -12,14 +12,14 @@ export default class extends Controller {
 
   filter() {
     const url = `${window.location.pathname}?${this.params}`;
-    Turbolinks.clearCache();
-    Turbolinks.visit(url);
+    Turbo.clearCache();
+    Turbo.visit(url);
   }
 
   reset() {
     const url = `${window.location.pathname}`;
-    Turbolinks.clearCache();
-    Turbolinks.visit(url);
+    Turbo.clearCache();
+    Turbo.visit(url);
   }
 
 

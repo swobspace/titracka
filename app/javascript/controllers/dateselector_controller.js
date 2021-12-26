@@ -20,8 +20,8 @@ export default class extends Controller {
       dateFormat: "Y-m-d",
       onChange: function(selectedDates, dateStr, instance) {
         let newurl = url + dateStr
-        Turbolinks.clearCache();
-        Turbolinks.visit(newurl);
+        Turbo.clearCache();
+        Turbo.visit(newurl);
       }
     })
   }
