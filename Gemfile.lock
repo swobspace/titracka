@@ -144,6 +144,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    cssbundling-rails (1.0.0)
+      railties (>= 6.0.0)
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -444,6 +446,7 @@ DEPENDENCIES
   capistrano-yarn
   capybara
   coffee-rails
+  cssbundling-rails (~> 1.0)
   devise-remote-user
   dotenv
   draper
