@@ -17,11 +17,8 @@ export { application }
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-// import ApplicationController from "./application_controller"
-// application.register("application", ApplicationController)
-
 import CheckboxListController from "./checkbox_list_controller"
-application.register("checkbox_list", CheckboxListController)
+application.register("checkbox-list", CheckboxListController)
 
 import DashboardController from "./dashboard_controller"
 application.register("dashboard", DashboardController)
@@ -45,7 +42,7 @@ import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
 import NestedFormController from "./nested_form_controller"
-application.register("nested_form", NestedFormController)
+application.register("nested-form", NestedFormController)
 
 import NoteController from "./note_controller"
 application.register("note", NoteController)
