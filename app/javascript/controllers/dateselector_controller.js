@@ -18,7 +18,7 @@ export default class extends Controller {
     flatpickr(this.dateTarget, {
       defaultDate: new Date(),
       dateFormat: "Y-m-d",
-      onClose: function(selectedDates, dateStr, instance) {
+      onChange: function(selectedDates, dateStr, instance) {
         let newurl = url + dateStr
         Turbolinks.clearCache();
         Turbolinks.visit(newurl);
