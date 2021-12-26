@@ -1,3 +1,24 @@
+$font-family-sans-serif:
+  // Android
+  Roboto,
+  // Cross-platform generic font family (default user interface font)
+  system-ui,
+  // Safari for macOS and iOS (San Francisco)
+  -apple-system,
+  // Chrome < 56 for macOS (San Francisco)
+  BlinkMacSystemFont,
+  // Windows
+  "Segoe UI",
+  // Basic web fallback
+  "Helvetica Neue", Arial,
+  // Linux
+  "Noto Sans",
+  "Liberation Sans",
+  // Sans serif fallback
+  sans-serif,
+  // Emoji fonts
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
 // -- FONTS
 @font-face {
         font-family: 'Roboto';
@@ -26,11 +47,12 @@
 
 // --- bootstrap
 @import "bootstrap_custom";
+// $primary: #137970;
 @import "bootstrap/scss/bootstrap";
 
 
 body {
-  padding-top: 60px;
+  padding-top: 65px;
 }
 
 // --- FOOTER
