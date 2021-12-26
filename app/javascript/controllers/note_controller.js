@@ -1,4 +1,6 @@
 import ApplicationController from './application_controller'
+import '../src/jquery.js'
+
 export default class extends ApplicationController {
 
   connect () {

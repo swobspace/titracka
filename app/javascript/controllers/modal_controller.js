@@ -1,4 +1,5 @@
 import { Controller } from "stimulus"
+import '../src/jquery.js'
 
 export default class extends Controller {
   static targets = [ "modalForm", "modalView" ]
