@@ -4,7 +4,6 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'sqlite3', '~> 1.4'
 gem 'puma', '~> 5.1'
 gem 'sass-rails', '>= 6'
-gem 'turbolinks', '~> 5'
 gem 'sprockets', '~> 4'
 gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'coffee-rails'
@@ -94,3 +93,5 @@ gem "prawn-markup"
 gem "jsbundling-rails", "~> 1.0"
 
 gem "cssbundling-rails", "~> 1.0"
+
+gem "turbo-rails", "~> 1.0"
