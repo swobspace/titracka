@@ -17,27 +17,30 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 </head>
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-custom">
-    <a class="navbar-brand" href="<%= main_app.root_path if defined?(main_app.root_path)%>#">Titracka</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <%= render partial: 'shared/navi' %>
-      <%= render partial: 'shared/time_accounting' %>
-      <%= render partial: 'wobauth/shared/admin' %>
-      <%= render partial: 'wobauth/shared/accounting' %>
-      <%= render partial: 'shared/info' %>
+  <% # render 'shared/modal' %>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" role="navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="<%= root_path if defined?(root_path)%>#">Titracka</a>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggler">
+        <%= render partial: 'shared/navi' %>
+        <%= render partial: 'shared/time_accounting' %>
+        <%= render partial: 'wobauth/shared/admin' %>
+        <%= render partial: 'wobauth/shared/accounting' %>
+        <%= render partial: 'shared/info' %>
+      </div>
     </div>
   </nav>
 
-  <main class="container-fluid" role="main">
-    <%= render_breadcrumbs %>
+  <div class="container-fluid" role="main">
+    <% unless controller.action_name =~ /(new|edit)/ %>
+      <%= render_breadcrumbs %>
+    <% end %>
     <%= show_flash %>
     <%= yield %>
-  </main>
+  </div>
 
   <div id="footer" class="container-fluid">
     <div class="row">
