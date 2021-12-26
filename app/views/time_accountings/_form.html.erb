@@ -13,9 +13,9 @@
 	 %>
       <%= f.input :description
 	 %>
-      <%= f.input :date, as: :string, wrapper: :horizontal_date
+      <%= f.input :date, as: :date, html5: true, wrapper: :horizontal_date
 	 %>
-      <%= f.input :formatted_duration, as: :string, input_html: { class: 'col-sm-3' }
+      <%= f.input :formatted_duration, as: :string, wrapper: :horizontal_short
 	 %>
 
       <%= f.button :submit, class: 'btn btn-primary' %>
