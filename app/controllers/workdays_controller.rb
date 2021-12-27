@@ -68,11 +68,11 @@ class WorkdaysController < ApplicationController
       params.require(:workday).permit(:date, :work_start, :pause, :comment, :day_type_id)
     end
     def set_daystuff
-      @time_accountings = @current_user.time_accountings.where(date: @workday.date)
-      @work_sum = @time_accountings.sum(:duration)
+      # @time_accountings = @current_user.time_accountings.where(date: @workday.date)
+      # @work_sum = @time_accountings.sum(:duration)
       @week_sum = @current_user.decorate.working_time(week: @workday.date)
-      @end_of_work = (@workday.work_start || @workday.date.to_time.beginning_of_day) + 
-                       @work_sum.minutes + @workday.pause.minutes
+      # @end_of_work = (@workday.work_start || @workday.date.to_time.beginning_of_day) + 
+      #                  @work_sum.minutes + @workday.pause.minutes
     end
 
     def mostly_wanted_tasks

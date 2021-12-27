@@ -1,8 +1,4 @@
-<% content_for :head do %>
-  <meta name="turbo-cache-control" content="no-cache">
-<% end %>
-
-<div data-controller="datatables" class="mb-3">
+<div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
         id: "time_accountings_table",
         class: "table table-bordered table-responsive-xl",
@@ -13,10 +9,11 @@
     <thead>
       <tr>
             <th><%= t('attributes.date') %></th>
-            <th><%= t('attributes.duration') %></th>
-            <th class="notvisible"><%= t('attributes.task') %></th>
+            <th class="notvisible"><%= t('attributes.duration') %></th>
+            <th><%= t('attributes.formatted_duration') %></th>
+            <th><%= t('attributes.task') %></th>
             <th><%= t('attributes.description') %></th>
-            <th><%= t('attributes.user') %></th>
+            <th class="notvisible"><%= t('attributes.user') %></th>
             <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
@@ -28,20 +25,30 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
       </tr>
     </tfoot>
     <tbody>
-      <% time_accountings.each do |time_accounting| %>
-        <%= content_tag(:tr, id: dom_id(time_accounting)) do %>
+      <% @time_accountings.each do |time_accounting| %>
+        <%= content_tag(:tr, id: dom_id(time_accounting), class: dom_class(time_accounting)) do %>
                 <td><%= time_accounting.date %></td>
                 <td><%= time_accounting.duration %></td>
+                <td><%= time_accounting.formatted_duration %></td>
                 <td><%= time_accounting.task %></td>
                 <td><%= time_accounting.description %></td>
                 <td><%= time_accounting.user %></td>
                 <td class="text-nowrap">
-            <%= show_link [time_accounting.task, time_accounting] %>
-            <%= edit_link [time_accounting.task, time_accounting] %>
-            <%= delete_link [time_accounting.task, time_accounting] %>
+            <%= show_link time_accounting %>
+            <%= edit_link time_accounting,
+                  data: {
+                    controller: :modal,
+                    'modal-modal-id-value': 'sharedModal',
+                    action: 'click->modal#open',
+                    'turbo-frame': "modal-body"
+                  }
+             %>
+            <%= delete_link(time_accounting, { data: { turbo: { method: :delete, confirm: "Are you sure?" }}}) %>
+
           </td>
         <% end %>
       <% end %>

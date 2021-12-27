@@ -94,3 +94,5 @@ gem "jsbundling-rails", "~> 1.0"
 gem "cssbundling-rails", "~> 1.0"
 
 gem "turbo-rails", "~> 1.0"
+
+gem "view_component", "~> 2.47"

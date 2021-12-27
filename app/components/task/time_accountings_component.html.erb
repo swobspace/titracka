@@ -1,0 +1,26 @@
+<div data-controller="datatables">
+  <%= content_tag :table, role: :datatable,
+        id: "time_accountings_table",
+        class: "table table-sm table-bordered table-responsive-xl",
+        data: {
+          "datatables-target": 'datatable',
+          order: [[0, 'desc']].to_json
+        } do %>
+    <thead>
+      <th class="text-center"><%= t('attributes.date')%></th>
+      <th class="text-center"><%= t('attributes.duration') %></th>
+      <th><%= t('attributes.description') %></th>
+      <th><%= t('attributes.user') %></th>
+    </thead>
+    <tbody>
+      <% @task.time_accountings.each do |time_accounting| %>
+        <%= content_tag(:tr, id: dom_id(time_accounting)) do %>
+          <td class="text-center align-middle"><%= time_accounting.date.to_s %></td>
+          <td class="text-center align-middle"><%= time_accounting.duration %></td>
+          <td class="align-middle"><%= time_accounting.description %></td>
+          <td class="align-middle"><%= time_accounting.user.decorate.shortname %></td>
+        <% end %>
+      <% end %>
+    </tbody>
+  <% end %>
+</div>
