@@ -73,7 +73,14 @@
       <div class="card-header">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="card-title mb-0"><%= t('attributes.time_accountings')%></h5>
-          <%= new_link [@task, TimeAccounting] %>
+          <%= new_link [@task, TimeAccounting],
+                data: {
+                  controller: :modal,
+                  'modal-modal-id-value': 'sharedModal',
+                  action: 'click->modal#open',
+                  'turbo-frame': "modal-body"
+               }
+           %>
         </div>
       </div>
       <div class="card-body">
