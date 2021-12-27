@@ -1,5 +1,5 @@
 <div data-controller="toggle" data-toggle-toggle-class="hidden">
-  <span class="float-right clapse btn" data-action="click->toggle#toggleAll">
+  <span class="float-end clapse btn" data-action="click->toggle#toggleAll">
     <i class="clapse" data-toggle-target="content"></i>
   </span>
 <%= content_tag :div, class: :row, id: 'tasksCardboard', 
@@ -14,7 +14,7 @@
         <div class="card-header text-center border d-flex justify-content-between" data-controller="task">
           <%= column.name %>
           <% if ability.can? :create, Task %>
-            <span id="new_task_to_<%=  column.id %>" class="ml-2 icon-color mr-n2"
+            <span id="new_task_to_<%=  column.id %>" class="ms-2 icon-color"
                   data-reflex="click->Task#new"
                   data-column-type="<%= column.class.name %>"
                   data-column-id="<%= column.id %>"
