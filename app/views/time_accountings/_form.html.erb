@@ -1,25 +1,40 @@
-<div class="container">
-  <%= simple_form_for([@time_accountable, @time_accounting],
-    html: { class: 'form-horizontal card' }) do |f| %>
+<%= simple_form_for([@time_accountable, @time_accounting],
+  data: {
+    action: "turbo:submit-end->modal#handleSubmit"
+  }) do |f| %>
 
-    <div class="card-header">
-      <%= form_legend %>
+  <div class="modal-header bg-light">
+   <div>
+    <div class="text-muted">
+      <span><%= t('activerecord.models.time_accounting') %> <%= t('titracka.for') %></span>
     </div>
-    <div class="card-body">
-      <%= f.association :task, 
-          collection: @tasks,
-          label_method: :name_with_list_or_org_unit,
-          wrapper: :horizontal_select2
-	 %>
-      <%= f.input :description
-	 %>
-      <%= f.input :date, as: :date, html5: true, wrapper: :horizontal_date
-	 %>
-      <%= f.input :formatted_duration, as: :string, wrapper: :horizontal_short
-	 %>
+    <h5 class="modal-title">
+      <%= @time_accountable || @current_user %>
+    </h5>
+   </div>
 
-      <%= f.button :submit, class: 'btn btn-primary' %>
-      <%= cancel_button %>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+    </button>
+  </div>
+  <div class="modal-body">
+    <%= f.association :task, 
+        collection: @tasks,
+        label_method: :name_with_list_or_org_unit,
+        wrapper: :horizontal_select2
+       %>
+    <%= f.input :description
+       %>
+    <%= f.input :date, as: :date, html5: true, wrapper: :horizontal_date
+       %>
+    <%= f.input :formatted_duration, as: :string, wrapper: :horizontal_short
+       %>
+
+    <div class="row">
+      <div class="offset-sm-3">
+        <%= f.button :submit, class: 'btn btn-primary' %>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t('actions.cancel') %></button>
+      </div>
     </div>
-  <% end %>
-</div>
+
+  </div>
+<% end %>

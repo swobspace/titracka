@@ -8,11 +8,11 @@ class TimeAccountingsComponent < ViewComponent::Base
 
   def call
     if @time_accountable.kind_of? Task
-      render Task::TimeAccountingsComponent.new(task: @time_accountable)
+      Task::TimeAccountingsComponent.new(task: @time_accountable).render_in(view_context)
     elsif @time_accounable.kind_of? Workday
-      render Workday::TimeAccountingsComponent.new(workday: @time_accountable, user: @user)
+      Workday::TimeAccountingsComponent.new(workday: @time_accountable, user: @user).render_in(view_context)
     else
-      render TimeAccountings::IndexComponent.new(user: @user)
+      TimeAccountings::IndexComponent.new(user: @user).render_in(view_context)
     end
   end
 

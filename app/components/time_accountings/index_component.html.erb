@@ -1,1 +1,57 @@
-<div>Add TimeAccountings::Index template here</div>
+<div data-controller="datatables">
+  <%= content_tag :table, role: :datatable,
+        id: "time_accountings_table",
+        class: "table table-bordered table-responsive-xl",
+        data: {
+          "datatables-target": 'datatable',
+          order: [[0, 'desc']].to_json
+        } do %>
+    <thead>
+      <tr>
+            <th><%= t('attributes.date') %></th>
+            <th class="notvisible"><%= t('attributes.duration') %></th>
+            <th><%= t('attributes.formatted_duration') %></th>
+            <th><%= t('attributes.task') %></th>
+            <th><%= t('attributes.description') %></th>
+            <th class="notvisible"><%= t('attributes.user') %></th>
+            <th class="nosort"><%= t('titracka.action') %></th>
+      </tr>
+    </thead>
+    <tfoot class="search">
+      <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% @time_accountings.each do |time_accounting| %>
+        <%= content_tag(:tr, id: dom_id(time_accounting), class: dom_class(time_accounting)) do %>
+                <td><%= time_accounting.date %></td>
+                <td><%= time_accounting.duration %></td>
+                <td><%= time_accounting.formatted_duration %></td>
+                <td><%= time_accounting.task %></td>
+                <td><%= time_accounting.description %></td>
+                <td><%= time_accounting.user %></td>
+                <td class="text-nowrap">
+            <%= show_link time_accounting %>
+            <%= edit_link time_accounting,
+                  data: {
+                    controller: :modal,
+                    'modal-modal-id-value': 'sharedModal',
+                    action: 'click->modal#open',
+                    'turbo-frame': "modal-body"
+                  }
+             %>
+            <%= delete_link(time_accounting, { data: { turbo: { method: :delete, confirm: "Are you sure?" }}}) %>
+
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  <% end %>
+</div>
