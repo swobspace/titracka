@@ -50,9 +50,9 @@ export default class extends Controller {
     })
   }
 
-  afterCardboard(element) {
-    let clicked = this.treeTarget.querySelectorAll('li > a.jstree-clicked')
-    clicked.forEach(element => element.classList.remove('jstree-clicked'))
-    element.classList.add('jstree-clicked')
+  open(event) {
+    let url = event.target.attributes.href.value
+    Turbo.visit(url)
   }
+
 }
