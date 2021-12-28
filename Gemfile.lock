@@ -6,6 +6,15 @@ GIT
       rails (>= 3)
 
 GIT
+  remote: https://github.com/heartcombo/responders.git
+  revision: 47d31b43a3c3d3a5bc56ca862226dd3ec77bb59e
+  branch: main
+  specs:
+    responders (3.0.1)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
+
+GIT
   remote: https://github.com/swobspace/wobapphelpers
   revision: 14968c5fab2dcd4299307b285ff824055eede7b2
   branch: develop
@@ -344,9 +353,6 @@ GEM
     regexp_parser (2.2.0)
     request_store (1.5.0)
       rack (>= 1.4)
-    responders (3.0.1)
-      actionpack (>= 5.0)
-      railties (>= 5.0)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -478,6 +484,7 @@ DEPENDENCIES
   rails-i18n (~> 6.0.0)
   rails-plantuml-generator!
   redis (>= 4.0)
+  responders!
   rspec-rails
   sass-rails (>= 6)
   shoulda-matchers
