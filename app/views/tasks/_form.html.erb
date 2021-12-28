@@ -44,13 +44,16 @@
     <%= form.input :priority, collection:
           Task::PRIORITIES.map {|x| [t(x, scope: 'titracka.priority'), x]},
             include_blank: false,
-            input_html: {class: 'col-sm-3'}
+            input_html: {class: 'col-lg-4 col-sm-8'}
        %>
-    <%= form.input :start, as: :string, wrapper: :horizontal_date
+    <%= form.input :start, as: :string, wrapper: :horizontal_date,
+          input_html: {class: 'col-lg-4 col-sm-8'}
       %>
-     <%= form.input :deadline, as: :string, wrapper: :horizontal_date
+    <%= form.input :deadline, as: :string, wrapper: :horizontal_date,
+          input_html: {class: 'col-lg-4 col-sm-8'}
       %>
-    <%= form.input :resubmission, as: :string, wrapper: :horizontal_date
+    <%= form.input :resubmission, as: :string, wrapper: :horizontal_date,
+          input_html: {class: 'col-lg-4 col-sm-8'}
        %>
     <%= form.input :private
        %>
