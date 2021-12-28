@@ -15,7 +15,7 @@
           <%= column.name %>
           <% if ability.can? :create, Task %>
             <%= link_to icon_new,
-                        new_task_path(Task.new(column.model_name.to_s.underscore => column)),
+                        new_polymorphic_path([column, :task]),
                         title: t('actions.add', model: Task.model_name.human),
                         data: {
                           controller: :modal,
