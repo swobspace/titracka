@@ -14,16 +14,16 @@
         <div class="card-header text-center border d-flex justify-content-between" data-controller="task">
           <%= column.name %>
           <% if ability.can? :create, Task %>
-            <span id="new_task_to_<%=  column.id %>" class="ms-2 icon-color"
-                  data-reflex="click->Task#new"
-                  data-column-type="<%= column.class.name %>"
-                  data-column-id="<%= column.id %>"
-                  data-modal-id="formTaskModal"
-                  data-reflex-dataset="combined"
-                  title="<%= t('actions.add', model: Task.model_name.human) %>"
-              >
-              <%= icon_new %>
-            </span>
+            <%= link_to icon_new,
+                        new_task_path(Task.new(column.model_name.to_s.underscore => column)),
+                        title: t('actions.add', model: Task.model_name.human),
+                        data: {
+                          controller: :modal,
+                          'modal-modal-id-value': 'sharedModal',
+                          action: 'click->modal#open',
+                          'turbo-frame': "modal-body"
+                        }
+             %>
           <% end %>
         </div>
 

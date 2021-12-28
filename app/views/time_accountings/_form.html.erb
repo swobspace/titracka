@@ -1,21 +1,19 @@
 <%= simple_form_for([@time_accountable, @time_accounting],
-  data: {
-    action: "turbo:submit-end->modal#handleSubmit"
-  }) do |f| %>
+      data: { action: "turbo:submit-end->modal#handleSubmit" }) do |f| %>
 
   <div class="modal-header bg-light">
-   <div>
-    <div class="text-muted">
-      <span><%= t('activerecord.models.time_accounting') %> <%= t('titracka.for') %></span>
+    <div>
+      <div class="text-muted">
+        <span><%= t('activerecord.models.time_accounting') %> <%= t('titracka.for') %></span>
+      </div>
+      <h5 class="modal-title">
+        <%= @time_accountable || @current_user %>
+      </h5>
     </div>
-    <h5 class="modal-title">
-      <%= @time_accountable || @current_user %>
-    </h5>
-   </div>
-
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
     </button>
   </div>
+
   <div class="modal-body">
     <%= f.association :task, 
         collection: @tasks,

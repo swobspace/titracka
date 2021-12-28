@@ -1,4 +1,4 @@
-<div class='nested-fields bg-light p-3 mb-0 border border-top-1 border-bottom-1'>
+<div class='nested-fields bg-light p-3 mb-1 border border-top-1 border-bottom-1'>
   <div class='row mb-3'>
     <%= form.hidden_field :_destroy %>
     <div class="col-sm-4">
@@ -13,7 +13,7 @@
             { class: 'form-control select' }
        %>
     </div>
-    <small class="col-sm-1 mr-2">
+    <small class="col-sm-1 me-3">
       <%= link_to icon_delete, "#", class: 'btn btn-danger',
             data: { action: "click->nested-form#remove_association" } 
        %>
