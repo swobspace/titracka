@@ -2,18 +2,23 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :add_breadcrumb_show, only: [:show]
   before_action :set_associations, only: [:index, :new, :edit, :update, :create]
+  before_action :set_columns, only: [:index, :update, :create, :destroy]
+  before_action :set_tasks, only: [:update, :create, :destroy]
 
   # GET /tasks
   def index
     if @taskable
       @tasks = @taskable.tasks.accessible_by(current_ability, :read)
+    else
+       @tasks = Task.accessible_by(current_ability, :read)
     end
     if search_params.present?
       @tasks = TaskQuery.new(@tasks.joins(:state), search_params).all
+      session[:tasks_filter] = search_params
+    else
+      session[:tasks_filter] = {}
     end
     if params[:view] == 'cards'
-      @columns = State.not_archived
-      @tasks_per_column = @tasks.group_by(&:state_id)
       render template: 'tasks/cards'
     else
       respond_with(@tasks)
@@ -45,7 +50,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     if @taskable
-      @task = @taskable.tasks.new(priority: 'normal')
+      @task = @taskable.tasks.new(search_params.merge(priority: 'normal'))
     else
       @task = @current_user.tasks.new(priority: 'normal')
     end
@@ -72,6 +77,10 @@ class TasksController < ApplicationController
     respond_with(@task, location: location) do |format|
       if @task.update(task_params)
         format.turbo_stream
+        format.js { head :created }
+      else
+        format.js { render json: @task.errors.full_messages, status: :unprocessable_enti
+ty }
       end
     end
   end
@@ -127,5 +136,20 @@ class TasksController < ApplicationController
 
     def submit_parms
       [ "utf8", "authenticity_token", "commit", "format", "view" ]
+    end
+
+    def set_columns
+      @columns = State.not_archived
+    end
+
+    def set_tasks
+      if @taskable
+        @tasks = @taskable.tasks.accessible_by(current_ability, :read)
+      else
+         @tasks = Task.accessible_by(current_ability, :read)
+      end
+      if session[:tasks_filter].any?
+        @tasks = TaskQuery.new(@tasks.joins(:state), session[:tasks_filter]).all
+      end
     end
 end

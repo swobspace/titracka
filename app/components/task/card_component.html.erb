@@ -1,0 +1,68 @@
+<%= content_tag :li,
+      class: "priority-#{@task.priority} list-group-item mb-2 pb-1",
+      id: "card_task_#{@task.id}",
+      data: {
+        "draggable-target": ('task' if @ability.can?(:update, @task)),
+        controller: 'task toggle',
+        'toggle-toggle-class': 'hidden',
+        id: @task.id,
+        url: state_task_path(@task.state, @task)
+      } do %>
+  <span data-action="click->toggle#toggle" class="float-right">
+    <i data-toggle-target="content" class="clapse icon-color"></i>
+  </span>
+  <div class=""
+       id="task_subject_<%= @task.id %>"
+       data-reflex="click->Task#show"
+       data-modal-id="showTaskModal"
+       data-reflex-dataset="combined">
+    <div class="d-flex w-100"><%= @task.subject %></div>
+    <div data-toggle-target="content">
+      <div class="d-flex w-100 justify-content-between small text-muted">
+        <p class="mb-1"><%= truncate(strip_tags(@task.description.to_s), length: 300) %></p>
+      </div>
+      <div class="d-flex w-100 small text-muted">
+       <%= @task.cross_references.join(" ") %>
+      </div>
+      <div class="small text-muted">
+       <%= helpers.raci(@task) %>
+      </div>
+    </div>
+    <div class="d-flex w-100 justify-content-between small timeline">
+      <%= helpers.timeline(@task) %>
+    </div>
+  </div>
+
+  <!-- action icons -->
+  <div class="d-flex w-100 small icon-color pt-1 mt-1">
+    <div class="">
+      <span id="show_task_<%= @task.id %>"
+            title="<%= t('actions.show', model: Task.model_name.human) %>"
+            data-reflex="click->Task#show"
+            data-modal-id="showTaskModal"
+            data-reflex-dataset="combined">
+        <i class="far fa-comment"></i>
+      </span>
+    </div>
+    <% if @ability.can? :update, @task %>
+      <%= link_to helpers.icon_edit, 
+                  edit_task_path(@task),
+                  data: {
+                    controller: :modal,
+                    'modal-modal-id-value': 'sharedModal',
+                    action: 'click->modal#open',
+                    'turbo-frame': "modal-body"
+                  }
+       %>
+    <% end %>
+    <%= link_to raw('<i class="far fa-clock"></i>'),
+                new_task_time_accounting_path(@task),
+                data: {
+                  controller: :modal,
+                  'modal-modal-id-value': 'sharedModal',
+                  action: 'click->modal#open',
+                  'turbo-frame': "modal-body"
+                }
+     %>
+  </div>
+<% end %>
