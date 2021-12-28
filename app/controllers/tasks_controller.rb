@@ -62,9 +62,7 @@ class TasksController < ApplicationController
 
     respond_with(@task, location: location) do |format|
       if @task.save
-        format.js { head :created }
-      else
-        format.js { render json: @task.errors.full_messages, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
@@ -73,17 +71,18 @@ class TasksController < ApplicationController
   def update
     respond_with(@task, location: location) do |format|
       if @task.update(task_params)
-        format.js { head :ok }
-      else
-        format.js { render json: @task.errors.full_messages, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
 
   # DELETE /tasks/1
   def destroy
-    @task.destroy
-    respond_with(@task, location: location)
+    respond_with(@task, location: location) do |format|
+      if @task.destroy
+        format.turbo_stream
+      end
+    end
   end
 
   private
