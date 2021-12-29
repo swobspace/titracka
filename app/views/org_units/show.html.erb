@@ -12,15 +12,11 @@
   </div>
 </div>
 
-<div class="ml-2 mb-3">
+<div id="ts_tasks" class="ml-2 mb-3">
 <%= render 'tasks/cards',
       columns: @columns,
-      tasks_per_column: @tasks_per_column,
-      filter: { org_unit_id: @org_unit.id },
-      url: request.url,
+      tasks: @tasks,
       ability: @current_ability
  %>
 
 </div>
-<%= new_link [@org_unit, Task] %>
-
