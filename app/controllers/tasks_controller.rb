@@ -148,7 +148,7 @@ ty }
       else
          @tasks = Task.accessible_by(current_ability, :read)
       end
-      if session[:tasks_filter].any?
+      if session[:tasks_filter].present?
         @tasks = TaskQuery.new(@tasks.joins(:state), session[:tasks_filter]).all
       end
     end
