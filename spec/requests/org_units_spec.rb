@@ -1,6 +1,7 @@
  require 'rails_helper'
 
 RSpec.describe "/org_units", type: :request do
+  let!(:state) { FactoryBot.create(:state) }
   let(:parent) { FactoryBot.create(:org_unit) }
   let(:valid_attributes) {
     FactoryBot.attributes_for(:org_unit)

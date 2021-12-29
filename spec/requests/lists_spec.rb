@@ -1,6 +1,7 @@
  require 'rails_helper'
 
 RSpec.describe "/lists", type: :request do
+  let!(:state) { FactoryBot.create(:state) }
   let(:ou)   { FactoryBot.create(:org_unit) }
   let(:user) { FactoryBot.create(:user) }
   let(:valid_attributes) {

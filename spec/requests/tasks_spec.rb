@@ -1,6 +1,7 @@
  require 'rails_helper'
 
 RSpec.describe "/tasks", type: :request do
+  let!(:state) { FactoryBot.create(:state) }
   let(:user) { FactoryBot.create(:user) }
   let(:open) { FactoryBot.create(:state, :open) }
   let(:ou)   { FactoryBot.create(:org_unit) }
