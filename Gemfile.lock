@@ -375,8 +375,6 @@ GEM
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
     ruby2_keywords (0.0.5)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -450,7 +448,6 @@ DEPENDENCIES
   capistrano-rails
   capistrano-yarn
   capybara
-  coffee-rails
   cssbundling-rails (~> 1.0)
   devise-remote-user
   dotenv
@@ -486,11 +483,8 @@ DEPENDENCIES
   redis (>= 4.0)
   responders!
   rspec-rails
-  sass-rails (>= 6)
   shoulda-matchers
   simple_form
-  sprockets (~> 4)
-  sprockets-rails
   sqlite3 (~> 1.4)
   turbo-rails (~> 1.0)
   view_component (~> 2.47)
