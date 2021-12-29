@@ -39,23 +39,18 @@ class HomeController < ApplicationController
                          .where(id: search_params['org_unit_id'])
                          .first
         return if @element.nil?
-        @tasks_per_column = @element.tasks
-                                   .accessible_by(current_ability)
-                                   .group_by(&:state_id)
+        @tasks = @element.tasks.accessible_by(current_ability)
 
       elsif search_params['list_id'].present?
         @element = List.accessible_by(current_ability)
                        .where(id: search_params['list_id'])
                        .first
         return if @element.nil?
-        @tasks_per_column = @element.tasks
-                                   .accessible_by(current_ability)
-                                   .group_by(&:state_id)
+        @tasks = @element.tasks.accessible_by(current_ability)
 
       elsif search_params['private'].present?
-        @tasks_per_column = Task.accessible_by(current_ability)
+        @tasks = Task.accessible_by(current_ability)
                                 .where(org_unit_id: nil, list_id: nil)
-                                .group_by(&:state_id)
       end
       @columns = State.not_archived
       @filter ||= @search_params.slice("org_unit_id", "list_id", "private")

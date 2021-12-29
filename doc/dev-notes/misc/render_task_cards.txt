@@ -1,0 +1,47 @@
+
+_dashboard.html.erb:
+    <%= render('tasks/cards', columns: @columns,
+                              tasks_per_column: @tasks_per_column,
+                              filter: @filter,
+                              ability: current_ability,
+                              url: root_path(@search_params)) if @columns.present? %>
+dashboard_controller.rb:
+     @tasks_per_column = @element.tasks
+                                 .accessible_by(current_ability)
+                                 .group_by(&:state_id)
+
+      @columns = State.not_archived
+      @filter ||= @search_params.slice("org_unit_id", "list_id", "private")
+      @url = request.url
+
+
+cards.html.erb:
+     <%= render 'tasks/cards',
+            columns: @columns,
+            tasks_per_column: @tasks_per_column,
+            filter: nil,
+            url: request.url,
+            ability: @current_ability
+
+tasks_controller.rb:
+      @columns = State.not_archived
+      @tasks_per_column = @tasks.group_by(&:state_id)
+
+
+
+dashboard_reflex.rb:
+   morph "#dashboardContent", HomeController.render(
+      partial: 'tasks/cards',
+      locals: {
+        columns: @columns,
+        tasks_per_column: @tasks_per_column,
+        filter: @filter,
+        url: @url,
+        ability: current_ability
+      }
+    )
+    @columns = State.not_archived
+    @url = request.path + '?'
+    @filter = { "#{element.dataset[:element_type]}_id".to_sym => element.dataset[:element_id] }
+
+

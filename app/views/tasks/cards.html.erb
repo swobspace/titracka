@@ -7,11 +7,10 @@
     <div class="col-xs-12 col-sm-3 col-xxl-2 d-print-none pe-3" data-toggle-target="content">
       <%= render 'tasks/filters' %>
     </div>
-    <div class="col ps-0">
+    <div id="ts_tasks" class="col ps-0">
       <%= render 'tasks/cards', 
+            tasks: @tasks,
             columns: @columns, 
-            tasks_per_column: @tasks_per_column,
-            filter: nil,
             url: request.url,
             ability: @current_ability
        %>

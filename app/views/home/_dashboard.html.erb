@@ -39,9 +39,9 @@
       </div>
     </div>
   </div>
-  <div id="dashboardContent" class="col">
+  <div id="ts_tasks" class="col">
     <%= render('tasks/cards', columns: @columns, 
-                              tasks_per_column: @tasks_per_column,
+                              tasks: @tasks,
                               filter: @filter,
                               ability: current_ability,
                               url: root_path(@search_params)) if @columns.present? %>
