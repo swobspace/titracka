@@ -10,7 +10,7 @@
           <%= column.name %>
           <% if @ability.can? :create, Task %>
             <%= link_to helpers.icon_new,
-                        new_polymorphic_path([column, :task], params.slice(:org_unit_id, :list_id, :user_id, :responsible_id).permit!),
+                        new_polymorphic_path([column, :task], params.slice(:list_id, :org_unit_id, :user_id, :responsible_id, :subject).permit! ),
                         title: t('actions.add', model: Task.model_name.human),
                         data: {
                           controller: :modal,
