@@ -81,7 +81,7 @@ RSpec.describe "/references", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post references_url, params: { reference: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -119,7 +119,7 @@ RSpec.describe "/references", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         reference = Reference.create! valid_attributes
         patch reference_url(reference), params: { reference: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
