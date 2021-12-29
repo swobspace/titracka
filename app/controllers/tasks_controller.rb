@@ -15,8 +15,10 @@ class TasksController < ApplicationController
     if search_params.present?
       @tasks = TaskQuery.new(@tasks.joins(:state), search_params).all
       session[:tasks_filter] = search_params
+      session[:new_task_params] = search_params.slice(:list_id, :org_unit_id, :user_id, :responsible_id, :subject)
     else
       session[:tasks_filter] = {}
+      session[:new_task_params] = {}
     end
     if params[:view] == 'cards'
       render template: 'tasks/cards'
@@ -36,7 +38,6 @@ class TasksController < ApplicationController
         path = File.join(Rails.root, 'app', 'views', 'tasks', 'show_pdf.html.erb')
         template = File.open(path).read
         string = ERB.new(template).result(binding)
-        Rails.logger.debug(string)
         pdf = Prawn::Document.new
         pdf.markup(string)
         send_data pdf.render, :filename => "Task.pdf",
@@ -130,7 +131,7 @@ ty }
         :subject, :user, :responsible, :status, :state, :priority, :private,
         :has_references, :limit, :search, :cross_reference, :without_lists,
         priority_ids: [], state_ids: [],
-      ).to_hash
+      ).to_h
       searchparms.reject{|k, v| (v.blank? || submit_parms.include?(k))}
     end
 
