@@ -9,8 +9,10 @@ class OrgUnitsController < ApplicationController
 
   # GET /org_units/1
   def show
+    session[:tasks_filter] = session[:new_task_params] = { org_unit_id: @org_unit.id }
+
     @columns = State.not_archived
-    @tasks_per_column = @org_unit.tasks.group_by(&:state_id)
+    @tasks = @org_unit.tasks.accessible_by(current_ability, :read)
     respond_with(@org_unit)
   end
 
