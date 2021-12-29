@@ -1,5 +1,5 @@
 <%= content_tag :li,
-      class: "priority-#{@task.priority} list-group-item mb-2 pb-1",
+      class: "priority-#{@task.priority} list-group-item mb-2 pb-1 shadow-sm",
       id: "card_task_#{@task.id}",
       data: {
         "draggable-target": ('task' if @ability.can?(:update, @task)),
