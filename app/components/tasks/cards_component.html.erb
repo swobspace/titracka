@@ -21,7 +21,7 @@
         <% end %>
       </div>
 
-      <%= content_tag :ul, class: 'list-group list-group-flsh dropzone px-0 bg-light', data: { id: column.id, "draggable-target": 'column' } do %>
+      <%= content_tag :div, class: 'list-group list-group-flash dropzone px-0 bg-light', data: { id: column.id, "draggable-target": 'column' } do %>
         <%= render Task::CardComponent.with_collection(@tasks_per_column[column.id], ability: @ability) if @tasks_per_column[column.id].present? %>
       <% end %>
     </div>

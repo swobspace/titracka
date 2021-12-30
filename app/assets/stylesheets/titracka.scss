@@ -121,8 +121,16 @@ trix-editor.form-control {
 
 // - cardboard
 
-ul.dropzone {
-  min-height: 120vh;
+div#tasksCardboard {
+  min-height: 800px;
+}
+
+div.header {
+  height: 2em; 
+}
+div.dropzone {
+  //min-height: 120vh;
+  height: calc(100% - 3em);
 }
 
 .turbo-progress-bar {
