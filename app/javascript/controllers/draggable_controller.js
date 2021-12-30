@@ -12,7 +12,10 @@ export default class extends Controller {
       })
       const sortable = new Sortable(this.columnTargets, {
         draggable: 'div.list-group-item',
-        distance: 5
+        distance: 5,
+        mirror: {
+          constrainDimensions: true
+        }
       })
       sortable.on('sortable:start', function(event) {
         let task = event.dragEvent.source
