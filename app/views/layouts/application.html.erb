@@ -20,7 +20,7 @@
   <%= render 'shared/modal' %>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" role="navigation">
     <div class="container-fluid">
-      <a class="navbar-brand" href="<%= root_path if defined?(root_path)%>#">Titracka</a>
+      <a class="navbar-brand" href="<%= main_app.root_path if defined?(main_app.root_path)%>#">Titracka</a>
       <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
         <span class="navbar-toggler-icon"></span>
       </button>
