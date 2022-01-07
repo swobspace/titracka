@@ -35,15 +35,15 @@
 
   <!-- action icons -->
   <div class="d-flex w-100 small icon-color pt-1 mt-1">
-    <div class="">
-      <span id="show_task_<%= @task.id %>"
-            title="<%= t('actions.show', model: Task.model_name.human) %>"
-            data-reflex="click->Task#show"
-            data-modal-id="showTaskModal"
-            data-reflex-dataset="combined">
-        <i class="far fa-comment"></i>
-      </span>
-    </div>
+    <%= link_to helpers.icon_show, 
+                task_path(@task, modal: 1),
+                data: {
+                  controller: :modal,
+                  'modal-modal-id-value': 'sharedModal',
+                  action: 'click->modal#open',
+                  'turbo-frame': "modal-body"
+                }
+     %>
     <% if @ability.can? :update, @task %>
       <%= link_to helpers.icon_edit, 
                   edit_task_path(@task),

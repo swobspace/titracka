@@ -30,9 +30,7 @@ class NotesController < ApplicationController
     respond_with(@note, location: location) do |format|
       if @note.save
         email_note(@note)
-        format.js { head :created }
-      else
-        format.js { render json: @note.errors.full_messages, status: :unprocessable_entity }
+        format.turbo_stream {}
       end
     end
   end

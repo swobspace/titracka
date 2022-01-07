@@ -33,6 +33,13 @@ class TasksController < ApplicationController
   # GET /tasks/1
   def show
     respond_with(@task) do |format|
+      format.html do
+        if params[:modal]
+          render 'show_modal'
+        else
+          render 'show'
+        end
+      end
       format.pdf do
         # just for testing, no real world usage for now
         path = File.join(Rails.root, 'app', 'views', 'tasks', 'show_pdf.html.erb')

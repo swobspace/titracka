@@ -1,19 +1,16 @@
 <%= simple_form_for([task, task.notes.new],
-      remote: true,
-      data: {
-        action: "ajax:success->form#onPostSuccess ajax:error->form#onPostError"
-      }
-    ) do |f| %>
+      data: { action: "turbo:submit-end->modal#handleSubmit" }) do |form| %>
+
     <h5 class="bt mt-3"><%= t('actions.add', model: t('activerecord.models.note')) %></h5>
 
-    <%= f.input :description, as: :rich_text_area,
+    <%= form.input :description, as: :rich_text_area,
           wrapper: :vertical_form, label: false
        %>
 
     <%= render 'notes/mail_form_fields', task: task %>
     <div data-form-target="errorSuccess" class="" role="alert"></div>
     <div role="toolbar" class="">
-      <%= f.button :submit, class: 'btn btn-primary' %>
+      <%= form.button :submit, class: 'btn btn-primary' %>
     </div>
 <% end %>
 
