@@ -4,7 +4,7 @@
         url: @url
       } do %>
   <% @columns.each do |column| %>
-    <div class='col px-3'>
+    <div class='col px-3 border-end'>
       <div class="header my-2 d-flex justify-content-between" data-controller="task">
         <%= column.name %>
         <% if @ability.can? :create, Task %>
