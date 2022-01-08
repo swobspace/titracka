@@ -127,7 +127,11 @@ ty }
     end
 
     def location
-      polymorphic_path(@taskable || @task)
+      if action_name == 'destroy'
+        polymorphic_path(@taskable || :tasks)
+      else
+        polymorphic_path(@taskable || @task)
+      end
     end
 
     def search_params
