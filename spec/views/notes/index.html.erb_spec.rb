@@ -9,9 +9,9 @@ RSpec.describe "notes/index", type: :view do
     allow(controller).to receive(:action_name) { "edit" }
 
     user = FactoryBot.create(:user, sn: 'Mustermann', givenname: 'Max')
-    noteable = FactoryBot.create(:task, subject: "Task subject")
+    @noteable = FactoryBot.create(:task, subject: "Task subject")
     assign(:notes, FactoryBot.create_list(:note, 2, 
-      task: noteable,
+      task: @noteable,
       description: "Note description",
       date: '2020-03-02',
       user: user
