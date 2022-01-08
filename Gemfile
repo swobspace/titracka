@@ -47,6 +47,7 @@ group :test do
   gem 'capybara'
   gem 'apparition'
   gem 'launchy'
+  gem 'timecop'
 end
 
 group :production do
