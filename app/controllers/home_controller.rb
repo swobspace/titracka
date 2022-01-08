@@ -4,6 +4,8 @@ class HomeController < ApplicationController
 
   def index
     session[:tasks_mode] = :cards
+    session[:new_task_params] = search_params.slice(:list_id, :org_unit_id)
+
     @elements = arrange_with_lists(OrgUnit.accessible_by(current_ability).arrange)
   end
 
@@ -61,7 +63,7 @@ class HomeController < ApplicationController
     def search_params
       @search_params ||= params.permit(*submit_parms,
                           :org_unit_id, :list_id, :private,
-                        ).to_hash
+                        ).to_h
                          .reject{|k, v| (v.blank? || submit_parms.include?(k))}
     end
 
