@@ -1,4 +1,3 @@
-<div id="ts_tasks">
 <div class="card">
   <div class="card-header">
     <div class="d-flex w-100 justify-content-between">
@@ -7,14 +6,19 @@
         <h4 class="title"><%= @task %></h4>
       </div>
       <div role="toolbar" class="pt-3">
-        <%= edit_link(@task) %>
+        <%= edit_link(@task,
+             data: { controller: :modal,
+                     'modal-modal-id-value': 'sharedModal',
+                     action: 'click->modal#open',
+                     'turbo-frame': "modal-body" })
+         %>
         <%= delete_link(@task) %>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-9">
-      <div class="card-body">
+      <div class="card-body" id="ts_show_task">
         <%= render partial: 'show_task', locals: {task: @task} %>
         <div role="toolbar">
           <%= back_link %>
@@ -97,5 +101,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>

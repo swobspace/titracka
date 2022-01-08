@@ -10,7 +10,7 @@ class OrgUnitsController < ApplicationController
   # GET /org_units/1
   def show
     session[:tasks_filter] = session[:new_task_params] = { org_unit_id: @org_unit.id }
-
+    session[:tasks_mode] = :cards
     @columns = State.not_archived
     @tasks = @org_unit.tasks.accessible_by(current_ability, :read)
     respond_with(@org_unit)

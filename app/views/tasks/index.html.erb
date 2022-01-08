@@ -7,4 +7,9 @@
 <br />
 
 <%= back_link %>
-<%= new_link Task %>
+<%= new_link([@taskable, Task],
+             data: { controller: :modal,
+                     'modal-modal-id-value': 'sharedModal',
+                     action: 'click->modal#open',
+                     'turbo-frame': "modal-body" })
+%>

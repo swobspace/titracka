@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   before_action :set_cards, only: [:index]
 
   def index
+    session[:tasks_mode] = :cards
     @elements = arrange_with_lists(OrgUnit.accessible_by(current_ability).arrange)
   end
 

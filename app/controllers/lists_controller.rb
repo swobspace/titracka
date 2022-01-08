@@ -11,7 +11,7 @@ class ListsController < ApplicationController
   # GET /lists/1
   def show
     session[:tasks_filter] = session[:new_task_params] = { list_id: @list.id }
-
+    session[:tasks_mode] = :cards
     @columns = State.not_archived
     @tasks   = @list.tasks.accessible_by(current_ability, :read)
     respond_with(@list)

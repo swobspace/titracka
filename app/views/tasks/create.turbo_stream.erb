@@ -1,9 +1,16 @@
-<%= turbo_stream.update("ts_task_cards") do %>
-    <%= render TasksComponent.new(tasks: @tasks, columns: @columns, mode: 'cards',
-                                  ability: @current_ability) %>
-<% end %>
+<% if session[:tasks_mode] == :cards %>
+  <%= turbo_stream.update("ts_task_cards") do %>
+      <%= render TasksComponent.new(tasks: @tasks, columns: @columns, mode: 'cards',
+                                    ability: @current_ability) %>
+  <% end %>
 
-<%= turbo_stream.update("ts_tasks") do %>
-  <%= render 'index', tasks: @tasks %>
-<% end %>
+<% elsif session[:tasks_mode] == :index %>
+  <%= turbo_stream.update("ts_tasks") do %>
+    <%= render 'index', tasks: @tasks %>
+  <% end %>
 
+<% else %>
+  <%= turbo_stream.update("ts_tasks") do %>
+    Unknown tasks mode: <%= session[:tasks_mode] %>
+  <% end %>
+<% end %>

@@ -21,8 +21,10 @@ class TasksController < ApplicationController
       session[:new_task_params] = {}
     end
     if params[:view] == 'cards'
+      session[:tasks_mode] = :cards
       render template: 'tasks/cards'
     else
+      session[:tasks_mode] = :index
       respond_with(@tasks)
     end
   end
@@ -32,6 +34,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   def show
+    session[:tasks_mode] = :show
     respond_with(@task) do |format|
       format.html do
         if params[:modal]
@@ -85,10 +88,6 @@ class TasksController < ApplicationController
     respond_with(@task, location: location) do |format|
       if @task.update(task_params)
         format.turbo_stream
-        format.js { head :created }
-      else
-        format.js { render json: @task.errors.full_messages, status: :unprocessable_enti
-ty }
       end
     end
   end
@@ -96,7 +95,7 @@ ty }
   # DELETE /tasks/1
   def destroy
     respond_with(@task, location: location) do |format|
-      if @task.destroy
+      if @task.destroy && session[:tasks_mode] != :show
         format.turbo_stream
       end
     end
