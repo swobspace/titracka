@@ -1,5 +1,9 @@
-<%= turbo_stream.update("ts_tasks") do %>
+<%= turbo_stream.update("ts_task_cards") do %>
     <%= render TasksComponent.new(tasks: @tasks, columns: @columns, mode: 'cards',
                                   ability: @current_ability) %>
+<% end %>
+
+<%= turbo_stream.update("ts_tasks") do %>
+  <%= render 'index', tasks: @tasks %>
 <% end %>
 

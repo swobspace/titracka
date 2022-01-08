@@ -38,7 +38,9 @@
                                         action: 'click->modal#open',
                                         'turbo-frame': "modal-body" })
                     %>
-                  <%= delete_link [noteable, note] %>
+                  <%= delete_link([noteable, note],
+                        { data: { turbo: { method: :delete, 
+                                           confirm: "Are you sure?" }}}) %>
           </td>
         <% end %>
       <% end %>
