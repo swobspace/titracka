@@ -1,15 +1,14 @@
 <div class="modal-body bg-light">
   <div id="newTaskNote" class="pb-2">
-    <%= simple_form_for([noteable, note],
+    <%= simple_form_for([task, note],
           data: { action: "turbo:submit-end->modal#handleSubmit" }) do |form| %>
       <h5 class="bt mt-3"><%= t('actions.add', model: t('activerecord.models.note')) %></h5>
       <%= form.input :description, as: :rich_text_area,
             wrapper: :vertical_form, label: false
          %>
 
-      <% if noteable.kind_of? Task %>
-        <%= render 'notes/mail_form_fields', task: noteable %>
-      <% end %>
+      <%= render 'notes/mail_form_fields', task: task %>
+      <div data-form-target="errorSuccess" class="" role="alert"></div>
       <div role="toolbar" class="">
         <%= form.button :submit, class: 'btn btn-primary' %>
       </div>

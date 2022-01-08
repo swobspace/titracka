@@ -36,7 +36,7 @@
   <!-- action icons -->
   <div class="d-flex w-100 small icon-color pt-1 mt-1">
     <%= link_to raw(%Q[<i class="far fa-comment"></i>]),
-                task_path(@task, modal: 1),
+                new_task_note_path(@task),
                 class: "me-1",
                 data: {
                   controller: :modal,

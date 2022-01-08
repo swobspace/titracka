@@ -23,7 +23,7 @@
     </div>
     <div class="col-sm-3">
       <div class="card-body">
-        <%= content_tag :table, class: "table table-sm" do %> 
+        <%= content_tag :table, class: "table table-sm" do %>
           <thead>
             <tr class="bg-light">
               <th class="text-center text-monospace">Period</th>
@@ -60,10 +60,17 @@
         <h5 class="card-title"><%= t('attributes.notes')%></h5>
       </div>
       <div class="card-body">
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush" id="ts_notes_list">
           <%= render partial: 'notes/note', collection: @task.notes.order("created_at desc"), layout: 'shared/list_group_item_layout' %>
         </ul>
-        <%= new_link [@task, Note] %>
+        <%= new_link [@task, Note],
+                data: {
+                  controller: :modal,
+                  'modal-modal-id-value': 'sharedModal',
+                  action: 'click->modal#open',
+                  'turbo-frame': "modal-body"
+                }
+         %>
       </div>
     </div>
   </div>

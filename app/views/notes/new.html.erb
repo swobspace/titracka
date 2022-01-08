@@ -1,1 +1,13 @@
-<%= render 'form' %>
+<%= turbo_frame_tag 'modal-body' do %>
+  <% if @noteable.kind_of? Task %>
+    <%= render 'tasks/modal/task_header', task: @noteable %>
+    <%= render 'tasks/modal/show_task', task: @noteable %>
+    <%= render 'tasks/modal/note_form', task: @noteable, note: @note %>
+  <% else %>
+    <%= render 'form', noteable: @noteable, note: @note %>
+  <% end %>
+
+
+<% end %>
+
+
