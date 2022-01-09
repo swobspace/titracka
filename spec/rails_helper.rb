@@ -11,8 +11,19 @@ require 'shoulda/matchers'
 require 'factory_bot_rails'
 require 'capybara/rspec'
 
+Capybara.register_driver :mychrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new 
+
+  [ "headless", "window-size=1280x1024", "disable-gpu" ].each do |arg| 
+    options.add_argument(arg)
+  end
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
 # Capybara.javascript_driver = :selenium_chrome
-Capybara.javascript_driver = :selenium_chrome_headless
+# Capybara.javascript_driver = :selenium_chrome_headless
+Capybara.javascript_driver = :mychrome
 Capybara.disable_animation = true
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
