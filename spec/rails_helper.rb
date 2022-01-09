@@ -12,16 +12,17 @@ require 'factory_bot_rails'
 require 'capybara/rspec'
 require 'capybara/apparition'
 
-Capybara.register_driver :apparition do |app|
-  options = {
-    headless: true,
-    window_size: [1280,1024],
-    screen_size: [1280,1024],
-  }
-  Capybara::Apparition::Driver.new(app, options)
-end
+# Capybara.register_driver :apparition do |app|
+#   options = {
+#     headless: true,
+#     window_size: [1280,1024],
+#     screen_size: [1280,1024],
+#   }
+#   Capybara::Apparition::Driver.new(app, options)
+# end
+# Capybara.javascript_driver = :apparition
 
-Capybara.javascript_driver = :apparition
+Capybara.javascript_driver = :selenium_chrome
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

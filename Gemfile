@@ -46,6 +46,8 @@ group :test do
   # gem 'database_rewinder'
   gem 'capybara'
   gem 'apparition'
+  gem 'selenium-webdriver'
+  gem 'webdriver'
   gem 'launchy'
   gem 'timecop'
 end
