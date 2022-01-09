@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 
   def index
     session[:tasks_mode] = :cards
+    session[:tasks_filter] = search_params
     session[:new_task_params] = search_params.slice(:list_id, :org_unit_id)
 
     @elements = arrange_with_lists(OrgUnit.accessible_by(current_ability).arrange)
