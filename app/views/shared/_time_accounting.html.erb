@@ -8,6 +8,7 @@
   </li>
   <li class="nav-item">
     <%= link_to t('titracka.today'), main_app.by_date_path(date: Date.today.to_s), 
+        id: 'today',
         class: 'nav-link btn btn-outline-secondary'%>
   </li>
 </ul>
