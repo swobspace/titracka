@@ -82,7 +82,7 @@ shared_context "task variables" do
     reference: ref
   )}
   let!(:done1) { FactoryBot.create(:task,
-    state: open,
+    state: done,
     subject: "Task1 done!",
     responsible: mmax,
     org_unit: ou11,
