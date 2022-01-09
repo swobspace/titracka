@@ -48,6 +48,7 @@
     <% if @ability.can? :update, @task %>
       <%= link_to helpers.icon_edit, 
                   edit_task_path(@task),
+                  id: "edit_#{dom_id(@task)}",
                   class: "me-1",
                   data: {
                     controller: :modal,
