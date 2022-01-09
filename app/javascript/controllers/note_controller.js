@@ -1,5 +1,7 @@
-import ApplicationController from './application_controller'
-export default class extends ApplicationController {
+import { Controller } from "stimulus"
+import '../src/jquery.js'
+
+export default class extends Controller {
 
   connect () {
     super.connect()

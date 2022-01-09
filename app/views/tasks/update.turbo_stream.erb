@@ -1,0 +1,16 @@
+<% if session[:tasks_mode] == :cards %>
+  <%= turbo_stream.update("ts_task_cards") do %>
+      <%= render TasksComponent.new(tasks: @tasks, columns: @columns, mode: 'cards',
+                                    ability: @current_ability) %>
+  <% end %>
+
+<% elsif session[:tasks_mode] == :index %>
+  <%= turbo_stream.update("ts_tasks") do %>
+    <%= render 'index', tasks: @tasks %>
+  <% end %>
+
+<% else %>
+  <%= turbo_stream.update("ts_show_task") do %>
+    <%= render partial: 'show_task', locals: {task: @task} %>
+  <% end %>
+<% end %>

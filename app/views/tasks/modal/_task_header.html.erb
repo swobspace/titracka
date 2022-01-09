@@ -1,0 +1,9 @@
+<div class="modal-header" id="showTaskModalHeader">
+  <div class="text-muted">
+    <%= link_to "Aufgabe ##{task.id}", task, data: { turbo: false } %>
+    <h5 class="modal-title" id="showTaskModalLabel"><%= task.subject %></h5>
+  </div>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+    </button>
+</div>
+

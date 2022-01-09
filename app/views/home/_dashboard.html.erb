@@ -1,8 +1,6 @@
 <% content_for :head do %>
-  <meta name="turbolinks-cache-control" content="no-cache">
+  <meta name="turbo-cache-control" content="no-cache">
 <% end %>
-
-<%= render partial: 'tasks/modal_for_cards' %>
 
 <div class="row">
    <div class="col-auto">
@@ -12,17 +10,12 @@
         <%= t('controller.lists') %>
       </div>
       <div class="card-body py-0">
-        <nav class="d-sm-block pl-0 py-3 sidebar" id="org_unit_tree" data-dashboard-target="tree">
+        <nav class="d-sm-block ps-0 py-3 sidebar" id="org_unit_tree" data-dashboard-target="tree">
           <%= arranged_tree_as_list( @elements, sort_by: [:position],
                 open_id: params[:clicked]) do |element| %>
-            <%= link_to " #{element.name} (#{element.tasks.not_archived.count})", "#",
-                  remote: true,
-                  data: {
-                    reflex: "click->DashboardReflex#cardboard",
-                    reflex_root: "#dashboardContent",
-                    element_id: element.id,
-                    element_type: element.model_name.to_s.underscore
-                  },
+            <%= link_to " #{element.name} (#{element.tasks.not_archived.count})",
+                  root_path("#{element.model_name.to_s.underscore}_id" => element.id),
+                  data: { "action": "click->dashboard#open" },
                   id: dom_id(element),
                   class: (element.model_name.to_s.underscore +
                           if @element == element
@@ -32,14 +25,8 @@
           <% end %>
           <ul role="group">
             <li role="presentation">
-              <%= link_to " Private", '#',
-                  remote: true,
-                  data: {
-                    reflex: "click->DashboardReflex#cardboard",
-                    reflex_root: "#dashboardContent",
-                    element_id: "privateTasksId",
-                    element_type: "privateTasks"
-                  },
+              <%= link_to " Private", root_path(private: 1),
+                  data: { "action": "click->dashboard#open" },
                   id: "privateTasksId",
                   class: ("privateTasks" +
                            if params['private'].present?
@@ -52,9 +39,9 @@
       </div>
     </div>
   </div>
-  <div id="dashboardContent" class="col">
+  <div id="ts_task_cards" class="col">
     <%= render('tasks/cards', columns: @columns, 
-                              tasks_per_column: @tasks_per_column,
+                              tasks: @tasks,
                               filter: @filter,
                               ability: current_ability,
                               url: root_path(@search_params)) if @columns.present? %>

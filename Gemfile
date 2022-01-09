@@ -3,12 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'sqlite3', '~> 1.4'
 gem 'puma', '~> 5.1'
-gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 5.0'
-gem 'turbolinks', '~> 5'
-gem 'sprockets', '~> 4'
-gem 'sprockets-rails', require: 'sprockets/railtie'
-gem 'coffee-rails'
+# gem 'sass-rails', '>= 6'
+# gem 'sprockets', '~> 4'
+# gem 'sprockets-rails', require: 'sprockets/railtie'
+# gem 'coffee-rails'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'jquery-rails'
@@ -47,8 +45,10 @@ group :test do
   gem 'factory_bot_rails'
   # gem 'database_rewinder'
   gem 'capybara'
-  gem 'apparition'
+  gem 'selenium-webdriver'
+  gem 'webdriver'
   gem 'launchy'
+  gem 'timecop'
 end
 
 group :production do
@@ -56,13 +56,12 @@ group :production do
 end
 
 gem 'simple_form'
-gem 'font-awesome-sass', '>=4.7', '< 6'
 gem 'devise-remote-user'
 gem 'paper_trail'
 gem 'cancancan'
 # gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: '4-stable'
-gem 'wobapphelpers', '~> 4.2.0'
-gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: '5-1-stable'
+gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'develop'
+gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
 gem 'wobaduser', '~> 1.0'
 
 gem 'acts_as_list'
@@ -86,9 +85,19 @@ gem 'rails-controller-testing'
 gem 'exception_notification'
 
 
-gem "stimulus_reflex", "~> 3.3"
 # gem "activerecord-session_store"
 gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
 gem "hiredis"
 gem "prawn"
 gem "prawn-markup"
+
+gem "jsbundling-rails", "~> 1.0"
+
+gem "cssbundling-rails", "~> 1.0"
+
+gem "turbo-rails", "~> 1.0"
+
+gem "view_component", "~> 2.47"
+
+gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: 'main'
+

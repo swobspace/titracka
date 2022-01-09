@@ -3,6 +3,10 @@ class HomeController < ApplicationController
   before_action :set_cards, only: [:index]
 
   def index
+    session[:tasks_mode] = :cards
+    session[:tasks_filter] = search_params
+    session[:new_task_params] = search_params.slice(:list_id, :org_unit_id)
+
     @elements = arrange_with_lists(OrgUnit.accessible_by(current_ability).arrange)
   end
 
@@ -39,23 +43,18 @@ class HomeController < ApplicationController
                          .where(id: search_params['org_unit_id'])
                          .first
         return if @element.nil?
-        @tasks_per_column = @element.tasks
-                                   .accessible_by(current_ability)
-                                   .group_by(&:state_id)
+        @tasks = @element.tasks.accessible_by(current_ability)
 
       elsif search_params['list_id'].present?
         @element = List.accessible_by(current_ability)
                        .where(id: search_params['list_id'])
                        .first
         return if @element.nil?
-        @tasks_per_column = @element.tasks
-                                   .accessible_by(current_ability)
-                                   .group_by(&:state_id)
+        @tasks = @element.tasks.accessible_by(current_ability)
 
       elsif search_params['private'].present?
-        @tasks_per_column = Task.accessible_by(current_ability)
+        @tasks = Task.accessible_by(current_ability)
                                 .where(org_unit_id: nil, list_id: nil)
-                                .group_by(&:state_id)
       end
       @columns = State.not_archived
       @filter ||= @search_params.slice("org_unit_id", "list_id", "private")
@@ -65,7 +64,7 @@ class HomeController < ApplicationController
     def search_params
       @search_params ||= params.permit(*submit_parms,
                           :org_unit_id, :list_id, :private,
-                        ).to_hash
+                        ).to_h
                          .reject{|k, v| (v.blank? || submit_parms.include?(k))}
     end
 

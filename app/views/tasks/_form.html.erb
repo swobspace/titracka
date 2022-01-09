@@ -1,56 +1,69 @@
-<% content_for :head do %>
-  <meta name="turbolinks-cache-control" content="no-cache">
+<%= simple_form_for([@taskable, @task],
+      data: { action: "turbo:submit-end->modal#handleSubmit" }) do |form| %>
+
+  <div class="modal-header bg-light">
+    <div>
+      <div class="text-muted">
+        <span><%= t('activerecord.models.task') %> <%= t('titracka.for') %></span>
+      </div>
+      <h5 class="modal-title">
+        <%= @time_accountable || @current_user %>
+      </h5>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <%= form.input :subject, label: t('attributes.task')
+       %>
+    <%= form.input :description, as: :rich_text_area
+       %>
+    <%= form.association :state, 
+          include_blank: false
+       %>
+    <%= form.association :org_unit, 
+        collection: @org_units.arrange_as_array,
+        wrapper: :horizontal_select2
+       %>
+    <%= form.association :list,
+        collection: @lists,
+        wrapper: :horizontal_select2
+       %>
+    <%= form.association :user,
+        label: t('attributes.owner'),
+        collection: @users,
+        wrapper: :horizontal_select2
+       %>
+    <%= form.association :responsible,
+        collection: @users,
+        wrapper: :horizontal_select2
+       %>
+    <%= render 'cross_reference_form', form: form %>
+
+    <%= form.input :priority, collection:
+          Task::PRIORITIES.map {|x| [t(x, scope: 'titracka.priority'), x]},
+            include_blank: false,
+            input_html: {class: 'col-lg-4 col-sm-8'}
+       %>
+    <%= form.input :start, as: :string, wrapper: :horizontal_date,
+          input_html: {class: 'col-lg-4 col-sm-8'}
+      %>
+    <%= form.input :deadline, as: :string, wrapper: :horizontal_date,
+          input_html: {class: 'col-lg-4 col-sm-8'}
+      %>
+    <%= form.input :resubmission, as: :string, wrapper: :horizontal_date,
+          input_html: {class: 'col-lg-4 col-sm-8'}
+       %>
+    <%= form.input :private
+       %>
+
+    <div class="row">
+      <div class="offset-sm-3">
+        <%= form.button :submit, class: 'btn btn-primary' %>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t('actions.cancel') %></button>
+      </div>
+    </div>
+
+  </div>
 <% end %>
-
-<div class="container">
-  <%= simple_form_for([@taskable, @task],
-    html: { class: 'form-horizontal card' }) do |form| %>
-
-    <div class="card-header">
-      <%= form_legend %>
-    </div>
-    <div class="card-body">
-      <%= form.input :subject, label: t('attributes.task')
-	 %>
-      <%= form.input :description, as: :rich_text_area
-	 %>
-      <%= form.association :state, 
-            include_blank: false
-	 %>
-      <%= form.association :org_unit, 
-          collection: @org_units.arrange_as_array,
-          wrapper: :horizontal_select2
-	 %>
-      <%= form.association :list,
-          collection: @lists,
-          wrapper: :horizontal_select2
-	 %>
-      <%= form.association :user,
-          label: t('attributes.owner'),
-          collection: @users,
-          wrapper: :horizontal_select2
-	 %>
-      <%= form.association :responsible,
-          collection: @users,
-          wrapper: :horizontal_select2
-	 %>
-      <%= render 'cross_reference_form', form: form %>
-      <%= form.input :priority, collection:
-            Task::PRIORITIES.map {|x| [t(x, scope: 'titracka.priority'), x]},
-              include_blank: false,
-              input_html: {class: 'col-sm-3'}
-	 %>
-      <%= form.input :start, as: :string, wrapper: :horizontal_date
-        %>
-       <%= form.input :deadline, as: :string, wrapper: :horizontal_date
-        %>
-      <%= form.input :resubmission, as: :string, wrapper: :horizontal_date
-	 %>
-      <%= form.input :private
-	 %>
-
-      <%= form.button :submit, class: 'btn btn-primary' %>
-      <%= cancel_button %>
-    </div>
-  <% end %>
-</div>

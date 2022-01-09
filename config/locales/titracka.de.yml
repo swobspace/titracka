@@ -7,10 +7,10 @@ de:
   titracka:
     action: Aktion
     cardboard: Cardboard
-    list: Liste
     configuration: Konfiguration
     change_columns: Spalten ändern
-    today: heute
+    for: für
+    list: Liste
     show_all: alles anzeigen
     restore: zurücksetzen
     search: Suche
@@ -27,6 +27,7 @@ de:
       'done': erledigt
       'pending': wartend
       'archive': archiviert
+    today: heute
     tristate:
       'yes': Ja
       'no': Nein

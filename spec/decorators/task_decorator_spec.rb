@@ -7,6 +7,13 @@ RSpec.describe TaskDecorator do
 
   let(:decorated) { decorated = task.decorate }
 
+  before do
+    Timecop.freeze(Time.local(2021))
+  end
+  after do
+    Timecop.return
+  end
+
   describe "#name_with_list_or_org_unit" do
     describe "task with org_unit and list" do
       let(:task) { FactoryBot.create(:task, list: ou_list, subject: "MySubject") }

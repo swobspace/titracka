@@ -72,7 +72,7 @@ RSpec.describe "/org_units/:id/tasks", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post org_unit_tasks_url(org_unit), params: { task: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -102,7 +102,7 @@ RSpec.describe "/org_units/:id/tasks", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         task = Task.create! valid_attributes
         patch org_unit_task_url(org_unit, task), params: { task: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end

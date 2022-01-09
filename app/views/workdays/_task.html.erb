@@ -31,36 +31,16 @@
 
     <!-- action icons -->
     <div class="d-flex w-100 small icon-color pt-1 mt-1">
-      <div class="">
-        <span id="show_task_<%= task.id %>"
-              title="<%= t('actions.show', model: Task.model_name.human) %>"
-              data-reflex="click->Task#show"
-              data-modal-id="showTaskModal"
-              data-reflex-dataset="combined">
-          <i class="far fa-comment"></i>
-        </span>
-      </div>
-      <% if ability.can? :update, task %>
-        <div data-controller='task' class="ml-2">
-          <span id="open_edit_task_<%=  task.id %>"
-                title="<%= t('actions.edit', model: Task.model_name.human) %>"
-                data-reflex="click->Task#edit"
-                data-task-id="<%= task.id %>"
-                data-modal-id="formTaskModal"
-                data-reflex-dataset="combined">
-            <%= icon_edit %>
-          </span>
-        </div>
-      <% end %>
-      <div data-controller='modal' class="ml-2">
-        <span data-modal-target="modalForm modalView"
-              data-action="click->modal#open"
-              data-modalId="timeAccountingModal"
-              data-actionurl="<%= task_time_accountings_path(task) %>"
-              title="<%= t('actions.add', model: TimeAccounting.model_name.human) %>">
-          <i class="far fa-clock"></i>
-        </span>
-      </div>
+      <%= link_to raw('<i class="far fa-clock"></i>'),
+                  new_workday_time_accounting_path(@workday, task_id: task),
+                  title: t('actions.add', model: TimeAccounting.model_name.human),
+                  data: {
+                    controller: :modal,
+                    'modal-modal-id-value': 'sharedModal',
+                    action: 'click->modal#open',
+                    'turbo-frame': "modal-body"
+                  }
+       %>
     </div>
   </div>
 <% end %>

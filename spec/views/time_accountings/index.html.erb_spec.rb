@@ -10,6 +10,7 @@ RSpec.describe "time_accountings/index", type: :view do
 
     task = FactoryBot.create(:task, :open, subject: "A special task")
     user = FactoryBot.create(:user, sn: "Mustermann", givenname: "Max", username: "mmax")
+    @current_user = user
 
     assign(:time_accountings, [
       FactoryBot.create(:time_accounting,

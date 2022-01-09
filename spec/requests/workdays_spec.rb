@@ -80,7 +80,7 @@ RSpec.describe "/workdays", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post workdays_url, params: { workday: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -114,7 +114,7 @@ RSpec.describe "/workdays", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         workday = Workday.create! valid_attributes
         patch workday_url(workday), params: { workday: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end

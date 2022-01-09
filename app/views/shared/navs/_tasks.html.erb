@@ -1,6 +1,6 @@
 <% if can? :navigate, :tasks %>
   <li class="nav-item dropdown <%= active_class('tasks') %>">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarConfigurationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarConfigurationDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
       <%= t('controller.tasks') %>
     </a>
@@ -19,7 +19,12 @@
         <%= link_to raw('<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
                         t('titracka.new_task')),
               main_app.new_task_path,
-              class: "dropdown-item" %>
+                class: "dropdown-item",
+                data: { controller: :modal,
+                        'modal-modal-id-value': 'sharedModal',
+                        action: 'click->modal#open',
+                        'turbo-frame': "modal-body" }
+         %>
       <% end %>
     </div>
   </li>

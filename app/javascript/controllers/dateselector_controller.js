@@ -15,14 +15,13 @@ export default class extends Controller {
 
   connect() {
     const url = this.data.get("url")
-    console.log(url)
     flatpickr(this.dateTarget, {
       defaultDate: new Date(),
       dateFormat: "Y-m-d",
-      onClose: function(selectedDates, dateStr, instance) {
+      onChange: function(selectedDates, dateStr, instance) {
         let newurl = url + dateStr
-        Turbolinks.clearCache();
-        Turbolinks.visit(newurl);
+        Turbo.clearCache();
+        Turbo.visit(newurl);
       }
     })
   }

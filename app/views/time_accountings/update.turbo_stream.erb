@@ -1,0 +1,5 @@
+<%= turbo_stream.update("ts_time_accountings") do %>
+    <%= render TimeAccountingsComponent.new(time_accountable: @time_accountable, 
+                             user: @current_user) %>
+<% end %>
+

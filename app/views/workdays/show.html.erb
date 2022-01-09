@@ -1,9 +1,6 @@
 <% content_for :head do %>
-  <meta name="turbolinks-cache-control" content="no-cache">
+  <meta name="turbo-cache-control" content="no-cache">
 <% end %>
-
-<%= render partial: 'tasks/modal_for_cards' %>
-
 
 <div class="row" id="tasksCardboard">
   <div class="col-sm-9">
@@ -30,77 +27,22 @@
       </div>
 
       <div class="card-body">
-        <div data-controller="">
-          <%= content_tag :table, role: :datatable,
-                id: "time_accountings_table",
-                class: "table table-striped table-bordered table-responsive-xl",
-                data: {
-                  "datatables-target": 'datatable',
-                  order: [[0, 'desc']].to_json
-                } do %>
-            <thead>
-              <tr>
-                <th class="text-center nosort">[ <%= start_of_day(@workday) %> ]</th>
-                <th class="text-center"><%= t('attributes.formatted_duration') %></th>
-                <th class="notvisible text-center"><%= t('attributes.duration') %></th>
-                <th><%= t('attributes.task') %></th>
-                <th><%= t('attributes.description') %></th>
-                <th class="notvisible"><%= t('attributes.user') %></th>
-                <th class="text-center nosort"><%= t('titracka.action') %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% if @workday.pause > 0 %>
-                <tr>
-                  <td class="text-center align-middle"><%= @workday.date.to_s %></td>
-                  <td class="text-center align-middle"><%= hourmin(@workday.pause) %></td>
-                  <td class="text-center align-middle"><%= @workday.pause %></td>
-                  <td class="align-middle">Pause</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              <% end %>
-
-              <% @time_accountings.each do |time_accounting| %>
-                <%= content_tag(:tr, id: dom_id(time_accounting), class: dom_class(time_accounting)) do %>
-                  <td class="text-center align-middle"><%= time_accounting.date.to_s %></td>
-                  <td class="text-center align-middle"><%= time_accounting.formatted_duration %></td>
-                  <td class="text-center align-middle"><%= time_accounting.duration %></td>
-                  <td class="align-middle">
-                    <%= link_to(time_accounting.task, task_path(time_accounting.task)) %>
-                  </td>
-                  <td class="align-middle"><%= time_accounting.description %></td>
-                  <td class="align-middle"><%= time_accounting.user %></td>
-                  <td class="text-nowrap text-right">
-                    <%= show_link([@workday, time_accounting]) %>
-                    <%= edit_link([@workday, time_accounting]) %>
-                    <%= delete_link([@workday, time_accounting]) %>
-                  </td>
-                <% end %>
-              <% end %>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th class="text-center">[ <%= @end_of_work.to_s(:hourmin) %> ]</th>
-                <th class="text-center"><%= hourmin(@work_sum) %></th>
-                <th class="text-center"><%= @work_sum %></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <td class="text-right">
-                  <span class="text-secondary mr-3">Summe KW <%= @workday.date.cweek %> </span>
-                  <span class="font-weight-bold"><%= hourmin(@week_sum) %></span>
-                </td>
-              </tr>
-            </tfoot>
-          <% end %>
+        <div id='ts_time_accountings'>
+          <%= render Workday::TimeAccountingsComponent.new(workday: @workday, user: @current_user) %>
         </div>
 
         <br />
 
         <%= back_link %>
-        <%= new_link [@workday, TimeAccounting] %>
+        <%= new_link [@workday, TimeAccounting],
+                data: {
+                  controller: :modal,
+                  'modal-modal-id-value': 'sharedModal',
+                  action: 'click->modal#open',
+                  'turbo-frame': "modal-body"
+                }
+         %>
+
         <%= link_to raw(%Q[<i class="fas fa-backward"></i>]), 
               by_date_path(date: 1.day.before(@workday.date).to_s), class: "ml-3 btn btn-secondary" %>
         <%= link_to t('titracka.today'), by_date_path(date: Date.today.to_s), class: "btn btn-secondary" %>

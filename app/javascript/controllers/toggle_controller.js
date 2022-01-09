@@ -1,5 +1,5 @@
-import ApplicationController from './application_controller'
-export default class extends ApplicationController {
+import { Controller } from "stimulus"
+export default class extends Controller {
   static targets = ["content"]
   static classes = ["toggle"]
 

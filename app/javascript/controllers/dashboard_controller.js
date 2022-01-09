@@ -1,8 +1,14 @@
-import ApplicationController from './application_controller'
-import { Jstree } from 'jstree'
+import { Controller } from "stimulus"
+import '../src/jquery.js'
+import jstree from 'jstree'
 
-export default class extends ApplicationController {
+
+export default class extends Controller {
   static targets = [ "tree" ]
+
+  initialize() {
+    $.jstree.defaults.core.themes.url = false
+  }
 
   connect () {
     super.connect()
@@ -44,9 +50,9 @@ export default class extends ApplicationController {
     })
   }
 
-  afterCardboard(element) {
-    let clicked = this.treeTarget.querySelectorAll('li > a.jstree-clicked')
-    clicked.forEach(element => element.classList.remove('jstree-clicked'))
-    element.classList.add('jstree-clicked')
+  open(event) {
+    let url = event.target.attributes.href.value
+    Turbo.visit(url)
   }
+
 }

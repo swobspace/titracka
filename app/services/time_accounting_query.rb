@@ -14,7 +14,7 @@ class TimeAccountingQuery
   #
   def initialize(relation, search_options = {})
     @relation       = relation
-    @search_options = search_options.symbolize_keys!
+    @search_options = search_options.symbolize_keys
     @limit          = 0
     @query          ||= build_query
   end

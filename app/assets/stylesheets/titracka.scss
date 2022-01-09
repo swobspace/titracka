@@ -1,5 +1,23 @@
-// --- bootstrap
-@import "bootstrap/scss/bootstrap";
+$font-family-sans-serif:
+  // Android
+  Roboto,
+  // Cross-platform generic font family (default user interface font)
+  system-ui,
+  // Safari for macOS and iOS (San Francisco)
+  -apple-system,
+  // Chrome < 56 for macOS (San Francisco)
+  BlinkMacSystemFont,
+  // Windows
+  "Segoe UI",
+  // Basic web fallback
+  "Helvetica Neue", Arial,
+  // Linux
+  "Noto Sans",
+  "Liberation Sans",
+  // Sans serif fallback
+  sans-serif,
+  // Emoji fonts
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
 // -- FONTS
 @font-face {
@@ -27,8 +45,13 @@
         font-style: italic;
 }
 
+// --- bootstrap
+$primary: #176775;
+@import "bootstrap/scss/bootstrap";
+
+
 body {
-  padding-top: 60px;
+  padding-top: 65px;
 }
 
 // --- FOOTER
@@ -98,15 +121,19 @@ trix-editor.form-control {
 
 // - cardboard
 
-ul.dropzone {
-  // min-height: 80vh;
-  min-height: 70%;
-  min-height: -webkit-calc(100vh - 250px);
-  min-height: -moz-calc(100vh - 250px);
-  min-height: calc(100vh - 250px);
+div#tasksCardboard {
+  min-height: 800px;
 }
 
-.turbolinks-progress-bar {
+div.header {
+  height: 2em; 
+}
+div.dropzone {
+  //min-height: 120vh;
+  height: calc(100% - 3em);
+}
+
+.turbo-progress-bar {
   height: 5px;
   background-color: white;
 }

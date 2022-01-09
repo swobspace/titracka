@@ -81,7 +81,7 @@ RSpec.describe "/states", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post states_url, params: { state: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -113,7 +113,7 @@ RSpec.describe "/states", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         state = State.create! valid_attributes
         patch state_url(state), params: { state: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
