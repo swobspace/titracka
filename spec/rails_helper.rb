@@ -22,7 +22,8 @@ require 'capybara/apparition'
 # end
 # Capybara.javascript_driver = :apparition
 
-Capybara.javascript_driver = :selenium_chrome
+# Capybara.javascript_driver = :selenium_chrome
+Capybara.javascript_driver = :selenium_chrome_headless
 Capybara.disable_animation = true
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
