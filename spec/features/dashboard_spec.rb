@@ -65,14 +65,43 @@ RSpec.describe "Dashboard", type: :feature do
       click_button("Aufgabe erstellen")
       sleep 1
       within "div#ts_task_cards" do
-        expect(all('div.list-group-item').count).to eq(2)
+        expect(all('div.list-group-item').count).to eq(3)
         expect(page).to have_content("A new task")
       end
-      
       # save_and_open_screenshot()
     end
 
-  end
+    it "add note to task" do
+      expect(to1.notes.count).to eq(0)
+      click_link "Mustermann GmbH"
+      within "div#card_task_#{to1.id}" do
+        execute_script("document.querySelector('#new_note_task_#{to1.id}').click()")
+      end
+      find("trix-editor#note_description").set("Just a simple comment")
+      click_button("Notiz erstellen")
+      to1.reload
+      # turbostream needs some time
+      sleep 1
+      expect(to1.notes.count).to eq(1)
+      expect(to1.notes.first.description.to_plain_text).to eq("Just a simple comment")
+    end
 
+    it "add time accounting to task" do
+      expect(to1.time_accountings.count).to eq(0)
+      click_link "Mustermann GmbH"
+      within "div#card_task_#{to1.id}" do
+        execute_script("document.querySelector('#new_time_accounting_task_#{to1.id}').click()")
+      end
+      fill_in "Beschreibung", with: "some text"
+      fill_in "Dauer (HH:MM)", with: 30
+      click_button("Aktivität erstellen")
+      to1.reload
+      # turbostream needs some time
+      sleep 1
+      expect(to1.time_accountings.count).to eq(1)
+      expect(to1.time_accountings.first.description).to eq("some text")
+      expect(to1.time_accountings.first.duration).to eq(30)
+    end
+  end
 end
 
