@@ -45,7 +45,6 @@ group :test do
   gem 'factory_bot_rails'
   # gem 'database_rewinder'
   gem 'capybara'
-  gem 'apparition'
   gem 'selenium-webdriver'
   gem 'webdriver'
   gem 'launchy'
