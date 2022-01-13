@@ -39,6 +39,9 @@ application.register("nested-form", NestedFormController)
 import NoteController from "./note_controller"
 application.register("note", NoteController)
 
+import SelectController from "./select_controller"
+application.register("select", SelectController)
+
 import Select2Controller from "./select2_controller"
 application.register("select2", Select2Controller)
 
