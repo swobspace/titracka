@@ -1,4 +1,4 @@
-<div class="card bg-light" data-controller="select2 filters" id="cards_filter">
+<div class="card bg-light" data-controller="filters" id="cards_filter">
   <div class="card-body">
     <div class="form-group">
       <%= label_tag :subject, t('attributes.title'), class: "form-label" %> 
@@ -121,11 +121,10 @@
       <%= select_tag "org_unit_id",
             options_from_collection_for_select(OrgUnit.accessible_by(current_ability, :read), 'id', 'name_for_selects', params[:org_unit_id]),
             include_blank: "--",
-            class: 'form-control select2',
             data: { 
-              action: "jquery:change->filters#filter",
+              action: "change->filters#filter",
               'filters-target': 'filter',
-              'select2-target': 'input'
+              controller: :select
             }
       %>
     </div>
@@ -164,11 +163,10 @@
       <%= select_tag "list_id",
             options_from_collection_for_select(List.accessible_by(current_ability, :read), 'id', 'name_for_selects', params[:list_id]),
             include_blank: "--",
-            class: 'form-control select2',
             data: { 
-              action: "jquery:change->filters#filter",
+              action: "change->filters#filter",
               'filters-target': 'filter',
-              'select2-target': 'input'
+              controller: :select
             }
       %>
     </div>
@@ -177,11 +175,10 @@
       <%= select_tag "user_id",
             options_from_collection_for_select(Wobauth::User.all, 'id', 'name', params[:user_id]),
             include_blank: "--",
-            class: 'form-control select2',
             data: { 
-              action: "jquery:change->filters#filter",
+              action: "change->filters#filter",
               'filters-target': 'filter',
-              'select2-target': 'input'
+              controller: :select
             }
 
       %>
@@ -191,12 +188,11 @@
       <%= label_tag :responsible_id, t('attributes.responsible'), class: "form-label" %>
       <%= select_tag "responsible_id",
             options_from_collection_for_select(Wobauth::User.all, 'id', 'name', params[:responsible_id]),
-            class: 'form-control select2',
             include_blank: "--",
             data: { 
-              action: "jquery:change->filters#filter",
+              action: "change->filters#filter",
               'filters-target': 'filter',
-              'select2-target': 'input'
+              controller: :select
             }
       %>
     </div>

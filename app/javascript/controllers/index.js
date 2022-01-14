@@ -42,8 +42,8 @@ application.register("note", NoteController)
 import SelectController from "./select_controller"
 application.register("select", SelectController)
 
-import Select2Controller from "./select2_controller"
-application.register("select2", Select2Controller)
+// import Select2Controller from "./select2_controller"
+// application.register("select2", Select2Controller)
 
 import TaskController from "./task_controller"
 application.register("task", TaskController)
