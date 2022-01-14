@@ -36,17 +36,8 @@ application.register("modal", ModalController)
 import NestedFormController from "./nested_form_controller"
 application.register("nested-form", NestedFormController)
 
-import NoteController from "./note_controller"
-application.register("note", NoteController)
-
 import SelectController from "./select_controller"
 application.register("select", SelectController)
-
-// import Select2Controller from "./select2_controller"
-// application.register("select2", Select2Controller)
-
-import TaskController from "./task_controller"
-application.register("task", TaskController)
 
 import ToggleController from "./toggle_controller"
 application.register("toggle", ToggleController)

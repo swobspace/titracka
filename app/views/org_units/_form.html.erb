@@ -16,7 +16,7 @@
       <%= f.input :parent_id, as: :hidden %>
       <%= f.input :parent_id,
             collection: OrgUnit.arrange_as_array,
-            wrapper: :horizontal_select2
+            wrapper: :horizontal_select
         %>
 
       <%= f.button :submit, class: 'btn btn-primary' %>

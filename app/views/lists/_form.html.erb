@@ -12,7 +12,7 @@
     <div class="card-body">
       <%= f.association :org_unit,
           collection: @org_units.arrange_as_array,
-          wrapper: :horizontal_select2
+          wrapper: :horizontal_select
 	 %>
       <%= f.input :name
 	 %>

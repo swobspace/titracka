@@ -15,7 +15,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :horizontal_select2, tag: 'div', class: 'mb-3 row', error_class: 'form-group-invalid', valid_class: 'form-group-valid', html: {data: {controller: "select2" }} do |b|
+  config.wrappers :horizontal_select, tag: 'div', class: 'mb-3 row', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :pattern
@@ -23,7 +23,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'col-sm-3 form-control-label'
 
     b.wrapper :grid_wrapper, tag: 'div', class: 'col-sm-9' do |ba|
-      ba.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid', data: {"select2-target": 'input'}
+      ba.use :input, error_class: 'is-invalid', valid_class: 'is-valid', data: { controller: :select }
       ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
       ba.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
 
