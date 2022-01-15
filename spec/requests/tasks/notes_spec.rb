@@ -74,7 +74,7 @@ RSpec.describe "/tasks/:id/notes", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post task_notes_url(task), params: { note: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -106,7 +106,7 @@ RSpec.describe "/tasks/:id/notes", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         note = Note.create! valid_attributes
         patch task_note_url(task, note), params: { note: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end

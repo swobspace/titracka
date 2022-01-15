@@ -1,10 +1,10 @@
-<div class='nested-fields'>
-  <div class='form-group row'>
+<div class='nested-fields bg-light p-3 mb-0 border border-top-1 border-bottom-1'>
+  <div class='row'>
     <%= form.hidden_field :_destroy %>
     <div class="col-sm-4">
       <%= form.text_field :name, placeholder: t('attributes.name'), class: 'form-control' %>
     </div>
-    <div class="flex-fill">
+    <div class="col">
       <%= form.text_field :url, placeholder: t('titracka.url_hint'), class: 'form-control' %>
     </div>
     

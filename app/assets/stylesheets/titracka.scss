@@ -1,5 +1,23 @@
-// --- bootstrap
-@import "bootstrap/scss/bootstrap";
+$font-family-sans-serif:
+  // Android
+  Roboto,
+  // Cross-platform generic font family (default user interface font)
+  system-ui,
+  // Safari for macOS and iOS (San Francisco)
+  -apple-system,
+  // Chrome < 56 for macOS (San Francisco)
+  BlinkMacSystemFont,
+  // Windows
+  "Segoe UI",
+  // Basic web fallback
+  "Helvetica Neue", Arial,
+  // Linux
+  "Noto Sans",
+  "Liberation Sans",
+  // Sans serif fallback
+  sans-serif,
+  // Emoji fonts
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
 // -- FONTS
 @font-face {
@@ -27,8 +45,13 @@
         font-style: italic;
 }
 
+// --- bootstrap
+$primary: #176775;
+@import "bootstrap/scss/bootstrap";
+
+
 body {
-  padding-top: 60px;
+  padding-top: 65px;
 }
 
 // --- FOOTER
@@ -60,7 +83,7 @@ div#footer{
 $form-feedback-invalid-color: rgb(220,53,69);
 
 .required {
-  span.select2-selection,
+  span.select-selection,
   textarea.required, input.required, select.required {
     background-color: #FFFAC2;
   }
@@ -98,15 +121,19 @@ trix-editor.form-control {
 
 // - cardboard
 
-ul.dropzone {
-  // min-height: 80vh;
-  min-height: 70%;
-  min-height: -webkit-calc(100vh - 250px);
-  min-height: -moz-calc(100vh - 250px);
-  min-height: calc(100vh - 250px);
+div#tasksCardboard {
+  min-height: 800px;
 }
 
-.turbolinks-progress-bar {
+div.header {
+  height: 2em; 
+}
+div.dropzone {
+  //min-height: 120vh;
+  height: calc(100% - 3em);
+}
+
+.turbo-progress-bar {
   height: 5px;
   background-color: white;
 }
@@ -213,3 +240,25 @@ button.toggler::after {
 .priority-critical { border-left: 4px solid purple !important; }
 .priority-normal { border-left: 1px solid #dee2e6 !important; }
 .priority-low { border-left: 1px solid #dee2e6 !important; }
+
+// -- slim slelect
+// styling select box
+//
+.ss-main {
+  div.ss-single-selected,
+  div.ss-multi-selected {
+    border: 1px solid #ced4da;
+    height: 38px;
+  }
+}
+
+// temporary fix for slim-select and bootstrap v5.1 placeholder
+.ss-main {
+  .ss-single-selected {
+    .placeholder {
+      cursor: pointer;
+      opacity: 1;
+      background-color: transparent;
+    }
+  }
+}

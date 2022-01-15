@@ -11,8 +11,11 @@ export default class extends Controller {
         task.setAttribute('style', 'z-index: 100;')
       })
       const sortable = new Sortable(this.columnTargets, {
-        draggable: 'li',
-        distance: 5
+        draggable: 'div.list-group-item',
+        distance: 5,
+        mirror: {
+          constrainDimensions: true
+        }
       })
       sortable.on('sortable:start', function(event) {
         let task = event.dragEvent.source

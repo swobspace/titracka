@@ -1,10 +1,10 @@
 <% if can? :navigate, :lists %>
   <li class="nav-item dropdown <%= active_class('lists') %>">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarConfigurationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarListsDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
       <%= t('controller.lists') %>
     </a>
-    <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
+    <div class="dropdown-menu" aria-labelledby="navbarListsDropdown">
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
             t('controller.lists')),
           main_app.lists_path, class: "dropdown-item" %>

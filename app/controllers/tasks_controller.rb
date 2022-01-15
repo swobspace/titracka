@@ -2,20 +2,29 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :add_breadcrumb_show, only: [:show]
   before_action :set_associations, only: [:index, :new, :edit, :update, :create]
+  before_action :set_columns, only: [:index, :update, :create, :destroy]
+  before_action :set_tasks, only: [:update, :create, :destroy]
 
   # GET /tasks
   def index
     if @taskable
       @tasks = @taskable.tasks.accessible_by(current_ability, :read)
+    else
+       @tasks = Task.accessible_by(current_ability, :read)
     end
     if search_params.present?
       @tasks = TaskQuery.new(@tasks.joins(:state), search_params).all
+      session[:tasks_filter] = search_params
+      session[:new_task_params] = search_params.slice(:list_id, :org_unit_id, :user_id, :responsible_id, :subject)
+    else
+      session[:tasks_filter] = {}
+      session[:new_task_params] = {}
     end
     if params[:view] == 'cards'
-      @columns = State.not_archived
-      @tasks_per_column = @tasks.group_by(&:state_id)
+      session[:tasks_mode] = :cards
       render template: 'tasks/cards'
     else
+      session[:tasks_mode] = :index
       respond_with(@tasks)
     end
   end
@@ -25,13 +34,20 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   def show
+    session[:tasks_mode] = :show
     respond_with(@task) do |format|
+      format.html do
+        if params[:modal]
+          render 'show_modal'
+        else
+          render 'show'
+        end
+      end
       format.pdf do
         # just for testing, no real world usage for now
         path = File.join(Rails.root, 'app', 'views', 'tasks', 'show_pdf.html.erb')
         template = File.open(path).read
         string = ERB.new(template).result(binding)
-        Rails.logger.debug(string)
         pdf = Prawn::Document.new
         pdf.markup(string)
         send_data pdf.render, :filename => "Task.pdf",
@@ -45,7 +61,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     if @taskable
-      @task = @taskable.tasks.new(priority: 'normal')
+      @task = @taskable.tasks.new(search_params.merge(priority: 'normal'))
     else
       @task = @current_user.tasks.new(priority: 'normal')
     end
@@ -62,9 +78,7 @@ class TasksController < ApplicationController
 
     respond_with(@task, location: location) do |format|
       if @task.save
-        format.js { head :created }
-      else
-        format.js { render json: @task.errors.full_messages, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
@@ -73,17 +87,18 @@ class TasksController < ApplicationController
   def update
     respond_with(@task, location: location) do |format|
       if @task.update(task_params)
-        format.js { head :ok }
-      else
-        format.js { render json: @task.errors.full_messages, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
 
   # DELETE /tasks/1
   def destroy
-    @task.destroy
-    respond_with(@task, location: location)
+    respond_with(@task, location: location) do |format|
+      if @task.destroy && session[:tasks_mode] != :show
+        format.turbo_stream
+      end
+    end
   end
 
   private
@@ -111,7 +126,11 @@ class TasksController < ApplicationController
     end
 
     def location
-      polymorphic_path(@taskable || @task)
+      if action_name == 'destroy'
+        polymorphic_path(@taskable || :tasks)
+      else
+        polymorphic_path(@taskable || @task)
+      end
     end
 
     def search_params
@@ -122,11 +141,26 @@ class TasksController < ApplicationController
         :subject, :user, :responsible, :status, :state, :priority, :private,
         :has_references, :limit, :search, :cross_reference, :without_lists,
         priority_ids: [], state_ids: [],
-      ).to_hash
+      ).to_h
       searchparms.reject{|k, v| (v.blank? || submit_parms.include?(k))}
     end
 
     def submit_parms
       [ "utf8", "authenticity_token", "commit", "format", "view" ]
+    end
+
+    def set_columns
+      @columns = State.not_archived
+    end
+
+    def set_tasks
+      if @taskable
+        @tasks = @taskable.tasks.accessible_by(current_ability, :read)
+      else
+         @tasks = Task.accessible_by(current_ability, :read)
+      end
+      if session[:tasks_filter].present?
+        @tasks = TaskQuery.new(@tasks.joins(:state), session[:tasks_filter]).all
+      end
     end
 end

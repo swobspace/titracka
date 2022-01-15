@@ -67,7 +67,7 @@ RSpec.describe "/day_types", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post day_types_url, params: { day_type: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -97,7 +97,7 @@ RSpec.describe "/day_types", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         day_type = DayType.create! valid_attributes
         patch day_type_url(day_type), params: { day_type: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end

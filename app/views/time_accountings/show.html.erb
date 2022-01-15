@@ -1,11 +1,19 @@
 <div class="card">
   <div class="card-header">
-    <div class="subtitle float-none"><%= t('activerecord.models.time_accounting') %>:</div>
-    <h4 class="title float-left"><%= @time_accounting %></h4>
-
-    <div role="toolbar" class="float-right">
-      <%= edit_link(@time_accounting) %>
-      <%= delete_link(@time_accounting) %>
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <div class="subtitle float-none"><%= t('activerecord.models.time_accounting') %>:</div>
+        <h4 class="title float-left"><%= @time_accounting %></h4>
+      </div>
+      <div role="toolbar" class="pt-3">
+        <%= edit_link(@time_accounting,
+             data: { controller: :modal,
+                     'modal-modal-id-value': 'sharedModal',
+                     action: 'click->modal#open',
+                     'turbo-frame': "modal-body" })
+         %>
+        <%= delete_link(@time_accounting) %>
+      </div>
     </div>
   </div>
   <div class="card-body">
@@ -40,7 +48,6 @@
 
     <div role="toolbar">
       <%= back_link %>
-      <%= new_link TimeAccounting %>
     </div>
   </div>
 </div>

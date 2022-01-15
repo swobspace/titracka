@@ -73,7 +73,7 @@ RSpec.describe "/lists/:id/tasks", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post list_tasks_url(list), params: { task: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -103,7 +103,7 @@ RSpec.describe "/lists/:id/tasks", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         task = Task.create! valid_attributes
         patch list_task_url(list, task), params: { task: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end

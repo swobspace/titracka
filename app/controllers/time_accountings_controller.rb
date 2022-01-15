@@ -5,6 +5,7 @@ class TimeAccountingsController < ApplicationController
 
   # GET /time_accountings
   def index
+    session[:time_accountings_mode] = :index
     if @time_accountable
       @time_accountings = @time_accountable.time_accountings
     end
@@ -13,6 +14,7 @@ class TimeAccountingsController < ApplicationController
 
   # GET /time_accountings/1
   def show
+    session[:time_accountings_mode] = :show
     respond_with(@time_accounting)
   end
 
@@ -40,9 +42,9 @@ class TimeAccountingsController < ApplicationController
     end
     respond_with(@time_accounting, location: location) do |format|
       if @time_accounting.save
-        format.js { head :created }
+        format.turbo_stream
       else
-        format.js { render json: @time_accounting.errors.full_messages, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
@@ -51,18 +53,19 @@ class TimeAccountingsController < ApplicationController
   def update
     respond_with(@time_accounting, location: location) do |format|
       if @time_accounting.update(time_accounting_params)
-        format.js { head :ok }
+        format.turbo_stream
       else
-        format.js { render json: @time_accounting.errors.full_messages, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /time_accountings/1
   def destroy
-    @time_accounting.destroy
     respond_with(@time_accounting, location: location) do |format|
-      format.js { head :ok}
+      if @time_accounting.destroy && session[:time_accountings_mode] != :show
+        format.turbo_stream 
+      end
     end
   end
 
@@ -79,7 +82,11 @@ class TimeAccountingsController < ApplicationController
     end
 
     def location
-      polymorphic_path(@time_accountable || @time_accounting)
+      if action_name = 'destroy'
+        polymorphic_path(@time_accountable || :time_accountings)
+      else
+        polymorphic_path(@time_accountable || @time_accounting)
+      end
     end
 
     def set_tasks

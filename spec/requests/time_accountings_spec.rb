@@ -72,7 +72,7 @@ RSpec.describe "/time_accountings", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post time_accountings_url, params: { time_accounting: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -104,7 +104,7 @@ RSpec.describe "/time_accountings", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         time_accounting = TimeAccounting.create! valid_attributes
         patch time_accounting_url(time_accounting), params: { time_accounting: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end

@@ -1,4 +1,4 @@
-<div class="form-group row">
+<div class="form-group row mb-3">
   <label for="cross_references_attributes" class="col-sm-3 col-form-label">
     <%=t('controller.cross_references') %>
   </label>
@@ -15,7 +15,7 @@
         <%= render 'tasks/cross_reference_fields', form: xref %>
       <% end %>
 
-      <div data-nested-form-target="add_item">
+      <div data-nested-form-target="add_item" class="mt-1">
         <%= link_to t('titracka.add_cross_reference'), "#", data: { action: "nested-form#add_association" } %>
       </div>
     </div>

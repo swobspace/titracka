@@ -1,0 +1,30 @@
+<%= content_tag :div, class: "row row-cols-xl-6 bg-light ms-1", id: 'tasksCardboard',
+      data: {
+        controller: 'draggable',
+        url: @url
+      } do %>
+  <% @columns.each do |column| %>
+    <div class='col px-3 border-end'>
+      <div class="header my-2 d-flex justify-content-between" data-controller="task">
+        <%= column.name %>
+        <% if @ability.can? :create, Task %>
+          <%= link_to helpers.icon_new,
+                      new_polymorphic_path([column, :task], (session[:new_task_params] || {}) ),
+                      id: "new_task_#{dom_id(column)}",
+                      title: t('actions.add', model: Task.model_name.human),
+                      data: {
+                        controller: :modal,
+                        'modal-modal-id-value': 'sharedModal',
+                        action: 'click->modal#open',
+                        'turbo-frame': "modal-body"
+                      }
+           %>
+        <% end %>
+      </div>
+
+      <%= content_tag :div, class: 'list-group list-group-flash dropzone px-0 bg-light', data: { id: column.id, "draggable-target": 'column' } do %>
+        <%= render Task::CardComponent.with_collection(@tasks_per_column[column.id], ability: @ability) if @tasks_per_column[column.id].present? %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,13 +1,14 @@
 <% if can? :create, Workday %>
-<ul class="navbar-nav mr-auto" data-controller="dateselector" data-dateselector-url="<%= main_app.root_path %>">
-  <li class="nav-item" data-dateselector-target="date">
-    <input type="hidden" data-dateselector-target="field">
-    <button class="nav-link btn btn-outline-secondary mr-1">
+<ul class="navbar-nav me-auto" data-controller="dateselector" data-dateselector-url="<%= main_app.root_path %>">
+  <li class="nav-item">
+    <button class="nav-link btn btn-outline-secondary mr-1" 
+            data-dateselector-target="date">
       <i class="far fa-calendar-alt"></i>
     </button>
   </li>
   <li class="nav-item">
     <%= link_to t('titracka.today'), main_app.by_date_path(date: Date.today.to_s), 
+        id: 'today',
         class: 'nav-link btn btn-outline-secondary'%>
   </li>
 </ul>

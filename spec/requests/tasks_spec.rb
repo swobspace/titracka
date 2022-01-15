@@ -1,6 +1,7 @@
  require 'rails_helper'
 
 RSpec.describe "/tasks", type: :request do
+  let!(:state) { FactoryBot.create(:state) }
   let(:user) { FactoryBot.create(:user) }
   let(:open) { FactoryBot.create(:state, :open) }
   let(:ou)   { FactoryBot.create(:org_unit) }
@@ -98,7 +99,7 @@ RSpec.describe "/tasks", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post tasks_url, params: { task: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -138,7 +139,7 @@ RSpec.describe "/tasks", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         task = Task.create! valid_attributes
         patch task_url(task), params: { task: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end

@@ -1,0 +1,7 @@
+<%= turbo_stream.update("ts_notes", partial: 'notes/index',
+                        locals: {noteable: @noteable, notes: @noteable.notes }) %>
+
+<%= turbo_stream.update("ts_notes_list") do %>
+  <%= render partial: 'notes/note', collection: @noteable.notes.order("created_at desc"), layout: 'shared/list_group_item_layout' %>
+<% end %>
+

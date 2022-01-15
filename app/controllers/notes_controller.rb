@@ -30,9 +30,7 @@ class NotesController < ApplicationController
     respond_with(@note, location: location) do |format|
       if @note.save
         email_note(@note)
-        format.js { head :created }
-      else
-        format.js { render json: @note.errors.full_messages, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
@@ -41,18 +39,17 @@ class NotesController < ApplicationController
   def update
     respond_with(@note, location: location) do |format|
       if @note.update(note_params.merge({date: Date.today, user_id: current_user.id}))
-        format.js { head :ok }
-      else
-        format.js { render json: @note.errors.full_messages, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
 
   # DELETE /notes/1
   def destroy
-    @note.destroy
     respond_with(@note, location: location) do |format|
-      format.js { head :ok }
+      if @note.destroy
+        format.turbo_stream
+      end
     end
   end
 

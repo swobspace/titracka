@@ -1,10 +1,10 @@
 <% content_for :head do %>
-  <meta name="turbolinks-cache-control" content="no-cache">
+  <meta name="turbo-cache-control" content="no-cache">
 <% end %>
 
 <div class="container">
   <%= simple_form_for(@state,
-    html: { class: 'form-horizontal card' }) do |f| %>
+    html: { class: 'form-horizontal card mt-2' }) do |f| %>
 
     <div class="card-header">
       <%= form_legend %>
