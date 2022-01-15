@@ -70,5 +70,18 @@
                   'turbo-frame': "modal-body"
                 }
      %>
+    <% if @ability.can? :update, @task %>
+      <%= link_to raw(%Q[<i class="fas fa-lock"></i>]),
+                  task_path(@task, 
+                            task: { state_id: State.where(state: 'archive').first.id }),
+                  method: :patch,
+                  id: "archive_#{dom_id(@task)}",
+                  title: t('titracka.archive_task'),
+                  class: "ms-1 me-2",
+                  data: {
+                    confirm: t('titracka.confirm_archive_task')
+                  }
+       %>
+    <% end %>
   </div>
 <% end %>
