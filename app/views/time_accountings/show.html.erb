@@ -6,7 +6,12 @@
         <h4 class="title float-left"><%= @time_accounting %></h4>
       </div>
       <div role="toolbar" class="pt-3">
-        <%= edit_link(@time_accounting) %>
+        <%= edit_link(@time_accounting,
+             data: { controller: :modal,
+                     'modal-modal-id-value': 'sharedModal',
+                     action: 'click->modal#open',
+                     'turbo-frame': "modal-body" })
+         %>
         <%= delete_link(@time_accounting) %>
       </div>
     </div>

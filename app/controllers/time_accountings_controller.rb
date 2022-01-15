@@ -5,6 +5,7 @@ class TimeAccountingsController < ApplicationController
 
   # GET /time_accountings
   def index
+    session[:time_accountings_mode] = :index
     if @time_accountable
       @time_accountings = @time_accountable.time_accountings
     end
@@ -13,6 +14,7 @@ class TimeAccountingsController < ApplicationController
 
   # GET /time_accountings/1
   def show
+    session[:time_accountings_mode] = :show
     respond_with(@time_accounting)
   end
 
@@ -60,9 +62,8 @@ class TimeAccountingsController < ApplicationController
 
   # DELETE /time_accountings/1
   def destroy
-    @time_accounting.destroy
     respond_with(@time_accounting, location: location) do |format|
-      if @time_accounting.destroy
+      if @time_accounting.destroy && session[:time_accountings_mode] != :show
         format.turbo_stream 
       end
     end
@@ -81,7 +82,11 @@ class TimeAccountingsController < ApplicationController
     end
 
     def location
-      polymorphic_path(@time_accountable || @time_accounting)
+      if action_name = 'destroy'
+        polymorphic_path(@time_accountable || :time_accountings)
+      else
+        polymorphic_path(@time_accountable || @time_accounting)
+      end
     end
 
     def set_tasks
