@@ -1,10 +1,10 @@
 <% if can? :navigate, :time_accountings %>
   <li class="nav-item dropdown <%= active_class('time_accountings') %>">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarConfigurationDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarTimeAccountingsDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
       <%= t('controller.time_accountings') %>
     </a>
-    <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
+    <div class="dropdown-menu" aria-labelledby="navbarTimeAccountingsDropdown">
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
             t('controller.time_accountings')),
           main_app.time_accountings_path, class: "dropdown-item" %>
@@ -12,7 +12,12 @@
         <%= link_to raw('<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
                         t('titracka.new_time_accounting')),
               main_app.new_time_accounting_path,
-              class: "dropdown-item" %>
+                class: "dropdown-item",
+                data: { controller: :modal,
+                        'modal-modal-id-value': 'sharedModal',
+                        action: 'click->modal#open',
+                        'turbo-frame': "modal-body" }
+              %>
       <% end %>
 
     </div>

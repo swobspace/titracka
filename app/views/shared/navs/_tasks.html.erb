@@ -1,10 +1,10 @@
 <% if can? :navigate, :tasks %>
   <li class="nav-item dropdown <%= active_class('tasks') %>">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarConfigurationDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarTasksDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
       <%= t('controller.tasks') %>
     </a>
-    <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
+    <div class="dropdown-menu" aria-labelledby="navbarTasksDropdown">
       <%= link_to raw( '<i class="fas fa-fw fa-clipboard-list" aria-hidden="true"></i> ' +
             t('titracka.cardboard')),
           main_app.cards_path, class: "dropdown-item" %>
