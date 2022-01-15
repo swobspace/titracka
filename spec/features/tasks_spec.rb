@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Workday", type: :feature, js: true do
+RSpec.describe "Tasks", type: :feature, js: true do
   fixtures 'wobauth/roles'
   include_context "task variables"
 
@@ -11,7 +11,7 @@ RSpec.describe "Workday", type: :feature, js: true do
       execute_script("$.support.transition = false")
     end
 
-    it "create a new task" do
+    it "create a new task via button" do
       click_link("Aufgaben")
       find('a.dropdown-item[href="/tasks"]').click()
       sleep 1
@@ -32,6 +32,20 @@ RSpec.describe "Workday", type: :feature, js: true do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit tasks_path
       execute_script("$.support.transition = false")
+    end
+
+    it "create a new task via menu" do
+      find("a#navbarTasksDropdown").click()
+      find('a.dropdown-item[href="/tasks/new"]').click()
+      sleep 1
+      within "#modal-body" do
+        fill_in "Aufgabe", with: "Preparations for Anniversary"
+        click_button("Aufgabe erstellen")
+      end
+      sleep 1
+      expect(page).to have_content "Preparations for Anniversary"
+      expect(page).to have_content "Showing 1 to 7 of 7 entries"
+      # save_and_open_screenshot()
     end
 
     it "delete an existing task" do
@@ -59,6 +73,14 @@ RSpec.describe "Workday", type: :feature, js: true do
       within "#ts_tasks" do
         expect(page).to have_content("a description for to1 task")
       end
+      # save_and_open_screenshot()
+    end
+    it "show an existing task" do
+      within "tr#task_#{to1.id}" do
+        find('a[title="Aufgabe anzeigen"]').click
+      end
+      expect(page).to have_content("Aufgabe: ##{to1.id}")
+      expect(page).to have_content("MM task")
       # save_and_open_screenshot()
     end
   end
