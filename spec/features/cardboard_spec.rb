@@ -74,6 +74,7 @@ RSpec.describe "Cardboard", type: :feature, js: true do
           find('div.ss-main').click
           find('div.ss-search input').set("Mustermann, Carola (mcaro)")
           find('div.ss-option', text: "Mustermann, Carola (mcaro)").click()
+          find('div.ss-content').execute_script("this.classList.remove('ss-open');")
         end
         click_button("Aufgabe erstellen")
       end

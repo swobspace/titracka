@@ -17,9 +17,16 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
       sleep 1
       click_link("Aktivität erstellen")
       within "#modal-body" do
-       select "Mustermann GmbH / MM task", from: "Aufgabe"
+        within "div.time_accounting_task" do
+          find('div.ss-main').click
+          find('div.ss-search input').set("MM task")
+          find('div.ss-option', text: "Mustermann GmbH / MM task").click()
+          find('div.ss-content').execute_script("this.classList.remove('ss-open');")
+        end
+        sleep 0.5
         fill_in "Beschreibung", with: "finishing test phrase"
         fill_in "Dauer (HH:MM)", with: "1:30"
+        # save_and_open_screenshot()
         click_button "Aktivität erstellen"
       end
       sleep 1
@@ -46,7 +53,13 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
       find('a.dropdown-item[href="/time_accountings/new"]').click()
       sleep 1
       within "#modal-body" do
-       select "Mustermann GmbH / MM task", from: "Aufgabe"
+        within "div.time_accounting_task" do
+          find('div.ss-main').click
+          find('div.ss-search input').set("MM task")
+          find('div.ss-option', text: "Mustermann GmbH / MM task").click()
+          find('div.ss-content').execute_script("this.classList.remove('ss-open');")
+        end
+        sleep 0.5
         fill_in "Beschreibung", with: "finishing test phrase"
         fill_in "Dauer (HH:MM)", with: "1:30"
         click_button "Aktivität erstellen"

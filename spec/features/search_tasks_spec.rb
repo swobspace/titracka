@@ -13,10 +13,16 @@ RSpec.describe "Workday", type: :feature, js: true do
 
     it "find a task" do
       within 'div.state_ids' do
-        select "offen", from: "state_ids"
+        find('div.ss-main').click
+        find('div.ss-search input').set("offen")
+        find('div.ss-option', text: "offen").click()
+        find('div.ss-content').execute_script("this.classList.remove('ss-open');")
       end
       within 'div.org_unit_id' do
-        select "Mustermann GmbH", from: "Organisationseinheit"
+        find('div.ss-main').click
+        find('div.ss-search input').set("GmbH")
+        find('div.ss-option', text: "Mustermann GmbH").click()
+        find('div.ss-content').execute_script("this.classList.remove('ss-open');")
       end
       choose "Liste"
       click_button "Suche Aufgaben"
