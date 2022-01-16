@@ -1,21 +1,23 @@
 <%= content_tag :div,
       class: "priority-#{@task.priority} list-group-item mb-2 pb-1 shadow-sm",
       id: "card_task_#{@task.id}",
-      data: {
-        "draggable-target": ('task' if @ability.can?(:update, @task)),
-        controller: 'task toggle',
-        'toggle-toggle-class': 'hidden',
-        id: @task.id,
-        url: state_task_path(@task.state, @task)
-      } do %>
+      data: { "draggable-target": ('task' if @ability.can?(:update, @task)),
+              controller: 'toggle',
+              'toggle-toggle-class': 'hidden',
+              id: @task.id,
+              url: state_task_path(@task.state, @task) } do 
+ %>
   <span data-action="click->toggle#toggle" class="float-end">
     <i data-toggle-target="content" class="clapse icon-color"></i>
   </span>
-  <div class=""
-       id="task_subject_<%= @task.id %>"
-       data-reflex="click->Task#show"
-       data-modal-id="showTaskModal"
-       data-reflex-dataset="combined">
+  <%= link_to(new_task_note_path(@task),
+              id: "task_subject_#{@task.id}",
+              class: "force_card me-1",
+              data: { controller: :modal,
+                      'modal-modal-id-value': 'sharedModal',
+                      action: 'click->modal#open',
+                      'turbo-frame': "modal-body" }) do 
+  %>
     <div class="d-flex w-100"><%= @task.subject %></div>
     <div data-toggle-target="content">
       <div class="d-flex w-100 justify-content-between small text-muted">
@@ -31,7 +33,7 @@
     <div class="d-flex w-100 justify-content-between small timeline">
       <%= helpers.timeline(@task) %>
     </div>
-  </div>
+  <% end %>
 
   <!-- action icons -->
   <div class="d-flex w-100 small icon-color pt-1 mt-1">
@@ -39,36 +41,30 @@
                 new_task_note_path(@task),
                 id: "new_note_#{dom_id(@task)}",
                 class: "me-1",
-                data: {
-                  controller: :modal,
-                  'modal-modal-id-value': 'sharedModal',
-                  action: 'click->modal#open',
-                  'turbo-frame': "modal-body"
-                }
+                data: { controller: :modal,
+                        'modal-modal-id-value': 'sharedModal',
+                        action: 'click->modal#open',
+                        'turbo-frame': "modal-body" }
      %>
     <% if @ability.can? :update, @task %>
       <%= link_to helpers.icon_edit, 
                   edit_task_path(@task),
                   id: "edit_#{dom_id(@task)}",
                   class: "me-1",
-                  data: {
-                    controller: :modal,
-                    'modal-modal-id-value': 'sharedModal',
-                    action: 'click->modal#open',
-                    'turbo-frame': "modal-body"
-                  }
+                  data: { controller: :modal,
+                          'modal-modal-id-value': 'sharedModal',
+                          action: 'click->modal#open',
+                          'turbo-frame': "modal-body" }
        %>
     <% end %>
     <%= link_to raw('<i class="far fa-clock"></i>'),
                 new_task_time_accounting_path(@task),
                 id: "new_time_accounting_#{dom_id(@task)}",
                 class: "me-1",
-                data: {
-                  controller: :modal,
-                  'modal-modal-id-value': 'sharedModal',
-                  action: 'click->modal#open',
-                  'turbo-frame': "modal-body"
-                }
+                data: { controller: :modal,
+                        'modal-modal-id-value': 'sharedModal',
+                        action: 'click->modal#open',
+                        'turbo-frame': "modal-body" }
      %>
     <% if @ability.can? :update, @task %>
       <%= link_to raw(%Q[<i class="fas fa-lock"></i>]),
@@ -78,9 +74,7 @@
                   id: "archive_#{dom_id(@task)}",
                   title: t('titracka.archive_task'),
                   class: "ms-1 me-2",
-                  data: {
-                    confirm: t('titracka.confirm_archive_task')
-                  }
+                  data: { confirm: t('titracka.confirm_archive_task') }
        %>
     <% end %>
   </div>

@@ -241,7 +241,9 @@ button.toggler::after {
 .priority-normal { border-left: 1px solid #dee2e6 !important; }
 .priority-low { border-left: 1px solid #dee2e6 !important; }
 
+// ------------------------------------------------------------------------
 // -- slim slelect
+// ------------------------------------------------------------------------
 // styling select box
 //
 .ss-main {
@@ -261,4 +263,13 @@ button.toggler::after {
       background-color: transparent;
     }
   }
+}
+
+// ------------------------------------------------------------------------
+// - styling cards
+// ------------------------------------------------------------------------
+
+a.force_card {
+  color: #000;
+  text-decoration: none !important;
 }
