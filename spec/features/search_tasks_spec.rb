@@ -12,8 +12,12 @@ RSpec.describe "Workday", type: :feature, js: true do
     end
 
     it "find a task" do
-      select "offen", from: "state_ids[]"
-      select "Mustermann GmbH", from: "Organisationseinheit"
+      within 'div.state_ids' do
+        select "offen", from: "state_ids"
+      end
+      within 'div.org_unit_id' do
+        select "Mustermann GmbH", from: "Organisationseinheit"
+      end
       choose "Liste"
       click_button "Suche Aufgaben"
       sleep 1
