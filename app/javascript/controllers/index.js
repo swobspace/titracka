@@ -30,6 +30,9 @@ application.register("draggable", DraggableController)
 import FiltersController from "./filters_controller"
 application.register("filters", FiltersController)
 
+import FollowmeController from "./followme_controller"
+application.register("followme", FollowmeController)
+
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
