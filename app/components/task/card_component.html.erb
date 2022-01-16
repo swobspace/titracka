@@ -66,10 +66,10 @@
                         action: 'click->modal#open',
                         'turbo-frame': "modal-body" }
      %>
-    <% if @ability.can? :update, @task %>
+    <% if @ability.can? :update, @task && !@state_archive_id.nil? %>
       <%= link_to raw(%Q[<i class="fas fa-lock"></i>]),
                   task_path(@task, 
-                            task: { state_id: State.where(state: 'archive').first.id }),
+                            task: { state_id: @state_archive_id }),
                   method: :patch,
                   id: "archive_#{dom_id(@task)}",
                   title: t('titracka.archive_task'),
