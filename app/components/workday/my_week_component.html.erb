@@ -10,7 +10,7 @@
   <tbody>
     <% (@workday.date.beginning_of_week .. @workday.date.end_of_week).each do |wday| %>
       <%= content_tag :tr do %>
-        <td class="text-center"><%= link_to wday.to_s, by_date_path(wday.to_s) %></td>
+        <td class="text-center"><%= link_to wday.to_s, by_date_path(wday.to_s), class: 'primary-link' %></td>
         <td class="text-center"><%= wday.strftime("%a") %></td>
         <td class="text-center"><%= @current_user.workdays.where(date: wday).first&.day_type %></td>
         <td class="text-right"><%= hourmin(@current_user.decorate.working_time(day:wday)) %></td>

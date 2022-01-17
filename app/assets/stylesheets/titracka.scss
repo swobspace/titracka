@@ -242,6 +242,18 @@ button.toggler::after {
 .priority-low { border-left: 1px solid #dee2e6 !important; }
 
 // ------------------------------------------------------------------------
+// -- primary link
+// ------------------------------------------------------------------------
+a:link.primary-link,
+a:visited.primary-link {
+  text-decoration: none;
+}
+a:hover.primary-link,
+a:active.primary-link {
+  text-decoration: underline;
+}
+
+// ------------------------------------------------------------------------
 // -- slim slelect
 // ------------------------------------------------------------------------
 // styling select box
