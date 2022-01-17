@@ -59,7 +59,9 @@
         </h3>
       </div>
       <div class="card-body">
-        <%= render Workday::MyWeekComponent.new(workday: @workday, user: @current_user) %>
+        <div id="ts_my_week">
+          <%= render Workday::MyWeekComponent.new(workday: @workday, user: @current_user) %>
+        </div>
       </div>
     </div>
   </div>
