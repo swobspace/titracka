@@ -18,7 +18,6 @@ export default class extends Controller {
   static targets = [ "datatable", "remotetable", "plaintable" ]
 
   initialize() {
-    // console.log("datatable controller initialized")
     var myTable = $.fn.dataTable;
     $.extend( true, myTable.Buttons.defaults, {
       "dom": {
@@ -30,10 +29,10 @@ export default class extends Controller {
   }
 
   connect() {
-    // console.log("datatable controller connected")
     if (this.hasDatatableTarget) {
+      this.set_input_fields(this.element)
       this.datatableTargets.forEach(table => {
-	  $(table).DataTable({
+	  let mytable = $(table).DataTable({
 	    "pagingType": "full_numbers",
 	    "dom": "<'row'<'col-md-3'l><'col-md-5'BC><'col-md-4'f>>t<'row'<'col-md-6'ir><'col-md-6'p>>",
 	    "stateSave": false,
@@ -81,8 +80,23 @@ export default class extends Controller {
 	      { "targets": "notvisible", "visible": false }
 	    ]
 	  }) // .DataTable()
+          mytable.columns().eq(0).each((colIdx) => {
+            $('input[name=idx'+colIdx+']').on( 'keyup change', function() {
+              mytable.column(colIdx).search(this.value).draw()
+            })
+          })
         } // table
       ) // forEach
     } // hasDatatableTarget
   } // connect
+
+  set_input_fields(el) {
+    el.querySelectorAll('table tfoot th').forEach((th, idx) => {
+      th.insertAdjacentHTML('afterbegin', this.search_field(idx))
+    })
+  }
+
+  search_field(idx) {
+    return `<input type="text" placeholder="search" name="idx${idx}" />`
+  }
 } // Controller
