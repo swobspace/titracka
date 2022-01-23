@@ -1,0 +1,3 @@
+<%= turbo_stream.update("ts_tasks") do %>
+  <%= render 'query', workday: @workday, tasks: @tasks, current_ability: @current_ability %>
+<% end %>

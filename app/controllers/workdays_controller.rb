@@ -1,7 +1,5 @@
 class WorkdaysController < ApplicationController
   before_action :set_workday, only: [:show, :edit, :update, :destroy]
-  # before_action :add_breadcrumb_show, only: [:show]
-  before_action :mostly_wanted_tasks, only: [:show, :by_date]
 
   # GET /workdays
   def index
@@ -12,7 +10,6 @@ class WorkdaysController < ApplicationController
   # GET /workdays/1
   def show
     add_breadcrumb(@workday.date.to_s, workday_path(@workday))
-    set_daystuff
     respond_with(@workday)
   end
 
@@ -21,8 +18,8 @@ class WorkdaysController < ApplicationController
     if @workday.nil?
       redirect_to new_workday_path(date: params[:date])
     else
+      add_breadcrumb(@workday.date.to_s, workday_path(@workday))
       authorize! :read, @workday
-      set_daystuff
       render :show
     end
   end
@@ -66,19 +63,6 @@ class WorkdaysController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def workday_params
       params.require(:workday).permit(:date, :work_start, :pause, :comment, :day_type_id)
-    end
-    def set_daystuff
-      # @time_accountings = @current_user.time_accountings.where(date: @workday.date)
-      # @work_sum = @time_accountings.sum(:duration)
-      @week_sum = @current_user.decorate.working_time(week: @workday.date)
-      # @end_of_work = (@workday.work_start || @workday.date.to_time.beginning_of_day) + 
-      #                  @work_sum.minutes + @workday.pause.minutes
-    end
-
-    def mostly_wanted_tasks
-      @tasks ||= RecentTasksQuery.new(user_id: @current_user.id).tasks
-      @columns ||= State.not_archived
-      @tasks_per_column ||= @tasks.group_by(&:state_id)
     end
 
 end

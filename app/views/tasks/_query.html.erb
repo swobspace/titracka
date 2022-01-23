@@ -1,0 +1,8 @@
+<% tasks.each_slice(5) do |tasks| %>
+  <div class="card-group">
+    <% tasks.each do |task| %>
+      <%= render 'workdays/task', task: task, workday: workday, ability: current_ability %>
+    <% end %>
+  </div>
+<% end %>
+

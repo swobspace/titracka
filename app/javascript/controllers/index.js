@@ -1,6 +1,6 @@
 // app/javascript/controllers/index.js
 
-import { Application } from "stimulus"
+import { Application } from "@hotwired/stimulus"
 const application = Application.start()
 
 application.warnings = true
@@ -29,6 +29,12 @@ application.register("draggable", DraggableController)
 
 import FiltersController from "./filters_controller"
 application.register("filters", FiltersController)
+
+import TurboFilterController from "./turbo_filter_controller"
+application.register("turbo-filter", TurboFilterController)
+
+import FollowmeController from "./followme_controller"
+application.register("followme", FollowmeController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)

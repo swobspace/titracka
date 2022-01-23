@@ -182,6 +182,15 @@ RSpec.describe TaskQuery do
     it_behaves_like "a task query"
   end # :user_id mmax.id
 
+  context "with :whoever_id" do
+    subject { TaskQuery.new(tasks, {whoever_id: mmax.id}) }
+    before(:each) do
+      @matching = [t1, to1, done1]
+      @nonmatching = [t2, to2, tl1, tl2, archiv2]
+    end
+    it_behaves_like "a task query"
+  end # :whoever_id mmax.id
+
   context "with :user" do
     subject { TaskQuery.new(tasks, {user: 'caro'}) }
     before(:each) do

@@ -55,6 +55,8 @@ de:
     without_lists: nur OEs ohne Liste
     no_email: keine E-Mail senden
     recent_used_tasks: Zuletzt genutzte Tasks
+    archive_task: Aufgabe archivieren
+    confirm_archive_task: Soll die Aufgabe archiviert werden?
 
   actions:
     destroy: Datensatz löschen
@@ -127,7 +129,7 @@ de:
     notes: Notizen
     org_unit: Organisationseinheit
     org_unit_id: Organisationseinheit
-    owner: Accountable
+    owner: Owner
     parent: Parent
     pause: Pause
     priority: Priorität

@@ -6,6 +6,7 @@ class Task::CardComponent < ViewComponent::Base
   def initialize(task:, ability:)
     @task = task
     @ability = ability
+    @state_archive_id = State.where(state: 'archive').first&.id.to_i
   end
 
 end

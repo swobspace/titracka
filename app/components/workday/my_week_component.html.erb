@@ -1,0 +1,28 @@
+<%= content_tag :table, class: 'table table-sm' do %>
+  <thead>
+    <tr>
+     <th class="text-center"><%= t('attributes.date') %></th>
+     <th class="text-center"><%= t('attributes.weekday') %></th>
+     <th class="text-center"><%= t('attributes.type') %></th>
+     <th class="text-right"><%= t('attributes.duration') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% (@workday.date.beginning_of_week .. @workday.date.end_of_week).each do |wday| %>
+      <%= content_tag :tr do %>
+        <td class="text-center"><%= link_to wday.to_s, by_date_path(wday.to_s), class: 'primary-link' %></td>
+        <td class="text-center"><%= wday.strftime("%a") %></td>
+        <td class="text-center"><%= @current_user.workdays.where(date: wday).first&.day_type %></td>
+        <td class="text-right"><%= hourmin(@current_user.decorate.working_time(day:wday)) %></td>
+      <% end %>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+     <th></th>
+     <th></th>
+     <th class="text-center"><%= t('attributes.sum') %></th>
+     <th class="text-right"><%= hourmin(@week_sum) %></th>
+    </tr>
+  </tfoot>
+<% end %>

@@ -84,6 +84,8 @@ $form-feedback-invalid-color: rgb(220,53,69);
 
 .required {
   span.select-selection,
+  div.ss-main.select.required > div.ss-single-selected,
+  div.ss-main.select.required > div.ss-multi-selected,
   textarea.required, input.required, select.required {
     background-color: #FFFAC2;
   }
@@ -241,10 +243,25 @@ button.toggler::after {
 .priority-normal { border-left: 1px solid #dee2e6 !important; }
 .priority-low { border-left: 1px solid #dee2e6 !important; }
 
+// ------------------------------------------------------------------------
+// -- primary link
+// ------------------------------------------------------------------------
+a:link.primary-link,
+a:visited.primary-link {
+  text-decoration: none;
+}
+a:hover.primary-link,
+a:active.primary-link {
+  text-decoration: underline;
+}
+
+// ------------------------------------------------------------------------
 // -- slim slelect
+// ------------------------------------------------------------------------
 // styling select box
 //
 .ss-main {
+  color: #333;
   div.ss-single-selected,
   div.ss-multi-selected {
     border: 1px solid #ced4da;
@@ -261,4 +278,13 @@ button.toggler::after {
       background-color: transparent;
     }
   }
+}
+
+// ------------------------------------------------------------------------
+// - styling cards
+// ------------------------------------------------------------------------
+
+a.force_card {
+  color: #000;
+  text-decoration: none !important;
 }

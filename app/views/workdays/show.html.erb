@@ -1,8 +1,4 @@
-<% content_for :head do %>
-  <meta name="turbo-cache-control" content="no-cache">
-<% end %>
-
-<div class="row" id="tasksCardboard">
+<div class="row" id="workdayTimeRow">
   <div class="col-sm-9">
     <div class="card">
       <div class="card-header d-flex w-100 justify-content-between"
@@ -43,10 +39,10 @@
                 }
          %>
 
-        <%= link_to raw(%Q[<i class="fas fa-backward"></i>]), 
+        <%= link_to raw(%Q[<i class="fas fa-backward"></i>]),
               by_date_path(date: 1.day.before(@workday.date).to_s), class: "ml-3 btn btn-secondary" %>
         <%= link_to t('titracka.today'), by_date_path(date: Date.today.to_s), class: "btn btn-secondary" %>
-        <%= link_to raw(%Q[<i class="fas fa-forward"></i>]), 
+        <%= link_to raw(%Q[<i class="fas fa-forward"></i>]),
               by_date_path(date: 1.day.after(@workday.date).to_s), class: "btn btn-secondary" %>
       </div>
     </div>
@@ -59,34 +55,9 @@
         </h3>
       </div>
       <div class="card-body">
-        <%= content_tag :table, class: 'table table-sm' do %>
-          <thead>
-            <tr>
-             <th class="text-center"><%= t('attributes.date') %></th>
-             <th class="text-center"><%= t('attributes.weekday') %></th>
-             <th class="text-center"><%= t('attributes.type') %></th>
-             <th class="text-right"><%= t('attributes.duration') %></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% (@workday.date.beginning_of_week .. @workday.date.end_of_week).each do |wday| %>
-              <%= content_tag :tr do %>
-                <td class="text-center"><%= link_to wday.to_s, by_date_path(wday.to_s) %></td>
-                <td class="text-center"><%= wday.strftime("%a") %></td>
-                <td class="text-center"><%= @current_user.workdays.where(date: wday).first&.day_type %></td>
-                <td class="text-right"><%= hourmin(@current_user.decorate.working_time(day:wday)) %></td>
-              <% end %>
-            <% end %>
-          </tbody>
-          <tfoot>
-            <tr>
-             <th></th>
-             <th></th>
-             <th class="text-center"><%= t('attributes.sum') %></th>
-             <th class="text-right"><%= hourmin(@week_sum) %></th>
-            </tr>
-          </tfoot>
-        <% end %>
+        <div id="ts_my_week">
+          <%= render Workday::MyWeekComponent.new(workday: @workday, user: @current_user) %>
+        </div>
       </div>
     </div>
   </div>
@@ -94,17 +65,10 @@
 
 <div class="card mt-3 border-0">
   <div class="card-header border mr-1 ml-1">
-    <h4 class="card-title mb-0"><%= t('titracka.recent_used_tasks') %></h4>
+    <%= render 'tasks/filters_horizontal', workday: @workday %>
   </div>
   <div class="card-body m-0 p-0">
-<div class="">
-  <% @tasks.each_slice(5) do |tasks| %>
-    <div class="card-group">
-      <% tasks.each do |task| %>
-        <%= render 'workdays/task', task: task, ability: @current_ability %>
-      <% end %>
+    <div id="ts_tasks">
     </div>
-  <% end %>
-</div>
-</div>
+  </div>
 </div>

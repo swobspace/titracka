@@ -1,5 +1,5 @@
 // javascript/controllers/draggable_controller.js
-import { Controller } from 'stimulus'
+import { Controller } from '@hotwired/stimulus'
 import { Sortable } from '@shopify/draggable'
 
 export default class extends Controller {

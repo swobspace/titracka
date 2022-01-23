@@ -82,7 +82,7 @@ class TimeAccountingsController < ApplicationController
     end
 
     def location
-      if action_name = 'destroy'
+      if action_name == 'destroy'
         polymorphic_path(@time_accountable || :time_accountings)
       else
         polymorphic_path(@time_accountable || @time_accounting)

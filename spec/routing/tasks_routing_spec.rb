@@ -14,6 +14,10 @@ RSpec.describe TasksController, type: :routing do
       expect(post: "/tasks.json").to route_to(controller: 'tasks', action: 'index', format: "json")
     end
 
+    it "routes to #query" do
+      expect(:get => "/tasks/query").to route_to("tasks#query")
+    end
+
     it "routes to #search" do
       expect(:get => "/tasks/search_form").to route_to("tasks#search_form")
     end

@@ -3,6 +3,16 @@
     <%= render 'tasks/modal/task_header', task: @noteable %>
     <%= render 'tasks/modal/show_task', task: @noteable %>
     <%= render 'tasks/modal/note_form', task: @noteable, note: @note %>
+
+    <div class="card-body">
+      <ul class="list-group list-group-flush row" id="showNotesModal">
+        <%= render partial: 'notes/note',
+                   collection: @noteable.notes.order("created_at desc"),
+                   layout: 'shared/list_group_item_layout'
+         %>
+      </ul>
+    </div>
+
   <% else %>
     <%= render 'form', noteable: @noteable, note: @note %>
   <% end %>

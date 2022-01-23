@@ -20,7 +20,6 @@ RSpec.describe "Workday", type: :feature, js: true do
       # save_and_open_screenshot()
       expect(page).to have_content(I18n.l(Date.today, format: '%A'))
       expect(page).to have_content("Woche")
-      expect(page).to have_content("Zuletzt genutzte Tasks")
     end
   end
 
@@ -37,7 +36,13 @@ RSpec.describe "Workday", type: :feature, js: true do
       click_link "Aktivität erstellen"
       sleep 1
       within "#modal-body" do
-        select "Mustermann GmbH / MM task", from: "Aufgabe"
+        within "div.time_accounting_task" do
+          find('div.ss-main').click
+          find('div.ss-search input').set("MM task")
+          find('div.ss-option', text: "Mustermann GmbH / MM task").click()
+          find('div.ss-content').execute_script("this.classList.remove('ss-open');")
+        end
+        sleep 0.5
         fill_in "Beschreibung", with: "was habe ich getan"
         fill_in "Dauer (HH:MM)", with: "1:30"
         click_button "Aktivität erstellen"
@@ -123,7 +128,6 @@ RSpec.describe "Workday", type: :feature, js: true do
       click_button "Arbeitstag aktualisieren"
       expect(page).to have_content(I18n.l(Date.today, format: '%A'))
       expect(page).to have_content("Woche")
-      expect(page).to have_content("Zuletzt genutzte Tasks")
 
       accept_confirm do
         find('div.card div.card-header a[title="Arbeitstag löschen"]').click()

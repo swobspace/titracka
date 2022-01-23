@@ -60,14 +60,22 @@ RSpec.describe "Cardboard", type: :feature, js: true do
     end
 
     it "adds a new task" do
+      # puts Wobauth::User.all.map{|u| u.to_s}
       within "div#ts_task_cards" do
         expect(all('div.list-group-item').count).to eq(2)
       end
       click_link "new_task_state_#{open.id}"
       sleep 1
+      # save_and_open_screenshot()
       within "#modal-body" do
         fill_in "Aufgabe", with: "A new task"
-        select "Mustermann, Carola (mcaro)", from: 'Accountable'
+        # select hack for slim-select
+        within 'div.task_user' do
+          find('div.ss-main').click
+          find('div.ss-search input').set("Mustermann, Carola (mcaro)")
+          find('div.ss-option', text: "Mustermann, Carola (mcaro)").click()
+          find('div.ss-content').execute_script("this.classList.remove('ss-open');")
+        end
         click_button("Aufgabe erstellen")
       end
       sleep 1
@@ -91,6 +99,14 @@ RSpec.describe "Cardboard", type: :feature, js: true do
       sleep 1
       expect(to1.notes.count).to eq(1)
       expect(to1.notes.first.description.to_plain_text).to eq("Just a simple comment")
+      within "div#card_task_#{to1.id}" do
+        execute_script("document.querySelector('#new_note_task_#{to1.id}').click()")
+      end
+      sleep 1
+      within "#modal-body" do
+        expect(page).to have_content("Just a simple comment")
+      end
+      # save_and_open_screenshot()
     end
 
     it "add time accounting to task" do
