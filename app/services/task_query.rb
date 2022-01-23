@@ -9,6 +9,7 @@ class TaskQuery
   # * :subject - string
   # * :user_id - integer
   # * :responsible_id - integer
+  # * :whoever_id - integer = user or responsible
   # * :list_id - integer
   # * :without_lists - boolean
   # * :org_unit_id - integer
@@ -75,6 +76,9 @@ private
       # 1:1 matching
       when *id_fields
        query = query.where(key.to_sym => value)
+      when :whoever_id
+       query = query.where("tasks.responsible_id = :uid or  tasks.user_id = :uid", 
+                           uid: value.to_i)
       when :org_unit_id
         if subtree
           query = query.where(org_unit_id: subtree_ids(value))
