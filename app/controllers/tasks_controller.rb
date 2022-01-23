@@ -153,6 +153,7 @@ class TasksController < ApplicationController
         :resubmission, :to_resubmission, :from_resubmission, :subtree,
         :subject, :user, :responsible, :status, :state, :priority, :private,
         :has_references, :limit, :search, :cross_reference, :without_lists,
+        :whoever_id,
         priority_ids: [], state_ids: [],
       ).to_h
       searchparms.reject do |k, v|

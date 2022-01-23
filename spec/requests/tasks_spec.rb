@@ -57,7 +57,7 @@ RSpec.describe "/tasks", type: :request do
       workday = FactoryBot.create(:workday, user: user)
       FactoryBot.create(:task, user_id: user.id, state_id: open.id, 
                          subject: "Secret Stuff", org_unit_id: ou.id)
-      get query_tasks_url(subject: "Secret", workday_id: workday.id, 
+      get query_tasks_url(subject: "Secret", workday_id: workday.id, whoever_id: user.id,
                           format: :turbo_stream)
       expect(response).to be_successful
     end
