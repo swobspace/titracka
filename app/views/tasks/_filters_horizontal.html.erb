@@ -2,8 +2,6 @@
 
   <%= hidden_field_tag :workday_id, workday.id,
                        data: { 'turbo-filter-target': 'filter' } %>
-  <%= hidden_field_tag :limit, 25,
-                       data: { 'turbo-filter-target': 'filter' } %>
 
   <div class="col">
     <%= label_tag :subject, t('attributes.title'), class: "form-label" %>
