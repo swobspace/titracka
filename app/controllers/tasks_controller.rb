@@ -74,7 +74,8 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     if @taskable
-      @task = @taskable.tasks.new(search_params.merge(priority: 'normal'))
+      @task = @taskable.tasks.new(search_params.merge(priority: 'normal', 
+                                                      user_id: @current_user.id))
     else
       @task = @current_user.tasks.new(priority: 'normal')
     end
