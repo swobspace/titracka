@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       # get :search
       # post :search
       get :search_form
+      get :query
     end
     resources :time_accountings, module: :tasks
     resources :notes, module: :tasks

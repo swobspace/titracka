@@ -1,25 +1,27 @@
 // filters_controller.js
 // idea from https://boringrails.com/articles/better-stimulus-controllers/
 //
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["filter"]
+  static values = {
+    url: String
+  }
 
   connect () {
     super.connect()
-    // add your code here, if applicable
+    this.baseUrl = this.urlValue || `${window.location.pathname}`
   }
 
   filter() {
-    const url = `${window.location.pathname}?${this.params}`;
-    Turbo.clearCache();
-    Turbo.visit(url);
+    const url = `${this.baseUrl}?${this.params}`
+    Turbo.clearCache()
+    Turbo.visit(url)
   }
 
   reset() {
-    const url = `${window.location.pathname}`;
-    Turbo.clearCache();
-    Turbo.visit(url);
+    Turbo.clearCache()
+    Turbo.visit(this.baseUrl)
   }
 
 
@@ -39,6 +41,7 @@ export default class extends Controller {
       } else {
         return ''
       }
-    }).filter(String).join("&");
-  }
+    }).filter(String).join("&")
+ }
+
 }

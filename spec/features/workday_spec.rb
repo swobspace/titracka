@@ -20,7 +20,6 @@ RSpec.describe "Workday", type: :feature, js: true do
       # save_and_open_screenshot()
       expect(page).to have_content(I18n.l(Date.today, format: '%A'))
       expect(page).to have_content("Woche")
-      expect(page).to have_content("Zuletzt genutzte Tasks")
     end
   end
 
@@ -129,7 +128,6 @@ RSpec.describe "Workday", type: :feature, js: true do
       click_button "Arbeitstag aktualisieren"
       expect(page).to have_content(I18n.l(Date.today, format: '%A'))
       expect(page).to have_content("Woche")
-      expect(page).to have_content("Zuletzt genutzte Tasks")
 
       accept_confirm do
         find('div.card div.card-header a[title="Arbeitstag löschen"]').click()

@@ -29,6 +29,19 @@ class TasksController < ApplicationController
     end
   end
 
+  def query
+    if search_params.any?
+      @tasks = Task.accessible_by(current_ability, :read)
+      @tasks = TaskQuery.new(@tasks.joins(:state), search_params).all
+    else
+      @tasks = RecentTasksQuery.new(user_id: @current_user.id).tasks
+    end
+    @workday = Workday.find_by_id(params[:workday_id])
+    respond_with(@tasks) do |format|
+      format.turbo_stream
+    end
+  end
+
   def search_form
   end
 
@@ -111,7 +124,7 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(
         :subject, :start, :deadline, :resubmission, :priority, :user_id,
-        :responsible_id, :org_unit_id, :state_id, :list_id, 
+        :responsible_id, :org_unit_id, :state_id, :list_id,
         :private, :description,
         cross_references_attributes: [
           :_destroy, :id, :reference_id, :identifier, :subject
@@ -134,7 +147,7 @@ class TasksController < ApplicationController
     end
 
     def search_params
-      searchparms = params.permit(*submit_parms,
+      searchparms = params.permit(*submit_parms, *non_search_params,
         :id, :list_id, :org_unit_id, :user_id, :responsible_id, :state_id,
         :start, :to_start, :from_start, :deadline, :to_deadline, :from_deadline,
         :resubmission, :to_resubmission, :from_resubmission, :subtree,
@@ -142,11 +155,17 @@ class TasksController < ApplicationController
         :has_references, :limit, :search, :cross_reference, :without_lists,
         priority_ids: [], state_ids: [],
       ).to_h
-      searchparms.reject{|k, v| (v.blank? || submit_parms.include?(k))}
+      searchparms.reject do |k, v|
+       v.blank? || submit_parms.include?(k) || non_search_params.include?(k)
+      end
     end
 
     def submit_parms
       [ "utf8", "authenticity_token", "commit", "format", "view" ]
+    end
+
+    def non_search_params
+      [ "workday_id" ]
     end
 
     def set_columns

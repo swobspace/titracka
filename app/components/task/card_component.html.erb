@@ -66,7 +66,7 @@
                         action: 'click->modal#open',
                         'turbo-frame': "modal-body" }
      %>
-    <% if @ability.can? :update, @task && !@state_archive_id.nil? %>
+    <% if @ability.can?(:update, @task) && (@task.state&.state == 'done' ) && (@state_archive_id > 0) %>
       <%= link_to raw(%Q[<i class="fas fa-lock"></i>]),
                   task_path(@task, 
                             task: { state_id: @state_archive_id }),

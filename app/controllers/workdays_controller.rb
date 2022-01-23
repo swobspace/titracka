@@ -1,7 +1,5 @@
 class WorkdaysController < ApplicationController
   before_action :set_workday, only: [:show, :edit, :update, :destroy]
-  # before_action :add_breadcrumb_show, only: [:show]
-  before_action :mostly_wanted_tasks, only: [:show, :by_date]
 
   # GET /workdays
   def index
@@ -20,6 +18,7 @@ class WorkdaysController < ApplicationController
     if @workday.nil?
       redirect_to new_workday_path(date: params[:date])
     else
+      add_breadcrumb(@workday.date.to_s, workday_path(@workday))
       authorize! :read, @workday
       render :show
     end
@@ -64,12 +63,6 @@ class WorkdaysController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def workday_params
       params.require(:workday).permit(:date, :work_start, :pause, :comment, :day_type_id)
-    end
-
-    def mostly_wanted_tasks
-      @tasks ||= RecentTasksQuery.new(user_id: @current_user.id).tasks
-      @columns ||= State.not_archived
-      @tasks_per_column ||= @tasks.group_by(&:state_id)
     end
 
 end

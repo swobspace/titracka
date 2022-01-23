@@ -12,13 +12,17 @@ require 'factory_bot_rails'
 require 'capybara/rspec'
 
 Capybara.register_driver :mychrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new 
+  options = Selenium::WebDriver::Chrome::Options.new
 
-  [ "headless", "window-size=1280x1024", "disable-gpu" ].each do |arg| 
-    options.add_argument(arg)
-  end
+  options.add_argument("headless")
+  options.add_argument("window-size=1280x1280")
+  # options.add_argument("disable-gpu")
 
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    capabilities: [options]
+  )
 end
 
 # Capybara.javascript_driver = :selenium_chrome
