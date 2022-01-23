@@ -84,6 +84,8 @@ $form-feedback-invalid-color: rgb(220,53,69);
 
 .required {
   span.select-selection,
+  div.ss-main.select.required > div.ss-single-selected,
+  div.ss-main.select.required > div.ss-multi-selected,
   textarea.required, input.required, select.required {
     background-color: #FFFAC2;
   }
