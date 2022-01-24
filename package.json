@@ -20,7 +20,7 @@
     "jstree": "^3.3.10",
     "jszip": "^3.5.0",
     "moment": "^2.29.1",
-    "pdfmake": "^0.1.68",
+    "pdfmake": "^0.2.0",
     "popper.js": "^1.16.1",
     "rails-erb-loader": "^5.5.2",
     "sass": "^1.45.1",
