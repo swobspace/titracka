@@ -80,6 +80,6 @@ export default class extends Controller {
     options.set("columnDefs", [ { "targets": "nosort", "orderable": false },
                                 { "targets": "notvisible", "visible": false } ])
     // return json object for datatables
-    return Object.fromEntries(options)
+    return options
   }
 } // Controller
