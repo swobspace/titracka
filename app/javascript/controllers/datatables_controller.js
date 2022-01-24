@@ -18,7 +18,6 @@ import { DataTable } from "datatables.net"
 
 // here comes the controller ...
 export default class extends Controller {
-  static targets = [ "datatable", "remotetable", "plaintable" ]
 
   initialize() {
     var myTable = $.fn.dataTable;
@@ -28,18 +27,19 @@ export default class extends Controller {
   }
 
   connect() {
-    if (this.hasDatatableTarget) {
-      this.set_input_fields()
-      this.datatableTargets.forEach(table => {
-	  let mytable = $(table).DataTable(this.dt_options())
-          mytable.columns().eq(0).each((colIdx) => {
-            $('input[name=idx'+colIdx+']').on( 'keyup change', function() {
-              mytable.column(colIdx).search(this.value).draw()
-            })
-          })
-        } // table
-      ) // forEach
-    } // hasDatatableTarget
+    this.set_input_fields()
+    const table = $(this.element.querySelector('table'))
+
+    // prepare options, optional add remote processing (not yet implemented)
+    let options = Object.fromEntries(this.dt_options())
+    let dtable = $(table).DataTable(options)
+
+    // process search input
+    dtable.columns().eq(0).each((colIdx) => {
+      $('input[name=idx'+colIdx+']').on( 'keyup change', function() {
+	dtable.column(colIdx).search(this.value).draw()
+      })
+    })
   } // connect
 
   // search fields for each column
