@@ -27,11 +27,11 @@ export default class extends Controller {
   }
 
   connect() {
-    this.set_input_fields()
+    this.setInputFields()
     const table = $(this.element.querySelector('table'))
 
     // prepare options, optional add remote processing (not yet implemented)
-    let options = Object.fromEntries(this.dt_options())
+    let options = Object.fromEntries(this.dtOptions())
     let dtable = $(table).DataTable(options)
 
     // process search input
@@ -43,19 +43,19 @@ export default class extends Controller {
   } // connect
 
   // search fields for each column
-  set_input_fields() {
+  setInputFields() {
     this.element.querySelectorAll('table tfoot th').forEach((th, idx) => {
-      th.insertAdjacentHTML('afterbegin', this.search_field(idx))
+      th.insertAdjacentHTML('afterbegin', this.searchField(idx))
     })
   }
 
   // single search input field
-  search_field(idx) {
+  searchField(idx) {
     return `<input type="text" placeholder="search" name="idx${idx}" />`
   }
 
   // datatables options
-  dt_options() {
+  dtOptions() {
     const options = new Map()
     options.set("pagingType", "full_numbers")
     options.set("dom", "<'row'<'col'l><'col'B><'col'f>>" +
