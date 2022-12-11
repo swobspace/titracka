@@ -9,8 +9,8 @@ gem 'puma', '~> 5.1'
 # gem 'coffee-rails'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+# gem 'jquery-rails'
+# gem 'jquery-ui-rails'
 gem 'rails-i18n', '~> 6.0.0'
 
 group :development do
@@ -59,8 +59,7 @@ gem 'simple_form'
 gem 'devise-remote-user'
 gem 'paper_trail'
 gem 'cancancan'
-# gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: '4-stable'
-gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'develop'
+gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
 gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
 gem 'wobaduser', '~> 1.0'
 
@@ -84,10 +83,9 @@ gem 'rails-controller-testing'
 # gem 'daemons'
 gem 'exception_notification'
 
-
 # gem "activerecord-session_store"
-gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
-gem "hiredis"
+gem "redis", ">= 5.0"
+gem "hiredis-client"
 gem "prawn"
 gem "prawn-markup"
 
@@ -101,3 +99,8 @@ gem "view_component", "~> 2.47"
 
 gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: 'main'
 
+# for deployment
+gem "ed25519"
+gem "bcrypt_pbkdf"
+
+gem "mail", '< 2.8.0'

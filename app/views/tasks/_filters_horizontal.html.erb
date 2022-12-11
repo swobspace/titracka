@@ -15,7 +15,22 @@
   </div>
 
   <div class="col">
-    <%= label_tag :org_unit_id, t('attributes.org_unit'), class: "form-label" %>
+    <div class="d-flex justify-content-between">
+        <%= label_tag :org_unit_id, t('attributes.org_unit'), class: "form-label" %>
+           <input name="subtree" type="hidden" value="false"/>
+        <div>
+          <label class="form-check-label me-1" for="subtree">
+            <i class="fas fa-sitemap"></i>
+          </label>
+          <%= check_box_tag "subtree", "true", (params[:subtree] == "true"),
+                class: "form-check-input",
+                data: {
+                  action: "change->turbo-filter#filter",
+                  'turbo-filter-target': 'filter'
+                }
+            %>
+        </div>
+    </div>
     <%= select_tag "org_unit_id",
           options_from_collection_for_select(OrgUnit.accessible_by(current_ability, :read), 'id', 'name_for_selects', params[:org_unit_id]),
           include_blank: "--",
