@@ -103,3 +103,4 @@ gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: '
 gem "ed25519"
 gem "bcrypt_pbkdf"
 
+gem "mail", '< 2.8.0'
