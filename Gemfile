@@ -83,10 +83,9 @@ gem 'rails-controller-testing'
 # gem 'daemons'
 gem 'exception_notification'
 
-
 # gem "activerecord-session_store"
-gem "redis", ">= 4.0", :require => ["redis", "redis/connection/hiredis"]
-gem "hiredis"
+gem "redis", ">= 5.0"
+gem "hiredis-client"
 gem "prawn"
 gem "prawn-markup"
 
@@ -103,3 +102,4 @@ gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: '
 # for deployment
 gem "ed25519"
 gem "bcrypt_pbkdf"
+
