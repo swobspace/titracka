@@ -101,3 +101,6 @@ gem "view_component", "~> 2.47"
 
 gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: 'main'
 
+# for deployment
+gem "ed25519"
+gem "bcrypt_pbkdf"
