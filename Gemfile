@@ -9,8 +9,8 @@ gem 'puma', '~> 5.1'
 # gem 'coffee-rails'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+# gem 'jquery-rails'
+# gem 'jquery-ui-rails'
 gem 'rails-i18n', '~> 6.0.0'
 
 group :development do
