@@ -8,7 +8,7 @@
     <%= text_field_tag "subject", nil,
           class: 'form-control',
           data: {
-            action: "change->turbo-filter#filter",
+            action: "input->turbo-filter#filter",
             'turbo-filter-target': 'filter'
           }
     %>

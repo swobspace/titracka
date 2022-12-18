@@ -42,7 +42,7 @@ application.register("modal", ModalController)
 import NestedFormController from "./nested_form_controller"
 application.register("nested-form", NestedFormController)
 
-import SelectController from "./select_controller"
+import SelectController from "./ts/select_controller"
 application.register("select", SelectController)
 
 import ToggleController from "./toggle_controller"

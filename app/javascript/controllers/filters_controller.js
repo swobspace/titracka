@@ -15,12 +15,12 @@ export default class extends Controller {
 
   filter() {
     const url = `${this.baseUrl}?${this.params}`
-    Turbo.clearCache()
+    Turbo.cache.clear()
     Turbo.visit(url)
   }
 
   reset() {
-    Turbo.clearCache()
+    Turbo.cache.clear()
     Turbo.visit(this.baseUrl)
   }
 
