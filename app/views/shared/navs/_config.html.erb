@@ -5,10 +5,6 @@
       <%= t('titracka.configuration') %>
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
-      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-            t('controller.org_units')),
-          main_app.org_units_path, class: "dropdown-item" %>
-
       <% Titracka::CONFIGURATION_CONTROLLER.reject {|c| c == 'software'}.each do |ctrlr| %>
         <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
              t('controller.' + ctrlr)), 
