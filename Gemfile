@@ -1,17 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
+gem 'rails', '~> 7.0.4'
 gem 'sqlite3', '~> 1.4'
 gem 'puma', '~> 5.1'
-# gem 'sass-rails', '>= 6'
-# gem 'sprockets', '~> 4'
-# gem 'sprockets-rails', require: 'sprockets/railtie'
-# gem 'coffee-rails'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
-# gem 'jquery-rails'
-# gem 'jquery-ui-rails'
-gem 'rails-i18n', '~> 6.0.0'
+gem 'rails-i18n', '~> 7.0.0'
+gem 'sprockets-rails'
 
 group :development do
   gem 'capistrano', require: false
@@ -24,11 +19,9 @@ group :development do
   gem 'guard-bundler'
   gem 'web-console', '>= 4.1.0'
   gem 'listen', '~> 3.3'
-  # 2021-07-03: meta_request is broken for rails 6.1, waiting for next release
-  # gem 'meta_request'
   gem 'libnotify'
-  gem 'railroady'
-  gem 'rails-plantuml-generator', git: 'https://github.com/HappyKadaver/rails-plantuml-generator'
+  # gem 'railroady'
+  # gem 'rails-plantuml-generator', git: 'https://github.com/HappyKadaver/rails-plantuml-generator'
 end
 
 group :test, :development do
@@ -43,7 +36,6 @@ end
 group :test do
   gem 'shoulda-matchers', require: false
   gem 'factory_bot_rails'
-  # gem 'database_rewinder'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdriver'
@@ -65,25 +57,15 @@ gem 'wobaduser', '~> 1.0'
 
 gem 'acts_as_list'
 gem 'ancestry'
-# gem 'cocoon'
 gem 'asciidoctor'
-# gem 'carrierwave', '~> 2.0'
-# gem 'prawn', require: ["prawn/measurement_extensions", "prawn", "prawn/table"],
-#             submodules: true
-# gem 'prawn-table'
-# gem 'immutable-struct'
 gem 'js-routes'
 gem 'yaml_db'
 gem 'pagy'
 gem 'draper'
 
-# gem 'record_tag_helper', '~> 1.0'
 gem 'rails-controller-testing'
-# gem 'delayed_job_active_record'
-# gem 'daemons'
 gem 'exception_notification'
 
-# gem "activerecord-session_store"
 gem "redis", ">= 5.0"
 gem "hiredis-client"
 gem "prawn"
