@@ -37,10 +37,7 @@ RSpec.describe "Workday", type: :feature, js: true do
       sleep 1
       within "#modal-body" do
         within "div.time_accounting_task" do
-          find('div.ss-main').click
-          find('div.ss-search input').set("MM task")
-          find('div.ss-option', text: "Mustermann GmbH / MM task").click()
-          find('div.ss-content').execute_script("this.classList.remove('ss-open');")
+          select "Mustermann GmbH / MM task", from: "time_accounting_task_id"
         end
         sleep 0.5
         fill_in "Beschreibung", with: "was habe ich getan"

@@ -62,9 +62,7 @@ RSpec.describe "Dashboard", type: :feature do
       sleep 1
       fill_in "Aufgabe", with: "A new task"
       within 'div.task_user' do
-        find('div.ss-main').click
-        find('div.ss-search input').set("Mustermann, Carola (mcaro)")
-        find('div.ss-option', text: "Mustermann, Carola (mcaro)").click()
+        select "Mustermann, Carola (mcaro)", from: "task_user_id"
       end   
       click_button("Aufgabe erstellen")
       sleep 1

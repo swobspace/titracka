@@ -71,10 +71,7 @@ RSpec.describe "Cardboard", type: :feature, js: true do
         fill_in "Aufgabe", with: "A new task"
         # select hack for slim-select
         within 'div.task_user' do
-          find('div.ss-main').click
-          find('div.ss-search input').set("Mustermann, Carola (mcaro)")
-          find('div.ss-option', text: "Mustermann, Carola (mcaro)").click()
-          find('div.ss-content').execute_script("this.classList.remove('ss-open');")
+          select "Mustermann, Carola (mcaro)", from: "task_user_id"
         end
         click_button("Aufgabe erstellen")
       end
