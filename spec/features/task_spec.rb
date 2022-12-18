@@ -17,21 +17,18 @@ RSpec.describe "Task", type: :feature, js: true do
       accept_confirm do
         find('a[title="Aufgabe löschen"]').click
       end
-      sleep 1
-      expect(Task.count).to eq(7)
       within "#ts_tasks" do
         expect(page).to have_content "Showing 1 to 5 of 5 entries"
       end
+      expect(Task.count).to eq(7)
     end
 
     it "edit an existing task" do
       find('a[title="Aufgabe bearbeiten"]').click
-      sleep 1
       within "#modal-body" do
         find("trix-editor#task_description").set("a description for t2 task")
       end
       click_button("Aufgabe aktualisieren")
-      sleep 1
       within "#ts_show_task" do
         expect(page).to have_content("a description for t2 task")
       end
@@ -40,12 +37,10 @@ RSpec.describe "Task", type: :feature, js: true do
 
     it "add a note" do
       click_link "Notiz erstellen"
-      sleep 1
       within "#modal-body" do
         find("trix-editor#note_description").set("yesterday it was so easy")
       end
       click_button("Notiz erstellen")
-      sleep 1
       within "#ts_notes_list" do
         expect(page).to have_content("yesterday it was so easy")
       end
@@ -54,13 +49,11 @@ RSpec.describe "Task", type: :feature, js: true do
 
     it "add a time_accounting" do
       click_link "Aktivität erstellen"
-      sleep 1
       within "#modal-body" do
         fill_in "Beschreibung", with: "something we have done"
         fill_in "Dauer (HH:MM)", with: "1:30"
         click_button "Aktivität erstellen"
       end
-      sleep 1
       within "#ts_time_accountings" do
         expect(page).to have_content("something we have done")
       end

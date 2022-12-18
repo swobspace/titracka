@@ -13,11 +13,8 @@ RSpec.describe "Workday", type: :feature, js: true do
 
     it "asks for new day params" do
       click_link("heute")
-      sleep 1
       fill_in "Tagesbeginn", with: "8:00"
       click_button "Arbeitstag erstellen"
-      sleep 1
-      # save_and_open_screenshot()
       expect(page).to have_content(I18n.l(Date.today, format: '%A'))
       expect(page).to have_content("Woche")
     end
@@ -34,17 +31,14 @@ RSpec.describe "Workday", type: :feature, js: true do
     it "add a new time accounting" do
       expect(page).to have_content("Aktivität erstellen")
       click_link "Aktivität erstellen"
-      sleep 1
       within "#modal-body" do
         within "div.time_accounting_task" do
           select "Mustermann GmbH / MM task", from: "time_accounting_task_id"
         end
-        sleep 0.5
         fill_in "Beschreibung", with: "was habe ich getan"
         fill_in "Dauer (HH:MM)", with: "1:30"
         click_button "Aktivität erstellen"
       end
-      sleep 1
       within "#ts_time_accountings" do
         expect(page).to have_content("MM task")
         expect(page).to have_content("was habe ich getan")
@@ -129,7 +123,6 @@ RSpec.describe "Workday", type: :feature, js: true do
       accept_confirm do
         find('div.card div.card-header a[title="Arbeitstag löschen"]').click()
       end
-      # sleep 1 ; save_and_open_screenshot()
       expect(page).to have_content("Arbeitstag erfolgreich gelöscht")
     end
 

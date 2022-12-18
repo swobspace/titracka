@@ -20,7 +20,6 @@ RSpec.describe "Workday", type: :feature, js: true do
       end
       choose "Liste"
       click_button "Suche Aufgaben"
-      sleep 1
       # save_and_open_screenshot
       expect(page).to have_content("Showing 1 to 2 of 2 entries")
       expect(page).to have_content("MM task")
