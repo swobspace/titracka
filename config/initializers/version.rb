@@ -1,6 +1,6 @@
 module Titracka
-  VERSION     = "0.9.4".freeze
-  RELEASEDATE = "2022-12-18".freeze
+  VERSION     = "1.0.0-dev".freeze
+  RELEASEDATE = "2022-12-22".freeze
 end
 
 #
