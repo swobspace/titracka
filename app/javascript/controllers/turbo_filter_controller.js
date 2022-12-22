@@ -44,8 +44,11 @@ export default class extends Controller {
         params.append(t.name, t.value)
       }
     })
-  // console.log(`${params}`)
-  return `${params}`
- }
+    // console.log(`${params}`)
+    return `${params}`
+  }
 
+  reset() {
+    this.element.reset();
+  }
 }
