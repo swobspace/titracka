@@ -1,9 +1,11 @@
 = Changelog
 
-=== 1.0.0-dev / 2022-12-22
+=== 1.0.0 / 2023-01-15
 
 ----
 * Upgrade to Rails 7.0
+* add editable+commentable to task cards in workdays#show
+* minor fixes
 ----
 
 === 0.9.4 / 2022-12-18
