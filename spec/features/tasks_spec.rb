@@ -14,13 +14,11 @@ RSpec.describe "Tasks", type: :feature, js: true do
     it "create a new task via button" do
       click_link("Aufgaben")
       find('a.dropdown-item[href="/tasks"]').click()
-      sleep 1
       click_link("Aufgabe erstellen")
       within "#modal-body" do
         fill_in "Aufgabe", with: "Preparations for Anniversary"
         click_button("Aufgabe erstellen")
       end
-      sleep 1
       expect(page).to have_content "Preparations for Anniversary"
       expect(page).to have_content "Showing 1 to 7 of 7 entries"
       # save_and_open_screenshot()
@@ -37,12 +35,10 @@ RSpec.describe "Tasks", type: :feature, js: true do
     it "create a new task via menu" do
       find("a#navbarTasksDropdown").click()
       find('a.dropdown-item[href="/tasks/new"]').click()
-      sleep 1
       within "#modal-body" do
         fill_in "Aufgabe", with: "Preparations for Anniversary"
         click_button("Aufgabe erstellen")
       end
-      sleep 1
       expect(page).to have_content "Preparations for Anniversary"
       expect(page).to have_content "Showing 1 to 7 of 7 entries"
       # save_and_open_screenshot()
@@ -64,12 +60,10 @@ RSpec.describe "Tasks", type: :feature, js: true do
       within "tr#task_#{to1.id}" do
         find('a[title="Aufgabe bearbeiten"]').click
       end
-      sleep 1
       within "#modal-body" do
         find("trix-editor#task_description").set("a description for to1 task")
       end
       click_button("Aufgabe aktualisieren")
-      sleep 1
       within "#ts_tasks" do
         expect(page).to have_content("a description for to1 task")
       end

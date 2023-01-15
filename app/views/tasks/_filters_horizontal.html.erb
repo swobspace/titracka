@@ -1,4 +1,4 @@
-<div class="row g-4 mb-2" data-controller="turbo-filter" data-turbo-filter-url-value="<%= query_tasks_path %>" id="cards_filter">
+<form class="row g-4 mb-2" data-controller="turbo-filter" data-turbo-filter-url-value="<%= query_tasks_path %>" id="cards_filter">
 
   <%= hidden_field_tag :workday_id, workday.id,
                        data: { 'turbo-filter-target': 'filter' } %>
@@ -68,4 +68,12 @@
     %>
   </div>
 
-</div>
+  <div class="col-auto">
+    <%= link_to raw(%Q[<i class="fas fa-lg fa-times-circle"></i>]), '#',
+          class: 'text-secondary',
+          title: 'Reset',
+          data: { action: "click->turbo-filter#reset" }
+    %>
+  </div>
+
+</form>

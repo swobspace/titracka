@@ -28,11 +28,10 @@ RSpec.describe "TimeAccounting", type: :feature, js: true do
       accept_confirm do
         find('a[title="Aktivität löschen"]').click
       end
-      sleep 1
-      expect(TimeAccounting.count).to eq(0)
       within "#ts_time_accountings" do
         expect(page).to have_content "Showing 0 to 0 of 0 entries"
       end
+      expect(TimeAccounting.count).to eq(0)
     end
 
     it "edit an existing time_accounting" do

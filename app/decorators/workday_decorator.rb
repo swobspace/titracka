@@ -9,7 +9,7 @@ class WorkdayDecorator < Draper::Decorator
     if object.work_start.nil?
       "00:00"
     else
-      object.work_start.to_s(:hourmin)
+      object.work_start.to_fs(:hourmin)
     end
   end
 end

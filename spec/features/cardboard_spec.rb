@@ -42,15 +42,11 @@ RSpec.describe "Cardboard", type: :feature, js: true do
         execute_script("document.querySelector('#edit_task_#{to1.id}').click()")
       end
 
-      # sleep 1
-      # save_and_open_screenshot()
-      # print page.html
       find("trix-editor").set("Quark ist kein Käse")
       click_button("Aufgabe aktualisieren")
       to1.reload
       # turbostream needs some time
       sleep 1
-      # save_and_open_screenshot()
       
       expect(to1.description.to_plain_text).to eq("Quark ist kein Käse")
 
@@ -65,26 +61,19 @@ RSpec.describe "Cardboard", type: :feature, js: true do
         expect(all('div.list-group-item').count).to eq(2)
       end
       click_link "new_task_state_#{open.id}"
-      sleep 1
-      # save_and_open_screenshot()
       within "#modal-body" do
         fill_in "Aufgabe", with: "A new task"
         # select hack for slim-select
         within 'div.task_user' do
-          find('div.ss-main').click
-          find('div.ss-search input').set("Mustermann, Carola (mcaro)")
-          find('div.ss-option', text: "Mustermann, Carola (mcaro)").click()
-          find('div.ss-content').execute_script("this.classList.remove('ss-open');")
+          select "Mustermann, Carola (mcaro)", from: "task_user_id"
         end
         click_button("Aufgabe erstellen")
       end
       sleep 1
-      # save_and_open_screenshot()
       within "div#ts_task_cards" do
         expect(all('div.list-group-item').count).to eq(3)
         expect(page).to have_content("A new task")
       end
-      # save_and_open_screenshot()
     end
 
     it "add note to task" do
@@ -95,18 +84,16 @@ RSpec.describe "Cardboard", type: :feature, js: true do
       find("trix-editor#note_description").set("Just a simple comment")
       click_button("Notiz erstellen")
       to1.reload
-      # turbostream needs some time
-      sleep 1
+
+      expect(page).to have_content("Just a simple comment")
       expect(to1.notes.count).to eq(1)
       expect(to1.notes.first.description.to_plain_text).to eq("Just a simple comment")
       within "div#card_task_#{to1.id}" do
         execute_script("document.querySelector('#new_note_task_#{to1.id}').click()")
       end
-      sleep 1
       within "#modal-body" do
         expect(page).to have_content("Just a simple comment")
       end
-      # save_and_open_screenshot()
     end
 
     it "add time accounting to task" do

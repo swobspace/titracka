@@ -10,6 +10,7 @@ export default class extends Controller {
     let options = {
       create: false,
       allowEmptyOption: true,
+      closeAfterSelect: true, 
       sortField:[{field:'$order'},{field:'$score'}],
       plugins: ['clear_button']
     }

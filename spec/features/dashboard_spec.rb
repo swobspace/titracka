@@ -36,16 +36,10 @@ RSpec.describe "Dashboard", type: :feature do
         execute_script("document.querySelector('#edit_task_#{to1.id}').click()")
       end
 
-      # sleep 1
-      # save_and_open_screenshot()
-      # print page.html
       find("trix-editor").set("Quark ist kein Käse")
       click_button("Aufgabe aktualisieren")
       to1.reload
-      # turbostream needs some time
-      sleep 1
-      # save_and_open_screenshot()
-      
+      expect(page).to have_content("Quark ist kein Käse")
       expect(to1.description.to_plain_text).to eq("Quark ist kein Käse")
 
       within "div#card_task_#{to1.id}" do
@@ -59,18 +53,14 @@ RSpec.describe "Dashboard", type: :feature do
         expect(all('div.list-group-item').count).to eq(2)
       end
       click_link "new_task_state_#{open.id}"
-      sleep 1
       fill_in "Aufgabe", with: "A new task"
       within 'div.task_user' do
-        find('div.ss-main').click
-        find('div.ss-search input').set("Mustermann, Carola (mcaro)")
-        find('div.ss-option', text: "Mustermann, Carola (mcaro)").click()
+        select "Mustermann, Carola (mcaro)", from: "task_user_id"
       end   
       click_button("Aufgabe erstellen")
-      sleep 1
       within "div#ts_task_cards" do
-        expect(all('div.list-group-item').count).to eq(3)
         expect(page).to have_content("A new task")
+        expect(all('div.list-group-item').count).to eq(3)
       end
       # save_and_open_screenshot()
     end
@@ -85,7 +75,7 @@ RSpec.describe "Dashboard", type: :feature do
       click_button("Notiz erstellen")
       to1.reload
       # turbostream needs some time
-      sleep 1
+      expect(page).to have_content("Just a simple comment")
       expect(to1.notes.count).to eq(1)
       expect(to1.notes.first.description.to_plain_text).to eq("Just a simple comment")
     end
