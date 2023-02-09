@@ -6,7 +6,7 @@ module WorkdaysHelper
       if workday.work_start.nil?
         msg = "00:00"
       else
-        msg = workday.work_start.to_s(:hourmin)
+        msg = workday.work_start.to_fs(:hourmin)
       end
       link_to msg, edit_workday_path(workday), :target => target
     end
