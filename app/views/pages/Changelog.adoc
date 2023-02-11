@@ -1,5 +1,11 @@
 = Changelog
 
+=== 1.0.2-dev / 2023-02-11
+
+----
+* fix archiving button for tasks
+----
+
 === 1.0.1 / 2023-02-11
 
 ----
