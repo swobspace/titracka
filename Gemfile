@@ -79,7 +79,7 @@ gem "turbo-rails", "~> 1.0"
 
 gem "view_component", "~> 2.47"
 
-gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: 'main'
+gem 'responders'
 
 # for deployment
 gem "ed25519"
