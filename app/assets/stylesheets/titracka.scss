@@ -288,3 +288,17 @@ a.force_card {
   color: #000;
   text-decoration: none !important;
 }
+
+// ------------------------------------------------------------------------
+// button_to: behaving just like a normal bootstrap button
+// ------------------------------------------------------------------------
+form.button_to {
+  display: inline-block;
+  .button_as_link {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    color: $primary;
+  }
+} 
+  
