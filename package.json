@@ -8,6 +8,7 @@
     "@popperjs/core": "^2.11.0",
     "@rails/actiontext": "^7.0.0",
     "@shopify/draggable": "1.0.0-beta.11",
+    "@swobspace/stimulus-polymorphic-select": "https://github.com/swobspace/stimulus-polymorphic-select.git",
     "bootstrap": "^5.1.3",
     "datatables.net-bs5": "^1.11.3",
     "datatables.net-buttons-bs5": "^2.1.1",

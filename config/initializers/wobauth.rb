@@ -21,4 +21,6 @@ Wobauth.setup do |config|
   #
 
   config.ldap_config = File.join( Rails.root, 'config', 'titracka.yml')
+  #
+  config.custom_stream_actions = true
 end

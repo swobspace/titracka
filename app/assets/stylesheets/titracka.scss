@@ -83,9 +83,7 @@ div#footer{
 $form-feedback-invalid-color: rgb(220,53,69);
 
 .required {
-  span.select-selection,
-  div.ss-main.select.required > div.ss-single-selected,
-  div.ss-main.select.required > div.ss-multi-selected,
+  select.required + div.ts-wrapper,
   textarea.required, input.required, select.required {
     background-color: #FFFAC2;
   }
@@ -288,3 +286,17 @@ a.force_card {
   color: #000;
   text-decoration: none !important;
 }
+
+// ------------------------------------------------------------------------
+// button_to: behaving just like a normal bootstrap button
+// ------------------------------------------------------------------------
+form.button_to {
+  display: inline-block;
+  .button_as_link {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    color: $primary;
+  }
+} 
+  

@@ -1,0 +1,7 @@
+<%= turbo_stream.update params[:select] do %>
+  <%= options_for_select @org_units.map { |g| [g.name_for_selects, g.id] },
+    selected: params[:selected] %>
+<% end %>
+
+<%= turbo_stream_action_tag "update_select", id: params[:select], message: "select options updated" %>
+
