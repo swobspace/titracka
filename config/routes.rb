@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   end
   resources :org_units do
     resources :tasks, module: :org_units
+    collection do
+      get 'tokens'
+    end
   end
   get 'cards', to: 'tasks#index', defaults: {view: 'cards'}
   post "tasks", to: "tasks#index", constraints: lambda {|req| req.format == :json}

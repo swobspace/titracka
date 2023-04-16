@@ -6,6 +6,10 @@ RSpec.describe OrgUnitsController, type: :routing do
       expect(get: "/org_units").to route_to("org_units#index")
     end
 
+    it "routes to #tokens" do
+      expect(:get => "/org_units/tokens").to route_to("org_units#tokens")
+    end
+
     it "routes to #new" do
       expect(get: "/org_units/new").to route_to("org_units#new")
     end

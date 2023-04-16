@@ -48,3 +48,5 @@ application.register("select", SelectController)
 import ToggleController from "./toggle_controller"
 application.register("toggle", ToggleController)
 
+import PolymorphicSelectController from "@swobspace/stimulus-polymorphic-select"
+application.register("polymorphic-select", PolymorphicSelectController)

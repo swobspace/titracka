@@ -7,6 +7,14 @@ class OrgUnitsController < ApplicationController
     respond_with(@org_units)
   end
 
+  def tokens
+    @org_units = OrgUnit.active.arrange_as_array
+    
+    respond_with(@org_units) do |format|
+      format.turbo_stream
+    end
+  end
+
   # GET /org_units/1
   def show
     session[:tasks_filter] = session[:new_task_params] = { org_unit_id: @org_unit.id }

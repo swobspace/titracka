@@ -6,6 +6,7 @@ import * as bootstrap from "bootstrap"
 window.bootstrap = bootstrap
 
 import "./controllers"
+import "./turbo_streams"
 
 require("trix")
 require("@rails/actiontext")
