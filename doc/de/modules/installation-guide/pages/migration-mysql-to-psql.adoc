@@ -1,0 +1,27 @@
+= Migration from MySQL to PostgreSQL
+
+== Install `pgloader`
+
+see https://pgloader.readthedocs.io/en/latest/install.html
+
+== Create PostgreSQL User and Database
+
+see xref:database-pgsql.adoc[]
+
+== Migrate
+
+.Migration per environment
+[source,bash]
+----
+pgloader \
+  mysql://titracka_dev:******@localhost/titracka_development \
+  postgresql://titracka:******@localhost/titracka_development
+
+pgloader \
+  mysql://titracka_dev:******@localhost/titracka_test \
+  postgresql://titracka:******@localhost/titracka_test
+
+pgloader \
+  mysql://titracka_dev:******@localhost/titracka_production \
+  postgresql://titracka:******@localhost/titracka_production
+----

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 7.0.4'
-gem 'sqlite3', '~> 1.4'
+gem 'pg'
 gem 'puma'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -41,10 +41,6 @@ group :test do
   gem 'webdriver'
   gem 'launchy'
   gem 'timecop'
-end
-
-group :production do
-  gem 'mysql2'
 end
 
 gem 'simple_form'

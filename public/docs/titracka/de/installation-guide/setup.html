@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Untitled :: Titracka Dokumentation</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
   </head>
@@ -76,7 +76,10 @@
     <a class="nav-link" href="database-setup.html">Database Setup</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="database-mariadb.html">MariaDB Setup</a>
+    <a class="nav-link" href="database-pgsql.html">PostgreSQL Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="migration-mysql-to-psql.html">Migration from MySQL to PostgreSQL</a>
   </li>
 </ul>
   </li>
@@ -136,7 +139,7 @@
 <div id="packages-debian" class="listingblock">
 <div class="title">Pakete für Debian/Ubuntu</div>
 <div class="content">
-<pre class="highlightjs highlight"><code># base packages
+<pre class="highlightjs highlight"><code class="language-none hljs"># base packages
 apt install bzip2 curl screen vim vim-common vim-rails \
   wget pwgen sudo etckeeper ldap-client p7zip-full gdebi aptitude
 
@@ -177,7 +180,7 @@ apt install openjdk-9-jre-headless</code></pre>
 <div id="yarn-packages-debian" class="listingblock">
 <div class="title">Pakete für Debian/Ubuntu</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update &amp;&amp; sudo apt-get install yarn</code></pre>
 </div>
@@ -185,7 +188,7 @@ sudo apt-get update &amp;&amp; sudo apt-get install yarn</code></pre>
 <div id="yarn-packages-fedora" class="listingblock">
 <div class="title">Pakete für Fedora</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>sudo wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
+<pre class="highlightjs highlight"><code class="language-none hljs">sudo wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
 curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
 dnf install -y yarn</code></pre>
 </div>
@@ -204,14 +207,14 @@ die Shellvariablen zu, sondern benötigt eine eigene Konfiguration.</p>
 <div id="bashrc-deploy" class="listingblock">
 <div class="title">bashrc: Proxy-Einstellungen</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>export http_proxy=http://&lt;proxy&gt;:&lt;proxyport&gt;/
+<pre class="highlightjs highlight"><code class="language-none hljs">export http_proxy=http://&lt;proxy&gt;:&lt;proxyport&gt;/
 export https_proxy=http://&lt;proxy&gt;:&lt;proxyport&gt;/</code></pre>
 </div>
 </div>
 <div id="git-config" class="listingblock">
 <div class="title">Git-Konfiguration User <code>deploy</code> für Updates der Anwendung</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>git config --global http.proxy http://&lt;proxy&gt;:&lt;proxyport&gt;/
+<pre class="highlightjs highlight"><code class="language-none hljs">git config --global http.proxy http://&lt;proxy&gt;:&lt;proxyport&gt;/
 git config --global https.proxy http://&lt;proxy&gt;:&lt;proxyport&gt;/</code></pre>
 </div>
 </div>
@@ -226,7 +229,7 @@ dem User <code>deploy</code> gehören.</p>
 <div id="deployment-directories" class="listingblock">
 <div class="title">Verzeichnisse für Titracka</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>export BASE=/srv/www/titracka
+<pre class="highlightjs highlight"><code class="language-none hljs">export BASE=/srv/www/titracka
 mkdir -p ${BASE}/titracka/releases
 mkdir -p ${BASE}/titracka/shared/config
 mkdir -p ${BASE}/titracka/shared/log
