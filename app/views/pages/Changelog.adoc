@@ -1,5 +1,11 @@
 = Changelog
 
+=== 1.99-dev / 2023-04-16
+
+----
+BREAKING CHANGE: switching from MySQL to PostgreSQL
+----
+
 === 1.0.3-dev / 2023-04-16
 
 ----
