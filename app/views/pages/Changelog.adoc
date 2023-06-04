@@ -3,6 +3,7 @@
 === 1.0.3-dev / 2023-04-16
 
 ----
+* update: bump gem dependencies
 ----
 
 === 1.0.2-dev / 2023-02-11
