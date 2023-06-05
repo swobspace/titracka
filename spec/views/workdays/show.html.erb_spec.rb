@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "workdays/show", type: :view do
+  fixtures 'wobauth/users'
   let(:ho) { FactoryBot.create(:day_type, abbrev: "HO", description: "HomeOffice") }
   before(:each) do
     @ability = Object.new
@@ -11,8 +12,7 @@ RSpec.describe "workdays/show", type: :view do
     allow(controller).to receive(:can?).with(any_args).and_return(true)
     @current_ability = @ability
 
-    @current_user = FactoryBot.create(:user, sn: "Mustermann", 
-                                      givenname: "Max", username: 'mmax')
+    @current_user = wobauth_users(:mmax)
     task = FactoryBot.create(:task, subject: "some task", user: @current_user)
     @time_accountings = FactoryBot.create_list(:time_accounting, 3,
                           date: Date.today.to_s,

@@ -8,6 +8,9 @@
 createuser -D -E -S -R -W titracka
 ----
 
+NOTE: Wenn der User in der Testumgebung benutzt wird, benötigt dieser
+das Recht, Datenbanken anzulegen (`-d` statt `-D`)
+
 .postgres> psql
 [source,sql]
 ----
@@ -20,6 +23,7 @@ ALTER USER titracka WITH PASSWORD '******';
 ----
 createdb -O titracka titracka_development
 createdb -O titracka titracka_test
+createdb -O titracka titracka_production
 ----
 
 == Zugriffsberechtigungen

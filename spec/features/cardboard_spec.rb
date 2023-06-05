@@ -55,7 +55,7 @@ RSpec.describe "Cardboard", type: :feature, js: true do
       end
     end
 
-    it "adds a new task" do
+    it "adds a new task", js: true do
       # puts Wobauth::User.all.map{|u| u.to_s}
       within "div#ts_task_cards" do
         expect(all('div.list-group-item').count).to eq(2)
@@ -63,10 +63,6 @@ RSpec.describe "Cardboard", type: :feature, js: true do
       click_link "new_task_state_#{open.id}"
       within "#modal-body" do
         fill_in "Aufgabe", with: "A new task"
-        # select hack for slim-select
-        within 'div.task_user' do
-          select "Mustermann, Carola (mcaro)", from: "task_user_id"
-        end
         click_button("Aufgabe erstellen")
       end
       sleep 1

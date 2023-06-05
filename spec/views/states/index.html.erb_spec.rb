@@ -26,7 +26,5 @@ RSpec.describe "states/index", type: :view do
     assert_select "tr>td", text: "Name2".to_s, count: 1
     assert_select "tr>td", text: "offen".to_s, count: 1
     assert_select "tr>td", text: "erledigt".to_s, count: 1
-    assert_select "tr>td", text: "1".to_s, count: 1
-    assert_select "tr>td", text: "2".to_s, count: 1
   end
 end

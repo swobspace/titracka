@@ -38,7 +38,7 @@
           <h5 class="card-title text-center"><%= @current_user.decorate.shortname %></h5>
             <% @task.decorate.statistics(user: @current_user).each do |time,sum| %>
               <tr>
-                <td class="text-center text-monospace"><%= sprintf("%4d-%02d", *time )%></td>
+                <td class="text-center text-monospace"><%= sprintf(time.join("-") )%></td>
                 <td class="text-center text-monospace"><%= hourmin(sum) %></td>
               </tr>
             <% end %>

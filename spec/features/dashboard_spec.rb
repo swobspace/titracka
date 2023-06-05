@@ -12,7 +12,6 @@ RSpec.describe "Dashboard", type: :feature do
 
   describe "visit root_path", js: true do
     it "shows empty dashboard with accessible ou's and lists" do
-      # save_and_open_screenshot()
       expect(current_path).to eq(root_path)
       expect(page).to have_content("Organisationseinheiten / Listen")
       expect(page).to have_content("Mustermann GmbH")
@@ -54,9 +53,6 @@ RSpec.describe "Dashboard", type: :feature do
       end
       click_link "new_task_state_#{open.id}"
       fill_in "Aufgabe", with: "A new task"
-      within 'div.task_user' do
-        select "Mustermann, Carola (mcaro)", from: "task_user_id"
-      end   
       click_button("Aufgabe erstellen")
       within "div#ts_task_cards" do
         expect(page).to have_content("A new task")

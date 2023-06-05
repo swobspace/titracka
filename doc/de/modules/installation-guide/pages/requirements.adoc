@@ -14,8 +14,7 @@ Betriebssystem::
   * Ubuntu LTS x86_64, aktuelle Version (z.Z. 20.04)
   * Minimal-Ubuntu-Server-Installation
 Datenbank::
-  * Datenbank: MariaDB (MySQL nur nach Absprache)
-  * Andere Datenbanken auf Anfrage (z.B. PostgreSQL)
+  * Datenbank: PostgreSQL
 Webserver::
   * Apache 2.4 oder neuer
   * Passenger standalone

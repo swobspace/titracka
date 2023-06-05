@@ -1,0 +1,31 @@
+reader: 
+  displayname: common reader
+  username: reader
+  email: reader@example.net
+  encrypted_password: <%= Wobauth::User.new.send(:password_digest, 'test99') %>
+
+mmax: 
+  displayname: Max Mustermann
+  sn: Mustermann
+  givenname: Max
+  username: mmax
+  email: max@mustermann.de
+  encrypted_password: <%= Wobauth::User.new.send(:password_digest, 'test99') %>
+
+mheike: 
+  displayname: Heike Mustermann
+  sn: Mustermann
+  givenname: Heike
+  username: mheike
+  email: heike@mustermann.de
+  encrypted_password: <%= Wobauth::User.new.send(:password_digest, 'test99') %>
+
+mcaro: 
+  displayname: Carola Mustermann
+  sn: Mustermann
+  givenname: Carola
+  username: mcaro
+  email: caro@mustermann.de
+  encrypted_password: <%= Wobauth::User.new.send(:password_digest, 'test99') %>
+
+

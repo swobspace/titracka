@@ -21,17 +21,11 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
         end
         fill_in "Beschreibung", with: "finishing test phrase"
         fill_in "Dauer (HH:MM)", with: "1:30"
-        # save_and_open_screenshot()
         click_button "Aktivität erstellen"
       end
       expect(page).to have_content("MM task")
       expect(page).to have_content("finishing test phrase")
-      # hidden
-      # expect(page).to have_content("Mustermann, Carola (mcaro)")
       expect(page).to have_content("01:30")
-      # hidden
-      # expect(page).to have_content("90")
-      # save_and_open_screenshot()
     end
   end
 
@@ -110,8 +104,8 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
       expect(page).to have_content("Caros task")
       expect(page).to have_content("preset time accounting for mcaro")
       expect(page).to have_content("1:06")
-      expect(page).to have_content("Mustermann, Carola (mcaro)")
       # save_and_open_screenshot()
+      expect(page).to have_content("Mustermann, Carola (mcaro)")
     end
   end
 end

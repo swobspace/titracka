@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "time_accountings/index", type: :view do
+  fixtures 'wobauth/users'
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -9,7 +10,7 @@ RSpec.describe "time_accountings/index", type: :view do
     allow(controller).to receive(:action_name) { "index" }
 
     task = FactoryBot.create(:task, :open, subject: "A special task")
-    user = FactoryBot.create(:user, sn: "Mustermann", givenname: "Max", username: "mmax")
+    user = wobauth_users(:mmax)
     @current_user = user
 
     assign(:time_accountings, [

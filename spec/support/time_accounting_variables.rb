@@ -1,15 +1,7 @@
 shared_context "time_accounting variables" do
-  let!(:mmax) { FactoryBot.create(:user, 
-    sn: "Mustermann", 
-    givenname: "Max", 
-    username: "mmax"
-  )}
-
-  let!(:mcaro) { FactoryBot.create(:user, 
-    sn: "Mustermann", 
-    givenname: "Carola", 
-    username: "mcaro"
-  )}
+  fixtures 'wobauth/users'
+  let!(:mmax) { wobauth_users(:mmax) }
+  let!(:mcaro) { wobauth_users(:mcaro) }
 
   let!(:wday1) { FactoryBot.create(:workday,
     date: 1.day.before(Date.today),
