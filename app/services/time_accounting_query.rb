@@ -46,7 +46,7 @@ private
     search_options.each do |key,value|
       case key 
       when *string_fields
-        query = query.where("time_accountings.#{key} LIKE ?", "%#{value}%")
+        query = query.where("time_accountings.#{key} ILIKE ?", "%#{value}%")
       when :user_id
        query = query.where(user_id: value)
       when :date
@@ -59,7 +59,7 @@ private
         @limit = value.to_i
       when :search
         string_fields.each do |term|
-          search_string << "time_accountings.#{term} LIKE :search"
+          search_string << "time_accountings.#{term} ILIKE :search"
         end
         search_string << "time_accountings.user_id IN (:uids)"  if user_ids(value)
       else
@@ -87,7 +87,7 @@ private
   end
 
   def user_ids(value)
-    ids = Wobauth::User.where("sn like :val or givenname like :val or email like :val or displayname like :val", val: "%#{value}%").pluck(:id)
+    ids = Wobauth::User.where("sn ILIKE :val OR givenname ILIKE :val OR email ILIKE :val OR displayname ILIKE :val", val: "%#{value}%").pluck(:id)
     ids
   end
 
