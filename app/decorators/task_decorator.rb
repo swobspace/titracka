@@ -38,9 +38,9 @@ class TaskDecorator < Draper::Decorator
       query = query.where(user_id: user.id)
     end 
     query = query.where("date > ?", 1.year.before(Date.today).beginning_of_year)
-                 .group("year(date)")
+                 .group("to_char(date, 'YYYY')")
     if resolution == 'month'
-      query = query.group("month(date)")
+      query = query.group("to_char(date, 'MM')")
     end
     query.sum(:duration)
   end

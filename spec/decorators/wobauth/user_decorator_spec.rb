@@ -1,17 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Wobauth::UserDecorator do
+  fixtures 'wobauth/users'
 
-  let(:user) { FactoryBot.create(:user, 
-    sn: "Mustermann", 
-    givenname: "Max", 
-    username: "mmax",
-    title: "Dr.",
-    email: "max.mustermann@example.com",
-    displayname: "Max Mustermanns display name",
-    department: "Max Mustermanns department",
-    company: "Mustermann GmbH",
-  )} 
+  let(:user) { wobauth_users(:mmax) }
   let!(:ta1) { FactoryBot.create(:time_accounting, 
     user: user, 
     date: '2021-01-04',
@@ -51,9 +43,9 @@ RSpec.describe Wobauth::UserDecorator do
   end
 
   context "without any user attributes" do
-    let(:user) { FactoryBot.create(:user, username: "mmax") }
+    let(:user) { FactoryBot.create(:user, username: "tmax") }
     describe "#shortname" do
-      it { expect(decorated.shortname).to eq ("mmax") }
+      it { expect(decorated.shortname).to eq ("tmax") }
     end
   end
 

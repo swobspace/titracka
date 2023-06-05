@@ -21,11 +21,11 @@ mheike:
   encrypted_password: <%= Wobauth::User.new.send(:password_digest, 'test99') %>
 
 mcaro: 
-  displayname: Caro Mustermann
+  displayname: Carola Mustermann
   sn: Mustermann
-  givenname: Caro
+  givenname: Carola
   username: mcaro
-  email: heike@mustermann.de
+  email: caro@mustermann.de
   encrypted_password: <%= Wobauth::User.new.send(:password_digest, 'test99') %>
 
 
