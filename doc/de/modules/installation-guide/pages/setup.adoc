@@ -23,10 +23,7 @@ apt install postfix mutt bsd-mailx
 apt install autoconf binutils bison build-essential flex gettext ncurses-dev
 
 # database
-apt install mariadb-client-10.0 mariadb-client-core-10.0 mariadb-common \
-  mariadb-server mariadb-server-10.0 mariadb-server-core-10.0
-apt install libmariadb-client-lgpl-dev
-apt install libsqlite3-dev
+apt install postgresql postgresql-client postgresql-common postgresql-contrib
 
 # webserver
 apt install apache2 apache2-bin apache2-data apache2-utils

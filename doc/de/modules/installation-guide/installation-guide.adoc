@@ -42,7 +42,7 @@ include::configuration.adoc[]
 include::database-setup.adoc[]
 
 [%nonfacing]
-include::database-mariadb.adoc[]
+include::database-pgsql.adoc[]
 
 // Customizing
 //include::customizing.adoc[]
