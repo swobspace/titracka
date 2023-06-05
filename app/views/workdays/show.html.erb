@@ -7,8 +7,8 @@
           <h3 class="title">
             <%= t('date.day_names')[@workday.date.wday] %>, <%= @workday.date.to_s %>
           </h3>
-          <div class="text-muted"><%= @workday.day_type&.to_str %></div>
-          <div class="text-muted"><%= @workday.comment %></div>
+          <div class="text-body-secondary"><%= @workday.day_type&.to_str %></div>
+          <div class="text-body-secondary"><%= @workday.comment %></div>
         </div>
 
         <div role="toolbar">
