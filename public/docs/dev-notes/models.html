@@ -19,7 +19,13 @@
         <span></span>
       </button>
     </div>
+    <div class="abstand">
+    </div>
     <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item dark">DevNotes</div>
+           <a class="navbar-item" href="../titracka/index.html">Titracka</a>
+      </div>
     </div>
   </nav>
 </header>
@@ -62,10 +68,10 @@
       </ul>
     </li>
     <li class="component">
-      <a class="title" href="../titracka/de/index.html">Titracka</a>
+      <a class="title" href="../titracka/index.html">Titracka</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../titracka/de/index.html">de</a>
+          <a href="../titracka/index.html">master</a>
         </li>
       </ul>
     </li>
@@ -77,14 +83,13 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../titracka/de/index.html" class="home-link"></a>
+  <a href="../titracka/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">DevNotes</a></li>
     <li><a href="models.html">Models for Titracka</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/wob/doc/Projects/github/titracka/doc/dev-notes/modules/ROOT/pages/models.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -305,9 +310,11 @@ bin/rails g migration AddSubjectToCrossReference subject:string</pre>
 </main>
 </div>
 <footer class="footer">
-  <span>Wolfgang Barth (C) 2021</span>
+  <span>Wolfgang Barth (C) 2021-2023</span>
 </footer>
 <script src="../_/js/site.js"></script>
 <script async src="../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
   </body>
 </html>

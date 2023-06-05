@@ -8,26 +8,25 @@ YAML-Datei, die Einträge für jede Umgebung enthält
 Für die Produktivumgebung wird nur `production` benötigt, 
 für eine Entwicklungsumgebung nur `development` und `test`.
 
-Die Konfiguration ist abhängig vom Datenbanktreiber (`adapter`)
-und wird hier beschrieben für MySQL/MariaDB. Für andere Datenbanken bitte
-in der Rails-Dokumentation nachsehen.footnote:[http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters.html]
+IMPORTANT: Titracka nutzt für Queries PostgreSQL-spezifische Statements. Bei der Nutzung einer anderen Datenbank sind nicht alle Funktionen nutzbar.
 
 [[database.yml]]
 .database.yml
 [source]
 ----
-# -- mysql2
+# -- pgsql
 production:
-  adapter: mysql2 <!--1-->
-  encoding: utf8
+  adapter: postgresql <!--1-->
+  encoding: unicode
   database: titracka_production <!--2-->
   pool: 5
   username: ###PLEASE_EDIT###  <!--3-->
   password: ###PLEASE_EDIT###  <!--4-->
-  socket: /var/run/mysql/mysql.sock <!--5-->
-  # host:  localhost # alternativ zu <5>
+  # host:  localhost <!--5-->
+  # socket: ... # alternativ zu <!--5-->
+ 
 ----
-<1> gilt auch für MariaDB
+<1> pgsql gem
 <2> Name der Datenbank. Zur besseren Unterscheidung sollte man immer
     <name>_<environment> verwenden
 <3> Username für den Datenbankzugriff

@@ -1,6 +1,6 @@
 name: titracka
 title: Titracka
-version: de
+version: master
 nav:
 - modules/ROOT/nav.adoc
 - modules/admin-manual/nav.adoc

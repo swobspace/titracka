@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Titracka Dokumentation</title>
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">Titracka Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+           <a class="navbar-item" href="../../dev-notes/index.html">DevNotes</a>
+          <div class="navbar-item dark">Titracka</div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="titracka" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Titracka</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Über Titracka</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Admin Manual</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../admin-manual/use_cases.html">Use Cases</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../admin-manual/orgunits.html">Organisationseinheiten</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../admin-manual/users.html">Rollen und Berechtigungen</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../admin-manual/master_data.html">Stammdaten</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Installation Guide</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="requirements.html">Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="setup.html">Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="apache-setup.html">Apache setup</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="database-setup.html">Database Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="database-pgsql.html">PostgreSQL Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="migration-mysql-to-psql.html">Migration from MySQL to PostgreSQL</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Titracka</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../dev-notes/index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../dev-notes/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">Titracka</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Titracka</a></li>
+    <li>Installation Guide</li>
+    <li><a href="configuration.html">Configuration</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="configuration"><a class="anchor" href="#configuration"></a>Konfiguration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_zentrale_konfigurationdatei_titracka_yml"><a class="anchor" href="#_zentrale_konfigurationdatei_titracka_yml"></a>Zentrale Konfigurationdatei <code>titracka.yml</code></h3>
+<div class="paragraph">
+<p>Die Konfigurationsdatei <code>titracka.yml</code> ist reserviert für eine spätere
+Konfiguration via Datei. Die Datei muss existieren, kann aber auch zunächst
+leer sein.</p>
+</div>
+<div id="titracka.yml" class="listingblock">
+<div class="title">titracka.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># config/titracka.yml
+remote_user: HTTP_X_PROXY_SECURE_USER <i class="conum" data-value="1"></i><b>(1)</b>
+use_ssl: true <i class="conum" data-value="2"></i><b>(2)</b>
+action_cable_allowed_request_origins: <i class="conum" data-value="3"></i><b>(3)</b>
+  - http://titracka.example.com
+  - https://titracka.example.com</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Nur bei Single-Sign-On: User, der die REMOTE_USER-Variable des Apaches bereithält</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Erzwinge SSL; empfohlene Einstellung, sofern Apache2 für SSL konfiguriert ist</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>http:// und https:// Site-Urls für den Websocket</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ldap-anbindung"><a class="anchor" href="#ldap-anbindung"></a>LDAP-Anbindung zur Übernahme von Benutzern und Kontakten</h3>
+<div class="paragraph">
+<p>Bei der Anlage von Benutzern und Kontakten besteht die Möglichkeit, Daten aus
+einem vorhandenen Active Directory zu importieren. In der Anwendung wird das
+mit <em>Benutzer mit Vorlage erstellen</em> oder <em>Kontakt mit Vorlage erstellen</em>
+bezeichnet.</p>
+</div>
+<div id="ldap.yml" class="listingblock">
+<div class="title">titracka.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># config/titracka.yml
+ldap_options:
+  host: 192.0.2.71 <i class="conum" data-value="1"></i><b>(1)</b>
+  port: 3269 <i class="conum" data-value="2"></i><b>(2)</b>
+  base: dc=example,dc=com <i class="conum" data-value="3"></i><b>(3)</b>
+  encryption: :simple_tls
+  auth:
+    method: :simple
+    username: ldapuser <i class="conum" data-value="4"></i><b>(4)</b>
+    password: ldappasswd <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>IP-Adresse des Domaincontrollers</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Port für den globalen Katalog: 3268=unverschlüsselt, 3269=via https</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>BaseDN des Active Directory</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Benutzer für die LDAP-Abfrage</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Passwort des LDAP-Benutzers</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Tipp: der AD-Benutzer sollte ein Domänengast sein und sonst über keine
+weiteren Rechte im Active Directory verfügen.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2023</span>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>
