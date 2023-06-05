@@ -1,24 +1,16 @@
 shared_context "task variables" do
-  # -- users
-  let(:mmax) { FactoryBot.create(:user, 
-    sn: "Mustermann", 
-    givenname: "Max", 
-    username: "mmax"
-  )}
-
-  let(:mcaro) { FactoryBot.create(:user, 
-    sn: "Mustermann", 
-    givenname: "Carola", 
-    username: "mcaro"
-  )}
-
+  fixtures :states, 'wobauth/users'
   # -- states
-  let!(:pending)  { FactoryBot.create(:state, name: "Warten auf", state: 'pending', position: 4)}
-  let!(:pre)     { FactoryBot.create(:state, name: 'Themenspeicher', state: 'pre', position: 1)}
-  let!(:open)    { FactoryBot.create(:state, name: 'offen', state: 'open', position: 2)}
-  let!(:atwork)  { FactoryBot.create(:state, name: 'in Bearbeitung', state: 'open', position: 3)}
-  let!(:done)    { FactoryBot.create(:state, name: 'erledigt', state: 'done', position: 4)}
-  let!(:archive) { FactoryBot.create(:state, name: 'archiviert', state: 'archive', position: 6)}
+  let!(:pending)  { states(:pending) }
+  let!(:pre)     { states(:pre) }
+  let!(:open)    { states(:open) }
+  let!(:atwork)  { states(:atwork) }
+  let!(:done)    { states(:done) }
+  let!(:archive) { states(:archive) }
+
+  # -- users
+  let(:mmax) { wobauth_users(:mmax) }
+  let(:mcaro) { wobauth_users(:mcaro) }
 
   # -- entities: org_units and lists
   let(:ou1)  { FactoryBot.create(:org_unit, name: "Mustermann GmbH" )}
