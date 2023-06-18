@@ -1,0 +1,97 @@
+@startuml
+
+!theme titracka from .
+
+class CrossReference  {
+    identifier: string
+    subject: string
+}
+
+class DayType  {
+    abbrev: string
+    description: string
+}
+
+class List  {
+    name: string
+    position: integer
+    <<user_id>>
+    <<org_unit_id>>
+}
+
+class Note  {
+    date: date
+    description: rich_text
+    <<user_id>>
+    <<task_id>>
+}
+
+class OrgUnit  {
+    name: string
+    ancestry: string
+    position: position
+}
+
+class ReferenceUrl  {
+    name: string
+    url: string
+}
+
+class Reference  {
+    name: string
+    identifier_name: string
+}
+
+class State  {
+    name: string
+    state: string
+    position: integer
+}
+
+class Task  {
+    subject: string
+    start: date
+    deadline: date
+    resubmission: date
+    priority: string
+    private: boolean
+    description: rich_text
+    <<responsible_id>>
+    <<user_id>>
+    <<state_id>>
+    <<org_unit_id>>
+    <<list_id>>
+}
+
+class TimeAccounting  {
+    description:i string
+    date: date
+    duration: integer
+    <<task_id>>
+    <<user_id>>
+}
+
+class Workday  {
+    date: date
+    work_start: time
+    pause: integer
+    comment: string
+    <<user_id>>
+    <<day_type_id>>
+}
+
+DayType "1" -- "*" Workday
+Task "*" -- "1" State
+Task "*" -- "1" List
+Task "1" -- "*" Note
+
+Reference "*" -- "1" Task
+(Reference, Task) . CrossReference
+
+Workday - TimeAccounting: virtual association\nbased on date\n+ user_id
+List "*" -- "1" OrgUnit
+ReferenceUrl "*" -- "1" Reference
+TimeAccounting "*" - "1" Task
+OrgUnit "1" -- "*" Task
+
+@enduml

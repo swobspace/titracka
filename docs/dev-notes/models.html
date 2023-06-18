@@ -98,20 +98,21 @@
 <article class="doc">
 <h1 class="page">Models for Titracka</h1>
 <div class="sect1">
+<h2 id="_overall_picture"><a class="anchor" href="#_overall_picture"></a>Overall Picture</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/models.svg" alt="models">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_task"><a class="anchor" href="#_task"></a>Task</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>using :description as rich text field:</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails action_text:install
-bin/rake db:migrate</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>bin/rails g scaffold Task \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold Task \
   subject:string \
   start:date:index \
   deadline:date:index \
@@ -123,9 +124,21 @@ bin/rake db:migrate</pre>
   state:belongs_to \
   list:belongs_to \
   private:boolean \
-  --no-stylesheets --no-javascripts --no-helper
-
-bin/rails g migration AddUserToTask user:belongs_to</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails action_text:install
+bin/rake db:migrate</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">app/models/task.rb</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">class Task &lt; ApplicationRecord
+  has_rich_text :description
+end</code></pre>
 </div>
 </div>
 </div>
@@ -138,13 +151,11 @@ bin/rails g migration AddUserToTask user:belongs_to</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g scaffold State \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold State \
   name:string:index \
   state:string:index \
   position:integer \
-  --no-stylesheets --no-javascripts --no-helper
-
-# bin/rails g migration AddPositionToState position:integer</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
@@ -154,13 +165,11 @@ bin/rails g migration AddUserToTask user:belongs_to</pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g scaffold OrgUnit \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold OrgUnit \
   name:string:index \
   ancestry:string:index \
   position:integer \
-  --no-stylesheets --no-javascripts --no-helper
-
-bin/rails g migration AddPositionToOrgUnit position:integer</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
@@ -170,15 +179,12 @@ bin/rails g migration AddPositionToOrgUnit position:integer</pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g scaffold List \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold List \
   org_unit:belongs_to \
   name:string:index \
   user:belongs_to \
   position:integer \
-  --no-stylesheets --no-javascripts --no-helper
-
-bin/rails g migration AddUserToList user:belongs_to
-bin/rails g migration AddPositionToList position:integer</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
@@ -188,13 +194,13 @@ bin/rails g migration AddPositionToList position:integer</pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g scaffold TimeAccounting \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold TimeAccounting \
   task:belongs_to \
   user:belongs_to \
   subject:string \
   date:date:index \
   duration:integer \
-  --no-stylesheets --no-javascripts --no-helper</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
@@ -204,17 +210,14 @@ bin/rails g migration AddPositionToList position:integer</pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g scaffold Workday \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold Workday \
   user:belongs_to \
   date:date:index \
   work_start:time \
   pause:integer \
   day_type:belongs_to \
   comment:string \
-  --no-stylesheets --no-javascripts --no-helper
-
-bin/rails g migration AddDayTypeToWorkday day_type:belongs_to
-bin/rails g migration AddCommentToWorkday comment:string</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
@@ -224,22 +227,10 @@ bin/rails g migration AddCommentToWorkday comment:string</pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g scaffold DayType \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold DayType \
   abbrev:string:index \
   description:string \
-  --no-stylesheets --no-javascripts --no-helper</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_tag"><a class="anchor" href="#_tag"></a>Tag</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>bin/rails g scaffold Tag \
-  name:string:index \
-  --no-stylesheets --no-javascripts --no-helper</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
@@ -247,16 +238,21 @@ bin/rails g migration AddCommentToWorkday comment:string</pre>
 <div class="sect1">
 <h2 id="_note"><a class="anchor" href="#_note"></a>Note</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>using :description as rich text field:</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g scaffold Note \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold Note \
   task:belongs_to \
   user:belongs_to \
   date:date \
-  --no-stylesheets --no-javascripts --no-helper</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">app/models/note.rb</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">class Note &lt; ApplicationRecord
+  has_rich_text :description
+end</code></pre>
 </div>
 </div>
 </div>
@@ -266,10 +262,10 @@ bin/rails g migration AddCommentToWorkday comment:string</pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g scaffold Reference \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold Reference \
   name:string \
   identifier_name:string \
-  --no-stylesheets --no-javascripts --no-helper</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
@@ -279,11 +275,11 @@ bin/rails g migration AddCommentToWorkday comment:string</pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g model ReferenceUrl \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g model ReferenceUrl \
   reference:belongs_to \
   name:string \
   url:string \
-  --no-stylesheets --no-javascripts --no-helper</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
@@ -293,14 +289,36 @@ bin/rails g migration AddCommentToWorkday comment:string</pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g model CrossReference \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g model CrossReference \
   task:belongs_to \
   reference:belongs_to \
   identifier:string \
   subject:string \
-  --no-stylesheets --no-javascripts --no-helper
-
-bin/rails g migration AddSubjectToCrossReference subject:string</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tag"><a class="anchor" href="#_tag"></a>Tag</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+not yet implemented
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold Tag \
+  name:string:index \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
