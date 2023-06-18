@@ -55,7 +55,7 @@ class ListsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def list_params
-      params.require(:list).permit(:org_unit_id, :name)
+      params.require(:list).permit(:org_unit_id, :name, :description, :valid_until)
     end
 
     def set_org_units

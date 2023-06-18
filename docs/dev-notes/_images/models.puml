@@ -15,6 +15,7 @@ class DayType  {
 class List  {
     name: string
     position: integer
+    valid_until: date
     <<user_id>>
     <<org_unit_id>>
 }
@@ -30,6 +31,7 @@ class OrgUnit  {
     name: string
     ancestry: string
     position: position
+    valid_until: date
 }
 
 class ReferenceUrl  {

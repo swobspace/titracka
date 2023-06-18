@@ -9,7 +9,7 @@ RSpec.describe Note, type: :model do
   it { is_expected.to validate_presence_of(:date) }
   it { is_expected.to validate_presence_of(:user_id) }
   it { is_expected.to validate_presence_of(:task_id) }
-
+  it { is_expected.to have_rich_text(:description) }
 
   it "should get plain factory working" do
     f = FactoryBot.create(:note)

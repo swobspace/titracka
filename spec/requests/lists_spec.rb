@@ -81,15 +81,21 @@ RSpec.describe "/lists", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        { name: "special list" }
-      }
+      let(:new_attributes) do
+        { 
+          name: "special list",
+          description: "some bla",
+          valid_until: '2099-12-31'
+        } 
+      end
 
       it "updates the requested list" do
         list = List.create! valid_attributes
         patch list_url(list), params: { list: new_attributes }
         list.reload
         expect(list.name).to eq('special list')
+        expect(list.description.to_plain_text).to eq('some bla')
+        expect(list.valid_until.to_s).to eq('2099-12-31')
       end
 
       it "redirects to the list" do

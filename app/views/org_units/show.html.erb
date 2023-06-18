@@ -9,6 +9,14 @@
         <%= delete_link(@org_unit) %>
       </div>
     </div>
+    <div class="text-body-secondary">
+      <%= @org_unit.description %>
+    </div>
+    <% if @org_unit.valid_until.present? %>
+      <div class="text-body-secondary">
+        <%= "Gültig bis: #{@org_unit.valid_until}" %>
+      </div>
+    <% end %>
   </div>
 </div>
 

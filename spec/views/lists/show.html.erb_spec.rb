@@ -12,7 +12,9 @@ RSpec.describe "lists/show", type: :view do
 
     @list = assign(:list, FactoryBot.create(:list,
       org_unit: org_unit,
-      name: "Name"
+      name: "Name",
+      description: "Some stuff and more",
+      valid_until: '2099-12-21'
     ))
 
     @columns = [state]
@@ -23,5 +25,7 @@ RSpec.describe "lists/show", type: :view do
     render
     expect(rendered).to match(/ACME/)
     expect(rendered).to match(/Name/)
+    expect(rendered).to match(/Some stuff and more/)
+    expect(rendered).to match(/2099-12-21/)
   end
 end

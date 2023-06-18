@@ -18,6 +18,8 @@ RSpec.describe "org_units/edit", type: :view do
 
       assert_select "input[name=?]", "org_unit[name]"
       assert_select "select[name=?]", "org_unit[parent_id]"
+      assert_select "input[name=?]", "org_unit[description]"
+      assert_select "input[name=?]", "org_unit[valid_until]"
     end
   end
 end

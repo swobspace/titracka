@@ -13,11 +13,14 @@ RSpec.describe "org_units/index", type: :view do
     assign(:org_units, [
       OrgUnit.create!(
         name: "Name1",
-        parent_id: parent.id
+        parent_id: parent.id,
+        description: "some explanations",
+        valid_until: "2099-12-12"
       ),
       OrgUnit.create!(
         name: "Name2",
-        parent_id: parent.id
+        parent_id: parent.id,
+        description: "some explanations"
       )
     ])
   end
@@ -27,5 +30,7 @@ RSpec.describe "org_units/index", type: :view do
     assert_select "tr>td", text: "Name1".to_s, count: 1
     assert_select "tr>td", text: "Name2".to_s, count: 1
     assert_select "tr>td", text: "ACME".to_s, count: 2
+    assert_select "tr>td", text: "2099-12-12".to_s, count: 1
+    assert_select "tr>td", text: "some explanations".to_s, count: 2
   end
 end

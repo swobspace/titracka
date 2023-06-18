@@ -19,6 +19,12 @@
             wrapper: :horizontal_select
         %>
 
+      <%= f.input :description, as: :rich_text_area
+         %>
+
+      <%= f.input :valid_until, as: :string, wrapper: :horizontal_date
+         %>
+
       <%= f.button :submit, class: 'btn btn-primary' %>
       <%= cancel_button %>
     </div>

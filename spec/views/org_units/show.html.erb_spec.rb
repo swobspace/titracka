@@ -13,7 +13,9 @@ RSpec.describe "org_units/show", type: :view do
 
     @org_unit = assign(:org_unit, OrgUnit.create!(
       name: "ACME Ltd.",
-      parent_id: parent.id
+      parent_id: parent.id,
+      description: "Some stuff and more",
+      valid_until: '2099-12-21'
     ))
     @columns = [state]
     @tasks_per_column = []
@@ -22,5 +24,7 @@ RSpec.describe "org_units/show", type: :view do
   it "renders attributes in <p>" do
     render
     expect(rendered).to match(/ACME Ltd./)
+    expect(rendered).to match(/Some stuff and more/)
+    expect(rendered).to match(/2099-12-21/)
   end
 end

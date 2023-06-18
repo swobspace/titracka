@@ -8,6 +8,7 @@ class OrgUnit < ApplicationRecord
   # -- configuration
   has_ancestry orphan_strategy: :adopt
   acts_as_list scope: [:ancestry]
+  has_rich_text :description
 
   # -- validations and callbacks
   validates :name, presence: true

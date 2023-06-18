@@ -63,9 +63,11 @@ bin/rails g scaffold OrgUnit \
   name:string:index \
   ancestry:string:index \
   position:integer \
+  valid_until:date \
   --no-stylesheets --no-javascripts --no-helper
 ----
 // bin/rails g migration AddPositionToOrgUnit position:integer
+// bin/rails g migration AddValidUntilToOrgUnit valid_until:date
 
 == List
 
@@ -76,11 +78,13 @@ bin/rails g scaffold List \
   name:string:index \
   user:belongs_to \
   position:integer \
+  valid_until:date \
   --no-stylesheets --no-javascripts --no-helper
 ----
 
 // bin/rails g migration AddUserToList user:belongs_to
 // bin/rails g migration AddPositionToList position:integer
+// bin/rails g migration AddValidUntilToList valid_until:date
 
 == TimeAccounting
 

@@ -4,7 +4,7 @@ RSpec.describe OrgUnit, type: :model do
   it { is_expected.to have_many(:lists).dependent(:restrict_with_error) }
   it { is_expected.to have_many(:tasks).dependent(:restrict_with_error) }
   it { is_expected.to validate_presence_of(:name) }
-
+  it { is_expected.to have_rich_text(:description) }
 
   it "should get plain factory working" do
     f = FactoryBot.create(:org_unit)

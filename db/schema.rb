@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_18_165246) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,6 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_18_165246) do
     t.timestamptz "updated_at", null: false
     t.bigint "user_id"
     t.bigint "position", default: 0
+    t.date "valid_until"
     t.index ["name"], name: "idx_167734_index_lists_on_name"
     t.index ["org_unit_id"], name: "idx_167734_index_lists_on_org_unit_id"
     t.index ["user_id"], name: "idx_167734_index_lists_on_user_id"
@@ -99,6 +100,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_18_165246) do
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
     t.bigint "position", default: 0
+    t.date "valid_until"
     t.index ["ancestry"], name: "idx_167746_index_org_units_on_ancestry"
     t.index ["name"], name: "idx_167746_index_org_units_on_name"
   end
