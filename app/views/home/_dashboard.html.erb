@@ -16,7 +16,7 @@
         >
           <%= arranged_tree_as_list( @elements, sort_by: [:position],
                 open_id: params[:clicked]) do |element| %>
-            <%= link_to " #{element.name} (#{element.tasks.not_archived.count})",
+            <%= link_to " #{element.name} (#{element.tasks.visible.count})",
                   root_path("#{element.model_name.to_s.underscore}_id" => element.id),
                   data: { "action": "click->dashboard#open",
                           "url": polymorphic_path(element) },

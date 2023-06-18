@@ -56,7 +56,7 @@ class HomeController < ApplicationController
         @tasks = Task.accessible_by(current_ability)
                                 .where(org_unit_id: nil, list_id: nil)
       end
-      @columns = State.not_archived
+      @columns = State.visible
       @filter ||= @search_params.slice("org_unit_id", "list_id", "private")
       @url = request.url
     end

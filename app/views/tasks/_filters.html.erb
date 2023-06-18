@@ -43,7 +43,7 @@
             </div>
 
             <div class="checkboxing-list my-2">
-              <% State.not_archived.each do |state| %>
+              <% State.visible.each do |state| %>
                 <%= content_tag(:div, class: "form-check") do %>
                   <%= check_box_tag 'state_ids[]', state.to_param, 
                         params.fetch(:state_ids, []).include?(state.to_param),

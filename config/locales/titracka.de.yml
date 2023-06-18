@@ -27,6 +27,7 @@ de:
       'done': erledigt
       'pending': wartend
       'archive': archiviert
+      'deferred': zurückgestellt
     today: heute
     tristate:
       'yes': Ja

@@ -31,7 +31,7 @@ class TasksController < ApplicationController
 
   def query
     if search_params.any?
-      @tasks = Task.accessible_by(current_ability, :read).not_archived
+      @tasks = Task.accessible_by(current_ability, :read).visible
       @tasks = TaskQuery.new(@tasks.joins(:state), search_params.merge(limit: 25)).all
     else
       @tasks = RecentTasksQuery.new(user_id: @current_user.id).tasks
@@ -171,7 +171,7 @@ class TasksController < ApplicationController
     end
 
     def set_columns
-      @columns = State.not_archived
+      @columns = State.visible
     end
 
     def set_tasks

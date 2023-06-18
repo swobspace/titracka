@@ -30,8 +30,8 @@ RSpec.describe State, type: :model do
     let!(:s_archive) { states(:archive) }
     let!(:s_atwork) { states(:atwork) }
 
-    describe "#not_archived" do
-      it { expect(State.not_archived).to contain_exactly(s_open, s_atwork, s_pending, s_pre, s_done) }
+    describe "#visible" do
+      it { expect(State.visible).to contain_exactly(s_open, s_atwork, s_pending, s_pre, s_done) }
     end
     describe "#open" do
       it { expect(State.open).to contain_exactly(s_open, s_atwork, s_pending) }
