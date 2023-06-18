@@ -2,10 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import '../src/jquery.js'
 import jstree from 'jstree'
 
-
 export default class extends Controller {
-  static targets = [ "tree" ]
-
   initialize() {
     $.jstree.defaults.core.themes.url = false
   }
@@ -13,8 +10,8 @@ export default class extends Controller {
   connect () {
     super.connect()
     let that = this
-    $(this.treeTarget).jstree({
-      "plugins" : [ "types", "search" ],
+    $(this.element).jstree({
+      "plugins" : [ "contextmenu", "types", "search" ],
       "core": {
         'check_callback': true
       },
@@ -37,16 +34,30 @@ export default class extends Controller {
 	    "class": 'nav-item'
 	  }
 	}
+      },
+      "contextmenu": {
+        "items": {
+          'Zoom': {
+            "separator_before": false,
+            "separator_after": false,
+            "icon": "fa fa-search-plus fw",
+            "label": "Zoom",
+            "action": function(obj) {
+              let url = obj.reference[0].dataset.url
+              window.open(url, '_self')
+            }
+          }
+        }
       }
     })
-    $(this.treeTarget).jstree("open_all")
-    let org_units = $(this.treeTarget).find('li > a.org_unit')
+    $(this.element).jstree("open_all")
+    let org_units = $(this.element).find('li > a.org_unit')
     org_units.parent('li').each(function(index) {
-      $(that.treeTarget).jstree(true).set_type($(this), 'org_unit')
+      $(that.element).jstree(true).set_type($(this), 'org_unit')
     })
-    let lists = $(this.treeTarget).find('li > a.list, li > a.list_decorator')
+    let lists = $(this.element).find('li > a.list, li > a.list_decorator')
     lists.parent('li').each(function(index) {
-      $(that.treeTarget).jstree(true).set_type($(this), 'list')
+      $(that.element).jstree(true).set_type($(this), 'list')
     })
   }
 
