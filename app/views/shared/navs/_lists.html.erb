@@ -1,6 +1,6 @@
 <% if can? :navigate, :lists %>
-  <li class="nav-item dropdown <%= active_class('lists') %>">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarListsDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle <%= active_class('lists') %>" href="#" id="navbarListsDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
       <%= t('controller.lists') %>
     </a>

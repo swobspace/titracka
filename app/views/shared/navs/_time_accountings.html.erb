@@ -1,6 +1,6 @@
 <% if can? :navigate, :time_accountings %>
-  <li class="nav-item dropdown <%= active_class('time_accountings') %>">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarTimeAccountingsDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle <%= active_class('time_accountings') %>" href="#" id="navbarTimeAccountingsDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
       <%= t('controller.time_accountings') %>
     </a>
