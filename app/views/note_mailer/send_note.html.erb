@@ -1,4 +1,7 @@
-<%= render @note %>
+<div class="d-flex w-100 small text-body-secondary">
+  <%= @note.date.to_s %> / <%= @note.user&.decorate&.shortname %>
+</div>
+<%= @note.description %>
 
 <div class="mt-3">
 Titracka: <%= link_to "#{I18n.t('attributes.task')} ##{@note.task.id}", task_url(@note.task) %> [ <%= task_url(@note.task) %> ]
