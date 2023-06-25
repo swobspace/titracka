@@ -5,6 +5,7 @@
 ----
 BREAKING CHANGE: switching from MySQL to PostgreSQL
 * add :valid_until and :description to lists and org_units
+* edit notes from tasks#show view
 ----
 
 === 1.0.3-dev / 2023-04-16
