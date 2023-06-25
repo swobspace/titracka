@@ -1,4 +1,13 @@
-<div class="d-flex w-100 small text-body-secondary">
-  <%= note.date.to_s %> / <%= note.user&.decorate&.shortname %>
+<div class="d-flex justify-content-between">
+  <div class="d-flex w-100 small text-body-secondary">
+    <%= note.date.to_s %> / <%= note.user&.decorate&.shortname %>
+  </div>
+  <%= link_to(raw(%Q[<i class="fas fa-pencil-alt"></i>]), 
+              edit_task_note_path(note.task, note),
+              data: { controller: :modal,
+                'modal-modal-id-value': 'sharedModal',
+                action: 'click->modal#open',
+                'turbo-frame': "modal-body" })
+   %>
 </div>
 <%= note.description %>
