@@ -1,10 +1,10 @@
-<%= turbo_frame_tag 'modal-body' do %>
+<%= render ModalComponent.new(title: @noteable.subject) do %>
   <% if @noteable.kind_of? Task %>
-    <%= render 'tasks/modal/task_header', task: @noteable %>
+    <%# render 'tasks/modal/task_header', task: @noteable %>
     <%= render 'tasks/modal/show_task', task: @noteable %>
     <%= render 'tasks/modal/note_form', task: @noteable, note: @note %>
 
-    <div class="card-body">
+    <div class="card-body mt-3">
       <ul class="list-group list-group-flush row" id="showNotesModal">
         <%= render partial: 'notes/note',
                    collection: @noteable.notes.order("created_at desc"),

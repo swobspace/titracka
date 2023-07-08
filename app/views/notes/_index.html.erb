@@ -32,10 +32,7 @@
                 <td><%= note.date %></td>
                 <td class="text-nowrap">
                   <%= edit_link([noteable, note],
-                                data: { controller: :modal,
-                                        'modal-modal-id-value': 'sharedModal',
-                                        action: 'click->modal#open',
-                                        'turbo-frame': "modal-body" })
+                                data: { 'turbo-frame': "modal" })
                     %>
                   <%= delete_link([noteable, note]) %>
           </td>

@@ -14,10 +14,7 @@
     <%= link_to(new_task_note_path(task),
                 id: "task_subject_#{task.id}",
                 class: "force_card me-1",
-                data: { controller: :modal,
-                        'modal-modal-id-value': 'sharedModal',
-                        action: 'click->modal#open',
-                        'turbo-frame': "modal-body" }) do
+                data: { 'turbo-frame': "modal" }) do
     %>
       <div class="d-flex w-100"><%= task.subject %></div>
       <div data-toggle-target="content" class="hidden">
@@ -39,31 +36,20 @@
                   new_workday_time_accounting_path(workday, task_id: task.id),
                   title: t('actions.add', model: TimeAccounting.model_name.human),
                   class: "ms-1 me-2",
-                  data: {
-                    controller: :modal,
-                    'modal-modal-id-value': 'sharedModal',
-                    action: 'click->modal#open',
-                    'turbo-frame': "modal-body"
-                  }
+                  data: { 'turbo-frame': "modal" }
        %>
       <%= link_to raw(%Q[<i class="far fa-comment"></i>]),
                   new_task_note_path(task),
                   id: "new_note_#{dom_id(task)}",
                   class: "ms-1 me-2",
-                  data: { controller: :modal,
-                          'modal-modal-id-value': 'sharedModal',
-                          action: 'click->modal#open',
-                          'turbo-frame': "modal-body" }
+                  data: { 'turbo-frame': "modal" }
        %>
       <% if current_ability.can? :update, task %>
         <%= link_to icon_edit,
                     edit_task_path(task),
                     id: "edit_#{dom_id(task)}",
                     class: "ms-1 me-2",
-                    data: { controller: :modal,
-                            'modal-modal-id-value': 'sharedModal',
-                            action: 'click->modal#open',
-                            'turbo-frame': "modal-body" }
+                    data: { 'turbo-frame': "modal" }
          %>
       <% end %>
     </div>
