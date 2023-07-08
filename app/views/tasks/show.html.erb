@@ -60,7 +60,13 @@
   <div class="col-sm-12 col-lg-6">
     <div class="card mt-3">
       <div class="card-header">
-        <h5 class="card-title"><%= t('attributes.notes')%></h5>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="card-title"><%= t('attributes.notes')%></h5>
+            <%= link_to raw(%Q[<i class="fas fa-table"></i>]),
+                  task_notes_path(@task),
+                  class: 'btn btn-outline-secondary btn-sm'
+             %>
+        </div>
       </div>
       <div class="card-body">
         <ul class="list-group list-group-flush" id="ts_notes_list">
@@ -78,9 +84,16 @@
       <div class="card-header">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="card-title mb-0"><%= t('attributes.time_accountings')%></h5>
-          <%= new_link [@task, TimeAccounting],
-                data: { 'turbo-frame': "modal" }
-           %>
+          <div role="toolbar" class="pt-0">
+            <%= link_to raw(%Q[<i class="fas fa-table"></i>]),
+                  task_time_accountings_path(@task),
+                  class: 'btn btn-outline-secondary btn-sm'
+             %>
+            <%= new_link [@task, TimeAccounting],
+                  class: 'btn btn-outline-secondary btn-sm',
+                  data: { 'turbo-frame': "modal" }
+             %>
+          </div>
         </div>
       </div>
       <div class="card-body">
