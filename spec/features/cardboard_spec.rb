@@ -61,7 +61,7 @@ RSpec.describe "Cardboard", type: :feature, js: true do
         expect(all('div.list-group-item').count).to eq(2)
       end
       click_link "new_task_state_#{open.id}"
-      within "#modal-body" do
+      within "#modal" do
         fill_in "Aufgabe", with: "A new task"
         click_button("Aufgabe erstellen")
       end
@@ -87,7 +87,7 @@ RSpec.describe "Cardboard", type: :feature, js: true do
       within "div#card_task_#{to1.id}" do
         execute_script("document.querySelector('#new_note_task_#{to1.id}').click()")
       end
-      within "#modal-body" do
+      within "#modal" do
         expect(page).to have_content("Just a simple comment")
       end
     end

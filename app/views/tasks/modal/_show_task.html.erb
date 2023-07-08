@@ -1,4 +1,5 @@
-<div class="modal-body border-bottom">
+<div class="">
+  <%= link_to "Aufgabe ##{task.id}", task, data: { turbo: false } %>
   <div id="showTaskModalTable" class="pb-2">
     <%= render 'tasks/show_task', task: task %>
   </div>

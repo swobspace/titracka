@@ -38,7 +38,7 @@ RSpec.describe "TimeAccounting", type: :feature, js: true do
       skip "for now"
       find('a[title="Aufgabe bearbeiten"]').click
       sleep 1
-      within "#modal-body" do
+      within "#modal" do
         find("trix-editor#task_description").set("a description for t2 task")
       end
       click_button("Aufgabe aktualisieren")

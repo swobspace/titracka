@@ -1,7 +1,6 @@
-<div class="modal-body bg-light">
+<div class="bg-light">
   <div id="newTaskNote" class="pb-2">
-    <%= simple_form_for([noteable, note],
-          data: { action: "turbo:submit-end->modal#handleSubmit" }) do |form| %>
+    <%= simple_form_for([noteable, note]) do |form| %>
       <h5 class="bt mt-3"><%= t('actions.add', model: t('activerecord.models.note')) %></h5>
       <%= form.input :description, as: :rich_text_area,
             wrapper: :vertical_form, label: false

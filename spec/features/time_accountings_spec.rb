@@ -15,7 +15,7 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
       click_link("Aktivitäten")
       find('a.dropdown-item[href="/time_accountings"]').click()
       click_link("Aktivität erstellen")
-      within "#modal-body" do
+      within "#modal" do
         within "div.time_accounting_task" do
           select "Mustermann GmbH / MM task", from: "time_accounting_task_id"
         end
@@ -39,7 +39,7 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
     it "create a new time accounting via menu" do
       find("a#navbarTimeAccountingsDropdown").click()
       find('a.dropdown-item[href="/time_accountings/new"]').click()
-      within "#modal-body" do
+      within "#modal" do
         within "div.time_accounting_task" do
           select "Mustermann GmbH / MM task", from: "time_accounting_task_id"
         end
@@ -85,7 +85,7 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
       within "tr#time_accounting_#{ta.id}" do
         find('a[title="Aktivität bearbeiten"]').click
       end
-      within "#modal-body" do
+      within "#modal" do
         fill_in "Beschreibung", with: "starting next phrase"
         fill_in "Dauer (HH:MM)", with: "1:20"
       end

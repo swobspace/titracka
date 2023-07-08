@@ -20,10 +20,7 @@
                         t('titracka.new_task')),
               main_app.new_task_path,
                 class: "dropdown-item",
-                data: { controller: :modal,
-                        'modal-modal-id-value': 'sharedModal',
-                        action: 'click->modal#open',
-                        'turbo-frame': "modal-body" }
+                data: { 'turbo-frame': "modal" }
          %>
       <% end %>
     </div>
