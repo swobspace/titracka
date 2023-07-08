@@ -26,7 +26,10 @@
     <tbody>
       <% noteable.notes.each do |note| %>
         <%= content_tag(:tr, id: dom_id(note)) do %>
-                <td><%= note.task %></td>
+                <td><%= link_to note.task,
+                        task_path(note.task),
+                        class: 'primary-link'
+                     %></td>
                 <td><%= truncate(strip_tags(note.description.to_s), length: 300)%></td>
                 <td><%= note.user.decorate.shortname %></td>
                 <td><%= note.date %></td>

@@ -33,7 +33,10 @@
                 <td><%= time_accounting.date %></td>
                 <td><%= time_accounting.duration %></td>
                 <td><%= time_accounting.formatted_duration %></td>
-                <td><%= time_accounting.task %></td>
+                <td><%= link_to time_accounting.task,
+                                task_path(time_accounting.task),
+                                class: 'primary-link'
+                     %></td>
                 <td><%= time_accounting.description %></td>
                 <td><%= time_accounting.user %></td>
                 <td class="text-nowrap">

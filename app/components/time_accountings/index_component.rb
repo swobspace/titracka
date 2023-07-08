@@ -2,9 +2,9 @@
 
 class TimeAccountings::IndexComponent < ViewComponent::Base
   delegate :show_link, :edit_link, :delete_link, to: :helpers
-  def initialize(user:)
-    @user = user
-    @time_accountings = user.time_accountings
+  def initialize(time_accountable:)
+    @time_accountable = time_accountable
+    @time_accountings = time_accountable.time_accountings
   end
 
 end

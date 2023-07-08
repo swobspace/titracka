@@ -3,7 +3,7 @@
 <h1><%= t('controller.time_accountings') %></h1>
 
 <div id='ts_time_accountings'>
-  <%= render TimeAccountings::IndexComponent.new(user: @current_user) %>
+  <%= render TimeAccountings::IndexComponent.new(time_accountable: (@time_accountable || @current_user)) %>
 </div>
 
 <br />
