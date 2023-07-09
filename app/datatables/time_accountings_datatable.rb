@@ -47,7 +47,8 @@ class TimeAccountingsDatatable < ApplicationDatatable
 
   def time_accountings_query
     time_accountings = relation.order("#{sort_column} #{sort_direction}")
-    time_accountings = TimeAccountingQuery.new(time_accountings, search_params(params, search_columns)).all
+    time_accountings = TimeAccountingQuery.new(time_accountings.joins(:task), 
+                                               search_params(params, search_columns)).all
   end
 
   def fetch_time_accountings
@@ -62,7 +63,7 @@ class TimeAccountingsDatatable < ApplicationDatatable
   def columns
     %w[time_accountings.date time_accountings.duration 
        time_accountings.duration tasks.subject 
-       time_accountings.description time_accountings.user]
+       time_accountings.description time_accountings.user_id]
   end
 
   def search_columns

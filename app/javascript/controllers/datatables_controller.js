@@ -96,9 +96,16 @@ export default class extends Controller {
   }
 
   remoteOptions(options) {
+    let token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
     options.searchDelay = 400
     options.processing = true
     options.serverSide = true
-    options.ajax = { "url": this.urlValue, "type": "POST" }
+    options.ajax = {
+      'url': this.urlValue,
+      'type': 'POST',
+      'beforeSend': function(request) {
+        request.setRequestHeader("X-CSRF-Token", token)
+      }
+    }
   }
 } // Controller

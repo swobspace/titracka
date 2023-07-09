@@ -32,7 +32,7 @@ RSpec.describe TimeAccountingsDatatable, type: :model do
   include TimeAccountingsDatatableHelper
 
   let(:view_context) { double(ActionView::Base) }
-  let(:timeaccountings)    { TimeAccounting.joins(:task).all }
+  let(:timeaccountings)    { TimeAccounting.all }
   let(:datatable)    { TimeAccountingsDatatable.new(timeaccountings, view_context) }
 
   before(:each) do
