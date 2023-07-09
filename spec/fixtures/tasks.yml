@@ -1,0 +1,12 @@
+task1:
+  subject: Maxs Task
+  state: open
+  user: mmax
+  priority: normal
+
+task2:
+  subject: Caros Task
+  state: open
+  user: mcaro
+  priority: normal
+

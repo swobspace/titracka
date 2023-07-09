@@ -9,9 +9,11 @@ class TimeAccountingQuery
   # * :user_id - integer
   # * :user - name
   # * :date - datestring (2020-02-03)
+  # * :duration - integer
   # * :id - integer
   # * :limit - limit result (integer)
   #
+  # needs joins(:task)
   def initialize(relation, search_options = {})
     @relation       = relation
     @search_options = search_options.symbolize_keys
@@ -51,6 +53,12 @@ private
        query = query.where(user_id: value)
       when :date
        query = query.where(date: value)
+      when :duration
+       query = query.where(duration: value.to_i)
+      when :formatted_duration
+       query = query.where(duration: ::MinuteString.hour2min(value).to_i)
+      when :task
+        query = query.where('tasks.subject ILIKE ?', "%#{value}%")
       when :user
         query = query.where(user_id: user_ids(value)) if user_ids(value).present?
       when :id
