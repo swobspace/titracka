@@ -26,8 +26,12 @@ RSpec.shared_examples "a task query" do
 end
 
 RSpec.describe TaskQuery do
+  fixtures :tasks
   include_context "task variables"
+  let(:task1) { tasks(:task1) }
+  let(:task2) { tasks(:task2) }
   let(:tasks) { Task.joins(:state).all }
+  it {puts tasks}
 
   # check for class methods
   it { expect(TaskQuery.respond_to? :new).to be_truthy}
@@ -76,7 +80,7 @@ RSpec.describe TaskQuery do
   context "with :state offen" do
     subject { TaskQuery.new(tasks, {state: 'offen'}) }
     before(:each) do
-      @matching = [t1, t2, to1, to2, tl1 ]
+      @matching = [task1, task2, t1, t2, to1, to2, tl1 ]
       @nonmatching = [tl2, done1, archiv2]
     end
     it_behaves_like "a task query"

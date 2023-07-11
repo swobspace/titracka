@@ -13,14 +13,14 @@ RSpec.describe "Task", type: :feature, js: true do
 
     it "delete an existing task" do
       expect(page).to have_content "Caros task"
-      expect(Task.count).to eq(8)
+      expect(Task.count).to eq(10)
       accept_confirm do
         find('a[title="Aufgabe löschen"]').click
       end
       within "#ts_tasks" do
-        expect(page).to have_content "Showing 1 to 5 of 5 entries"
+        expect(page).to have_content "Showing 1 to 6 of 6 entries"
       end
-      expect(Task.count).to eq(7)
+      expect(Task.count).to eq(9)
     end
 
     it "edit an existing task" do
