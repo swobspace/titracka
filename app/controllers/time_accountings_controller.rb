@@ -68,7 +68,7 @@ class TimeAccountingsController < ApplicationController
   # DELETE /time_accountings/1
   def destroy
     respond_with(@time_accounting, location: location) do |format|
-      if @time_accounting.destroy && session[:time_accountings_mode] != :show
+      if @time_accounting.destroy && session[:mode] != 'time_accountings#show'
         format.turbo_stream 
       end
     end
