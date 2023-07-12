@@ -428,18 +428,18 @@ datatables.net-bs5@>=1.13.4, datatables.net-bs5@^1.11.3:
     jquery ">=1.7"
 
 datatables.net-buttons-bs5@^2.1.1:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/datatables.net-buttons-bs5/-/datatables.net-buttons-bs5-2.4.0.tgz#b1b7bfefdea9a0568f00660a7ada85bb8907f1d2"
-  integrity sha512-bnx2eLIt1hVZGKm0tDQK2Pv9T3AfwH5gWgG65gF2brBM6Il9KSJZubTIoevAh2jb5ab+XNo9Jqe1MDGJzbMN+Q==
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/datatables.net-buttons-bs5/-/datatables.net-buttons-bs5-2.4.1.tgz#61d33c73ed00e40dc5bea94679c05879a74b7acc"
+  integrity sha512-z3YwAtHkCioLveY7Tu81F6NFlYZu18xjFFeXZna4o6TFP5qWPt2F+JGgD2aEpcxcJqxKWihUGHcuHf7R1SLkig==
   dependencies:
     datatables.net-bs5 ">=1.13.4"
     datatables.net-buttons ">=2.3.6"
     jquery ">=1.7"
 
 datatables.net-buttons@>=2.3.6:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/datatables.net-buttons/-/datatables.net-buttons-2.4.0.tgz#c79e7bd6f5a544572d48dcedbe44a64cc78df90a"
-  integrity sha512-Pvqw6/6CaNHMMLbWQ2IpbUVsZnOKKPc97ZwBga+LW04d9IEmSL/vZ1FveeRSSHpSiE5/NghXXHKWOIG+9PKx7w==
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/datatables.net-buttons/-/datatables.net-buttons-2.4.1.tgz#a548943494a37b0b7907c7b9afcf3ebaa29c17aa"
+  integrity sha512-Z788xsbGW+YqJWgQYCzE5IsbY8MNIihhDP/LOefijEn7MM1/jf4sQdf/KRNHr/CWTFGfojGPz+GNdJh8appeQQ==
   dependencies:
     datatables.net ">=1.13.4"
     jquery ">=1.7"
@@ -742,9 +742,9 @@ immediate@~3.0.5:
   integrity sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==
 
 immutable@^4.0.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.3.0.tgz#eb1738f14ffb39fd068b1dbe1296117484dd34be"
-  integrity sha512-0AOCmOip+xgJwEVTQj1EfiDDOkPmuyllDuTuEX+DDXUgapLAsBIfkg3sxCYyCEA8mQqZrrxPUGjcOQ2JS3WLkg==
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.3.1.tgz#17988b356097ab0719e2f741d56f3ec6c317f9dc"
+  integrity sha512-lj9cnmB/kVS0QHsJnYKD1uo3o39nrbKxszjnqS9Fr6NB7bZzW45U6WSGBPKXDL/CvDKqDNPA4r3DoDQ8GTxo2A==
 
 inherits@^2.0.3, inherits@~2.0.3:
   version "2.0.4"
