@@ -96,7 +96,11 @@ export default class extends Controller {
   }
 
   remoteOptions(options) {
-    let token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    let csrf = document.head.querySelector('meta[name="csrf-token"]')
+    let token = "not available"
+    if (csrf != null) {
+      token = csrf.getAttribute('content')
+    }
     options.searchDelay = 400
     options.processing = true
     options.serverSide = true
