@@ -1,16 +1,20 @@
 require 'rails_helper'
 
 module TimeAccountingsDatatableHelper
+  include ActionView::RecordIdentifier
+
   def ta2array(ta)
-    [].tap do |column|
-      column << ta.date.to_s
-      column << ta.duration
-      column << ta.formatted_duration
-      column << ta.task.subject
-      column << ta.description
-      column << ta.user.to_s
-      column << "  " # dummy for action links
-    end
+    {
+      "0" => ta.date.to_s,
+      "1" => ta.duration,
+      "2" => ta.formatted_duration,
+      "3" => ta.task.subject,
+      "4" => ta.description,
+      "5" => ta.user.to_s,
+      "6" => "  ", # dummy for action links
+      "DT_RowId" => "dom_id",
+      "DT_RowClass" => "dom_class"
+    }
   end
 
   def link_helper(text, url)
@@ -46,6 +50,8 @@ RSpec.describe TimeAccountingsDatatable, type: :model do
       show_link: "",
       edit_link: "",
       delete_link: "",
+      dom_id: "dom_id",
+      dom_class: "dom_class",
     )
     allow(view_context).to receive(:link_to) do |text, url|
       link_helper(text, url)

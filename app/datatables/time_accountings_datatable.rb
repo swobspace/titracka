@@ -11,21 +11,23 @@ class TimeAccountingsDatatable < ApplicationDatatable
 
   def data
     time_accountings.map do |time_accounting|
-      [].tap do |column|
-        column << time_accounting.date 
-        column << time_accounting.duration 
-        column << time_accounting.formatted_duration 
-        column << link_to(time_accounting.task.subject, task_path(time_accounting.task),
-                          class: 'primary-link')
-        column << time_accounting.description 
-        column << time_accounting.user.to_s
+      links = []
+      links << show_link(time_accounting)
+      links << edit_link(time_accounting, "data-turbo-frame": "modal")
+      links << delete_link(time_accounting)
+      {
+        "0" => time_accounting.date,
+        "1" => time_accounting.duration,
+        "2" => time_accounting.formatted_duration,
+        "3" => link_to(time_accounting.task.subject, task_path(time_accounting.task),
+                          class: 'primary-link'),
+        "4" => time_accounting.description,
+        "5" => time_accounting.user.to_s,
 
-        links = []
-        links << show_link(time_accounting)
-        links << edit_link(time_accounting, "data-turbo-frame": "modal")
-        links << delete_link(time_accounting)
-        column << links.join(' ')
-      end
+        "6" => links.join(' '),
+        "DT_RowId" => dom_id(time_accounting),
+        "DT_RowClass" => dom_class(time_accounting)
+      }
     end
   end
 
