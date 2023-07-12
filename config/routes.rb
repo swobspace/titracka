@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     resources :time_accountings, module: :workdays
   end
+  post "time_accountings", to: "time_accountings#index", constraints: lambda {|req| req.format == :json}
   resources :time_accountings
   resources :lists do
     resources :tasks, module: :lists
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
     end
   end
   get 'cards', to: 'tasks#index', defaults: {view: 'cards'}
+  post "/tasks/:task_id/time_accountings", to: "tasks/time_accountings#index", constraints: lambda {|req| req.format == :json}
   post "tasks", to: "tasks#index", constraints: lambda {|req| req.format == :json}
   resources :tasks do
     collection do

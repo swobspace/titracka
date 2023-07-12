@@ -32,6 +32,7 @@ RSpec.describe "time_accountings/index", type: :view do
   end
 
   it "renders a list of time_accountings" do
+    skip "not usable for datatables remote"
     render
     assert_select "tr>td", text: "2020-02-27".to_s, count: 2
     assert_select "tr>td", text: "Mustermann, Max (mmax)".to_s, count: 2

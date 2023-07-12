@@ -24,29 +24,26 @@ RSpec.describe "TimeAccounting", type: :feature, js: true do
     it "delete an existing time_accounting" do
       expect(page).to have_content "2022-01-02 /66/ Caros task : preset time accounting for mcaro"
       expect(page).to have_content "Caros task"
-      expect(TimeAccounting.count).to eq(1)
+      expect(TimeAccounting.count).to eq(6)
       accept_confirm do
         find('a[title="Aktivität löschen"]').click
       end
       within "#ts_time_accountings" do
-        expect(page).to have_content "Showing 0 to 0 of 0 entries"
+        expect(page).to have_content "Showing 1 to 2 of 2 entries"
       end
-      expect(TimeAccounting.count).to eq(0)
+      expect(TimeAccounting.count).to eq(5)
     end
 
     it "edit an existing time_accounting" do
-      skip "for now"
-      find('a[title="Aufgabe bearbeiten"]').click
+      expect(page).to have_content "Caros task"
+      find('a[title="Aktivität bearbeiten"]').click
       sleep 1
       within "#modal" do
-        find("trix-editor#task_description").set("a description for t2 task")
+        find("#time_accounting_description").set("a description for ta")
       end
-      click_button("Aufgabe aktualisieren")
+      click_button("Aktivität aktualisieren")
       sleep 1
-      within "#ts_show_time_accounting" do
-        expect(page).to have_content("a description for t2 task")
-      end
-      # save_and_open_screenshot()
+      expect(page).to have_content("a description for ta")
     end
 
   end

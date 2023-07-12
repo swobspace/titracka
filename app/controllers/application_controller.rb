@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :add_breadcrumb_index, only: [:index],
                 unless: ->(controller) { controller.request.format.js? }
   before_action :set_paper_trail_whodunnit
+  before_action :set_session_mode
 
   # -- flash responder
   self.responder = Wobapphelpers::Responders
@@ -45,4 +46,11 @@ protected
       end
     end
   end
+
+  def set_session_mode
+    if ['index', 'show'].include?(action_name)
+      session[:mode] = "#{controller_name}##{action_name}"
+    end
+  end
+   
 end

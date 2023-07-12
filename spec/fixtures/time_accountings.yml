@@ -1,0 +1,30 @@
+ta11:
+  task: task1
+  user: mmax
+  date: <%= 1.day.before(Date.current) %>
+  duration: 30
+  description: Some Activity
+ta12:
+  task: task1
+  user: mmax
+  date: <%= 2.day.before(Date.current) %>
+  duration: 45
+  description: Some Activity
+ta13:
+  task: task1
+  user: mmax
+  date: <%= 1.day.before(Date.current) %>
+  duration: 75
+  description: Some Activity
+ta21:
+  task: task2
+  user: mcaro
+  date: <%= 1.day.before(Date.current) %>
+  duration: 13
+  description: Special Activity
+ta22:
+  task: task2
+  user: mcaro
+  date: <%= 1.week.before(Date.current) %>
+  duration: 17
+  description: Some Activity

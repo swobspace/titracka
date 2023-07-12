@@ -1,11 +1,17 @@
-<%= turbo_stream.update("ts_time_accountings") do %>
-    <%= render TimeAccountingsComponent.new(time_accountable: @time_accountable, 
-                             user: @current_user) %>
-<% end %>
+<% if session[:mode] == 'time_accountings#show' %>
+  <%= turbo_stream.update("ts_time_accountings") do %>
+    <%= render 'show', time_accounting: @time_accounting %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update("ts_time_accountings") do %>
+      <%= render TimeAccountingsComponent.new(time_accountable: @time_accountable, 
+                               user: @current_user) %>
+  <% end %>
 
-<% if @time_accountable.kind_of? Workday %>
-  <%= turbo_stream.update("ts_my_week") do %>
-    <%= render Workday::MyWeekComponent.new(workday: @time_accountable, user: @current_user) %>
+  <% if @time_accountable.kind_of? Workday %>
+    <%= turbo_stream.update("ts_my_week") do %>
+      <%= render Workday::MyWeekComponent.new(workday: @time_accountable, user: @current_user) %>
+    <% end %>
   <% end %>
 <% end %>
 

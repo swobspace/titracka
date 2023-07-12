@@ -8,8 +8,13 @@ class TimeAccountingsController < ApplicationController
     session[:time_accountings_mode] = :index
     if @time_accountable
       @time_accountings = @time_accountable.time_accountings
+    else 
+      @time_accountings = @current_user.time_accountings
     end
-    respond_with(@time_accountings)
+    respond_with(@time_accountings) do |format|
+      format.json { render json: TimeAccountingsDatatable.new(@time_accountings, view_context) }
+    end
+
   end
 
   # GET /time_accountings/1
@@ -63,7 +68,7 @@ class TimeAccountingsController < ApplicationController
   # DELETE /time_accountings/1
   def destroy
     respond_with(@time_accounting, location: location) do |format|
-      if @time_accounting.destroy && session[:time_accountings_mode] != :show
+      if @time_accounting.destroy && session[:mode] != 'time_accountings#show'
         format.turbo_stream 
       end
     end

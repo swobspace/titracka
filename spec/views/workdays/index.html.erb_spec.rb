@@ -47,8 +47,8 @@ RSpec.describe "workdays/index", type: :view do
     render
     assert_select "tr>td", text: 1.day.before(Date.today).to_s, count: 1
     assert_select "tr>td", text: 2.day.before(Date.today).to_s, count: 1
-    assert_select "tr>td", text: "02:00".to_s, count: 1
-    assert_select "tr>td", text: "02:30".to_s, count: 1
+    assert_select "tr>td", text: "04:15".to_s, count: 1
+    assert_select "tr>td", text: "02:45".to_s, count: 1
     assert_select "tr>td", text: "42".to_s, count: 2
     assert_select "tr>td", text: "HO".to_s, count: 2
   end

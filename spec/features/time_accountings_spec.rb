@@ -65,19 +65,20 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit time_accountings_path
-      execute_script("$.support.transition = false")
+      # execute_script("$.support.transition = false")
+      expect(page).to have_content("Aktivitäten")
     end
 
     it "delete a time_accounting" do
-      expect(page).to have_content "Showing 1 to 1 of 1 entries"
-      expect(TimeAccounting.count).to eq(1)
+      expect(page).to have_content "Showing 1 to 3 of 3 entries"
+      expect(TimeAccounting.count).to eq(6)
       within "tr#time_accounting_#{ta.id}" do
         accept_confirm do
           find('a[title="Aktivität löschen"]').click
         end
       end
-      expect(page).to have_content "Showing 0 to 0 of 0 entries"
-      expect(TimeAccounting.count).to eq(0)
+      expect(page).to have_content "Showing 1 to 2 of 2 entries"
+      expect(TimeAccounting.count).to eq(5)
       # save_and_open_screenshot()
     end
 

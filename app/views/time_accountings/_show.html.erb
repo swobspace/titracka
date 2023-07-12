@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <div class="subtitle float-none"><%= t('activerecord.models.time_accounting') %>:</div>
+        <h4 class="title float-left"><%= time_accounting %></h4>
+      </div>
+      <div role="toolbar" class="pt-3">
+        <%= edit_link(time_accounting,
+             data: { 'turbo-frame': "modal" })
+         %>
+        <%= delete_link(time_accounting) %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-borderless table-sm table-hover autowidth">
+    
+      <tr>
+        <th><%= t('attributes.date')%>:</th>
+        <td><%= time_accounting.date %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.duration')%>:</th>
+        <td><%= time_accounting.formatted_duration %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('attributes.task')%>:</th>
+        <td class="w-100"><%= time_accounting.task %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.description')%>:</th>
+        <td><%= time_accounting.description %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.user')%>:</th>
+        <td><%= time_accounting.user %></td>
+      </tr>
+    
+    </table>
+    <div role="toolbar">
+      <%= back_link %>
+    </div>
+  </div>
+</div>
