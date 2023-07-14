@@ -1,9 +1,20 @@
 <div class="row">
-  <div id="newTaskNote" class="pb-2">
+  <div id="newTaskNote">
     <%= simple_form_for([noteable, note]) do |form| %>
       <%= form.input :description, as: :rich_text_area,
             wrapper: :vertical_form, label: false
          %>
+
+      <div class="row mb-3">
+        <%= form.label :date, class: "form-label col-sm-2" %>
+        <div class="col-sm-4">
+          <%=  form.text_field :date, value: Date.current.to_s,
+                               type: :date, html5: true,
+                               class: 'form-control'
+          %>
+        </div>
+      </div>
+
 
       <% if noteable.kind_of? Task %>
         <%= render 'notes/mail_form_fields', task: noteable %>
