@@ -62,19 +62,22 @@
       <div class="card-header">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="card-title"><%= t('attributes.notes')%></h5>
+          <div role="toolbar" class="pt-0">
             <%= link_to raw(%Q[<i class="fas fa-table"></i>]),
                   task_notes_path(@task),
                   class: 'btn btn-outline-secondary btn-sm'
              %>
+            <%= new_link [@task, Note],
+                    class: 'btn btn-outline-secondary btn-sm',
+                    data: { 'turbo-frame': "modal" }
+             %>
+          </div>
         </div>
       </div>
       <div class="card-body">
         <ul class="list-group list-group-flush" id="ts_notes_list">
           <%= render partial: 'notes/note', collection: @task.notes.order("created_at desc"), layout: 'shared/list_group_item_layout' %>
         </ul>
-        <%= new_link [@task, Note],
-                data: { 'turbo-frame': "modal" }
-         %>
       </div>
     </div>
   </div>
