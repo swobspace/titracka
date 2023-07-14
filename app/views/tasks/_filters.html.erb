@@ -1,6 +1,6 @@
 <div class="card bg-light" data-controller="filters" id="cards_filter">
   <div class="card-body">
-    <div class="form-group">
+    <div class="">
       <%= label_tag :subject, t('attributes.title'), class: "form-label" %> 
       <%= text_field_tag "subject", nil, 
             class: 'form-control',
@@ -11,7 +11,7 @@
       %>
     </div>
 
-    <div class="form-group">
+    <div class="">
       <%= label_tag :id, t('titracka.task_id'), class: "form-label" %> 
       <%= text_field_tag "id", nil, 
             class: 'form-control',
@@ -22,7 +22,7 @@
       %>
     </div>
 
-    <div class="form-group">
+    <div class="">
       <%= label_tag :status, t('attributes.state'), class: "form-label" %>
       <div data-controller="toggle checkbox-list"
            data-toggle-toggle-class="hidden" >
@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="">
       <%= label_tag :priority, t('attributes.priority'), class: "form-label" %>
       <div data-controller="toggle checkbox-list"
            data-toggle-toggle-class="hidden" >
@@ -116,7 +116,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="">
       <%= label_tag :org_unit_id, t('attributes.org_unit'), class: "form-label" %> 
       <%= select_tag "org_unit_id",
             options_from_collection_for_select(OrgUnit.accessible_by(current_ability, :read), 'id', 'name_for_selects', params[:org_unit_id]),
@@ -129,7 +129,7 @@
       %>
     </div>
 
-    <div class="form-group">
+    <div class="">
       <div class="form-check">
         <input name="subtree" type="hidden" value="false"/>
         <%= check_box_tag "subtree", "true", (params[:subtree] == "true"),
@@ -158,7 +158,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="">
       <%= label_tag :list_id, t('attributes.list'), class: "form-label" %> 
       <%= select_tag "list_id",
             options_from_collection_for_select(List.accessible_by(current_ability, :read), 'id', 'name_for_selects', params[:list_id]),
@@ -170,7 +170,7 @@
             }
       %>
     </div>
-    <div class="form-group">
+    <div class="">
       <%= label_tag :user_id, t('attributes.owner'), class: "form-label" %>
       <%= select_tag "user_id",
             options_from_collection_for_select(Wobauth::User.all, 'id', 'name', params[:user_id]),
@@ -184,7 +184,7 @@
       %>
     </div>
 
-    <div class="form-group">
+    <div class="">
       <%= label_tag :responsible_id, t('attributes.responsible'), class: "form-label" %>
       <%= select_tag "responsible_id",
             options_from_collection_for_select(Wobauth::User.all, 'id', 'name', params[:responsible_id]),
@@ -197,7 +197,7 @@
       %>
     </div>
 
-    <div class="form-group">
+    <div class="">
       <%= label_tag :cross_reference, t('attributes.cross_reference'), class: "form-label" %> 
       <%= text_field_tag "cross_reference", nil, 
             class: 'form-control',
