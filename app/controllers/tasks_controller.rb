@@ -23,6 +23,9 @@ class TasksController < ApplicationController
     if params[:view] == 'cards'
       session[:tasks_mode] = :cards
       render template: 'tasks/cards'
+    elsif params[:view] == 'list'
+      session[:tasks_mode] = :list
+      render template: 'tasks/list'
     else
       session[:tasks_mode] = :index
       respond_with(@tasks)

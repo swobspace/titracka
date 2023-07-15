@@ -5,6 +5,10 @@
       <span class="subtitle"><%= @list.org_unit %></span>
 
       <div role="toolbar">
+        <%= link_to raw(%Q[<i class="fas fa-th-list"></i>]), 
+                    list_tasks_path(@list, view: 'list'),
+                    class: 'btn btn-secondary'
+         %>
         <%= back_link %>
         <%= edit_link(@list) %>
         <%= delete_link(@list) %>
