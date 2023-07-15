@@ -43,6 +43,18 @@
                           class: '',
                           data: { 'turbo-frame': "modal" })
             %>
+            <%= link_to raw(%Q[<i class="far fa-fw fa-comment"></i>]),
+                        new_task_note_path(task),
+                        id: "new_note_#{dom_id(task)}",
+                        class: "me-1",
+                        data: { 'turbo-frame': "modal" }
+             %>
+            <%= link_to raw('<i class="far fa-fw fa-clock"></i>'),
+                        new_task_time_accounting_path(task),
+                        id: "new_time_accounting_#{dom_id(task)}",
+                        class: "me-1",
+                        data: { 'turbo-frame': "modal" }
+             %>
           </td>
         <% end %>
       <% end %>
