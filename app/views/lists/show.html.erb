@@ -13,11 +13,16 @@
     <div class="text-body-secondary">
       <%= @list.description %>
     </div>
-    <% if @list.valid_until.present? %>
+    <div class="d-flex w-100 justify-content-between">
       <div class="text-body-secondary">
-        <%= "Gültig bis: #{@list.valid_until}" %>
+        <%= @list.user.to_s %>
       </div>
-    <% end %>
+      <% if @list.valid_until.present? %>
+        <div class="text-body-secondary">
+          <%= "Gültig bis: #{@list.valid_until}" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 
