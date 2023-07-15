@@ -37,13 +37,23 @@ export default class extends Controller {
       },
       "contextmenu": {
         "items": {
-          'Zoom': {
+          'cardboard': {
             "separator_before": false,
             "separator_after": false,
-            "icon": "fa fa-search-plus fw",
-            "label": "Zoom",
+            "icon": "fas fa-clipboard-list fw",
+            "label": "Cardboard",
             "action": function(obj) {
               let url = obj.reference[0].dataset.url
+              window.open(url, '_self')
+            }
+          },
+          'list': {
+            "separator_before": false,
+            "separator_after": false,
+            "icon": "fas fa-th-list fw",
+            "label": "List",
+            "action": function(obj) {
+              let url = obj.reference[0].dataset.url + '/tasks?view=list'
               window.open(url, '_self')
             }
           }
