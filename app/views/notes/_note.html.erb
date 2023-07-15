@@ -2,9 +2,11 @@
   <div class="d-flex w-100 small text-body-secondary">
     <%= note.date.to_s %> / <%= note.user&.decorate&.shortname %>
   </div>
-  <%= link_to(raw(%Q[<i class="fas fa-pencil-alt"></i>]), 
-              edit_task_note_path(note.task, note),
-              data: { 'turbo-frame': "modal" })
-   %>
+  <% if show_actions %>
+    <%= link_to(raw(%Q[<i class="fas fa-pencil-alt"></i>]), 
+                edit_task_note_path(note.task, note),
+                data: { 'turbo-frame': "modal" })
+     %>
+  <% end %>
 </div>
 <%= note.description %>

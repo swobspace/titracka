@@ -8,6 +8,7 @@
       <ul class="list-group list-group-flush row" id="showNotesModal">
         <%= render partial: 'notes/note',
                    collection: @noteable.notes.order("created_at desc"),
+                   locals: { show_actions: false },
                    layout: 'shared/list_group_item_layout'
          %>
       </ul>
