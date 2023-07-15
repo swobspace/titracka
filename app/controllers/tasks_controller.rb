@@ -8,9 +8,9 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     if @taskable
-      @tasks = @taskable.tasks.accessible_by(current_ability, :read)
+      @tasks = @taskable.tasks.visible.accessible_by(current_ability, :read)
     else
-       @tasks = Task.accessible_by(current_ability, :read)
+       @tasks = Task.visible.accessible_by(current_ability, :read)
     end
     if search_params.present?
       @tasks = TaskQuery.new(@tasks.joins(:state), search_params).all

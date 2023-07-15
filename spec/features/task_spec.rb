@@ -18,7 +18,7 @@ RSpec.describe "Task", type: :feature, js: true do
         find('a[title="Aufgabe löschen"]').click
       end
       within "#ts_tasks" do
-        expect(page).to have_content "Showing 1 to 6 of 6 entries"
+        expect(page).to have_content "Showing 1 to 5 of 5 entries"
       end
       expect(Task.count).to eq(9)
     end
