@@ -8,6 +8,10 @@ module Titracka
   end
   CONFIG = config || Hash.new
 
+  def self.fetch_config(attribute, default_value)
+    CONFIG[attribute.to_s].presence || default_value
+  end
+ 
   def self.devise_modules
     if CONFIG['devise_modules'].present?
       CONFIG['devise_modules']
@@ -40,59 +44,40 @@ module Titracka
   end
 
   def self.mail_from
-    if CONFIG['mail_from'].present?
-      CONFIG['mail_from']
-    else
-      'root'
-    end
-  end
-
-  def self.use_ssl
-    if CONFIG['use_ssl'].present?
-      CONFIG['use_ssl']
-    else
-      false
-    end
-  end
-
-  def self.remote_user
-    if CONFIG['remote_user'].present?
-      CONFIG['remote_user']
-    else
-      "REMOTE_USER"
-    end
-  end
-
-  def self.action_cable_allowed_request_origins
-    if CONFIG['action_cable_allowed_request_origins'].present?
-      Array(CONFIG['action_cable_allowed_request_origins'])
-    else
-      [ 'http://localhost', 'https://localhost' ]
-    end
-  end
-
-  def self.host
-    if CONFIG['host'].present?
-      CONFIG['host']
-    else
-      "localhost"
-    end
-  end
-
-  def self.script_name
-    if CONFIG['script_name'].present?
-      CONFIG['script_name']
-    else
-      "/"
-    end
+    fetch_config('mail_from', 'root')
   end
 
   def self.mail_to
-    if CONFIG['mail_to'].present?
-      Array(CONFIG['mail_to'])
-    else
-      []
-    end
+    Array(fetch_config('mail_to', nil))
+  end
+
+  def self.mail_prefix
+    fetch_config('mail_prefix', nil)
+  end
+
+  def self.use_ssl
+    fetch_config('use_ssl', false)
+  end
+
+  def self.remote_user
+    fetch_config('remote_user', 'REMOTE_USER')
+  end
+
+  def self.action_cable_allowed_request_origins
+    fetch_config('action_cable_allowed_request_origins',
+                 ['http://localhost', 'https://localhost'])
+  end
+
+  def self.host
+    fetch_config('host', 'localhost')
+  end
+
+  def self.port
+    fetch_config('port', nil)
+  end
+
+  def self.script_name
+    fetch_config('script_name', '/')
   end
 
   ActionMailer::Base.default_url_options = {

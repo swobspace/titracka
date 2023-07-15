@@ -18,7 +18,7 @@
     </div>
     <% task.cross_references.each do |xref| %>
       <div class="form-check">
-        <%= radio_button_tag :subject_prefix, xref.identifier, class: "form-check-input" %>
+        <%= radio_button_tag :subject_prefix, xref.mail_identifier, class: "form-check-input" %>
         <%= label_tag :subject_prefix, "#{xref} - #{xref.subject.truncate(75, separator: ' ')}", class: "form-check-label" %>
       </div>
     <% end %>

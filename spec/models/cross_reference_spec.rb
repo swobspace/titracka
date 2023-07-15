@@ -13,9 +13,15 @@ RSpec.describe CrossReference, type: :model do
     expect(g).to be_valid
   end
 
-  it "to_s returns value" do
+  it "#to_s returns value" do
     f = FactoryBot.create(:cross_reference, reference_id: ref.id, identifier: "08154711")
     expect("#{f}").to match ("DontDoIt#08154711")
+  end
+
+  it "#mail_identifier returns value" do
+    expect(Titracka).to receive(:mail_prefix).and_return('kkk#')
+    f = FactoryBot.create(:cross_reference, reference_id: ref.id, identifier: "08154711")
+    expect("#{f.mail_identifier}").to match ("kkk#08154711")
   end
 
 end

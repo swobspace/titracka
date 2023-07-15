@@ -9,4 +9,8 @@ class CrossReference < ApplicationRecord
     "#{reference.name}##{identifier}"
   end
 
+  def mail_identifier
+    "#{Titracka.mail_prefix}#{identifier}"
+  end
+
 end
