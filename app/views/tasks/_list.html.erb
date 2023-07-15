@@ -1,0 +1,51 @@
+<div data-controller="datatables">
+  <%= content_tag :table, role: :datatable,
+        id: "tasks_table",
+        class: "table table-striped table-sm table-responsive-xl",
+        data: {
+          order: [[0, 'desc']].to_json
+        } do %>
+    <thead>
+      <tr>
+            <th><%= t('attributes.id') %></th>
+            <th><%= t('attributes.subject') %></th>
+            <th><%= t('attributes.state') %></th>
+            <th><%= t('attributes.responsible') %></th>
+            <th class="notvisible"><%= t('attributes.start') %></th>
+            <th><%= t('attributes.deadline') %></th>
+            <th class="notvisible"><%= t('attributes.resubmission') %></th>
+            <th><%= t('attributes.priority') %></th>
+            <th class="notvisible"><%= t('attributes.org_unit') %></th>
+            <th class="notvisible"><%= t('attributes.list') %></th>
+            <th class="notvisible"><%= t('attributes.owner') %></th>
+            <th class="nosort"><%= t('titracka.action') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <%= content_tag(:tr, id: dom_id(task)) do %>
+                <td><%= task.id %></td>
+                <td><%= link_to task.subject, task_path(task), class: 'primary-link' %></td>
+                <td><%= task.state %></td>
+                <td><%= task.responsible %></td>
+                <td><%= task.start %></td>
+                <td><%= task.deadline %></td>
+                <td><%= task.resubmission %></td>
+                <td><%= t(task.priority, scope: 'titracka.priority') %></td>
+                <td><%= task.org_unit %></td>
+                <td><%= task.list %></td>
+                <td><%= task.user %></td>
+                <td class="text-nowrap">
+            <%= show_link task, 
+                          class: '',
+                          data: { turbo: 'false' } %>
+            <%= edit_link(task, 
+                          class: '',
+                          data: { 'turbo-frame': "modal" })
+            %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  <% end %>
+</div>
