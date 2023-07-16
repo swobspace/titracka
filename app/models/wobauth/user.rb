@@ -16,7 +16,14 @@ module Wobauth
 
     validates :password, confirmation: true
 
-
     scope :active, -> { all }
+
+    def short_name
+      if sn.blank? and givenname.blank?
+        "#{username}"
+      else
+        "#{sn}, #{givenname}"
+      end
+    end
   end
 end
