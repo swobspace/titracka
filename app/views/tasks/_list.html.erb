@@ -27,14 +27,14 @@
                 <td><%= task.id %></td>
                 <td><%= link_to task.subject, task_path(task), class: 'primary-link' %></td>
                 <td><%= task.state %></td>
-                <td><%= task.responsible %></td>
+                <td><%= task.responsible&.short_name %></td>
                 <td><%= task.start %></td>
                 <td><%= task.deadline %></td>
                 <td><%= task.resubmission %></td>
-                <td><%= t(task.priority, scope: 'titracka.priority') %></td>
+                <td class="prio-<%= task.priority %>"><%= t(task.priority, scope: 'titracka.priority') %></td>
                 <td><%= task.org_unit %></td>
                 <td><%= task.list %></td>
-                <td><%= task.user %></td>
+                <td><%= task.user&.short_name %></td>
                 <td class="text-nowrap">
             <%= show_link task, 
                           class: '',
