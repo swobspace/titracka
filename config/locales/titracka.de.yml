@@ -16,6 +16,7 @@ de:
     search: Suche
     search_documents: Suche Dokumente
     search_tasks: Suche Aufgaben
+    search_time_accountings: Suche Aktivitäten
     sort_helper: Sortierhilfe
     sort_alphanum: "%{model} alphabetisch sortieren"
     really_sort_alphanum: "Wollen Sie wirklich %{model} alphabetisch sortieren? Dieser Schritt kann nicht rückgängig gemacht werden"
@@ -126,8 +127,10 @@ de:
     list_id: Liste
     mail_to: E-Mail an
     name: Name
+    newer: Beginn
     note: Notiz
     notes: Notizen
+    older: Ende
     org_unit: Organisationseinheit
     org_unit_id: Organisationseinheit
     owner: Owner
@@ -159,6 +162,7 @@ de:
     time_accounting_id: Aktivität
     time_accountings: Aktivitäten
     time_accounting_ids: Aktivitäten
+    timeframe: Zeitraum
     to_start: Start bis
     to_deadline: Deadline bis
     to_resubmission: Wiedervorlage bis

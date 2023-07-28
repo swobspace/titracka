@@ -8,7 +8,7 @@
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
             t('controller.time_accountings')),
           main_app.time_accountings_path, class: "dropdown-item" %>
-      <% if can? :create, List %>
+      <% if can? :create, TimeAccounting %>
         <%= link_to raw('<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
                         t('titracka.new_time_accounting')),
               main_app.new_time_accounting_path,
@@ -16,6 +16,10 @@
                 data: { 'turbo-frame': "modal" }
               %>
       <% end %>
+      <%=link_to raw('<span class="fas fa-fw fa-search" aria-hidden="true"></span> ' +
+                      t('titracka.search')),
+            main_app.search_form_time_accountings_path, class: 'dropdown-item' %>
+
 
     </div>
   </li>

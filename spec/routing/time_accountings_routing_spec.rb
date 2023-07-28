@@ -22,6 +22,17 @@ RSpec.describe TimeAccountingsController, type: :routing do
       expect(get: "/time_accountings/1/edit").to route_to("time_accountings#edit", id: "1")
     end
 
+    it "routes to #search_form" do
+      expect(:get => "/time_accountings/search_form").to route_to("time_accountings#search_form")
+    end
+
+    it "routes to #search" do
+      expect(:get => "/time_accountings/search").to route_to("time_accountings#search")
+    end
+
+    it "routes to #search" do
+      expect(:post => "/time_accountings/search").to route_to("time_accountings#search")
+    end
 
     it "routes to #create" do
       expect(post: "/time_accountings").to route_to("time_accountings#create")

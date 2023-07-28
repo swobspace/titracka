@@ -8,6 +8,8 @@ class TimeAccountingQuery
   # possible search options:
   # * :user_id - integer
   # * :user - name
+  # * :description - string
+  # * :task - string
   # * :date - datestring (2020-02-03)
   # * :newer - date >= :newer(date)
   # * :older - date <= :older(date)

@@ -12,7 +12,13 @@ Rails.application.routes.draw do
     resources :time_accountings, module: :workdays
   end
   post "time_accountings", to: "time_accountings#index", constraints: lambda {|req| req.format == :json}
-  resources :time_accountings
+  resources :time_accountings do
+    collection do
+      get :search
+      post :search
+      get :search_form
+    end
+  end
   resources :lists do
     resources :tasks, module: :lists
   end
