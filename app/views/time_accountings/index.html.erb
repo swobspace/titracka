@@ -1,22 +1,48 @@
-<% content_for :head do %>
-  <meta name="turbo-cache-control" content="no-cache">
-<% end %>
+<%= render 'shared/turbo-cache-control' %>
 
 <h1><%= t('controller.time_accountings') %></h1>
 
 <div id='ts_time_accountings'>
-  <%= render TimeAccountings::IndexComponent.new(user: @current_user) %>
-</div>
+  <div data-controller="datatables"
+       data-datatables-url-value="<%= polymorphic_path([@time_accountable, :time_accountings], format: :json) %>">
+    <%= content_tag :table, role: :datatable,
+          id: "time_accountings_table",
+          class: "table table-bordered table-responsive-xl",
+          data: {
+            order: [[0, 'desc']].to_json
+          } do %>
+      <thead>
+        <tr>
+          <th><%= t('attributes.date') %></th>
+          <th class="notvisible"><%= t('attributes.duration') %></th>
+          <th><%= t('attributes.formatted_duration') %></th>
+          <th><%= t('attributes.task') %></th>
+          <th><%= t('attributes.description') %></th>
+          <th class="notvisible"><%= t('attributes.user') %></th>
+          <th class="nosort"><%= t('titracka.action') %></th>
+        </tr>
+      </thead>
+      <tfoot class="search">
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </tfoot>
+      <tbody>
+      </tbody>
+    <% end %>
+  </div>
+  </div>
 
-<br />
+  <br />
 
-<%= back_link %>
-<%= new_link TimeAccounting, 
-                data: {
-                  controller: :modal,
-                  'modal-modal-id-value': 'sharedModal',
-                  action: 'click->modal#open',
-                  'turbo-frame': "modal-body"
-               }
+  <%= back_link %>
+  <%= new_link TimeAccounting, 
+                  data: { 'turbo-frame': "modal" }
 
- %>
+   %>

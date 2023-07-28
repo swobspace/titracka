@@ -9,3 +9,5 @@ states:
     state: done
   - name: archiviert
     state: archive
+  - name: zurückgestellt
+    state: deferred

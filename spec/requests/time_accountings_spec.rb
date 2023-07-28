@@ -34,6 +34,30 @@ RSpec.describe "/time_accountings", type: :request do
     end
   end
 
+  describe "GET /search_form" do
+    it "renders a successful response" do
+      time_accounting = TimeAccounting.create! valid_attributes
+      get search_form_time_accountings_url(time_accounting)
+      expect(response).to be_successful
+    end
+  end
+
+  describe "GET /search" do
+    let(:search_params) do
+      {
+        newer: 1.year.before(Date.current).to_s,
+        older: Date.current.to_s,
+        description: "some text",
+        task: "some task subject"
+      }
+    end
+    it "renders a successful response" do
+      TimeAccounting.create! valid_attributes
+      get search_time_accountings_url(search_params)
+      expect(response).to be_successful
+    end
+  end
+
   describe "GET /new" do
     it "renders a successful response" do
       get new_time_accounting_url

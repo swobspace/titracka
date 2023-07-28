@@ -1,6 +1,4 @@
-<% content_for :head do %>
-  <meta name="turbo-cache-control" content="no-cache">
-<% end %>
+<%= render 'shared/turbo-cache-control' %>
 
 <h1><%= t('controller.org_units') %></h1>
 
@@ -15,11 +13,15 @@
       <tr>
         <th><%= t('attributes.name') %></th>
         <th><%= t('attributes.parent') %></th>
+        <th><%= t('attributes.description') %></th>
+        <th class="text-center"><%= t('attributes.valid_until') %></th>
         <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
+        <th></th>
+        <th></th>
         <th></th>
         <th></th>
         <th class="nosearch"></th>
@@ -30,6 +32,8 @@
         <%= content_tag(:tr, id: dom_id(org_unit)) do %>
           <td><%= org_unit.name %></td>
           <td><%= org_unit.parent %></td>
+          <td><%= truncate(strip_tags(org_unit.description.to_s), length: 300)%></td>
+          <td class="text-center"><%= org_unit.valid_until %></td>
           <td class="text-nowrap">
             <%= show_link org_unit %>
             <%= edit_link org_unit %>

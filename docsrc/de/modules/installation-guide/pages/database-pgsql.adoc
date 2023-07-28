@@ -1,0 +1,37 @@
+= PostgreSQL Setup
+:imagesdir: ../images
+
+== Useranlage
+
+.Bash, user postgres
+----
+createuser -D -E -S -R -W titracka
+----
+
+NOTE: Wenn der User in der Testumgebung benutzt wird, benötigt dieser
+das Recht, Datenbanken anzulegen (`-d` statt `-D`)
+
+.postgres> psql
+[source,sql]
+----
+ALTER USER titracka WITH PASSWORD '******';
+----
+
+== Datenbank anlegen
+
+.Bash, user postgres
+----
+createdb -O titracka titracka_development
+createdb -O titracka titracka_test
+createdb -O titracka titracka_production
+----
+
+== Zugriffsberechtigungen
+
+./var/lib/pgsql/data/pg_hba.conf
+----
+local   titracka_test      titracka                             trust
+local   all             all                               peer
+host    all             all       127.0.0.1/32            md5
+host    all             all       ::1/128                 md5
+----

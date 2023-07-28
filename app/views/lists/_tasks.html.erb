@@ -1,6 +1,4 @@
-<% content_for :head do %>
-  <meta name="turbo-cache-control" content="no-cache">
-<% end %>
+<%= render 'shared/turbo-cache-control' %>
 
 <div data-controller="datatables" class="mb-3">
   <%= content_tag :table, role: :datatable,

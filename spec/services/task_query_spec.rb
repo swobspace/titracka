@@ -26,8 +26,11 @@ RSpec.shared_examples "a task query" do
 end
 
 RSpec.describe TaskQuery do
+  fixtures :tasks
   include_context "task variables"
-  let(:tasks) { Task.joins(:state).all }
+  let(:task1) { tasks(:task1) }
+  let(:task2) { tasks(:task2) }
+  let(:mytasks) { Task.joins(:state).all }
 
   # check for class methods
   it { expect(TaskQuery.respond_to? :new).to be_truthy}
@@ -40,14 +43,14 @@ RSpec.describe TaskQuery do
 
  # check for instance methods
   describe "instance methods" do
-    subject { TaskQuery.new(tasks) }
+    subject { TaskQuery.new(mytasks) }
     it { expect(subject.respond_to? :all).to be_truthy}
     it { expect(subject.respond_to? :find_each).to be_truthy}
     it { expect(subject.respond_to? :include?).to be_truthy }
   end
 
  context "with unknown option :fasel" do
-    subject { TaskQuery.new(tasks, {fasel: 'blubb'}) }
+    subject { TaskQuery.new(mytasks, {fasel: 'blubb'}) }
     describe "#all" do
       it "raises a argument error" do
         expect { subject.all }.to raise_error(ArgumentError)
@@ -56,7 +59,7 @@ RSpec.describe TaskQuery do
   end
 
   context "with :id" do
-    subject { TaskQuery.new(tasks, {id: to1.to_param}) }
+    subject { TaskQuery.new(mytasks, {id: to1.to_param}) }
     before(:each) do
       @matching = [to1]
       @nonmatching = [t1, t2, to2, tl1, tl2, done1, archiv2]
@@ -65,7 +68,7 @@ RSpec.describe TaskQuery do
   end # :private yes
 
   context "with :private yes" do
-    subject { TaskQuery.new(tasks, {private: 'yes'}) }
+    subject { TaskQuery.new(mytasks, {private: 'yes'}) }
     before(:each) do
       @matching = [t2]
       @nonmatching = [t1, to1, to2, tl1, tl2, done1, archiv2]
@@ -74,16 +77,16 @@ RSpec.describe TaskQuery do
   end # :private yes
 
   context "with :state offen" do
-    subject { TaskQuery.new(tasks, {state: 'offen'}) }
+    subject { TaskQuery.new(mytasks, {state: 'offen'}) }
     before(:each) do
-      @matching = [t1, t2, to1, to2, tl1 ]
+      @matching = [task1, task2, t1, t2, to1, to2, tl1 ]
       @nonmatching = [tl2, done1, archiv2]
     end
     it_behaves_like "a task query"
   end # :state offen
 
   context "with :state_id pending" do
-    subject { TaskQuery.new(tasks, {state_id: pending.id}) }
+    subject { TaskQuery.new(mytasks, {state_id: pending.id}) }
     before(:each) do
       @matching = [tl2 ]
       @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
@@ -92,7 +95,7 @@ RSpec.describe TaskQuery do
   end # :state_id pending
 
   context "with :state_ids pending, done, archive" do
-    subject { TaskQuery.new(tasks, {state_ids: State.where(state: ['pending', 'done', 'archive']).ids })}
+    subject { TaskQuery.new(mytasks, {state_ids: State.where(state: ['pending', 'done', 'archive']).ids })}
     before(:each) do
       @matching = [tl2, done1, archiv2 ]
       @nonmatching = [t1, t2, to1, to2, tl1]
@@ -101,7 +104,7 @@ RSpec.describe TaskQuery do
   end # :state_id pending
 
   context "with :status warten" do
-    subject { TaskQuery.new(tasks, {status: 'warten'}) }
+    subject { TaskQuery.new(mytasks, {status: 'warten'}) }
     before(:each) do
       @matching = [tl2 ]
       @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
@@ -110,7 +113,7 @@ RSpec.describe TaskQuery do
   end # :status wartend
 
   context "with :priority hoch" do
-    subject { TaskQuery.new(tasks, {priority: 'hoch'}) }
+    subject { TaskQuery.new(mytasks, {priority: 'hoch'}) }
     before(:each) do
       @matching = [ tl1, tl2 ]
       @nonmatching = [t1, t2, to1, to2, done1, archiv2]
@@ -119,7 +122,7 @@ RSpec.describe TaskQuery do
   end # :priority hoch
 
   context "with :priority_ids high, critical" do
-    subject { TaskQuery.new(tasks, {priority_ids: ['high', 'critical']}) }
+    subject { TaskQuery.new(mytasks, {priority_ids: ['high', 'critical']}) }
     before(:each) do
       @matching = [ tl1, tl2 ]
       @nonmatching = [t1, t2, to1, to2, done1, archiv2]
@@ -128,7 +131,7 @@ RSpec.describe TaskQuery do
   end # :priority_ids high, critical
 
   context "with :org_unit_id" do
-    subject { TaskQuery.new(tasks, {org_unit_id: ou1.id}) }
+    subject { TaskQuery.new(mytasks, {org_unit_id: ou1.id}) }
     before(:each) do
       @matching = [to1, tl1]
       @nonmatching = [t1, t2, to2, tl2, done1, archiv2]
@@ -137,7 +140,7 @@ RSpec.describe TaskQuery do
   end # :org_unit_id ou1.id
 
   context "with :org_unit_id, without_lists" do
-    subject { TaskQuery.new(tasks, {org_unit_id: ou1.id, without_lists: true}) }
+    subject { TaskQuery.new(mytasks, {org_unit_id: ou1.id, without_lists: true}) }
     before(:each) do
       @matching = [to1]
       @nonmatching = [t1, t2, to2, tl1, tl2, done1, archiv2]
@@ -146,7 +149,7 @@ RSpec.describe TaskQuery do
   end # :org_unit_id ou1.id
 
   context "with :subtree and org_unit_id" do
-    subject { TaskQuery.new(tasks, {org_unit_id: ou1.id, subtree: true}) }
+    subject { TaskQuery.new(mytasks, {org_unit_id: ou1.id, subtree: true}) }
     before(:each) do
       @matching = [to1, tl1, done1, archiv2]
       @nonmatching = [t1, t2, to2, tl2]
@@ -155,7 +158,7 @@ RSpec.describe TaskQuery do
   end # :org_unit_id ou1.id and subtree
 
   context "with :list_id" do
-    subject { TaskQuery.new(tasks, {list_id: list2.id}) }
+    subject { TaskQuery.new(mytasks, {list_id: list2.id}) }
     before(:each) do
       @matching = [tl2]
       @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
@@ -165,7 +168,7 @@ RSpec.describe TaskQuery do
 
 
   context "with :responsible_id" do
-    subject { TaskQuery.new(tasks, {responsible_id: mcaro.id}) }
+    subject { TaskQuery.new(mytasks, {responsible_id: mcaro.id}) }
     before(:each) do
       @matching = [t2, archiv2]
       @nonmatching = [t1, to1, to2, tl1, tl2, done1]
@@ -174,34 +177,34 @@ RSpec.describe TaskQuery do
   end # :responsible_id mcaro.id
 
   context "with :user_id" do
-    subject { TaskQuery.new(tasks, {user_id: mmax.id}) }
+    subject { TaskQuery.new(mytasks, {user_id: mmax.id}) }
     before(:each) do
-      @matching = [t1, to1]
-      @nonmatching = [t2, to2, tl1, tl2, done1, archiv2]
+      @matching = [task1, t1, to1]
+      @nonmatching = [task2, t2, to2, tl1, tl2, done1, archiv2]
     end
     it_behaves_like "a task query"
   end # :user_id mmax.id
 
   context "with :whoever_id" do
-    subject { TaskQuery.new(tasks, {whoever_id: mmax.id}) }
+    subject { TaskQuery.new(mytasks, {whoever_id: mmax.id}) }
     before(:each) do
-      @matching = [t1, to1, done1]
-      @nonmatching = [t2, to2, tl1, tl2, archiv2]
+      @matching = [task1, t1, to1, done1]
+      @nonmatching = [task2, t2, to2, tl1, tl2, archiv2]
     end
     it_behaves_like "a task query"
   end # :whoever_id mmax.id
 
   context "with :user" do
-    subject { TaskQuery.new(tasks, {user: 'caro'}) }
+    subject { TaskQuery.new(mytasks, {user: 'caro'}) }
     before(:each) do
-      @matching = [t2, to2]
-      @nonmatching = [t1, to1, tl1, tl2, done1, archiv2]
+      @matching = [t2, to2, task2]
+      @nonmatching = [t1, to1, tl1, tl2, done1, archiv2, task1]
     end
     it_behaves_like "a task query"
   end # :user 'caro'
 
   context "with :responsible" do
-    subject { TaskQuery.new(tasks, {responsible: 'max'}) }
+    subject { TaskQuery.new(mytasks, {responsible: 'max'}) }
     before(:each) do
       @matching = [t1, done1] 
       @nonmatching = [t2, to1, to2, tl1, tl2, archiv2]
@@ -211,7 +214,7 @@ RSpec.describe TaskQuery do
 
 
   context "with :start 2020-02" do
-    subject { TaskQuery.new(tasks, {start: "2020-02"}) }
+    subject { TaskQuery.new(mytasks, {start: "2020-02"}) }
     before(:each) do
       @matching = [tl1]
       @nonmatching = [t1, t2, to1, to2, tl2, done1, archiv2]
@@ -220,7 +223,7 @@ RSpec.describe TaskQuery do
   end # :start 2020-02
 
   context "with :resubmission 2020-07" do
-    subject { TaskQuery.new(tasks, {resubmission: "2020-07"}) }
+    subject { TaskQuery.new(mytasks, {resubmission: "2020-07"}) }
     before(:each) do
       @matching = [t1]
       @nonmatching = [t2, to1, to2, tl1, tl2, done1, archiv2]
@@ -229,7 +232,7 @@ RSpec.describe TaskQuery do
   end # :resubmission 2020-07
 
   context "with :deadline 2020-12" do
-    subject { TaskQuery.new(tasks, {deadline: "2020-12"}) }
+    subject { TaskQuery.new(mytasks, {deadline: "2020-12"}) }
     before(:each) do
       @matching = [tl2]
       @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
@@ -238,7 +241,7 @@ RSpec.describe TaskQuery do
   end # :deadline 2020-12
 
   context "with :from_deadline 2020-08-01" do
-    subject { TaskQuery.new(tasks, {from_deadline: "2020-08-01"}) }
+    subject { TaskQuery.new(mytasks, {from_deadline: "2020-08-01"}) }
     before(:each) do
       @matching = [t1, tl2]
       @nonmatching = [t2, to1, to2, tl1, done1, archiv2]
@@ -247,7 +250,7 @@ RSpec.describe TaskQuery do
   end # :from_deadline 2020-08-01
 
   context "with :to_start 2020-08-01" do
-    subject { TaskQuery.new(tasks, {to_start: "2020-08-01"}) }
+    subject { TaskQuery.new(mytasks, {to_start: "2020-08-01"}) }
     before(:each) do
       @matching = [tl1, tl2]
       @nonmatching = [t1, t2, to1, to2, done1, archiv2]
@@ -257,7 +260,7 @@ RSpec.describe TaskQuery do
 
 
   context "with :subject mm" do
-    subject { TaskQuery.new(tasks, {subject: 'mm'}) }
+    subject { TaskQuery.new(mytasks, {subject: 'mm'}) }
     before(:each) do
       @matching = [to1, tl1]
       @nonmatching = [t1, t2, to2, tl2, done1, archiv2]
@@ -266,7 +269,7 @@ RSpec.describe TaskQuery do
   end # :subject mm
 
   context "with :cross_reference" do
-    subject { TaskQuery.new(tasks, {cross_reference: 4711}) }
+    subject { TaskQuery.new(mytasks, {cross_reference: 4711}) }
     before(:each) do
       @matching = [tl2]
       @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
@@ -275,7 +278,7 @@ RSpec.describe TaskQuery do
   end # :cross_reference
 
   context "with :has_references true" do
-    subject { TaskQuery.new(tasks, {has_references: true}) }
+    subject { TaskQuery.new(mytasks, {has_references: true}) }
     before(:each) do
       @matching = [tl2]
       @nonmatching = [t1, t2, to1, to2, tl1, done1, archiv2]
@@ -286,12 +289,12 @@ RSpec.describe TaskQuery do
   describe "#all" do
     context "using :search'" do
       it "searches for max" do
-        search = TaskQuery.new(tasks, {search: 'max'})
-        expect(search.all).to contain_exactly(t1, to1, done1)
+        search = TaskQuery.new(mytasks, {search: 'max'})
+        expect(search.all).to contain_exactly(t1, to1, done1, task1)
       end
 
       it "searches for status" do
-        search = TaskQuery.new(tasks, {search: 'warten'})
+        search = TaskQuery.new(mytasks, {search: 'warten'})
         expect(search.all).to contain_exactly(tl2)
       end
    

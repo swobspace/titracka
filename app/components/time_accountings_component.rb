@@ -12,7 +12,7 @@ class TimeAccountingsComponent < ViewComponent::Base
     elsif @time_accountable.kind_of? Workday
       Workday::TimeAccountingsComponent.new(workday: @time_accountable, user: @user).render_in(view_context)
     else
-      TimeAccountings::IndexComponent.new(user: @user).render_in(view_context)
+      TimeAccountings::IndexComponent.new(time_accountable: @user).render_in(view_context)
     end
   end
 

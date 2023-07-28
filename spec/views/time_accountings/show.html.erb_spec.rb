@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "time_accountings/show", type: :view do
+  fixtures 'wobauth/users'
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -9,7 +10,7 @@ RSpec.describe "time_accountings/show", type: :view do
     allow(controller).to receive(:action_name) { "show" }
 
     task = FactoryBot.create(:task, :open, subject: "A special task")
-    user = FactoryBot.create(:user, sn: "Mustermann", givenname: "Max", username: "mmax")
+    user = wobauth_users(:mmax)
 
     @time_accounting = assign(:time_accounting, TimeAccounting.create!(
       date: '2020-02-23',
@@ -24,7 +25,7 @@ RSpec.describe "time_accountings/show", type: :view do
     render
     expect(rendered).to match(/2020-02-23/)
     expect(rendered).to match(/A special task/)
-    expect(rendered).to match(/Mustermann, Max \(mmax\)/)
+    expect(rendered).to match(/Mustermann, Dr. Max \(mmax\)/)
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(/23/)
   end

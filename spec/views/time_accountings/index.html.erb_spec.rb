@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "time_accountings/index", type: :view do
+  fixtures 'wobauth/users'
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -9,7 +10,7 @@ RSpec.describe "time_accountings/index", type: :view do
     allow(controller).to receive(:action_name) { "index" }
 
     task = FactoryBot.create(:task, :open, subject: "A special task")
-    user = FactoryBot.create(:user, sn: "Mustermann", givenname: "Max", username: "mmax")
+    user = wobauth_users(:mmax)
     @current_user = user
 
     assign(:time_accountings, [
@@ -31,6 +32,7 @@ RSpec.describe "time_accountings/index", type: :view do
   end
 
   it "renders a list of time_accountings" do
+    skip "not usable for datatables remote"
     render
     assert_select "tr>td", text: "2020-02-27".to_s, count: 2
     assert_select "tr>td", text: "Mustermann, Max (mmax)".to_s, count: 2

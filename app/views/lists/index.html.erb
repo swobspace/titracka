@@ -1,6 +1,4 @@
-<% content_for :head do %>
-  <meta name="turbo-cache-control" content="no-cache">
-<% end %>
+<%= render 'shared/turbo-cache-control' %>
 
 <h1><%= t('controller.lists') %></h1>
 
@@ -15,11 +13,17 @@
       <tr>
             <th><%= t('attributes.org_unit') %></th>
             <th><%= t('attributes.name') %></th>
+            <th><%= t('attributes.description') %></th>
+            <th><%= t('attributes.user') %></th>
+            <th class="text-center"><%= t('attributes.valid_until') %></th>
             <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
+            <th></th>
+            <th></th>
+            <th></th>
             <th></th>
             <th></th>
             <th class="nosearch"></th>
@@ -30,6 +34,9 @@
         <%= content_tag(:tr, id: dom_id(list), class: dom_class(list)) do %>
                 <td><%= list.org_unit %></td>
                 <td><%= list.name %></td>
+                <td><%= truncate(strip_tags(list.description.to_s), length: 300)%></td>
+                <td><%= list.user.to_s %></td>
+                <td class="text-center"><%= list.valid_until %></td>
                 <td class="text-nowrap">
             <%= show_link list %>
             <%= edit_link list %>

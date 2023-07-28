@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     session[:tasks_filter] = search_params
     session[:new_task_params] = search_params.slice(:list_id, :org_unit_id)
 
-    @elements = arrange_with_lists(OrgUnit.accessible_by(current_ability).arrange)
+    @elements = arrange_with_lists(OrgUnit.active.accessible_by(current_ability).arrange)
   end
 
   private
@@ -22,7 +22,7 @@ class HomeController < ApplicationController
       end
       # add lists without assigned org_unit
       listhash = {}
-      List.accessible_by(current_ability).where(org_unit_id: nil).each do |list|
+      List.active.accessible_by(current_ability).where(org_unit_id: nil).each do |list|
         listhash.tap do |h|
           h[list.decorate] = {}
         end
@@ -32,8 +32,8 @@ class HomeController < ApplicationController
 
     def set_associations
       @users ||= Wobauth::User.active.order("sn, givenname")
-      @org_units ||= OrgUnit.accessible_by(current_ability, :work_on)
-      @lists ||= List.accessible_by(current_ability, :read).order(:name)
+      @org_units ||= OrgUnit.active.accessible_by(current_ability, :work_on)
+      @lists ||= List.active.accessible_by(current_ability, :read).order(:name)
     end
 
     def set_cards
@@ -56,7 +56,7 @@ class HomeController < ApplicationController
         @tasks = Task.accessible_by(current_ability)
                                 .where(org_unit_id: nil, list_id: nil)
       end
-      @columns = State.not_archived
+      @columns = State.visible
       @filter ||= @search_params.slice("org_unit_id", "list_id", "private")
       @url = request.url
     end

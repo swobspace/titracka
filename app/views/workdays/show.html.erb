@@ -7,8 +7,8 @@
           <h3 class="title">
             <%= t('date.day_names')[@workday.date.wday] %>, <%= @workday.date.to_s %>
           </h3>
-          <div class="text-muted"><%= @workday.day_type&.to_str %></div>
-          <div class="text-muted"><%= @workday.comment %></div>
+          <div class="text-body-secondary"><%= @workday.day_type&.to_str %></div>
+          <div class="text-body-secondary"><%= @workday.comment %></div>
         </div>
 
         <div role="toolbar">
@@ -22,29 +22,24 @@
         </div>
       </div>
 
-      <div class="card-body">
+      <div class="card-bdy">
         <div id='ts_time_accountings'>
           <%= render Workday::TimeAccountingsComponent.new(workday: @workday, user: @current_user) %>
         </div>
-
-        <br />
-
-        <%= back_link %>
-        <%= new_link [@workday, TimeAccounting],
-                data: {
-                  controller: :modal,
-                  'modal-modal-id-value': 'sharedModal',
-                  action: 'click->modal#open',
-                  'turbo-frame': "modal-body"
-                }
-         %>
-
-        <%= link_to raw(%Q[<i class="fas fa-backward"></i>]),
-              by_date_path(date: 1.day.before(@workday.date).to_s), class: "ml-3 btn btn-secondary" %>
-        <%= link_to t('titracka.today'), by_date_path(date: Date.today.to_s), class: "btn btn-secondary" %>
-        <%= link_to raw(%Q[<i class="fas fa-forward"></i>]),
-              by_date_path(date: 1.day.after(@workday.date).to_s), class: "btn btn-secondary" %>
       </div>
+    </div>
+
+    <div class="mt-3">
+      <%= back_link %>
+      <%= new_link [@workday, TimeAccounting],
+              data: { 'turbo-frame': "modal" }
+       %>
+
+      <%= link_to raw(%Q[<i class="fas fa-backward"></i>]),
+            by_date_path(date: 1.day.before(@workday.date).to_s), class: "ml-3 btn btn-secondary" %>
+      <%= link_to t('titracka.today'), by_date_path(date: Date.today.to_s), class: "btn btn-secondary" %>
+      <%= link_to raw(%Q[<i class="fas fa-forward"></i>]),
+            by_date_path(date: 1.day.after(@workday.date).to_s), class: "btn btn-secondary" %>
     </div>
   </div>
   <div class="col-sm-3">

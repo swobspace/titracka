@@ -109,10 +109,10 @@ RSpec.describe TaskDecorator do
       date: "2021-01-04"
     )}
 
-    it { expect(decorated.statistics).to eq([2020, 11] => 56, [2021, 1] => 64)}
+    it { expect(decorated.statistics).to eq(["2020", "11"] => 56, ["2021", "01"] => 64)}
 
-    it { expect(decorated.statistics(user: owner)).to eq([2020, 11] => 40, [2021, 1] => 64)}
-    it { expect(decorated.statistics(resolution: 'year')).to eq(2020 => 56, 2021 => 64)}
+    it { expect(decorated.statistics(user: owner)).to eq(["2020", "11"] => 40, ["2021", "01"] => 64)}
+    it { expect(decorated.statistics(resolution: 'year')).to eq("2020" => 56, "2021" => 64)}
   end
 
 end

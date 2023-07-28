@@ -5,10 +5,27 @@
       <span class="subtitle"><%= @list.org_unit %></span>
 
       <div role="toolbar">
+        <%= link_to raw(%Q[<i class="fas fa-th-list"></i>]), 
+                    list_tasks_path(@list, view: 'list'),
+                    class: 'btn btn-secondary'
+         %>
         <%= back_link %>
         <%= edit_link(@list) %>
         <%= delete_link(@list) %>
       </div>
+    </div>
+    <div class="text-body-secondary">
+      <%= @list.description %>
+    </div>
+    <div class="d-flex w-100 justify-content-between">
+      <div class="text-body-secondary">
+        <%= @list.user.to_s %>
+      </div>
+      <% if @list.valid_until.present? %>
+        <div class="text-body-secondary">
+          <%= "Gültig bis: #{@list.valid_until}" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

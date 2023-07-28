@@ -15,23 +15,17 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
       click_link("Aktivitäten")
       find('a.dropdown-item[href="/time_accountings"]').click()
       click_link("Aktivität erstellen")
-      within "#modal-body" do
+      within "#modal" do
         within "div.time_accounting_task" do
           select "Mustermann GmbH / MM task", from: "time_accounting_task_id"
         end
         fill_in "Beschreibung", with: "finishing test phrase"
         fill_in "Dauer (HH:MM)", with: "1:30"
-        # save_and_open_screenshot()
         click_button "Aktivität erstellen"
       end
       expect(page).to have_content("MM task")
       expect(page).to have_content("finishing test phrase")
-      # hidden
-      # expect(page).to have_content("Mustermann, Carola (mcaro)")
       expect(page).to have_content("01:30")
-      # hidden
-      # expect(page).to have_content("90")
-      # save_and_open_screenshot()
     end
   end
 
@@ -45,7 +39,7 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
     it "create a new time accounting via menu" do
       find("a#navbarTimeAccountingsDropdown").click()
       find('a.dropdown-item[href="/time_accountings/new"]').click()
-      within "#modal-body" do
+      within "#modal" do
         within "div.time_accounting_task" do
           select "Mustermann GmbH / MM task", from: "time_accounting_task_id"
         end
@@ -71,19 +65,20 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit time_accountings_path
-      execute_script("$.support.transition = false")
+      # execute_script("$.support.transition = false")
+      expect(page).to have_content("Aktivitäten")
     end
 
     it "delete a time_accounting" do
-      expect(page).to have_content "Showing 1 to 1 of 1 entries"
-      expect(TimeAccounting.count).to eq(1)
+      expect(page).to have_content "Showing 1 to 3 of 3 entries"
+      expect(TimeAccounting.count).to eq(6)
       within "tr#time_accounting_#{ta.id}" do
         accept_confirm do
           find('a[title="Aktivität löschen"]').click
         end
       end
-      expect(page).to have_content "Showing 0 to 0 of 0 entries"
-      expect(TimeAccounting.count).to eq(0)
+      expect(page).to have_content "Showing 1 to 2 of 2 entries"
+      expect(TimeAccounting.count).to eq(5)
       # save_and_open_screenshot()
     end
 
@@ -91,7 +86,7 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
       within "tr#time_accounting_#{ta.id}" do
         find('a[title="Aktivität bearbeiten"]').click
       end
-      within "#modal-body" do
+      within "#modal" do
         fill_in "Beschreibung", with: "starting next phrase"
         fill_in "Dauer (HH:MM)", with: "1:20"
       end
@@ -110,8 +105,8 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
       expect(page).to have_content("Caros task")
       expect(page).to have_content("preset time accounting for mcaro")
       expect(page).to have_content("1:06")
-      expect(page).to have_content("Mustermann, Carola (mcaro)")
       # save_and_open_screenshot()
+      expect(page).to have_content("Mustermann, Carola (mcaro)")
     end
   end
 end

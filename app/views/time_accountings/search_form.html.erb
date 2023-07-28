@@ -1,0 +1,60 @@
+<%= render 'shared/turbo-cache-control' %>
+
+<div class="container">
+  <%= form_tag(search_time_accountings_path, method: :get, role: "form",
+        class: 'form-horizontal card') do |f| %>
+
+    <div class="card-header">
+      <legend class="offset-sm-2 col-sm-10"><%= t('titracka.search_time_accountings') %></legend>
+    </div>
+    <div class="card-body">
+
+      <div class="mb-3 row subject">
+	<%= label_tag :description, t('attributes.description'), class: "col-sm-2 col-form-label" %>
+	<div class="col-sm-10">
+	  <%= text_field_tag :description, nil,  class: "form-control" %>
+	</div>
+      </div>
+
+      <div class="mb-3 row task">
+	<%= label_tag :task, t('attributes.task'), class: "col-sm-2 col-form-label" %>
+	<div class="col-sm-10">
+	  <%= text_field_tag :task, nil,  class: "form-control" %>
+	</div>
+      </div>
+
+      <div class="row mb-3 align-items-center">
+        <label for="timeframe" class="col-sm-2 col-form-label"><%=t('attributes.timeframe')%></label>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <div class="input-group-text">&geq;</div>
+            <input class="form-control" type="date" name="newer" id="newer" autocomplete="off" placeholder="<%= t('attributes.newer')%>">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <div class="input-group-text">&leq;</div>
+            <input class="form-control" type="date" name="older" id="older" autocomplete="off" placeholder="<%= t('attributes.older')%>">
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 row limit">
+	<%= label_tag :limit, t('attributes.limit'), class: "col-sm-2 col-form-label" %>
+	<div class="col-sm-3">
+	  <%= text_field_tag :limit, 100,  class: "form-control" %>
+	</div>
+      </div>
+
+      <hr />
+
+      <div class="mb-3 row">
+	<div class="col-sm-10 offset-sm-2">
+	  <%= submit_tag(t('titracka.search_time_accountings'),
+                class: 'btn btn-primary') %>
+	  <%= cancel_button %>
+	</div>
+      </div>
+    </div>
+  <% end %>
+</div>

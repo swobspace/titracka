@@ -1,3 +1,5 @@
+<%= render 'shared/turbo-cache-control' %>
+
 <div class="card">
   <div class="card-header">
     <div class="d-flex w-100 justify-content-between">
@@ -7,10 +9,7 @@
       </div>
       <div role="toolbar" class="pt-3">
         <%= edit_link(@task,
-             data: { controller: :modal,
-                     'modal-modal-id-value': 'sharedModal',
-                     action: 'click->modal#open',
-                     'turbo-frame': "modal-body" })
+             data: { 'turbo-frame': "modal" })
          %>
         <%= delete_link(@task) %>
       </div>
@@ -38,7 +37,7 @@
           <h5 class="card-title text-center"><%= @current_user.decorate.shortname %></h5>
             <% @task.decorate.statistics(user: @current_user).each do |time,sum| %>
               <tr>
-                <td class="text-center text-monospace"><%= sprintf("%4d-%02d", *time )%></td>
+                <td class="text-center text-monospace"><%= sprintf(time.join("-") )%></td>
                 <td class="text-center text-monospace"><%= hourmin(sum) %></td>
               </tr>
             <% end %>
@@ -61,20 +60,27 @@
   <div class="col-sm-12 col-lg-6">
     <div class="card mt-3">
       <div class="card-header">
-        <h5 class="card-title"><%= t('attributes.notes')%></h5>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="card-title"><%= t('attributes.notes')%></h5>
+          <div role="toolbar" class="pt-0">
+            <%= link_to raw(%Q[<i class="fas fa-table"></i>]),
+                  task_notes_path(@task),
+                  class: 'btn btn-outline-secondary btn-sm'
+             %>
+            <%= new_link [@task, Note],
+                    class: 'btn btn-outline-secondary btn-sm',
+                    data: { 'turbo-frame': "modal" }
+             %>
+          </div>
+        </div>
       </div>
       <div class="card-body">
         <ul class="list-group list-group-flush" id="ts_notes_list">
-          <%= render partial: 'notes/note', collection: @task.notes.order("created_at desc"), layout: 'shared/list_group_item_layout' %>
+          <%= render partial: 'notes/note', 
+              collection: @task.notes.order("created_at desc"), 
+              locals: { show_actions: true },
+              layout: 'shared/list_group_item_layout' %>
         </ul>
-        <%= new_link [@task, Note],
-                data: {
-                  controller: :modal,
-                  'modal-modal-id-value': 'sharedModal',
-                  action: 'click->modal#open',
-                  'turbo-frame': "modal-body"
-                }
-         %>
       </div>
     </div>
   </div>
@@ -84,14 +90,16 @@
       <div class="card-header">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="card-title mb-0"><%= t('attributes.time_accountings')%></h5>
-          <%= new_link [@task, TimeAccounting],
-                data: {
-                  controller: :modal,
-                  'modal-modal-id-value': 'sharedModal',
-                  action: 'click->modal#open',
-                  'turbo-frame': "modal-body"
-               }
-           %>
+          <div role="toolbar" class="pt-0">
+            <%= link_to raw(%Q[<i class="fas fa-table"></i>]),
+                  task_time_accountings_path(@task),
+                  class: 'btn btn-outline-secondary btn-sm'
+             %>
+            <%= new_link [@task, TimeAccounting],
+                  class: 'btn btn-outline-secondary btn-sm',
+                  data: { 'turbo-frame': "modal" }
+             %>
+          </div>
         </div>
       </div>
       <div class="card-body">

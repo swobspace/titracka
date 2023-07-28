@@ -15,12 +15,12 @@ RSpec.describe "Tasks", type: :feature, js: true do
       click_link("Aufgaben")
       find('a.dropdown-item[href="/tasks"]').click()
       click_link("Aufgabe erstellen")
-      within "#modal-body" do
+      within "#modal" do
         fill_in "Aufgabe", with: "Preparations for Anniversary"
         click_button("Aufgabe erstellen")
       end
       expect(page).to have_content "Preparations for Anniversary"
-      expect(page).to have_content "Showing 1 to 7 of 7 entries"
+      expect(page).to have_content "Showing 1 to 8 of 8 entries"
       # save_and_open_screenshot()
     end
   end
@@ -35,32 +35,32 @@ RSpec.describe "Tasks", type: :feature, js: true do
     it "create a new task via menu" do
       find("a#navbarTasksDropdown").click()
       find('a.dropdown-item[href="/tasks/new"]').click()
-      within "#modal-body" do
+      within "#modal" do
         fill_in "Aufgabe", with: "Preparations for Anniversary"
         click_button("Aufgabe erstellen")
       end
       expect(page).to have_content "Preparations for Anniversary"
-      expect(page).to have_content "Showing 1 to 7 of 7 entries"
+      expect(page).to have_content "Showing 1 to 8 of 8 entries"
       # save_and_open_screenshot()
     end
 
     it "delete an existing task" do
       expect(page).to have_content "Showing 1 to 6 of 6 entries"
-      expect(Task.count).to eq(8)
+      expect(Task.count).to eq(10)
       within "tr#task_#{to1.id}" do
         accept_confirm do
           find('a[title="Aufgabe löschen"]').click
         end
       end
       sleep 1
-      expect(Task.count).to eq(7)
+      expect(Task.count).to eq(9)
     end
 
     it "edit an existing task" do
       within "tr#task_#{to1.id}" do
         find('a[title="Aufgabe bearbeiten"]').click
       end
-      within "#modal-body" do
+      within "#modal" do
         find("trix-editor#task_description").set("a description for to1 task")
       end
       click_button("Aufgabe aktualisieren")

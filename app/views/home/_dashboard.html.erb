@@ -1,21 +1,23 @@
-<% content_for :head do %>
-  <meta name="turbo-cache-control" content="no-cache">
-<% end %>
+<%= render 'shared/turbo-cache-control' %>
 
 <div class="row">
    <div class="col-auto">
-     <div class="card" data-controller="dashboard">
+     <div class="card">
       <div class="card-header">
         <%= t('controller.org_units') %> /
         <%= t('controller.lists') %>
       </div>
       <div class="card-body py-0">
-        <nav class="d-sm-block ps-0 py-3 sidebar" id="org_unit_tree" data-dashboard-target="tree">
+        <nav class="d-sm-block ps-0 py-3 sidebar" 
+             id="org_unit_tree" 
+             data-controller="dashboard"
+        >
           <%= arranged_tree_as_list( @elements, sort_by: [:position],
                 open_id: params[:clicked]) do |element| %>
-            <%= link_to " #{element.name} (#{element.tasks.not_archived.count})",
+            <%= link_to " #{element.name} (#{element.tasks.visible.count})",
                   root_path("#{element.model_name.to_s.underscore}_id" => element.id),
-                  data: { "action": "click->dashboard#open" },
+                  data: { "action": "click->dashboard#open",
+                          "url": polymorphic_path(element) },
                   id: dom_id(element),
                   class: (element.model_name.to_s.underscore +
                           if @element == element

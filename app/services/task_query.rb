@@ -72,7 +72,7 @@ private
       when :subtree, :without_lists
         # ignore key here
       when *string_fields
-        query = query.where("tasks.#{key} LIKE ?", "%#{value}%")
+        query = query.where("tasks.#{key} ILIKE ?", "%#{value}%")
       # 1:1 matching
       when *id_fields
        query = query.where(key.to_sym => value)
@@ -89,7 +89,7 @@ private
           query = query.where(list_id: nil)
         end
       when *date_fields
-        query = query.where("tasks.#{key} like ?", "%#{value}%")
+        query = query.where("to_char(tasks.#{key}, 'YYYY-MM-DD') ILIKE ?", "%#{value}%")
       when *(date_fields("from"))
         prefix, column = key.to_s.split(/_/)
         query = query.where("tasks.#{column} > ?", value)
@@ -101,7 +101,7 @@ private
       when :responsible
         query = query.where(responsible_id: user_ids(value)) if user_ids(value).present?
       when :status
-        query = query.where("states.name like ?",  "%#{value}%")
+        query = query.where("states.name ILIKE ?",  "%#{value}%")
       when :state
         query = query.where("states.state in (?)",
                             i18n_search(value, I18n.t('titracka.state')))
@@ -121,7 +121,7 @@ private
       when :cross_reference
         query = query.where(
                   id: relation.joins(:cross_references)
-                              .where("cross_references.identifier like ?", "%#{value}%")
+                              .where("cross_references.identifier ILIKE ?", "%#{value}%")
                               .pluck(:task_id).uniq)
       when :id
         query = query.where(id: value.to_i)
@@ -141,7 +141,7 @@ private
       end
     end
     if search_value
-      query = query.where(search_string.join(' or '), 
+      query = query.where(search_string.join(' OR '), 
                           search: "%#{search_value}%",
                           uids: user_ids(search_value),
                           states: i18n_search(search_value, I18n.t('titracka.state'))
@@ -175,7 +175,7 @@ private
   end
 
   def user_ids(value)
-    ids = Wobauth::User.where("sn like :val or givenname like :val or email like :val or displayname like :val", val: "%#{value}%").pluck(:id)
+    ids = Wobauth::User.where("sn ILIKE :val OR givenname ILIKE :val OR email ILIKE :val OR displayname ILIKE :val", val: "%#{value}%").pluck(:id)
     ids
   end
 

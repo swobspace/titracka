@@ -1,6 +1,8 @@
+<%= render 'shared/turbo-cache-control' %>
+
 <h1><%= t('controller.tasks') %></h1>
 
-<div id="ts_tasks">
+<div id="ts_tasks" class="pt-2">
   <%= render 'index', tasks: @tasks %>
 </div>
 
@@ -8,8 +10,5 @@
 
 <%= back_link %>
 <%= new_link([@taskable, Task],
-             data: { controller: :modal,
-                     'modal-modal-id-value': 'sharedModal',
-                     action: 'click->modal#open',
-                     'turbo-frame': "modal-body" })
+             data: { 'turbo-frame': "modal" })
 %>

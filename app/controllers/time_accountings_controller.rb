@@ -8,7 +8,22 @@ class TimeAccountingsController < ApplicationController
     session[:time_accountings_mode] = :index
     if @time_accountable
       @time_accountings = @time_accountable.time_accountings
+    else 
+      @time_accountings = @current_user.time_accountings
     end
+    respond_with(@time_accountings) do |format|
+      format.json { render json: TimeAccountingsDatatable.new(@time_accountings, view_context) }
+    end
+  end
+
+  def search_form
+  end
+
+  def search
+    @time_accountings = @current_user.time_accountings.joins(:task)
+    query = TimeAccountingQuery.new(@time_accountings, search_params)
+    @time_accountings = query.all
+    @filter_info = query.search_options
     respond_with(@time_accountings)
   end
 
@@ -63,7 +78,7 @@ class TimeAccountingsController < ApplicationController
   # DELETE /time_accountings/1
   def destroy
     respond_with(@time_accounting, location: location) do |format|
-      if @time_accounting.destroy && session[:time_accountings_mode] != :show
+      if @time_accounting.destroy && session[:mode] != 'time_accountings#show'
         format.turbo_stream 
       end
     end
@@ -96,4 +111,19 @@ class TimeAccountingsController < ApplicationController
     def accounting_date
       Date.today
     end
+
+   def search_params
+        # see TimeAccountingQuery for possible options
+        searchparms = params.permit(*submit_parms,
+          :user_id, :user, :date, :newer, :older, :duration, 
+          :description, :task,
+          :id, :limit,
+        ).to_hash 
+      {limit: 100}.merge(searchparms).reject{|k, v| (v.blank? || submit_parms.include?(k))}     
+    end
+  
+    def submit_parms
+      [ "utf8", "authenticity_token", "commit", "format" ]
+    end
+
 end

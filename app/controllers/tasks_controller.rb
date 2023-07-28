@@ -8,9 +8,9 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     if @taskable
-      @tasks = @taskable.tasks.accessible_by(current_ability, :read)
+      @tasks = @taskable.tasks.visible.accessible_by(current_ability, :read)
     else
-       @tasks = Task.accessible_by(current_ability, :read)
+       @tasks = Task.visible.accessible_by(current_ability, :read)
     end
     if search_params.present?
       @tasks = TaskQuery.new(@tasks.joins(:state), search_params).all
@@ -23,6 +23,9 @@ class TasksController < ApplicationController
     if params[:view] == 'cards'
       session[:tasks_mode] = :cards
       render template: 'tasks/cards'
+    elsif params[:view] == 'list'
+      session[:tasks_mode] = :list
+      render template: 'tasks/list'
     else
       session[:tasks_mode] = :index
       respond_with(@tasks)
@@ -31,7 +34,7 @@ class TasksController < ApplicationController
 
   def query
     if search_params.any?
-      @tasks = Task.accessible_by(current_ability, :read).not_archived
+      @tasks = Task.accessible_by(current_ability, :read).visible
       @tasks = TaskQuery.new(@tasks.joins(:state), search_params.merge(limit: 25)).all
     else
       @tasks = RecentTasksQuery.new(user_id: @current_user.id).tasks
@@ -171,7 +174,7 @@ class TasksController < ApplicationController
     end
 
     def set_columns
-      @columns = State.not_archived
+      @columns = State.visible
     end
 
     def set_tasks

@@ -5,9 +5,7 @@ module OrgUnitConcerns
   ARROW = [8594].pack('U*')
 
   included do
-    # scope :active,  -> { where('(valid_until >= :date or valid_until is NULL)', date: Date.today) }
-    # dummy for now
-    scope :active, -> { all }
+    scope :active,  -> { where('(valid_until >= :date or valid_until is NULL)', date: Date.today) }
 
     def self.arrange_as_array(options={}, hash=nil)
       hash ||= arrange(options)

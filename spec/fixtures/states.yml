@@ -1,0 +1,24 @@
+pre:
+  name: Themenspeicher
+  state: pre
+  position: 1
+open:
+  name: offen
+  state: open
+  position: 2
+atwork:
+  name: in Bearbeitung
+  state: open
+  position: 3
+pending:
+  name: Warten auf
+  state: pending
+  position: 4
+done:
+  name: erledigt
+  state: done
+  position: 5
+archive:
+  name: archiviert
+  state: archive
+  position: 6

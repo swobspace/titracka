@@ -7,6 +7,8 @@ class List < ApplicationRecord
 
   # -- configuration
   acts_as_list scope: [:org_unit_id]
+  has_rich_text :description
+
   # -- validations and callbacks
   validates :name, :user_id, presence: true
 

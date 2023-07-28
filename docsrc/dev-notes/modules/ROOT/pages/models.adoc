@@ -1,0 +1,196 @@
+= Models for Titracka
+:imagesdir: ../images
+
+== Overall Picture
+
+image::models.svg[]
+
+== Task
+
+[source,sh]
+----
+bin/rails g scaffold Task \
+  subject:string \
+  start:date:index \
+  deadline:date:index \
+  resubmission:date:index \
+  priority:string:index \
+  responsible:belongs_to \
+  user:belongs_to \
+  org_unit:belongs_to \
+  state:belongs_to \
+  list:belongs_to \
+  private:boolean \
+  --no-stylesheets --no-javascripts --no-helper
+----
+// bin/rails g migration AddUserToTask user:belongs_to
+
+
+[source,sh]
+----
+bin/rails action_text:install
+bin/rake db:migrate
+----
+
+.app/models/task.rb
+[source,sh]
+----
+class Task < ApplicationRecord
+  has_rich_text :description
+end
+----
+
+== State
+
+state = ( 'pre' | 'open' | 'done' | 'pending' | 'archive' )
+
+[source,sh]
+----
+bin/rails g scaffold State \
+  name:string:index \
+  state:string:index \
+  position:integer \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+// bin/rails g migration AddPositionToState position:integer
+
+== OrgUnit
+
+[source,sh]
+----
+bin/rails g scaffold OrgUnit \
+  name:string:index \
+  ancestry:string:index \
+  position:integer \
+  valid_until:date \
+  --no-stylesheets --no-javascripts --no-helper
+----
+// bin/rails g migration AddPositionToOrgUnit position:integer
+// bin/rails g migration AddValidUntilToOrgUnit valid_until:date
+
+== List
+
+[source,sh]
+----
+bin/rails g scaffold List \
+  org_unit:belongs_to \
+  name:string:index \
+  user:belongs_to \
+  position:integer \
+  valid_until:date \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+// bin/rails g migration AddUserToList user:belongs_to
+// bin/rails g migration AddPositionToList position:integer
+// bin/rails g migration AddValidUntilToList valid_until:date
+
+== TimeAccounting
+
+[source,sh]
+----
+bin/rails g scaffold TimeAccounting \
+  task:belongs_to \
+  user:belongs_to \
+  subject:string \
+  date:date:index \
+  duration:integer \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== Workday
+
+[source,sh]
+----
+bin/rails g scaffold Workday \
+  user:belongs_to \
+  date:date:index \
+  work_start:time \
+  pause:integer \
+  day_type:belongs_to \
+  comment:string \
+  --no-stylesheets --no-javascripts --no-helper
+
+----
+
+// bin/rails g migration AddDayTypeToWorkday day_type:belongs_to
+// bin/rails g migration AddCommentToWorkday comment:string
+
+== DayType
+
+[source,sh]
+----
+bin/rails g scaffold DayType \
+  abbrev:string:index \
+  description:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== Note
+
+[source,sh]
+----
+bin/rails g scaffold Note \
+  task:belongs_to \
+  user:belongs_to \
+  date:date \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+.app/models/note.rb
+[source,sh]
+----
+class Note < ApplicationRecord
+  has_rich_text :description
+end
+----
+
+== Reference
+
+[source,sh]
+----
+bin/rails g scaffold Reference \
+  name:string \
+  identifier_name:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== ReferenceUrl
+
+[source,sh]
+----
+bin/rails g model ReferenceUrl \
+  reference:belongs_to \
+  name:string \
+  url:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== CrossReference
+
+[source,sh]
+----
+bin/rails g model CrossReference \
+  task:belongs_to \
+  reference:belongs_to \
+  identifier:string \
+  subject:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+// bin/rails g migration AddSubjectToCrossReference subject:string
+
+
+== Tag
+
+NOTE: not yet implemented
+
+[source,sh]
+----
+bin/rails g scaffold Tag \
+  name:string:index \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+

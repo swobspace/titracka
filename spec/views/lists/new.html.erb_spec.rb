@@ -21,6 +21,8 @@ RSpec.describe "lists/new", type: :view do
 
       assert_select "select[name=?]", "list[org_unit_id]"
       assert_select "input[name=?]", "list[name]"
+      assert_select "input[name=?]", "list[description]"
+      assert_select "input[name=?]", "list[valid_until]"
     end
   end
 end

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 7.0.4'
-gem 'sqlite3', '~> 1.4'
+gem 'pg'
 gem 'puma'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -43,10 +43,6 @@ group :test do
   gem 'timecop'
 end
 
-group :production do
-  gem 'mysql2'
-end
-
 gem 'simple_form'
 gem 'devise-remote-user'
 gem 'paper_trail'
@@ -77,7 +73,7 @@ gem "cssbundling-rails", "~> 1.0"
 
 gem "turbo-rails", "~> 1.0"
 
-gem "view_component", "~> 2.47"
+gem "view_component", "~> 3.1"
 
 gem 'responders'
 

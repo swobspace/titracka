@@ -8,10 +8,16 @@ class TimeAccountingQuery
   # possible search options:
   # * :user_id - integer
   # * :user - name
+  # * :description - string
+  # * :task - string
   # * :date - datestring (2020-02-03)
+  # * :newer - date >= :newer(date)
+  # * :older - date <= :older(date)
+  # * :duration - integer
   # * :id - integer
   # * :limit - limit result (integer)
   #
+  # needs joins(:task)
   def initialize(relation, search_options = {})
     @relation       = relation
     @search_options = search_options.symbolize_keys
@@ -46,11 +52,21 @@ private
     search_options.each do |key,value|
       case key 
       when *string_fields
-        query = query.where("time_accountings.#{key} LIKE ?", "%#{value}%")
+        query = query.where("time_accountings.#{key} ILIKE ?", "%#{value}%")
       when :user_id
        query = query.where(user_id: value)
       when :date
        query = query.where(date: value)
+      when :newer
+        query = query.where("time_accountings.date >= ?", "#{value}%")
+      when :older
+        query = query.where("time_accountings.date <= ?", "#{value}%")
+      when :duration
+       query = query.where(duration: value.to_i)
+      when :formatted_duration
+       query = query.where(duration: ::MinuteString.hour2min(value).to_i)
+      when :task
+        query = query.where('tasks.subject ILIKE ?', "%#{value}%")
       when :user
         query = query.where(user_id: user_ids(value)) if user_ids(value).present?
       when :id
@@ -59,7 +75,7 @@ private
         @limit = value.to_i
       when :search
         string_fields.each do |term|
-          search_string << "time_accountings.#{term} LIKE :search"
+          search_string << "time_accountings.#{term} ILIKE :search"
         end
         search_string << "time_accountings.user_id IN (:uids)"  if user_ids(value)
       else
@@ -87,7 +103,7 @@ private
   end
 
   def user_ids(value)
-    ids = Wobauth::User.where("sn like :val or givenname like :val or email like :val or displayname like :val", val: "%#{value}%").pluck(:id)
+    ids = Wobauth::User.where("sn ILIKE :val OR givenname ILIKE :val OR email ILIKE :val OR displayname ILIKE :val", val: "%#{value}%").pluck(:id)
     ids
   end
 

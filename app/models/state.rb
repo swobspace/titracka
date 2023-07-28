@@ -5,15 +5,15 @@ class State < ApplicationRecord
 
   # -- configuration
   acts_as_list
-  STATES = [ "pre", "open", "pending", "done", "archive" ]
-  NOT_ARCHIVED = [ "pre", "open", "pending", "done" ]
+  STATES = [ "pre", "open", "pending", "done", "archive", "deferred" ]
+  VISIBLE = [ "pre", "open", "pending", "done" ]
   OPEN = [ "open", "pending" ]
   ACTIVE = [ "pre", "open", "pending" ]
   # -- validations and callbacks
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :state, inclusion: STATES, allow_blank: false
 
-  scope :not_archived, -> { where(state: NOT_ARCHIVED) }
+  scope :visible, -> { where(state: VISIBLE) }
   scope :open, -> { where(state: OPEN) }
   scope :active, -> { where(state: ACTIVE) }
 

@@ -19,7 +19,7 @@ class OrgUnitsController < ApplicationController
   def show
     session[:tasks_filter] = session[:new_task_params] = { org_unit_id: @org_unit.id }
     session[:tasks_mode] = :cards
-    @columns = State.not_archived
+    @columns = State.visible
     @tasks = @org_unit.tasks.accessible_by(current_ability, :read)
     respond_with(@org_unit)
   end
@@ -62,6 +62,6 @@ class OrgUnitsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def org_unit_params
-      params.require(:org_unit).permit(:name, :parent_id )
+      params.require(:org_unit).permit(:name, :parent_id, :description, :valid_until)
     end
 end

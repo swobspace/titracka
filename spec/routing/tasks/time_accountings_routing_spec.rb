@@ -6,6 +6,10 @@ RSpec.describe Tasks::TimeAccountingsController, type: :routing do
       expect(get: "/tasks/9/time_accountings").to route_to(controller: 'tasks/time_accountings', action: "index", task_id: "9")
     end
 
+    it "routes to #index (:post)" do
+      expect(:post => "/tasks/9/time_accountings.json").to route_to(controller: 'tasks/time_accountings', action: "index", format: "json", task_id: "9")
+    end
+
     it "routes to #new" do
       expect(get: "/tasks/9/time_accountings/new").to route_to(controller: 'tasks/time_accountings', action: "new", task_id: "9")
     end

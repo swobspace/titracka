@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "lists/show", type: :view do
-  let!(:state) { FactoryBot.create(:state, :open) }
+  fixtures 'wobauth/users', :states
+  let!(:state) { states(:open) }
+  let(:user) { wobauth_users(:mcaro) }
   before(:each) do
     @current_ability = Object.new
     @current_ability.extend(CanCan::Ability)
@@ -12,7 +14,10 @@ RSpec.describe "lists/show", type: :view do
 
     @list = assign(:list, FactoryBot.create(:list,
       org_unit: org_unit,
-      name: "Name"
+      name: "Name",
+      description: "Some stuff and more",
+      valid_until: '2099-12-21',
+      user: user
     ))
 
     @columns = [state]
@@ -23,5 +28,8 @@ RSpec.describe "lists/show", type: :view do
     render
     expect(rendered).to match(/ACME/)
     expect(rendered).to match(/Name/)
+    expect(rendered).to match(/Some stuff and more/)
+    expect(rendered).to match(/2099-12-21/)
+    expect(rendered).to match(/Mustermann, Carola \(mcaro\)/)
   end
 end

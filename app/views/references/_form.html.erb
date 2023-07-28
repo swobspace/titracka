@@ -1,6 +1,4 @@
-<% content_for :head do %>
-  <meta name="turbo-cache-control" content="no-cache">
-<% end %>
+<%= render 'shared/turbo-cache-control' %>
 
 <div class="container">
   <%= simple_form_for(@reference,
@@ -15,7 +13,7 @@
       <%= form.input :identifier_name
 	 %>
 
-      <div class="form-group row">
+      <div class="row mb-3">
         <label for="reference_urls_attributes" class="col-sm-3 col-form-label">
           <%=t('controller.reference_urls') %>
         </label>

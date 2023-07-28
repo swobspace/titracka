@@ -76,16 +76,22 @@ RSpec.describe "/org_units", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {{
-        name: "Nobody Ltd.",
-        parent_id: parent.id,
-      }}
+      let(:new_attributes) do
+        {
+          name: "Nobody Ltd.",
+          parent_id: parent.id,
+          description: "some blafasel",
+          valid_until: '2099-12-21',
+        }
+      end
 
       it "updates the requested org_unit" do
         org_unit = OrgUnit.create! valid_attributes
         patch org_unit_url(org_unit), params: { org_unit: new_attributes }
         org_unit.reload
         expect(org_unit.name).to eq("Nobody Ltd.")
+        expect(org_unit.description.to_plain_text).to eq("some blafasel")
+        expect(org_unit.valid_until.to_s).to eq("2099-12-21")
       end
 
       it "redirects to the org_unit" do

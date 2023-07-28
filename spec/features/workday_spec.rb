@@ -31,7 +31,7 @@ RSpec.describe "Workday", type: :feature, js: true do
     it "add a new time accounting" do
       expect(page).to have_content("Aktivität erstellen")
       click_link "Aktivität erstellen"
-      within "#modal-body" do
+      within "#modal" do
         within "div.time_accounting_task" do
           select "Mustermann GmbH / MM task", from: "time_accounting_task_id"
         end
@@ -57,7 +57,7 @@ RSpec.describe "Workday", type: :feature, js: true do
       within "tr#time_accounting_#{ta.id}" do
         find('a[title="Aktivität bearbeiten"]').click()
       end
-      within "#modal-body" do
+      within "#modal" do
         fill_in "Dauer (HH:MM)", with: "3:10"
         click_button "Aktivität aktualisieren"
       end
@@ -79,7 +79,7 @@ RSpec.describe "Workday", type: :feature, js: true do
       within "div#card_task_#{to1.id}" do
         find('a[title="Aktivität hinzufügen"]').click()
       end
-      within "#modal-body" do
+      within "#modal" do
         fill_in "Beschreibung", with: "Aktivität via recent task card"
         fill_in "Dauer (HH:MM)", with: "1:20"
         click_button "Aktivität erstellen"

@@ -47,6 +47,10 @@ $font-family-sans-serif:
 
 // --- bootstrap
 $primary: #176775;
+$navbar-light-color: #ccc;
+$navbar-light-active-color: #eee;
+$navbar-light-hover-color: #fff;
+
 @import "bootstrap/scss/bootstrap";
 
 
@@ -236,10 +240,17 @@ button.toggler::after {
   // top:-0.8em;
   right: 0.8em;
 }
+// for task cards
+.priority-high { border-left: 4px solid red !important; }
+.priority-critical { border-left: 4px solid purple !important; }
 .priority-high { border-left: 4px solid red !important; }
 .priority-critical { border-left: 4px solid purple !important; }
 .priority-normal { border-left: 1px solid #dee2e6 !important; }
 .priority-low { border-left: 1px solid #dee2e6 !important; }
+
+// font color for text and tables
+.prio-high { color: red !important; font-weight: 500; }
+.prio-critical { color: purple !important; font-weight: 500; } 
 
 // ------------------------------------------------------------------------
 // -- primary link
@@ -300,3 +311,7 @@ form.button_to {
   }
 } 
   
+// ul#showNotesModal {
+//   margin-left: 12px;
+//   margin-right: 12px;
+// }

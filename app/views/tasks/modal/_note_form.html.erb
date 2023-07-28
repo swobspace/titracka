@@ -1,11 +1,20 @@
-<div class="modal-body bg-light">
+<div class="row bg-light border-top border-bottom pb-2">
   <div id="newTaskNote" class="pb-2">
-    <%= simple_form_for([task, note],
-          data: { action: "turbo:submit-end->modal#handleSubmit" }) do |form| %>
+    <%= simple_form_for([task, note]) do |form| %>
       <h5 class="bt mt-3"><%= t('actions.add', model: t('activerecord.models.note')) %></h5>
       <%= form.input :description, as: :rich_text_area,
             wrapper: :vertical_form, label: false
          %>
+
+      <div class="row mb-3">
+        <%= form.label :date, class: "form-label col-sm-2" %>
+        <div class="col-sm-4">
+          <%=  form.text_field :date, value: Date.current.to_s,
+                               type: :date, html5: true,
+                               class: 'form-control'
+          %>
+        </div>
+      </div>
 
       <%= render 'notes/mail_form_fields', task: task %>
       <div data-form-target="errorSuccess" class="" role="alert"></div>

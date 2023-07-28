@@ -1,59 +1,19 @@
 shared_context "time_accounting variables" do
-  let!(:mmax) { FactoryBot.create(:user, 
-    sn: "Mustermann", 
-    givenname: "Max", 
-    username: "mmax"
-  )}
+  fixtures 'wobauth/users', :tasks, :time_accountings, :states
 
-  let!(:mcaro) { FactoryBot.create(:user, 
-    sn: "Mustermann", 
-    givenname: "Carola", 
-    username: "mcaro"
-  )}
+  let!(:wday1) do
+    FactoryBot.create(:workday,
+      date: 1.day.before(Date.today),
+      user: wobauth_users(:mmax) 
+    )
+  end
+  let!(:task1) { tasks(:task1) }
+  let!(:task2) { tasks(:task2) }
 
-  let!(:wday1) { FactoryBot.create(:workday,
-    date: 1.day.before(Date.today),
-    user: mmax
-  )}
+  let(:ta11) { time_accountings(:ta11) }
+  let(:ta12) { time_accountings(:ta12) }
+  let(:ta13) { time_accountings(:ta13) }
+  let(:ta21) { time_accountings(:ta21) }
+  let(:ta22) { time_accountings(:ta22) }
 
-  let!(:task1) { FactoryBot.create(:task, :open,
-    subject: "Maxs task",
-    user: mmax,
-  )}
-
-  let!(:task2) { FactoryBot.create(:task, :open,
-    subject: "Caros task",
-    user: mcaro,
-  )}
-
-  let!(:ta11) { FactoryBot.create(:time_accounting,
-    user: mmax,
-    task: task1,
-    date: 1.day.before(Date.today),
-    duration: 30,
-  )}
-  let!(:ta12) { FactoryBot.create(:time_accounting,
-    user: mmax,
-    task: task1,
-    date: 2.day.before(Date.today),
-    duration: 45,
-  )}
-  let!(:ta13) { FactoryBot.create(:time_accounting,
-    user: mmax,
-    task: task1,
-    date: 1.day.before(Date.today),
-    duration: 75,
-  )}
-  let!(:ta21) { FactoryBot.create(:time_accounting,
-    user: mcaro,
-    task: task2,
-    date: 1.day.before(Date.today),
-    duration: 13,
-  )}
-  let!(:ta22) { FactoryBot.create(:time_accounting,
-    user: mcaro,
-    task: task2,
-    date: 1.week.before(Date.today),
-    duration: 17,
-  )}
 end
