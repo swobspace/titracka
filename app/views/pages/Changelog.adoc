@@ -1,6 +1,6 @@
 = Changelog
 
-=== 1.99-dev / 2023-07-12
+=== 2.0.0 / 2023-07-28
 
 ----
 BREAKING CHANGE: switching from MySQL to PostgreSQL
@@ -8,6 +8,7 @@ BREAKING CHANGE: switching from MySQL to PostgreSQL
 * edit notes from tasks#show view
 * refactoring modal forms
 * speedup activities#index with server side processing
+* activities#search form for own activities
 ----
 
 === 1.0.3-dev / 2023-04-16
