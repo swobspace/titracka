@@ -9,6 +9,8 @@ class TimeAccountingQuery
   # * :user_id - integer
   # * :user - name
   # * :date - datestring (2020-02-03)
+  # * :newer - date >= :newer(date)
+  # * :older - date <= :older(date)
   # * :duration - integer
   # * :id - integer
   # * :limit - limit result (integer)
@@ -53,6 +55,10 @@ private
        query = query.where(user_id: value)
       when :date
        query = query.where(date: value)
+      when :newer
+        query = query.where("time_accountings.date >= ?", "#{value}%")
+      when :older
+        query = query.where("time_accountings.date <= ?", "#{value}%")
       when :duration
        query = query.where(duration: value.to_i)
       when :formatted_duration

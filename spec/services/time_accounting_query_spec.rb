@@ -86,7 +86,37 @@ RSpec.describe TimeAccountingQuery do
       @nonmatching = [ta12, ta22]
     end
     it_behaves_like "a time_accounting query"
-  end # :user 'caro'
+  end # :date
+
+  context "with :newer Date.yesterday" do
+    subject { TimeAccountingQuery.new(timeaccountings, {newer: Date.yesterday}) }
+    before(:each) do
+      @matching = [ta11, ta13, ta21]
+      @nonmatching = [ta12, ta22]
+    end
+    it_behaves_like "a time_accounting query"
+  end # :newer
+
+  context "with :older Date.current -2" do
+    subject { TimeAccountingQuery.new(timeaccountings, {older: 2.days.before(Date.current)}) }
+    before(:each) do
+      @matching = [ta12, ta22]
+      @nonmatching = [ta11, ta13, ta21]
+    end
+    it_behaves_like "a time_accounting query"
+  end # :older
+
+  context "with :older Date.current -2 and :newer Date.current -6" do
+    subject { TimeAccountingQuery.new(timeaccountings, {
+                older: 2.days.before(Date.current),
+                newer: 6.days.before(Date.current),
+              }) }
+    before(:each) do
+      @matching = [ta12]
+      @nonmatching = [ta11, ta13, ta21, ta22]
+    end
+    it_behaves_like "a time_accounting query"
+  end # :newer, :older
 
   context "with :duration 75" do
     subject { TimeAccountingQuery.new(timeaccountings, {duration: 75}) }
