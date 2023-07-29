@@ -12,6 +12,9 @@ export { application }
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import CalendarController from "./calendar_controller"
+application.register("calendar", CalendarController)
+
 import CheckboxListController from "./checkbox_list_controller"
 application.register("checkbox-list", CheckboxListController)
 

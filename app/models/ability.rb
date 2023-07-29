@@ -16,6 +16,7 @@ class Ability
     alias_action :search_form, :to => :read
     alias_action :dashboard, :to => :read
     alias_action :download, :to => :read
+    alias_action :calendar, :to => :read
 
     #
     # contains later all collected rights (org_units per role)
