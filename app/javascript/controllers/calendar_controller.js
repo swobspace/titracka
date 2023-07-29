@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { Calendar } from '@fullcalendar/core'
 import interactionPlugin from '@fullcalendar/interaction'
 import multiMonthPlugin from '@fullcalendar/multimonth'
+import dayGridPlugin from '@fullcalendar/daygrid'
 import deLocale from '@fullcalendar/core/locales/de'
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
@@ -21,20 +22,25 @@ export default class extends Controller {
   initializeCalendar() {
     let _this = this
     this.calendar = new Calendar(this.element, {
-      plugins: [interactionPlugin, multiMonthPlugin, bootstrap5Plugin],
+      plugins: [interactionPlugin, dayGridPlugin, multiMonthPlugin, bootstrap5Plugin],
       eventBackgroundColor: '#176775',
       selectable: true,
-      initialView: 'multiMonthYear',
-      multiMonthMaxColumns: 4,
+      initialView: 'dayGridMonth',
+      multiMonthMaxColumns: 3,
+      fixedWeekCount: false,
       events: '/workdays.json',
       defaultAllDay: true,
       weekNumbers: false,
       firstDay: 1,
       locale: deLocale,
       headerToolbar: {
-        right: 'prev,next today',
+        right: 'prev,next today dayGridMonth,multiMonthYear',
         center: 'title',
         left: ''
+      },
+      views: {
+        dayGrid: {},
+        multiMonthYear: {}
       },
       dateClick: function(info) {
         console.log('Clicked on: ' + info.dateStr)
