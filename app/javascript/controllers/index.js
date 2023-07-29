@@ -24,8 +24,8 @@ application.register("dashboard", DashboardController)
 import DatatablesController from "./datatables_controller"
 application.register("datatables", DatatablesController)
 
-import DateselectorController from "./dateselector_controller"
-application.register("dateselector", DateselectorController)
+// import DateselectorController from "./dateselector_controller"
+// application.register("dateselector", DateselectorController)
 
 import DraggableController from "./draggable_controller"
 application.register("draggable", DraggableController)

@@ -6,6 +6,10 @@ import deLocale from '@fullcalendar/core/locales/de'
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
 export default class extends Controller {
+  static values = {
+    url: String
+  }
+
   connect() {
     this.initializeCalendar()
   }
@@ -38,7 +42,7 @@ export default class extends Controller {
         console.log('Current view: ' + info.view.type)
         // change the day's background color just for fun
         // info.dayEl.style.backgroundColor = 'red';
-        let url = '/' + info.dateStr
+        let url = [ _this.urlValue, info.dateStr ].join("/")
         window.open(url, '_self')
       }
     })
