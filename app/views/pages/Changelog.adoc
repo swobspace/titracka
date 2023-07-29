@@ -3,6 +3,7 @@
 === 2.0.1-dev / 2023-07-28
 
 ----
+* FullCalendar as date selector
 ----
 
 === 2.0.0 / 2023-07-28
