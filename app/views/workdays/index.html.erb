@@ -12,18 +12,22 @@
     <thead>
       <tr>
             <th class="text-center"><%= t('attributes.date') %></th>
+            <th class="notvisible text-center"><%= t('attributes.year') %></th>
+            <th class="notvisible text-center"><%= t('attributes.cweek') %></th>
             <th class="text-center"><%= t('attributes.type') %></th>
             <th class="text-center"><%= t('attributes.formatted_duration') %></th>
             <th class="text-center"><%= t('attributes.duration') %></th>
             <th class="notvisible text-center"><%= t('attributes.work_start') %></th>
             <th class="text-center"><%= t('attributes.pause') %></th>
             <th><%= t('attributes.comment') %></th>
-            <th class=""><%= t('attributes.user') %></th>
+            <th class="notvisible"><%= t('attributes.user') %></th>
             <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
+        <th></th>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -39,6 +43,8 @@
       <% @workdays.each do |workday| %>
         <%= content_tag(:tr, id: dom_id(workday), class: dom_class(workday)) do %>
           <td class="text-center align-middle"><%= workday.date %></td>
+          <td class="text-center align-middle"><%= workday.date.year %></td>
+          <td class="text-center align-middle"><%= workday.date.cweek %></td>
           <td class="text-center align-middle"><%= workday.day_type %></td>
           <td class="text-center align-middle"><%= hourmin(workday.duration) %></td>
           <td class="text-center align-middle"><%= workday.duration %></td>
