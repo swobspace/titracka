@@ -4,6 +4,7 @@
 
 ----
 * FullCalendar as date selector
+* search for workdays
 ----
 
 === 2.0.0 / 2023-07-28
