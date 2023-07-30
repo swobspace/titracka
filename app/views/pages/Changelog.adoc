@@ -1,6 +1,6 @@
 = Changelog
 
-=== 2.0.1-dev / 2023-07-28
+=== 2.0.1-dev / 2023-07-30
 
 ----
 * FullCalendar as date selector
