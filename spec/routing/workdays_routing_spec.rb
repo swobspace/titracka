@@ -13,6 +13,10 @@ RSpec.describe WorkdaysController, type: :routing do
       expect(get: "/workdays/new").to route_to("workdays#new")
     end
 
+    it "routes to #search" do
+      expect(get: "/workdays/search").to route_to("workdays#search")
+    end
+
     it "routes to #show" do
       expect(get: "/workdays/1").to route_to("workdays#show", id: "1")
     end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'calendar'
+      get 'search'
     end
     resources :time_accountings, module: :workdays
   end

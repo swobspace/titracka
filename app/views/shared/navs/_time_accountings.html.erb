@@ -20,7 +20,11 @@
                       t('titracka.search')),
             main_app.search_form_time_accountings_path, class: 'dropdown-item' %>
 
+      <div class="dropdown-divider"></div>
 
+      <%=link_to raw('<span class="fas fa-fw fa-search" aria-hidden="true"></span> ' +
+                      t('controller.workdays')),
+            main_app.search_workdays_path, class: 'dropdown-item' %>
     </div>
   </li>
 <% end %>

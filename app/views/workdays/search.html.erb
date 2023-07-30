@@ -1,0 +1,36 @@
+<%= render 'shared/turbo-cache-control' %>
+
+<div class="container">
+  <%= form_tag(workdays_path, method: :get, role: "form",
+        class: 'form-horizontal card') do |f| %>
+
+    <div class="card-header">
+      <legend class="offset-sm-2 col-sm-10"><%= t('titracka.search_workdays') %></legend>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3 align-items-center">
+        <label for="timeframe" class="col-sm-2 col-form-label"><%=t('attributes.timeframe')%></label>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <div class="input-group-text">&geq;</div>
+            <input class="form-control" type="date" name="start" id="start" autocomplete="off" placeholder="<%= t('attributes.start')%>">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <div class="input-group-text">&leq;</div>
+            <input class="form-control" type="date" name="end" id="end" autocomplete="off" placeholder="<%= t('attributes.end')%>">
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+	<div class="col-sm-10 offset-sm-2">
+	  <%= submit_tag(t('titracka.search_workdays'),
+                class: 'btn btn-primary') %>
+	  <%= cancel_button %>
+	</div>
+      </div>
+    </div>
+  <% end %>
+</div>
