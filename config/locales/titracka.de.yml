@@ -108,6 +108,7 @@ de:
     comment: Bemerkung
     cross_reference: Querverweis
     cross_references: Querverweise
+    cweek: Kalenderwoche
     date: Datum
     day_type: Tagestyp
     deadline: Zieltermin
@@ -177,6 +178,7 @@ de:
     weekday: Wochentag
     workday: Arbeitstag
     work_start: Tagesbeginn
+    year: Jahr
 
   controller:
     cross_references: Querverweise
