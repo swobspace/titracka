@@ -7,7 +7,7 @@ RSpec.describe "Dashboard", type: :feature do
   before(:each) do
     login_user(user: mcaro, org_unit: ou1, role: 'Manager')
     visit root_path
-    execute_script("$.support.transition = false")
+    # execute_script("$.support.transition = false")
   end
 
   describe "visit root_path", js: true do

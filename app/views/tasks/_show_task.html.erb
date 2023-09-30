@@ -10,21 +10,25 @@
     <td><%= task.state %></td>
   </tr>
 
-  <tr>
-    <th><%= t('attributes.org_unit')%>:</th>
-    <td><%= link_to task.org_unit, 
-                    org_unit_path(task.org_unit),
-                    "data-turbo": false,
-                    class: 'primary-link' %></td>
-  </tr>
+  <% if task.org_unit.present? %>
+    <tr>
+      <th><%= t('attributes.org_unit')%>:</th>
+      <td><%= link_to task.org_unit, 
+                      org_unit_path(task.org_unit),
+                      "data-turbo": false,
+                      class: 'primary-link' %></td>
+    </tr>
+  <% end %>
 
-  <tr>
-    <th><%= t('attributes.list')%>:</th>
-    <td><%= link_to task.list,
-                    list_path(task.list),
-                    "data-turbo": false,
-                    class: 'primary-link' %></td>
-  </tr>
+  <% if task.list.present? %>
+    <tr>
+      <th><%= t('attributes.list')%>:</th>
+      <td><%= link_to task.list,
+                      list_path(task.list),
+                      "data-turbo": false,
+                      class: 'primary-link' %></td>
+    </tr>
+  <% end %>
 
   <tr>
     <th><%= t('attributes.priority')%>:</th>
