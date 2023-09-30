@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     member do
       get 'by_date'
     end
+    collection do
+      get 'calendar'
+      get 'search'
+    end
     resources :time_accountings, module: :workdays
   end
   post "time_accountings", to: "time_accountings#index", constraints: lambda {|req| req.format == :json}

@@ -17,6 +17,7 @@ de:
     search_documents: Suche Dokumente
     search_tasks: Suche Aufgaben
     search_time_accountings: Suche Aktivitäten
+    search_workdays: Suche Arbeitstage
     sort_helper: Sortierhilfe
     sort_alphanum: "%{model} alphabetisch sortieren"
     really_sort_alphanum: "Wollen Sie wirklich %{model} alphabetisch sortieren? Dieser Schritt kann nicht rückgängig gemacht werden"
@@ -107,12 +108,14 @@ de:
     comment: Bemerkung
     cross_reference: Querverweis
     cross_references: Querverweise
+    cweek: Kalenderwoche
     date: Datum
     day_type: Tagestyp
     deadline: Zieltermin
     description: Beschreibung
     displayname: Anzeigename
     duration: Dauer
+    end: Ende
     formatted_duration: Dauer (HH:MM)
     from_start: Start von
     from_deadline: Deadline von
@@ -175,6 +178,7 @@ de:
     weekday: Wochentag
     workday: Arbeitstag
     work_start: Tagesbeginn
+    year: Jahr
 
   controller:
     cross_references: Querverweise

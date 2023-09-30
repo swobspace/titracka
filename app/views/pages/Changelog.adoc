@@ -1,5 +1,13 @@
 = Changelog
 
+=== 2.0.1 / 2023-09-30
+
+----
+* FullCalendar as date selector
+* search for workdays
+* update gems and npms
+----
+
 === 2.0.0 / 2023-07-28
 
 ----

@@ -4,6 +4,12 @@ class WorkdaysController < ApplicationController
   # GET /workdays
   def index
     @workdays = @current_user.workdays.decorate
+    if params[:start].present?
+      @workdays = @workdays.where('date >= ?', params[:start])
+    end
+    if params[:end].present?
+      @workdays = @workdays.where('date <= ?', params[:end])
+    end
     respond_with(@workdays)
   end
 
@@ -11,6 +17,10 @@ class WorkdaysController < ApplicationController
   def show
     add_breadcrumb(@workday.date.to_s, workday_path(@workday))
     respond_with(@workday)
+  end
+
+  def calendar
+    add_breadcrumb('Calendar', calendar_workdays_path)
   end
 
   def by_date
