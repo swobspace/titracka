@@ -1,8 +1,9 @@
 = Changelog
 
-=== 2.0.3-dev / 2023-09-30
+=== 2.0.3-dev / 2023-10-01
 
 ----
+* allow search for archived tasks
 ----
 
 === 2.0.2 / 2023-09-30
