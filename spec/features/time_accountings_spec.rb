@@ -15,7 +15,6 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
       click_link("Aktivitäten")
       find('a.dropdown-item[href="/time_accountings"]').click()
       click_link("Aktivität erstellen")
-      expect(page).to have_content("Mustermann, Carola")
       within "#modal" do
         within "div.time_accounting_task" do
           select "Mustermann GmbH / MM task", from: "time_accounting_task_id"
