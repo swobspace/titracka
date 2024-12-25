@@ -42,6 +42,7 @@ append :linked_dirs, "log", "files", "tmp/pids", "tmp/cache", "tmp/sockets", "ve
 
 set :default_env, {
   rails_relative_url_root: fetch(:relative_url_root) ,
+  ssl_cert_file: '/usr/lib/ssl/certs/ca-certificates.crt)',
   path: fetch(:ruby_path) { "$PATH" }
 }
 
