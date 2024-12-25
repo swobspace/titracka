@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require_relative '../../lib/wobauth/admin_ability'
 
 class Ability
   include CanCan::Ability
@@ -142,8 +141,8 @@ class Ability
     # -- org stuff
     can [:manage], CONFIGURATION_MODELS
     can [:manage], OrgUnit
-    can [:navigate], [:dashboard, :org_units, Wobauth::User]
-    # can [:read], AdUser
+    can [:navigate], [:configuration, :dashboard, :org_units, Wobauth::User]
+    can [:read], Wobauth::User
 
     # -- user stuff
     # see Wobauth::AdminAbility

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 7.0.4'
+gem 'rails', '~> 7.1.0'
 gem 'pg'
 gem 'puma'
 gem 'jbuilder', '~> 2.7'
@@ -48,7 +48,7 @@ gem 'devise-remote-user'
 gem 'paper_trail'
 gem 'cancancan'
 gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
-gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', ref: '0b408669f4deda7392cb016567e52e652a554947'
+gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
 gem 'wobaduser', '~> 1.0'
 
 gem 'acts_as_list'
@@ -56,7 +56,7 @@ gem 'ancestry'
 gem 'asciidoctor'
 gem 'js-routes'
 gem 'yaml_db'
-gem 'pagy', '~> 8.0'
+gem 'pagy'
 gem 'draper'
 
 gem 'rails-controller-testing'
@@ -67,13 +67,11 @@ gem "hiredis-client"
 gem "prawn"
 gem "prawn-markup"
 
-gem "jsbundling-rails", "~> 1.0"
-
-gem "cssbundling-rails", "~> 1.0"
-
-gem "turbo-rails", "~> 1.0"
-
-gem "view_component", "~> 3.1"
+gem "jsbundling-rails"
+gem "cssbundling-rails"
+gem "turbo-rails"
+gem "stimulus-rails"
+gem "view_component"
 
 gem 'responders'
 

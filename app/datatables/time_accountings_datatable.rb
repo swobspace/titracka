@@ -57,7 +57,7 @@ class TimeAccountingsDatatable < ApplicationDatatable
     if params['length'] == "-1"
       time_accountings = time_accountings_query
     else
-      @pagy, time_accountings = pagy(time_accountings_query, page: page, items: per_page)
+      @pagy, time_accountings = pagy(time_accountings_query, page: page, limit: per_page)
     end
     time_accountings
   end
