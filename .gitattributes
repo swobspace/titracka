@@ -13,3 +13,5 @@
 /config/deploy/*        export-ignore
 /db/demo/*              export-ignore
 
+config/credentials/*.yml.enc diff=rails_credentials
+config/credentials.yml.enc diff=rails_credentials
