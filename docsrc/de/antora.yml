@@ -1,6 +1,6 @@
 name: titracka
 title: Titracka
-version: master
+version: ~
 nav:
 - modules/ROOT/nav.adoc
 - modules/admin-manual/nav.adoc
@@ -12,8 +12,8 @@ asciidoc:
     author: Wolfgang Barth
     Email: Wolfgang.Barth@marienhaus.de
     revision: 0.0.2
-    revdate: 2021-01-23
-    rights:  Copyright 2020-2021 (C) Wolfgang Barth
+    revdate: 2024-12-31
+    rights:  Copyright 2020-2025 (C) Wolfgang Barth
     language: de-DE
     toc-title: Inhalt
     chapter-label: Kapitel
