@@ -56,7 +56,7 @@ gem 'ancestry'
 gem 'asciidoctor'
 gem 'js-routes'
 gem 'yaml_db'
-gem 'pagy', '~> 8.0'
+gem 'pagy'
 gem 'draper'
 
 gem 'rails-controller-testing'
@@ -67,13 +67,11 @@ gem "hiredis-client"
 gem "prawn"
 gem "prawn-markup"
 
-gem "jsbundling-rails", "~> 1.0"
-
-gem "cssbundling-rails", "~> 1.0"
-
-gem "turbo-rails", "~> 1.0"
-
-gem "view_component", "~> 3.1"
+gem "jsbundling-rails"
+gem "cssbundling-rails"
+gem "turbo-rails"
+gem "stimulus-rails"
+gem "view_component"
 
 gem 'responders'
 

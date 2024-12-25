@@ -296,7 +296,7 @@ GEM
       shellany (~> 0.0)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
-    pagy (8.6.3)
+    pagy (9.3.3)
     paper_trail (16.0.0)
       activerecord (>= 6.1)
       request_store (~> 1.4)
@@ -442,9 +442,8 @@ GEM
     timeout (0.4.3)
     ttfunk (1.8.0)
       bigdecimal (~> 3.1)
-    turbo-rails (1.5.0)
+    turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
-      activejob (>= 6.0.0)
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -491,7 +490,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-yarn
   capybara
-  cssbundling-rails (~> 1.0)
+  cssbundling-rails
   devise-remote-user
   dotenv
   draper
@@ -506,13 +505,13 @@ DEPENDENCIES
   hiredis-client
   jbuilder (~> 2.7)
   js-routes
-  jsbundling-rails (~> 1.0)
+  jsbundling-rails
   json_spec
   launchy
   libnotify
   listen (~> 3.3)
   mail
-  pagy (~> 8.0)
+  pagy
   paper_trail
   pg
   prawn
@@ -528,9 +527,10 @@ DEPENDENCIES
   shoulda-matchers
   simple_form
   sprockets-rails
+  stimulus-rails
   timecop
-  turbo-rails (~> 1.0)
-  view_component (~> 3.1)
+  turbo-rails
+  view_component
   web-console (>= 4.1.0)
   webdriver
   wobaduser (~> 1.0)
