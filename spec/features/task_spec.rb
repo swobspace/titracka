@@ -8,7 +8,6 @@ RSpec.describe "Task", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit task_path(t2)
-      execute_script("$.support.transition = false")
     end
 
     it "delete an existing task" do

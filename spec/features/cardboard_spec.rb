@@ -7,14 +7,12 @@ RSpec.describe "Cardboard", type: :feature, js: true do
   before(:each) do
     login_user(user: mcaro, org_unit: ou1, role: 'Manager')
     visit cards_path
-    execute_script("$.support.transition = false")
   end
 
   describe "visit cards_path" do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit cards_path
-      execute_script("$.support.transition = false")
     end
 
     it "shows empty dashboard with accessible ou's and lists" do
@@ -26,7 +24,6 @@ RSpec.describe "Cardboard", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit cards_path(org_unit_id: ou1.id)
-      execute_script("$.support.transition = false")
     end
 
     it "shows cardboard with available tasks" do

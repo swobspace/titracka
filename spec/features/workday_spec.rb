@@ -8,7 +8,6 @@ RSpec.describe "Workday", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit root_path
-      execute_script("$.support.transition = false")
     end
 
     it "asks for new day params" do
@@ -25,7 +24,6 @@ RSpec.describe "Workday", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit by_date_path(date: Date.today.to_s)
-      execute_script("$.support.transition = false")
     end
 
     it "add a new time accounting" do
