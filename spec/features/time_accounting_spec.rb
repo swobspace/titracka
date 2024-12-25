@@ -18,7 +18,6 @@ RSpec.describe "TimeAccounting", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit time_accounting_path(ta)
-      execute_script("$.support.transition = false")
     end
 
     it "delete an existing time_accounting" do

@@ -8,7 +8,6 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit root_path
-      execute_script("$.support.transition = false")
     end
 
     it "create a new time accounting via button" do
@@ -33,7 +32,6 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit time_accountings_path
-      execute_script("$.support.transition = false")
     end
 
     it "create a new time accounting via menu" do
@@ -65,7 +63,6 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit time_accountings_path
-      # execute_script("$.support.transition = false")
       expect(page).to have_content("Aktivitäten")
     end
 

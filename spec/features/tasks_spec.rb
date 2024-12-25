@@ -8,7 +8,6 @@ RSpec.describe "Tasks", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit root_path
-      execute_script("$.support.transition = false")
     end
 
     it "create a new task via button" do
@@ -29,7 +28,6 @@ RSpec.describe "Tasks", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit tasks_path
-      execute_script("$.support.transition = false")
     end
 
     it "create a new task via menu" do
