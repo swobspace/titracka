@@ -2,10 +2,11 @@ class ApplicationController < ActionController::Base
   # -- breadcrumbs
   include Wobapphelpers::Breadcrumbs
   before_action :add_breadcrumb_index,
-                :if => proc {|c| !c.request.format.js? && 
-                                 !devise_controller? &&
-                                 c.controller_name != 'login' &&
-                                 c.action_name == 'index' }
+                :if => proc { |c| 
+                              c.action_name == 'index' &&
+                                !c.request.format.js? && 
+                                !devise_controller?
+                            }
 
   before_action :set_paper_trail_whodunnit
   before_action :set_session_mode
