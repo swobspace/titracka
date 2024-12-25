@@ -1,8 +1,4 @@
-require 'dotenv'
 require 'json_spec'
-  
-Dotenv.load( File.expand_path(__FILE__ + '/../.localenv'),
-              File.expand_path(__FILE__ + '/../.env'))
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
