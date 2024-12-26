@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Podman mit Systemd und Quadlets für Produktiv-Umgebungen :: Titracka Dokumentation</title>
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">Titracka Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+           <a class="navbar-item" href="../../../devnotes/index.html">DevNotes</a>
+          <div class="navbar-item dark">Titracka</div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="titracka" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Titracka</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../index.html">Über Titracka</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Admin Manual</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/use_cases.html">Use Cases</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/orgunits.html">Organisationseinheiten</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/users.html">Rollen und Berechtigungen</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/master_data.html">Stammdaten</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="quickstart.html">Quickstart: podman pods</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../first-steps.html">Erste Schritte</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="podman-compose.html">Quickstart: docker-compose</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../first-steps.html">Erste Schritte</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="podman-systemd.html">Systemd und Quadlets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="reverse-proxy.html">Reverse Proxy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuration.html">Konfiguration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Installation Guide</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../installation-guide/requirements.html">Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../installation-guide/setup.html">Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../installation-guide/apache-setup.html">Apache setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../installation-guide/configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../installation-guide/database-setup.html">Database Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../installation-guide/database-pgsql.html">PostgreSQL Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../installation-guide/migration-mysql-to-psql.html">Migration from MySQL to PostgreSQL</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Titracka</span>
+    <span class="version">default</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../devnotes/index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../devnotes/index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../index.html">Titracka</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Titracka</a></li>
+    <li><a href="../index.html">Installation</a></li>
+    <li><a href="podman-systemd.html">Systemd und Quadlets</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Podman mit Systemd und Quadlets für Produktiv-Umgebungen</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Manpage zu Podman Quadlets: <a href="https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html" class="bare">https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_voraussetzungen"><a class="anchor" href="#_voraussetzungen"></a>Voraussetzungen</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>podman Version &gt;= 4.4, besser 4.6 oder höher.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Podman Version einiger Linux-Distributionen</caption>
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 28.5714%;">
+<col style="width: 42.8572%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Distro</th>
+<th class="tableblock halign-left valign-top">Version</th>
+<th class="tableblock halign-left valign-top">usable?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fedora 38</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.7.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fedora 39</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.8.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fedora 40</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ubuntu 23.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doesn&#8217;t work</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ubuntu 24.04</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.7.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_benötigte_pakete"><a class="anchor" href="#_benötigte_pakete"></a>Benötigte Pakete</h3>
+<div class="listingblock">
+<div class="title">Ubuntu 24.04</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">apt install -y podman uidmap aardvark-dns dbus-user-session acl</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Fedora 40</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">dnf install podman shadow-utils-subid aardvark-dns</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Für die Installation von Quadlets gibt es auch eine Ansible-Rolle unter <a href="https://github.com/swobspace/ansible-role-podman" class="bare">https://github.com/swobspace/ansible-role-podman</a>. Die Rolle ist sehr einfach aufgebaut: User <code>poddy</code> einrichten, Pakete installieren, Quadlets aus einem lokalen Verzeichnis kopieren und <code>systemd</code> im Userkontext neu laden. Fertig.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_überblick"><a class="anchor" href="#_überblick"></a>Überblick</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="../_images/podman/titracka-quadlets.svg" alt="titracka quadlets">
+</div>
+</div>
+<div class="paragraph">
+<p>Für den Einsatz von Rootless-Containern nutzt man idealerweise einen eigenen Benutzer. Unser Benutzer heißt <code>poddy</code> und hat die UID 1001. Die sogenannten Quadlets werden im Verzeichnis <code>/etc/containers/systemd/users/$UID</code> oder einem Unterverzeichnis (hier: <code>titracka</code>) abgelegt.</p>
+</div>
+<div class="listingblock">
+<div class="title">Rootless Setup: Verzeichnis und Dateien (Alle Dateien: <a href="../_attachments/podman/quadlet/quadlets.zip" class="xref attachment">quadlets.zip</a>)</div>
+<div class="content">
+<pre>/etc/containers/systemd/users/1001/titracka
+├── <a href="../_attachments/podman/quadlet/env.production" class="xref attachment">env.production</a>
+├── <a href="../_attachments/podman/quadlet/titracka.container" class="xref attachment">titracka.container</a>
+├── <a href="../_attachments/podman/quadlet/titracka.network" class="xref attachment">titracka.network</a>
+├── <a href="../_attachments/podman/quadlet/titracka-postgres.container" class="xref attachment">titracka-postgres.container</a>
+├── <a href="../_attachments/podman/quadlet/titracka-postgres.volume" class="xref attachment">titracka-postgres.volume</a>
+├── <a href="../_attachments/podman/quadlet/titracka-redis.container" class="xref attachment">titracka-redis.container</a>
+├── <a href="../_attachments/podman/quadlet/titracka-redis.volume" class="xref attachment">titracka-redis.volume</a>
+├── <a href="../_attachments/podman/quadlet/titracka-storage.volume" class="xref attachment">titracka-storage.volume</a>
+└── <a href="../_attachments/podman/quadlet/titracka-tmp.volume" class="xref attachment">titracka-tmp.volume</a></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_webzugriff_auf_titracka"><a class="anchor" href="#_webzugriff_auf_titracka"></a>Webzugriff auf titracka</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Entweder veröffentlicht man direkt aus <code>titracka.container</code> den Port 3000 nach außen, oder man benutzt einen Reverse Proxy und fügt ein Netzwerk hinzu, auf das der Reverse Proxy Zugriff hat:</p>
+</div>
+<div class="listingblock">
+<div class="title">titracka.container</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">...
+# Network=traefik.network
+Publish=3000
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hier ist titracka direkt per Port 3000 erreichbar. Für den Einsatz mit Traefik kommentiert man Eintrag mit <code>Publish</code> aus und entfernt das Kommentarzeichen vor <code>Network</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rootless_container_handling"><a class="anchor" href="#_rootless_container_handling"></a>Rootless Container Handling</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Normalerweise sind Systemd-Prozesse eines Users an die Session gebunden. Loggt sich der User aus, werden die Prozesse beendet. Für den unbeaufsichtigten Dauereinsatz ist das unterwünscht, daher muss man explizit konfigurieren, dass Sessions eines Users auch einen Logout oder Reboot überleben:</p>
+</div>
+<div class="listingblock">
+<div class="title">Enable linger for poddy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">loginctl enable-linger poddy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wer sich nicht direkt als User <code>poddy</code> einloggt, sondern <code>sudo</code> und/oder <code>su</code> benutzt, muss noch einige Variablen explizit setzen:</p>
+</div>
+<div class="listingblock">
+<div class="title">Set environment variables</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">export XDG_RUNTIME_DIR="/run/user/1001"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Setze die Variablen in .<code>bashrc</code> von User <code>poddy</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Erforderliche Verzeichnisse für systemd anlegen</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mkdir -p /etc/containers/systemd/users/1001/titracka
+chown -R poddy:poddy /etc/containers/systemd/users/1001
+chmod 700 -R /etc/containers/systemd/users/1001</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Kopiere jetzt alle Dateien aus <a href="../_attachments/podman/quadlet/quadlets.zip" class="xref attachment">quadlets.zip</a> in das Verzeichnis <code>/etc/containers/systemd/users/1001/titracka</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Bitte die Secrets in <code>env.production</code> ändern. die Datei enhält Anweisungen dazu.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Nach Änderungen an den Quadlets muss <code>systemd</code> die Quadlets neu laden:</p>
+</div>
+<div class="listingblock">
+<div class="title">(User poddy) Reload Systemd</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">systemctl --user daemon-reload</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">(User poddy) PostgreSQL zuerst starten - warten - dann den Rest starten</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">systemctl --user start titracka-postgres
+...
+systemctl --user start titracka</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">(User poddy) Logausgaben anzeigen</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Vollständiger Output des Users poddy
+journalctl --user -f
+...
+# Ein ausgewählter Container
+journalctl --user -u titracka -f
+journalctl --user -u titracka-worker -f
+journalctl --user -u titracka-postgres -f</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ping_aus_dem_container_heraus"><a class="anchor" href="#_ping_aus_dem_container_heraus"></a>Ping aus dem Container heraus</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ping nutzt einen Raw-Socket und benötigt erweiterte Rechte. Innerhalb des titracka-Containers sind diese bereits gesetzt. Während bei Fedora bereits der <code>ping_group_range</code> passend gesetzt ist, muss man bei Ubuntu das explizit selbst setzen. Dazu trägt man in die Datei <code>/etc/sysctl.d/90-local.conf</code> folgende Zeile ein:</p>
+</div>
+<div class="listingblock">
+<div class="title">/etc/sysctl.d/90-local.conf</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">net.ipv4.ping_group_range=0 2147483647</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Anschließend lädt man die Datei mit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">sysctl --load /etc/sysctl.d/90-local.conf</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resources"><a class="anchor" href="#_resources"></a>Resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.redhat.com/sysadmin/quadlet-podman" class="bare">https://www.redhat.com/sysadmin/quadlet-podman</a></p>
+</li>
+<li>
+<p><a href="https://www.redhat.com/sysadmin/multi-container-application-podman-quadlet" class="bare">https://www.redhat.com/sysadmin/multi-container-application-podman-quadlet</a></p>
+</li>
+<li>
+<p><a href="https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html" class="bare">https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html</a></p>
+</li>
+<li>
+<p><a href="https://github.com/swobspace/ansible-role-podman" class="bare">https://github.com/swobspace/ansible-role-podman</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2023</span>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>

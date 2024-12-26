@@ -1,0 +1,59 @@
+@startuml
+top to bottom direction
+!theme titracka from ../../../../..
+
+rectangle network #lightgreen [ 
+  Network
+  <i>titracka.network</i>
+]
+
+rectangle titracka [
+  <b>titracka</b>
+  <i>titracka.container</i>
+]
+
+rectangle postgres [
+  <b>titracka-postgres</b>
+  <i>titracka-postgres.container</i>
+]
+
+rectangle redis [
+  <b>titracka-redis</b>
+  <i>titracka-redis.container</i>
+]
+
+storage v_postgres [
+  <b>titracka-postgres</b>
+  <i>titracka-postgres.volume</i>  
+]
+
+storage v_redis [
+  <b>titracka-redis</b>
+  <i>titracka-redis.volume</i>  
+]
+
+storage v_storage [
+  <b>titracka-storage</b>
+  <i>titracka-storage.volume</i>  
+]
+
+storage v_tmp [
+  <b>titracka-tmp</b>
+  <i>titracka-tmp.volume</i>  
+]
+
+file env #lightblue [
+  ./env.production
+]
+
+network #-- titracka
+network #-- postgres
+network #-- redis
+
+titracka --# v_storage
+titracka --# v_tmp
+
+postgres --# v_postgres
+redis --# v_redis
+
+@enduml

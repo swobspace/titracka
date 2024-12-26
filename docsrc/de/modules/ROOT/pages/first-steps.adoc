@@ -1,0 +1,18 @@
+= Erste Schritte
+:revdate: 2024-12-31
+:author: Wolfgang Barth 
+:repo: https://github.com/swobspace/titracka
+:experimental: true
+:imagesdir: ../images
+
+== Webzugriff
+
+* `http://localhost:3000`
+* login: `admin`
+* password: `admin9999`
+
+IMPORTANT: Passwort für `admin` beim ersten Login ändern!
+
+== Basis-Customzing
+
+#FIXME# #COMMINGSOON#

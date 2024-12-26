@@ -4,6 +4,7 @@ version: ~
 nav:
 - modules/ROOT/nav.adoc
 - modules/admin-manual/nav.adoc
+- modules/installation/nav.adoc
 - modules/installation-guide/nav.adoc
 
 asciidoc:

@@ -1,0 +1,97 @@
+= Quickstart: podman pods
+:revdate: 2024-08-09
+:author: Wolfgang Barth 
+:myapp: titracka
+:repo: https://github.com/swobspace/{myapp}
+:experimental: true
+:imagesdir: ../images
+
+== Installation und Start
+
+Kopiere folgende Dateien in ein lokales Verzeichnis::
+
+  * xref:attachment$quickstart/create-playground.sh[create-playground.sh]
+  * xref:attachment$quickstart/env.playground[env.playground]
+
+NOTE: `env.playground` enthält 2 Secrets, die man vor dem Einsatz ändern sollte. Die Datei enthält eine kurze Anweisung dazu. 
+
+
+Pod erzeugen::
+[source,sh,subs="+attributes"]
+----
+bash create-playground.sh
+----
+Das Skript erzeugt einen Pod mit dem Namen `play-{myapp}`.
+
+Pod starten::
+[source,sh,subs="+attributes"]
+----
+podman pod start play-{myapp}
+----
+
+
+== Webzugriff
+
+* `http://localhost:3000`
+* login: `admin`
+* password: `admin9999`
+
+IMPORTANT: Passwort für `admin` beim ersten Login ändern!
+
+=== xref:ROOT:first-steps.adoc[]
+
+== Podman pod: nützliche Kommandos
+
+.Pod anzeigen
+[source,sh,subs="+attributes"]
+----
+podman pod ls 
+----
+
+.Pod stoppen
+[source,sh,subs="+attributes"]
+----
+podman pod stop play-{myapp}
+----
+
+.Welche Container laufen
+[source,sh,subs="+attributes"]
+----
+podman ps
+----
+
+.Pod löschen
+[source,sh,subs="+attributes"]
+----
+podman pod stop play-{myapp}
+podman pod rm play-{myapp}
+----
+
+NOTE: `podman pod rm` löscht nicht die Volumes. Diese müssen separat gelöscht werden. Die Volumes aus dem Create-Skript beginnen alle mit `play`:
+
+[source,sh,subs="+attributes"]
+----
+local       play-{myapp}-postgres
+local       play-{myapp}-redis
+local       play-{myapp}-storage
+----
+
+Gelöscht wird ein Volumen mit `podman rm <volume>`. 
+
+
+== Ressourcen
+
+.Integrierte Hilfe
+[source,sh,subs="+attributes"]
+----
+podman pod --help
+podman --help
+----
+
+.Links
+* https://podman.io/docs[Podman Dokumentation]
+* https://kubernetes.io/de/docs/concepts/workloads/pods/[Was ist ein Pod (Kubernetes)]
+
+== Current Issues
+
+* Beim ersten Start muss man ggf. den Pod zweimal starten, da PostgreSQL beim Setup manchmal zu lange braucht. Solange das Volume dazu nicht gelöscht wird, tritt das Problem später nicht wieder auf.

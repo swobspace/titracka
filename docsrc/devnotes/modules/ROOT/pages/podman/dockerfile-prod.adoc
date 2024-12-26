@@ -1,0 +1,15 @@
+= Dockerfile for Production
+
+.Dockerfile
+[source,dockerfile]
+----
+include::example$podman/Dockerfile.prod[]
+----
+
+.Some Hints
+[cols="2,3"]
+|===
+|Hint | Description
+
+
+|===

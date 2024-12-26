@@ -1,0 +1,85 @@
+= Reverse Proxy zur Absicherung von {MeineApp}
+:navtitle: Reverse Proxy
+:author: Wolfgang Barth
+:revdate: 2024-08-11
+:imagesdir: ../../images
+:myapp: titracka
+:MeineApp: Titracka
+
+In produktiven Umgebungen sichert man Webserver in Containern fast immer über einen Reverse Proxy ab. Der Reverse Proxy ist sicher von außen zu erreichen, stellt TLS/HTTPS und ggf. eine zusätzliche Authentifikation zur Verfügung.
+Der Zugriff zwischen Reverse Proxy und Container kann dann einfach über HTTP erfolgen, der Aufwand für die Konfiguration von TLS in den Containern kann entfallen.
+
+image::podman/reverse-proxy.svg[]
+
+{MeineApp} benutzt Websockets, d.h. es gibt hier zweite Verbindung, die man separat im Proxy berücksichtigen muss, wenn man z.B. Apache einsetzt. Bei Traefik entfällt eine Sonderbehandlung der Websockets.
+
+== Traefik
+
+.Traefik: directory and files
+[subs="+macros,+attributes"]
+----
+/etc/containers/systemd/users/1001/traefik
+├── xref:attachment$podman/quadlet/traefik.yaml[traefik.yml]
+├── xref:attachment$podman/quadlet/traefik.container[traefik.container]
+├── xref:attachment$podman/quadlet/traefik.network[traefik.network]
+----
+
+In der Beispielkonfiguration öffnet Traefik den Port 8443 für den HTTPS-Zugriff. Die mitgelieferte Konfiguration ist so nicht lauffähig und benötigt Anpassungen auf die eigene Umgebung einschließlich der dazu passenden Zertifikate.
+
+Traefik konfiguriert für den Container über das Basis-Setup hinaus mit Labels; diese ergänzt man in `{myapp}.container`:
+
+[source,toml,subs="+attributes"]
+----
+Network=traefik.network
+Label=traefik.enable=true
+Label=traefik.http.routers.{myapp}.rule=Host(`{myapp}.example.com`)
+Label=traefik.http.routers.{myapp}.entrypoints=websecure
+Label=traefik.http.routers.{myapp}.tls=true
+Label=traefik.http.routers.{myapp}.service=svc-{myapp}
+Label=traefik.http.services.svc-{myapp}.loadbalancer.server.port=3000
+----
+
+Die Beispielkonfiguration nutzt ein eigenes Netzwerk für die Kommunikation zwischen Container und Traefik (`traefik.network`). Das Netzwerk muss daher zusätzlich zum {MeineApp}-internen Netzwerk im Quadlet `{myapp}.container` vorhanden sein.
+
+=== podman.socket
+
+Traefik liest die containerspezifische Dokumentation über eine Socket aus. Bei Docker ist dieser Socket standardmäßig aktiv, bei Podman muss er explizit gestartet werden:
+
+.User poddy
+[source,sh]
+----
+systemctl --user start podman.socket
+systemctl --user enable podman.socket
+----
+
+Weitere Infos zum Socket erhält man unter https://github.com/containers/podman/blob/main/docs/tutorials/socket_activation.md
+
+== Apache 2.4
+
+NOTE: Ich benutze Apache nicht länger als Reverse Proxy, das Folgende ist daher nur eine Gedankenstütze und keine lauffähige abschließende Konfiguration.
+
+[source,apache]
+----
+<VirtualHost *:443>
+...
+  <Location "/">
+    ProxyPass http://127.0.0.1:3000/
+    ProxyPassReverse http://127.0.0.1:3000/
+  </Location>
+
+  <Location /cable>
+    ProxyPass ws://127.0.0.1:3000/cable
+    ProxyPassReverse ws://127.0.0.1:3000/cable
+  </Location>
+
+  <Proxy *>
+    Order deny,allow
+    Allow from all
+  </Proxy>
+
+  SSLEngine On
+  SSLCertificateKeyFile ....
+  SSLCertificateFile ...
+  ...
+</VirtualHost>
+----

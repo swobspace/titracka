@@ -31,7 +31,7 @@ Organisationseinheiten. Ein Beispiel:
 
 [[auth-ou-baum-mustermann]]
 .Organisationseinheiten in Baumstruktur
-image::mustermann-oe-baum.png[OE Baum, {w-33}]
+image::mustermann-oe-baum.png[OE Baum]
 
 Leserechte auf die _Mustermann GmbH_ gelten auch für die darunter liegenden
 Organisationseinheiten _Finanz- und Rechnungswesen_ sowie _Personalabteilung_.

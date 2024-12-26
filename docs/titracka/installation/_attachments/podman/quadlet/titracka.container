@@ -1,0 +1,32 @@
+[Unit]
+Description=Cocard - Monitoring Connector, Cards and Terminals 
+Requires=titracka-redis.service
+After=titracka-redis.service
+Requires=titracka-postgres.service
+After=titracka-postgres.service
+
+[Container]
+Image=ghcr.io/swobspace/titracka:latest
+ContainerName=titracka
+Volume=titracka-storage.volume:/rails/storage
+Volume=titracka-tmp.volume:/rails/tmp
+Network=titracka.network
+# Network=traefik.network
+Publish=3000
+EnvironmentFile=env.production
+Environment=FORCE_SSL=false
+Label=traefik.enable=true
+Label=traefik.http.routers.titracka.rule=Host(`titracka.example.com`)
+Label=traefik.http.routers.titracka.entrypoints=websecure
+Label=traefik.http.routers.titracka.tls=true
+Label=traefik.http.routers.titracka.service=svc-titracka
+Label=traefik.http.services.svc-titracka.loadbalancer.server.port=3000
+
+[Service]
+Restart=always
+# pulling an image may exceed the default timeout
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target
+
