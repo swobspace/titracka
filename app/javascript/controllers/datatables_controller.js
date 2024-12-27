@@ -128,10 +128,22 @@ export default class extends Controller {
   }
 
   remoteOptions(options) {
+    //
+    let csrf = document.head.querySelector('meta[name="csrf-token"]')
+    let token = "not available"
+    if (csrf != null) {
+      token = csrf.getAttribute('content')
+    }
     options.searchDelay = 400
     options.processing = true
     options.serverSide = true
-    options.ajax = { "url": this.urlValue, "type": "POST" }
+    options.ajax = {
+      'url': this.urlValue,
+      'type': 'POST',
+      'beforeSend': function(request) {
+        request.setRequestHeader("X-CSRF-Token", token)
+      }
+    }
   }
 
   // fix morph problems
