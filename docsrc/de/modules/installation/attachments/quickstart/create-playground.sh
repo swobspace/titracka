@@ -15,7 +15,7 @@ podman create --pod play-titracka --name play-titracka-redis \
 podman create --pod play-titracka --name play-titracka-postgres \
   --volume=play-titracka-postgres:/var/lib/postgresql/data \
   --env-file=env.playground \
-  --health-cmd="/usr/local/bin/pg_isready -q -d postgres -U postgres" \
+  --health-cmd="/usr/bin/pg_isready -q -d postgres -U postgres" \
   --health-interval=10s \
   --health-timeout=45s \
   --health-retries=10 \
