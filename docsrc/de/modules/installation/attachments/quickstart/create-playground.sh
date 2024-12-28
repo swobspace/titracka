@@ -19,7 +19,7 @@ podman create --pod play-titracka --name play-titracka-postgres \
   --health-interval=10s \
   --health-timeout=45s \
   --health-retries=10 \
-  docker.io/postgres:16.3
+  docker.io/postgres:17.2
 
 podman create --pod play-titracka --name play-titracka-app \
   --requires=play-titracka-redis,play-titracka-postgres \

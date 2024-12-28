@@ -1,5 +1,5 @@
 [Unit]
-Description=Cocard - Monitoring Connector, Cards and Terminals 
+Description=Titracka
 Requires=titracka-redis.service
 After=titracka-redis.service
 Requires=titracka-postgres.service
