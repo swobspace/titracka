@@ -52,4 +52,6 @@ shared/config/*.yml
 config/initializers/secret_token.rb
 config/secrets.yml
 config/deploy-config.yml
+# config file should be mapped as volume
+config/titracka.yml
 
