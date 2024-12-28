@@ -16,6 +16,7 @@
 /config/credentials/*.key
 
 # Ignore all logfiles and tempfiles.
+/*.log
 /log/*
 /tmp/*
 !/log/.keep
@@ -43,6 +44,20 @@
 # Ignore development files
 /.devcontainer
 
+# Ignore some dev files
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+.rspec
+Guardfile
+
+# ignore capistrano stuff
+/Capfile
+config/deploy.rb
+config/deploy-config.yml*
+config/deploy/*
+Passenger.json
+
 # Ignore Docker-related files
 /.dockerignore
 /Dockerfile*
@@ -51,7 +66,7 @@
 shared/config/*.yml
 config/initializers/secret_token.rb
 config/secrets.yml
-config/deploy-config.yml
 # config file should be mapped as volume
 config/titracka.yml
+/utils
 
