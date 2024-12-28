@@ -56,7 +56,7 @@ Guardfile
 config/deploy.rb
 config/deploy-config.yml*
 config/deploy/*
-Passenger.json
+Passengerfile.json
 
 # Ignore Docker-related files
 /.dockerignore
