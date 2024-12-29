@@ -16,8 +16,7 @@ module Titracka
     if CONFIG['devise_modules'].present?
       CONFIG['devise_modules']
     else
-      [ :remote_user_authenticatable,
-        :database_authenticatable,
+      [ :database_authenticatable,
         :registerable,
         :recoverable,
         :rememberable,
