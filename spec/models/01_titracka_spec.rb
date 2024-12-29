@@ -15,7 +15,6 @@ RSpec.describe Titracka, type: :model do
       allow(Titracka::CONFIG).to receive(:[]).with('mail_prefix').and_return(nil)
     end
     it { expect(Titracka.devise_modules).to contain_exactly(
-                                           :remote_user_authenticatable,
                                            :database_authenticatable,
                                            :registerable,
                                            :recoverable,
