@@ -109,7 +109,6 @@ Rails.application.configure do
                          url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }
                        }
   config.colorize_logging = false
-  config.action_mailer.delivery_method = :sendmail
 
   config.after_initialize do
     PaperTrail.enabled = true
