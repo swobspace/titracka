@@ -21,7 +21,7 @@
             <th class="text-center"><%= t('attributes.pause') %></th>
             <th><%= t('attributes.comment') %></th>
             <th class="notvisible"><%= t('attributes.user') %></th>
-            <th class="nosort"><%= t('titracka.action') %></th>
+            <th class="noexport nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
@@ -53,9 +53,9 @@
           <td class="align-middle"><%= workday.comment %></td>
           <td class="align-middle"><%= workday.user %></td>
           <td class="text-nowrap">
-            <%= show_link workday %>
-            <%= edit_link workday %>
-            <%= delete_link workday %>
+            <%= show_link workday.object %>
+            <%= edit_link workday.object %>
+            <%= delete_link workday.object %>
           </td>
         <% end %>
       <% end %>
