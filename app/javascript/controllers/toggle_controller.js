@@ -6,6 +6,7 @@ export default class extends Controller {
   connect () {
     super.connect()
     // add your code here, if applicable
+    this.toggle()
   }
 
   toggle() {
