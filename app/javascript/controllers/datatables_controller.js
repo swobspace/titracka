@@ -22,14 +22,22 @@ export default class extends Controller {
 
     const table = $(this.element.querySelector('table'))
     console.log(table[0].id)
-    // prepare options, optional add remote processing (not yet implemented)
+    // prepare options
     let dtable = $(table).DataTable(dtOptions)
 
     // catch column visibility change
     this.colvis_change_listener(dtable)
 
     if (!this.simpleValue) {
-      this.setInputFields(dtable.state())
+      // wait for init complete if server side processing
+      // else call setInputFields directly
+      if (dtable.page.info().serverSide == true) {
+        dtable.on('init.dt', function() {
+          _this.setInputFields(dtable)
+        })
+      } else {
+        this.setInputFields(dtable)
+      }
     }
 
     // process search input
@@ -44,12 +52,17 @@ export default class extends Controller {
   }
 
   // search fields for each column
-  setInputFields(state) {
+  setInputFields(dtable) {
     // console.log(dtable.tables(0).columns)
     this.element.querySelectorAll("table tfoot th:not([class='nosearch'])")
         .forEach((th, idx) => {
           let col = th.getAttribute("data-dt-column")
-          th.insertAdjacentHTML('afterbegin', this.searchField(col, state.columns[col].search.search))
+          let text = ''
+          let state = dtable.state();
+          if (state) {
+            text = state.columns[col].search.search
+          }
+          th.insertAdjacentHTML('afterbegin', this.searchField(col, text))
         })
   }
 
@@ -65,10 +78,6 @@ export default class extends Controller {
     options.responsive = true
     options.stateSave = true
     options.stateDuration = 60 * 60 * 24
-    // save state but don't save search filter
-    options.stateSaveParams = function(settings, data) {
-                                 data.search.search = '';
-                               }
     options.lengthMenu = [ [10, 25, 100, 250, 1000], [10, 25, 100, 250, 1000] ]
     options.columnDefs = [ { "targets": "nosort", "orderable": false },
                            { "targets": "notvisible", "visible": false },
