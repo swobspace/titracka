@@ -18,7 +18,7 @@
     <div class="d-flex w-100"><%= @task.subject %></div>
     <div data-toggle-target="content">
       <div class="d-flex w-100 justify-content-between small text-body-secondary">
-        <p class="mb-1"><%= truncate(strip_tags(@task.description.to_s), length: 300) %></p>
+        <p class="mb-1"><%= truncate(strip_tags(@task.description.to_s), length: 100) %></p>
       </div>
       <div class="small text-body-secondary">
        <%= helpers.raci(@task) %>
