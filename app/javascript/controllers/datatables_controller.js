@@ -34,18 +34,14 @@ export default class extends Controller {
       if (dtable.page.info().serverSide == true) {
         dtable.on('init.dt', function() {
           _this.setInputFields(dtable)
+          _this.process_search_input(dtable)
         })
       } else {
         this.setInputFields(dtable)
+        this.process_search_input(dtable)
       }
     }
 
-    // process search input
-    dtable.columns().eq(0).each((colIdx) => {
-      $('input[name=idx'+colIdx+']').on( 'keyup change', function() {
-	dtable.column(colIdx).search(this.value).draw()
-      })
-    })
   } // connect
 
   disconnect() {
@@ -174,6 +170,15 @@ export default class extends Controller {
           dtable.column(column).search(this.value).draw()
         })
       }
+    })
+  }
+
+  process_search_input(dtable) {
+    // process search input
+    dtable.columns().eq(0).each((colIdx) => {
+      $('input[name=idx'+colIdx+']').on( 'keyup change', function() {
+	dtable.column(colIdx).search(this.value).draw()
+      })
     })
   }
 } // Controller
