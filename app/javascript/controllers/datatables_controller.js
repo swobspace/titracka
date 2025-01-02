@@ -92,8 +92,8 @@ export default class extends Controller {
   }
 
   simpleOptions(options) {
-    options.dom =  "<'row'<'col-sm-12'tr>>" +
-                   "<'row'<'col pt-2'l><'col'i><'col'p>>"
+    options.dom =  "<'row '<'col-sm-12'tr>>" +
+                   "<'row mt-2 justify-content-between'<'col-md-auto me-auto mt-1'l><'col-md-auto me-auto mt-2'i><'col-md-auto ms-auto'p>>"
     options.pagingType = "numbers"
   }
 
