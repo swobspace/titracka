@@ -4,7 +4,7 @@ Tracking task and time with kanban boards
 Licence
 -------
 
-titracka Copyright (C) 2020-2023  Wolfgang Barth
+titracka Copyright (C) 2020-2025  Wolfgang Barth
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
