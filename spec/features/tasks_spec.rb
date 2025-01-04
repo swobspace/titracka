@@ -8,7 +8,6 @@ RSpec.describe "Tasks", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit root_path
-      execute_script("$.support.transition = false")
     end
 
     it "create a new task via button" do
@@ -29,7 +28,6 @@ RSpec.describe "Tasks", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit tasks_path
-      execute_script("$.support.transition = false")
     end
 
     it "create a new task via menu" do
@@ -45,7 +43,7 @@ RSpec.describe "Tasks", type: :feature, js: true do
     end
 
     it "delete an existing task" do
-      expect(page).to have_content "Showing 1 to 6 of 6 entries"
+      expect(page).to have_content "Showing 1 to 7 of 7 entries"
       expect(Task.count).to eq(10)
       within "tr#task_#{to1.id}" do
         accept_confirm do

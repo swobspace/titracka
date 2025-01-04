@@ -123,7 +123,7 @@ class TimeAccountingsController < ApplicationController
     end
   
     def submit_parms
-      [ "utf8", "authenticity_token", "commit", "format" ]
+      [ "utf8", "authenticity_token", "commit", "format", "view" ]
     end
 
 end

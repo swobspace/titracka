@@ -64,6 +64,7 @@ private
   def build_query
     query = relation
     search_string = [] # for global search_option :search
+    visible = true
     subtree = to_boolean(search_options.fetch(:subtree, false))
     without_lists = to_boolean(search_options.fetch(:without_lists, false))
     search_value  = search_options.fetch(:search, false) # for global option :search
@@ -102,11 +103,14 @@ private
         query = query.where(responsible_id: user_ids(value)) if user_ids(value).present?
       when :status
         query = query.where("states.name ILIKE ?",  "%#{value}%")
+        visible = false
       when :state
         query = query.where("states.state in (?)",
                             i18n_search(value, I18n.t('titracka.state')))
+        visible = false
       when :state_ids
         query = query.where("tasks.state_id IN (?)", Array(value).map(&:to_i))
+        visible = false
       when :priority
         query = query.where("tasks.priority in (?)",
                             i18n_search(value, I18n.t('titracka.priority')))
@@ -146,7 +150,10 @@ private
                           uids: user_ids(search_value),
                           states: i18n_search(search_value, I18n.t('titracka.state'))
                          )
-     end
+    end
+    if visible
+      query = query.visible
+    end
     if limit > 0
       query.limit(limit)
     else

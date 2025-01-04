@@ -1,0 +1,76 @@
+= Podman for Production
+:author: Wolfgang Barth
+:revdate: 2024-12-08
+:navtitle: Podman
+:myapp: titracka
+:appver: 2.1.0
+
+Just a memo for todos and code snippets ...
+
+== Handling Images
+
+=== Update Ruby
+
+.Update ruby base image
+
+[source,sh,subs="attributes"]
+----
+podman pull docker.io/library/ruby:3.2.6-slim
+----
+
+=== Build Image
+
+.Build
+[source,sh,subs="attributes"]
+----
+podman build -t {myapp} .
+----
+
+.Inspect image
+[source,sh,subs="attributes"]
+----
+podman run --rm -it {myapp} /bin/bash
+----
+
+=== Tag Image
+
+.Tag image
+[source,sh,subs="attributes"]
+----
+podman tag {myapp} ghcr.io/swobspace/{myapp}:{appver}
+podman tag {myapp} ghcr.io/swobspace/{myapp}:latest
+----
+
+=== Push Image
+
+.Push image
+[source,sh,subs="attributes"]
+----
+export CR_PAT=YOUR_TOKEN
+echo $CR_PAT | podman login ghcr.io -u swobspace --password-stdin
+podman push ghcr.io/swobspace/{myapp}:{appver}
+podman push ghcr.io/swobspace/{myapp}:latest
+----
+
+=== ghcr.io
+
+https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry
+
+== Variables
+
+.env.production.example
+[source,cfg]
+----
+include::example$podman/env.production.example[]
+----
+
+.Some Hints
+[cols="2,3"]
+|===
+|Hint | Description
+
+|===
+
+
+
+

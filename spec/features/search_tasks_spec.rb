@@ -8,7 +8,6 @@ RSpec.describe "Workday", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit search_form_tasks_path
-      execute_script("$.support.transition = false")
     end
 
     it "find a task" do

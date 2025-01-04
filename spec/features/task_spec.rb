@@ -8,7 +8,6 @@ RSpec.describe "Task", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit task_path(t2)
-      execute_script("$.support.transition = false")
     end
 
     it "delete an existing task" do
@@ -18,7 +17,7 @@ RSpec.describe "Task", type: :feature, js: true do
         find('a[title="Aufgabe löschen"]').click
       end
       within "#ts_tasks" do
-        expect(page).to have_content "Showing 1 to 5 of 5 entries"
+        expect(page).to have_content "Showing 1 to 6 of 6 entries"
       end
       expect(Task.count).to eq(9)
     end

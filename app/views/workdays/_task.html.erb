@@ -31,7 +31,7 @@
     <% end %>
 
     <!-- action icons -->
-    <div class="d-flex w-100 small icon-color pt-1 mt-1">
+    <div class="d-flex w-100 small icon-color action-icons">
       <%= link_to raw('<i class="far fa-clock"></i>'),
                   new_workday_time_accounting_path(workday, task_id: task.id),
                   title: t('actions.add', model: TimeAccounting.model_name.human),

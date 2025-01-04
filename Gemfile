@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 7.0.4'
+gem 'rails', '~> 7.2.0'
 gem 'pg'
 gem 'puma'
 gem 'jbuilder', '~> 2.7'
@@ -67,13 +67,11 @@ gem "hiredis-client"
 gem "prawn"
 gem "prawn-markup"
 
-gem "jsbundling-rails", "~> 1.0"
-
-gem "cssbundling-rails", "~> 1.0"
-
-gem "turbo-rails", "~> 1.0"
-
-gem "view_component", "~> 3.1"
+gem "jsbundling-rails"
+gem "cssbundling-rails"
+gem "turbo-rails"
+gem "stimulus-rails"
+gem "view_component"
 
 gem 'responders'
 

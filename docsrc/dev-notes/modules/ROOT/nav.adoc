@@ -1,3 +1,0 @@
-* xref:design.adoc[]
-* xref:mailer.adoc[]
-* xref:models.adoc[]

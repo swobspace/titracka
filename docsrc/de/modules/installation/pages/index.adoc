@@ -1,0 +1,25 @@
+= Installation
+:revdate: 2024-08-09
+:author: Wolfgang Barth
+:myapp: Titracka
+
+== Podman
+
+Ich benutze `podman` anstelle von `docker`. `podman` integriert sich mit Quadlets bestens in `systemd`, und das auch noch als normaler Benutzer (rootless). Für diejenigen, die sich mit `docker` und `docker-compose` wohler fühlen, gibt es alternativ ein `docker-compose.yml`.
+
+
+== xref:podman/quickstart.adoc[]
+
+Im Quickstart-Guide kommt `podman pod` zum Einsatz. Die Umgebung ist nicht für den produktiven Einsatz gedacht, ist aber einfach anzuwenden, wenn man {myapp} einfach mal nur ausprobieren will.
+
+== xref:podman/podman-systemd.adoc[]
+
+Quadlets integrieren sich perfekt in `systemd` und sind daher die bevorzugte Variante für den produktiven Einsatz von Podman. Benötigt wird mindestens `podman` Version 4.4.
+
+== xref:podman/reverse-proxy.adoc[]
+
+{myapp} als Container ist für den Einsatz hinter einen Reverse Proxy wie Traefik gedacht. Der Einsatz mit Apache2 oder Nginx ist aber ebenfalls möglich. {myapp} stellt selbst keine TLS-Verbindung zur Verfügung, die Handhabung von TLS und den notwendigen Zertifikaten ist Aufgabe des Reverse Proxy.
+
+== xref:podman/podman-compose.adoc[]
+
+Alternativer Einsatz von `docker-compose` statt `podman pods`.

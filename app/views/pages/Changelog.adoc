@@ -1,17 +1,25 @@
 = Changelog
 
+=== 2.1.0 / 2025-01-04
+
+----
+* Upgrade to Rails 7.2
+* Allow search for archived tasks
+* refactoring datatables controller
+----
+
 === 2.0.2 / 2023-09-30
 
 ----
-* minor bugs fixed
+* Minor bugs fixed
 ----
 
 === 2.0.1 / 2023-09-30
 
 ----
 * FullCalendar as date selector
-* search for workdays
-* update gems and npms
+* Search for workdays
+* Update gems and npms
 ----
 
 === 2.0.0 / 2023-07-28

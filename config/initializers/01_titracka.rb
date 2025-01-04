@@ -16,8 +16,7 @@ module Titracka
     if CONFIG['devise_modules'].present?
       CONFIG['devise_modules']
     else
-      [ :remote_user_authenticatable,
-        :database_authenticatable,
+      [ :database_authenticatable,
         :registerable,
         :recoverable,
         :rememberable,
@@ -80,11 +79,17 @@ module Titracka
     fetch_config('script_name', '/')
   end
 
+  def self.smtp_settings
+    fetch_config('smtp_settings', nil)&.symbolize_keys
+  end
+
   ActionMailer::Base.default_url_options = {
    host: self.host,
+   port: self.port,
    script_name: self.script_name
   }
   Rails.application.routes.default_url_options[:host] = self.host
+  Rails.application.routes.default_url_options[:port] = self.port
   Rails.application.routes.default_url_options[:script_name] = self.script_name
 
 end

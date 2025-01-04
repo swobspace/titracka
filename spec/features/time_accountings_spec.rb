@@ -8,14 +8,12 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit root_path
-      execute_script("$.support.transition = false")
     end
 
     it "create a new time accounting via button" do
       click_link("Aktivitäten")
       find('a.dropdown-item[href="/time_accountings"]').click()
       click_link("Aktivität erstellen")
-      expect(page).to have_content("Mustermann, Carola")
       within "#modal" do
         within "div.time_accounting_task" do
           select "Mustermann GmbH / MM task", from: "time_accounting_task_id"
@@ -34,7 +32,6 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit time_accountings_path
-      execute_script("$.support.transition = false")
     end
 
     it "create a new time accounting via menu" do
@@ -66,7 +63,6 @@ RSpec.describe "TimeAccoutings", type: :feature, js: true do
     before(:each) do
       login_user(user: mcaro, org_unit: ou1, role: 'Manager')
       visit time_accountings_path
-      # execute_script("$.support.transition = false")
       expect(page).to have_content("Aktivitäten")
     end
 

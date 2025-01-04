@@ -30,18 +30,19 @@ set :deploy_to, config['deploy_to']
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml"
 
-append :linked_files, "config/database.yml", "config/titracka.yml", "config/secrets.yml", "config/master.key", "config/credentials.yml.enc", "config/Passengerfile.json", "tmp/restart.txt"
+append :linked_files, "config/database.yml", "config/titracka.yml", "config/Passengerfile.json", "tmp/restart.txt"
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
-append :linked_dirs, "log", "files", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "node_modules"
+append :linked_dirs, "log", "files", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system"
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 set :default_env, {
   rails_relative_url_root: fetch(:relative_url_root) ,
+  ssl_cert_file: '/usr/lib/ssl/certs/ca-certificates.crt)',
   path: fetch(:ruby_path) { "$PATH" }
 }
 

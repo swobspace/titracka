@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Podman for Production :: Titracka Dokumentation</title>
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">Titracka Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item dark">DevNotes</div>
+           <a class="navbar-item" href="../../titracka/index.html">Titracka</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="devnotes" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">DevNotes</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../design.html">Design considerations</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mailer.html">Mailer</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../models.html">Models for Titracka</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="production.html">Podman</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dockerfile-prod.html">Dockerfile for Production</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="network.html">Network</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">DevNotes</span>
+    <span class="version">default</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../titracka/index.html">Titracka</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../titracka/index.html">default</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../titracka/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">DevNotes</a></li>
+    <li><a href="production.html">Podman</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Podman for Production</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Just a memo for todos and code snippets &#8230;&#8203;</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_handling_images"><a class="anchor" href="#_handling_images"></a>Handling Images</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_update_ruby"><a class="anchor" href="#_update_ruby"></a>Update Ruby</h3>
+<div class="listingblock">
+<div class="title">Update ruby base image</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman pull docker.io/library/ruby:3.2.6-slim</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_image"><a class="anchor" href="#_build_image"></a>Build Image</h3>
+<div class="listingblock">
+<div class="title">Build</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman build -t titracka .</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Inspect image</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman run --rm -it titracka /bin/bash</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tag_image"><a class="anchor" href="#_tag_image"></a>Tag Image</h3>
+<div class="listingblock">
+<div class="title">Tag image</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman tag titracka ghcr.io/swobspace/titracka:2.1.0
+podman tag titracka ghcr.io/swobspace/titracka:latest</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_push_image"><a class="anchor" href="#_push_image"></a>Push Image</h3>
+<div class="listingblock">
+<div class="title">Push image</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">export CR_PAT=YOUR_TOKEN
+echo $CR_PAT | podman login ghcr.io -u swobspace --password-stdin
+podman push ghcr.io/swobspace/titracka:2.1.0
+podman push ghcr.io/swobspace/titracka:latest</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ghcr_io"><a class="anchor" href="#_ghcr_io"></a>ghcr.io</h3>
+<div class="paragraph">
+<p><a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry" class="bare">https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_variables"><a class="anchor" href="#_variables"></a>Variables</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">env.production.example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cfg hljs" data-lang="cfg"># ~/.env.development.local.example
+# Timezone, Locale
+TZ=Europe/Berlin
+LOCALE=de
+
+# generate key with bin/rails secret
+# head -c64 &lt;/dev/urandom | xxd -p -c 64
+SECRET_KEY_BASE=f40bcf8b368d79f14b98d5f6ebbcc5ac700eebac6cd67fdeec70abbf91840b6448b4bec71642c569b40f1c28a9384cac0c90fffe976ed8b72ebd62e7f5fa4ef8
+
+# -- redis
+REDIS_URL=redis://localhost:6379
+
+# -- postgres
+POSTGRES_USER=cocard
+# SecureRandom.base64(32)
+POSTGRES_PASSWORD=****
+POSTGRES_HOST=localhost
+
+# URL building
+URL_HOST=example.com
+URL_PORT=8443
+URL_PROTOCOL=https</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Some Hints</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Hint</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2025</span>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>

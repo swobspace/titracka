@@ -6,11 +6,7 @@ content:
   - url: ../..
     branches: HEAD
     edit_url: ~
-    start_path: docsrc/de
-  - url: ../..
-    branches: HEAD
-    edit_url: ~
-    start_path: docsrc/dev-notes
+    start_paths: [docsrc/de, docsrc/devnotes]
 output:
   dir: ../../docs
   clean: true

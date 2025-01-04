@@ -151,8 +151,8 @@ RSpec.describe TaskQuery do
   context "with :subtree and org_unit_id" do
     subject { TaskQuery.new(mytasks, {org_unit_id: ou1.id, subtree: true}) }
     before(:each) do
-      @matching = [to1, tl1, done1, archiv2]
-      @nonmatching = [t1, t2, to2, tl2]
+      @matching = [to1, tl1, done1]
+      @nonmatching = [t1, t2, to2, tl2, archiv2]
     end
     it_behaves_like "a task query"
   end # :org_unit_id ou1.id and subtree
@@ -170,8 +170,8 @@ RSpec.describe TaskQuery do
   context "with :responsible_id" do
     subject { TaskQuery.new(mytasks, {responsible_id: mcaro.id}) }
     before(:each) do
-      @matching = [t2, archiv2]
-      @nonmatching = [t1, to1, to2, tl1, tl2, done1]
+      @matching = [t2]
+      @nonmatching = [t1, to1, to2, tl1, tl2, done1, archiv2]
     end
     it_behaves_like "a task query"
   end # :responsible_id mcaro.id

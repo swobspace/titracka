@@ -47,7 +47,7 @@
                 <%= content_tag(:div, class: "form-check") do %>
                   <%= check_box_tag 'state_ids[]', state.to_param, 
                         params.fetch(:state_ids, []).include?(state.to_param),
-                        class: "form-check-input mr-2",
+                        class: "form-check-input me-2",
                         data: { 
                           'filters-target': 'filter' ,
                           'action': 'checkbox-list#onChecked'
@@ -94,7 +94,7 @@
                 <%= content_tag(:div, class: "form-check") do %>
                   <%= check_box_tag 'priority_ids[]', prio, 
                         params.fetch(:priority_ids, []).include?(prio.to_s),
-                        class: "form-check-input mr-2",
+                        class: "form-check-input me-2",
                         data: { 
                           'filters-target': 'filter' ,
                           'action': 'checkbox-list#onChecked'

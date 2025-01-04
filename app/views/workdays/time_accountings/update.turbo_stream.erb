@@ -1,0 +1,9 @@
+<%= turbo_stream.update("ts_time_accountings") do %>
+    <%= render Workday::TimeAccountingsComponent.new(workday: @time_accountable, 
+                                                     user: @current_user) %>
+<% end %>
+
+<%= turbo_stream.update("ts_my_week") do %>
+  <%= render Workday::MyWeekComponent.new(workday: @time_accountable, user: @current_user) %>
+<% end %>
+

@@ -39,11 +39,11 @@ RSpec.shared_examples "an OrgaAdmin with application Ability" do
       it { is_expected.not_to be_able_to(:manage, model.new) }
     end
   end
+
+  it { is_expected.to be_able_to(:navigate, :configuration) }
 end
 
 RSpec.shared_examples "an OrgaAdmin with Wobauth::AdminAbility" do
-  it { is_expected.to be_able_to(:navigate, :configuration) }
-  
   # -- readable, buth not writeable
   (admin_models).each do |model|
     context "on model #{model}" do

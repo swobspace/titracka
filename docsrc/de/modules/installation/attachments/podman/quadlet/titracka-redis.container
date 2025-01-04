@@ -1,0 +1,17 @@
+[Unit]
+Description=Redis for Titracka (production)
+
+[Container]
+Image=docker.io/library/redis:latest
+ContainerName=titracka-redis
+Volume=titracka-redis.volume:/data
+Network=titracka.network
+Label=traefik.enable=false
+
+[Service]
+Restart=always
+# pulling an image may exceed the default timeout
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

@@ -35,7 +35,7 @@
        %>
 
       <%= link_to raw(%Q[<i class="fas fa-backward"></i>]),
-            by_date_path(date: 1.day.before(@workday.date).to_s), class: "ml-3 btn btn-secondary" %>
+            by_date_path(date: 1.day.before(@workday.date).to_s), class: "ms-3 btn btn-secondary" %>
       <%= link_to t('titracka.today'), by_date_path(date: Date.today.to_s), class: "btn btn-secondary" %>
       <%= link_to raw(%Q[<i class="fas fa-forward"></i>]),
             by_date_path(date: 1.day.after(@workday.date).to_s), class: "btn btn-secondary" %>
@@ -58,7 +58,7 @@
 </div>
 
 <div class="card mt-3 border-0">
-  <div class="card-header border mr-1 ml-1">
+  <div class="card-header border mx-1">
     <%= render 'tasks/filters_horizontal', workday: @workday %>
   </div>
   <div class="card-body m-0 p-0">

@@ -1,0 +1,163 @@
+= Podman mit Systemd und Quadlets für Produktiv-Umgebungen
+:navtitle: Systemd und Quadlets
+:author: Wolfgang Barth
+:revdate: 2024-12-31
+:imagesdir: ../../images
+:myapp: titracka
+
+
+Manpage zu Podman Quadlets: https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html
+
+== Voraussetzungen
+
+* podman Version >= 4.4, besser 4.6 oder höher.
+
+
+.Podman Version einiger Linux-Distributionen
+[cols="2,2,3"]
+|===
+|Distro | Version | usable?
+
+|Fedora 38    |4.7.2 |ok
+|Fedora 39    |4.8.1 |ok
+|Fedora 40    |5.1.1 |ok
+|Ubuntu 23.10 |4.3.1 |doesn't work
+|Ubuntu 24.04 |4.7.2 |ok
+|===
+
+=== Benötigte Pakete
+
+.Ubuntu 24.04
+[source]
+----
+apt install -y podman uidmap aardvark-dns dbus-user-session acl
+----
+
+.Fedora 40
+[source]
+----
+dnf install podman shadow-utils-subid aardvark-dns
+----
+
+Für die Installation von Quadlets gibt es auch eine Ansible-Rolle unter https://github.com/swobspace/ansible-role-podman. Die Rolle ist sehr einfach aufgebaut: User `poddy` einrichten, Pakete installieren, Quadlets aus einem lokalen Verzeichnis kopieren und `systemd` im Userkontext neu laden. Fertig.
+
+== Überblick
+
+image::podman/{myapp}-quadlets.svg[]
+
+Für den Einsatz von Rootless-Containern nutzt man idealerweise einen eigenen Benutzer. Unser Benutzer heißt `poddy` und hat die UID 1001. Die sogenannten Quadlets werden im Verzeichnis `/etc/containers/systemd/users/$UID` oder einem Unterverzeichnis (hier: `{myapp}`) abgelegt.
+
+.Rootless Setup: Verzeichnis und Dateien (Alle Dateien: xref:attachment$podman/quadlet/quadlets.zip[quadlets.zip])
+[subs="+attributes,+macros"]
+----
+/etc/containers/systemd/users/1001/{myapp}
+├── xref:attachment$podman/quadlet/env.production[env.production]
+├── xref:attachment$podman/quadlet/{myapp}.container[{myapp}.container]
+├── xref:attachment$podman/quadlet/{myapp}.network[{myapp}.network]
+├── xref:attachment$podman/quadlet/{myapp}-postgres.container[{myapp}-postgres.container]
+├── xref:attachment$podman/quadlet/{myapp}-postgres.volume[{myapp}-postgres.volume]
+├── xref:attachment$podman/quadlet/{myapp}-redis.container[{myapp}-redis.container]
+├── xref:attachment$podman/quadlet/{myapp}-redis.volume[{myapp}-redis.volume]
+├── xref:attachment$podman/quadlet/{myapp}-storage.volume[{myapp}-storage.volume]
+└── xref:attachment$podman/quadlet/{myapp}-tmp.volume[{myapp}-tmp.volume]
+----
+
+== Webzugriff auf {myapp}
+
+Entweder veröffentlicht man direkt aus `{myapp}.container` den Port 3000 nach außen, oder man benutzt einen Reverse Proxy und fügt ein Netzwerk hinzu, auf das der Reverse Proxy Zugriff hat:
+
+.{myapp}.container
+[source,yaml]
+----
+...
+# Network=traefik.network
+Publish=3000
+...
+----
+
+Hier ist {myapp} direkt per Port 3000 erreichbar. Für den Einsatz mit Traefik kommentiert man Eintrag mit `Publish` aus und entfernt das Kommentarzeichen vor `Network`.
+
+== Rootless Container Handling
+
+Normalerweise sind Systemd-Prozesse eines Users an die Session gebunden. Loggt sich der User aus, werden die Prozesse beendet. Für den unbeaufsichtigten Dauereinsatz ist das unterwünscht, daher muss man explizit konfigurieren, dass Sessions eines Users auch einen Logout oder Reboot überleben:
+
+.Enable linger for poddy
+[source,sh]
+----
+loginctl enable-linger poddy
+----
+
+Wer sich nicht direkt als User `poddy` einloggt, sondern `sudo` und/oder `su` benutzt, muss noch einige Variablen explizit setzen:
+
+.Set environment variables
+[source,sh]
+----
+export XDG_RUNTIME_DIR="/run/user/1001"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+----
+
+TIP: Setze die Variablen in .`bashrc` von User `poddy`.
+
+.Erforderliche Verzeichnisse für systemd anlegen
+[source,sh,subs="+attributes"]
+----
+mkdir -p /etc/containers/systemd/users/1001/{myapp}
+chown -R poddy:poddy /etc/containers/systemd/users/1001
+chmod 700 -R /etc/containers/systemd/users/1001
+----
+
+Kopiere jetzt alle Dateien aus xref:attachment$podman/quadlet/quadlets.zip[quadlets.zip] in das Verzeichnis `/etc/containers/systemd/users/1001/{myapp}`.
+
+IMPORTANT: Bitte die Secrets in `env.production` ändern. die Datei enhält Anweisungen dazu.
+
+
+Nach Änderungen an den Quadlets muss `systemd` die Quadlets neu laden:
+
+.(User poddy) Reload Systemd
+[source,sh]
+----
+systemctl --user daemon-reload
+----
+
+.(User poddy) PostgreSQL zuerst starten - warten - dann den Rest starten
+[source,sh,subs="+attributes"]
+----
+systemctl --user start {myapp}-postgres
+...
+systemctl --user start {myapp}
+----
+
+.(User poddy) Logausgaben anzeigen
+[source,sh,subs="+attributes"]
+----
+# Vollständiger Output des Users poddy
+journalctl --user -f
+...
+# Ein ausgewählter Container
+journalctl --user -u {myapp} -f
+journalctl --user -u {myapp}-worker -f
+journalctl --user -u {myapp}-postgres -f
+----
+
+== Ping aus dem Container heraus
+
+Ping nutzt einen Raw-Socket und benötigt erweiterte Rechte. Innerhalb des {myapp}-Containers sind diese bereits gesetzt. Während bei Fedora bereits der `ping_group_range` passend gesetzt ist, muss man bei Ubuntu das explizit selbst setzen. Dazu trägt man in die Datei `/etc/sysctl.d/90-local.conf` folgende Zeile ein:
+
+./etc/sysctl.d/90-local.conf
+[source]
+----
+net.ipv4.ping_group_range=0 2147483647
+----
+
+Anschließend lädt man die Datei mit 
+[source]
+----
+sysctl --load /etc/sysctl.d/90-local.conf
+----
+
+== Resources
+
+* https://www.redhat.com/sysadmin/quadlet-podman
+* https://www.redhat.com/sysadmin/multi-container-application-podman-quadlet
+* https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html
+* https://github.com/swobspace/ansible-role-podman

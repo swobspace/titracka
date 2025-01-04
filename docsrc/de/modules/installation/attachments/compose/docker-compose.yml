@@ -1,0 +1,41 @@
+---
+x-base: &base
+  image: ghcr.io/swobspace/titracka:latest
+  volumes:
+    - dc-titracka-storage:/rails/storage
+  depends_on:
+    redis:
+      condition: service_started
+    postgres:
+      condition: service_healthy
+  env_file:
+    - env.compose
+
+services:
+  app:
+    <<: *base
+    restart: on-failure
+    ports:
+      - 3000:3000
+
+  redis:
+    image: docker.io/library/redis:latest
+    volumes:
+      - dc-titracka-redis:/data
+
+  postgres:
+    image: docker.io/postgres:17.2
+    volumes:
+      - dc-titracka-postgres:/var/lib/postgresql/data
+    env_file:
+      - env.compose
+    healthcheck:
+      test: /usr/bin/pg_isready -q -d postgres -U postgres
+      timeout: 45s
+      interval: 10s
+      retries: 10
+
+volumes:
+  dc-titracka-redis:
+  dc-titracka-postgres:
+  dc-titracka-storage:

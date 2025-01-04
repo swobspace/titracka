@@ -1,0 +1,77 @@
+= Konfiguration
+:author: Wolfgang Barth
+:revdate: 2024-08-11
+:myapp: titracka
+
+NOTE: Die Basis-Konfiguration erfolgt über Umgebungsvariablen in `env.production`. Zusätzliche Einstellungen können über die Konfigurationsdatei `titracka.yml` vorgenommen werden.
+
+.env.production
+[source,toml,subs="+attributes"]
+----
+# -------------------------------------------------------------------
+# WICHTIG: alle Passwörter unten vor Inbetriebnahme ändern!
+# -> SECRET_KEY_BASE, POSTGRES_PASSWORD
+# -------------------------------------------------------------------
+#
+# Timezone, Locale
+TZ=Europe/Berlin
+LOCALE=de
+
+# generate key with bin/rails secret
+# head -c64 </dev/urandom | xxd -p -c 64
+SECRET_KEY_BASE=7eedef6a36b8c32a4a60c3c49567ac7469e5724fe1755177d41697917b1c0ca46e00b81c28a51593e3c04ea5aa874fac4c2e4ea0650902246c71c03461dcb4df
+
+# -- redis
+REDIS_URL=redis://{myapp}-redis:6379
+
+# -- postgres
+POSTGRES_DB={myapp}_production
+POSTGRES_USER={myapp}
+# pwgen 31 1
+POSTGRES_PASSWORD=eithaeshaeQu6ohsidaiNgaingaequi
+POSTGRES_HOST={myapp}-postgres
+
+# URL building
+URL_HOST={myapp}.example.com
+URL_PORT=8443
+URL_PROTOCOL=https
+----
+
+[cols="1m,4"]
+|===
+|Variable | Beschreibung
+
+|TZ
+|Zeitzone, z.B. `Europe/Berlin`
+
+|LOCALE
+|
+
+|SECRET_KEY_BASE
+|Basis-Secret für Rails für die Absicherung von Sessions.
+
+|REDIS_URL
+|URL für den Zugriff auf den Redis-Container; Zugriff erfolgt über das interne {myapp}-Netzwerk und benötigt daher den Hostnamen des Redis-Containers.
+
+|POSTGRES_DB
+|Name der PostgreSQL-Datenbank-Instanz
+
+|POSTGRES_USER
+|Benutzer für PostgreSQL
+
+|POSTGRES_PASSWORD
+|Passwort
+
+|POSTGRES_HOST
+|Hostname aus Sicht des {myapp}-Containers in {myapp}-Netzwerk.
+
+|URL_HOST
+|Hostname, unter der {myapp} von außen erreichbar ist
+
+|URL_PORT
+|Port, über den {myapp} von außen erreichbar ist. Entweder 3000 bei direkter Veröffentlichung des {myapp}-Ports oder 8443 via Traefik, wenn die Beispielkonfiguration verwendet wird.
+
+|URL_PROTOCOL
+|Protokoll für den Zugriff (http bei direktem Zugriff)
+
+|===
