@@ -3,13 +3,14 @@ class WorkdaysController < ApplicationController
 
   # GET /workdays
   def index
-    @workdays = @current_user.workdays.decorate
+    @workdays = @current_user.workdays
     if params[:start].present?
       @workdays = @workdays.where('date >= ?', params[:start])
     end
     if params[:end].present?
       @workdays = @workdays.where('date <= ?', params[:end])
     end
+     @workdays = @workdays.decorate
     respond_with(@workdays)
   end
 
