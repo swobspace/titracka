@@ -4,6 +4,7 @@
 :navtitle: Podman
 :myapp: titracka
 :appver: 2.1.0
+:rubyversion: 3.2.7
 
 Just a memo for todos and code snippets ...
 
@@ -15,7 +16,7 @@ Just a memo for todos and code snippets ...
 
 [source,sh,subs="attributes"]
 ----
-podman pull docker.io/library/ruby:3.2.6-slim
+podman pull docker.io/library/ruby:{rubyversion}-slim
 ----
 
 === Build Image
