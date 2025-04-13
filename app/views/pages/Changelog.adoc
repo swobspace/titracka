@@ -1,5 +1,12 @@
 = Changelog
 
+=== 2.1.1-dev / unreleased
+
+----
+* fix some quirks in javascript controllers
+* upgrade gems and npms
+----
+
 === 2.1.0 / 2025-01-04
 
 ----
