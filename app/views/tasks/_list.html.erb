@@ -9,6 +9,7 @@
       <tr>
             <th><%= t('attributes.id') %></th>
             <th><%= t('attributes.subject') %></th>
+            <th class="notvisible"><%= t('attributes.description') %></th>
             <th><%= t('attributes.state') %></th>
             <th><%= t('attributes.responsible') %></th>
             <th class="notvisible"><%= t('attributes.start') %></th>
@@ -26,6 +27,7 @@
         <%= content_tag(:tr, id: dom_id(task)) do %>
                 <td><%= task.id %></td>
                 <td><%= link_to task.subject, task_path(task), class: 'primary-link' %></td>
+                <td><%= truncate(strip_tags(task.description.to_plain_text), length: 300)%></td>
                 <td><%= task.state %></td>
                 <td><%= task.responsible&.short_name %></td>
                 <td><%= task.start %></td>
