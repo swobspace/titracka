@@ -125,17 +125,21 @@ export default class extends Controller {
                                 window.location.reload();
                               }},
                  { "extend": 'csv',
+                   "title": null,
 	           "exportOptions": { "columns": ':visible',
                                       "search": ':applied' } },
                  { "extend": 'excel',
+                   "title": null,
 	           "exportOptions": { "columns": ':visible',
                                       "search": ':applied' } },
                  { "extend": 'pdf',
+                   "title": null,
 	           "orientation": 'landscape',
 	           "pageSize": 'A4',
 	           "exportOptions": { "columns": ':visible',
 	                              "search": ':applied' } },
-                 { "extend": 'print'},
+                 { "extend": 'print',
+                   "title": null },
                  { "extend": 'colvis', "columns": ':gt(0)',
                    "text": "Sichbare Spalten" }
                ]
