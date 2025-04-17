@@ -27,7 +27,7 @@
         <%= content_tag(:tr, id: dom_id(task)) do %>
                 <td><%= task.id %></td>
                 <td><%= link_to task.subject, task_path(task), class: 'primary-link' %></td>
-                <td><%= truncate(strip_tags(task.description.to_plain_text), length: 300)%></td>
+                <td><%= task.description.to_s %></td>
                 <td><%= task.state %></td>
                 <td><%= task.responsible&.short_name %></td>
                 <td><%= task.start %></td>
