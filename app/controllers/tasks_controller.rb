@@ -12,6 +12,7 @@ class TasksController < ApplicationController
     else
        @tasks = Task.accessible_by(current_ability, :read)
     end
+
     if search_params.present?
       @tasks = TaskQuery.new(@tasks.joins(:state), search_params).all
       session[:tasks_filter] = search_params
@@ -20,6 +21,7 @@ class TasksController < ApplicationController
       session[:tasks_filter] = {}
       session[:new_task_params] = {}
     end
+
     if params[:view] == 'cards'
       session[:tasks_mode] = :cards
       render template: 'tasks/cards'
