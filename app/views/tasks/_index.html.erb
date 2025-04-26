@@ -62,7 +62,7 @@
                 <td><%= task.list %></td>
                 <td><%= t(task.private) %></td>
                 <td><%= task.user&.short_name %></td>
-                <td><%= task.cross_references.join("<br/>").html_safe %></td>
+                <td><%= task.cross_references.map{|xref| xref.decorate.with_links }.join("<br/>").html_safe %></td>
                 <td class="text-nowrap">
             <%= show_link task,
                           class: '',
