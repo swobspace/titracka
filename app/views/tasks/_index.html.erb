@@ -18,6 +18,7 @@
         <th><%= t('attributes.priority') %></th>
         <th class="notvisible"><%= t('attributes.org_unit') %></th>
         <th class="notvisible"><%= t('attributes.list') %></th>
+        <th class="notvisible"><%= t('attributes.private') %></th>
         <th class="notvisible"><%= t('attributes.owner') %></th>
         <th class=""><%= t('attributes.cross_references') %></th>
         <th class="nosort"><%= t('titracka.action') %></th>
@@ -26,6 +27,7 @@
     <tfoot class="search">
       <tr>
         <th style="width: 50px;"></th>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -55,6 +57,7 @@
                 <td class="prio-<%= task.priority %>"><%= t(task.priority, scope: 'titracka.priority') %></td>
                 <td><%= task.org_unit %></td>
                 <td><%= task.list %></td>
+                <td><%= t(task.private) %></td>
                 <td><%= task.user&.short_name %></td>
                 <td><%= task.cross_references.join("<br/>").html_safe %></td>
                 <td class="text-nowrap">
