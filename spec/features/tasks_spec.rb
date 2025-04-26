@@ -59,12 +59,15 @@ RSpec.describe "Tasks", type: :feature, js: true do
         find('a[title="Aufgabe bearbeiten"]').click
       end
       within "#modal" do
+        fill_in "Aufgabe", with: "Some changed task"
         find("trix-editor#task_description").set("a description for to1 task")
       end
       click_button("Aufgabe aktualisieren")
       within "#ts_tasks" do
-        expect(page).to have_content("a description for to1 task")
+        expect(page).to have_content("Some changed task")
       end
+      to1.reload
+      expect(to1.description.to_plain_text).to eq("a description for to1 task")
       # save_and_open_screenshot()
     end
     it "show an existing task" do
