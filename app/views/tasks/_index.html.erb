@@ -10,6 +10,7 @@
         <th class="text-center" style="width: 20px;"><%= t('attributes.id') %></th>
         <th><%= t('attributes.subject') %></th>
         <th class="notvisible"><%= t('attributes.description') %></th>
+        <th class="notvisible"><%= t('attributes.current_note') %></th>
         <th><%= t('attributes.state') %></th>
         <th><%= t('attributes.responsible') %></th>
         <th class="notvisible"><%= t('attributes.start') %></th>
@@ -40,6 +41,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
         <th class="nosearch"></th>
       </tr>
     </tfoot>
@@ -49,6 +51,7 @@
                 <td class="text-center"><%= task.id %></td>
                 <td><%= link_to task.subject, task_path(task), class: 'primary-link' %></td>
                 <td><%= task.description.to_s %></td>
+                <td><%= render CurrentNoteComponent.new(notable: task) %></td>
                 <td><%= task.state %></td>
                 <td><%= task.responsible&.short_name %></td>
                 <td><%= task.start %></td>
