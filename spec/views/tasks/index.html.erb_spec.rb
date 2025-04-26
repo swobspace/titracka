@@ -47,9 +47,9 @@ RSpec.describe "tasks/index", type: :view do
     assert_select "tr>td", text: "Subject".to_s, count: 2
     assert_select "tr>td", text: "hoch".to_s, count: 1
     assert_select "tr>td", text: "niedrig".to_s, count: 1
-    assert_select "tr>td", text: "Bombadil, Tom (tom)".to_s, count: 2
+    assert_select "tr>td", text: "Bombadil, Tom".to_s, count: 2
     assert_select "tr>td", text: "Open".to_s, count: 2
-    assert_select "tr>td", text: false.to_s, count: 2
+    assert_select "tr>td", text: "Nein".to_s, count: 2
     assert_select "tr>td", text: "DontDoIt#676274".to_s, count: 1
     assert_select "tr>td", text: "DontDoIt#456048".to_s, count: 1
   end
