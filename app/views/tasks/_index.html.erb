@@ -7,7 +7,7 @@
         } do %>
     <thead class="table-primary">
       <tr>
-        <th><%= t('attributes.id') %></th>
+        <th class="text-center" style="width: 20px;"><%= t('attributes.id') %></th>
         <th><%= t('attributes.subject') %></th>
         <th class="notvisible"><%= t('attributes.description') %></th>
         <th><%= t('attributes.state') %></th>
@@ -25,7 +25,7 @@
     </thead>
     <tfoot class="search">
       <tr>
-        <th></th>
+        <th style="width: 50px;"></th>
         <th></th>
         <th></th>
         <th></th>
@@ -44,7 +44,7 @@
     <tbody>
       <% tasks.each do |task| %>
         <%= content_tag(:tr, id: dom_id(task)) do %>
-                <td><%= task.id %></td>
+                <td class="text-center"><%= task.id %></td>
                 <td><%= link_to task.subject, task_path(task), class: 'primary-link' %></td>
                 <td><%= task.description.to_s %></td>
                 <td><%= task.state %></td>
