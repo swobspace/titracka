@@ -9,11 +9,6 @@
     <%= render 'index', tasks: @tasks %>
   <% end %>
 
-<% elsif session[:tasks_mode] == :list %>
-  <%= turbo_stream.update("ts_tasks") do %>
-    <%= render 'list', tasks: @tasks %>
-  <% end %>
-
 <% else %>
   <%= turbo_stream.update("ts_show_task") do %>
     <%= render partial: 'show_task', locals: {task: @task} %>

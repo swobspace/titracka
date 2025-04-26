@@ -4,6 +4,10 @@
       <h4 class="title"><%= @org_unit %></h4>
 
       <div role="toolbar">
+        <%= link_to raw(%Q[<i class="fas fa-th-list"></i>]),
+                    org_unit_tasks_path(@org_unit),
+                    class: 'btn btn-secondary'
+         %>
         <%= back_link %>
         <%= edit_link(@org_unit) %>
         <%= delete_link(@org_unit) %>
