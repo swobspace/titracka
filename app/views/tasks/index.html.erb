@@ -1,6 +1,6 @@
 <%= render 'shared/turbo-cache-control' %>
 
-<h1><%= t('controller.tasks') %></h1>
+<h1><%= (@taskable || t('controller.tasks')) %></h1>
 
 <div id="ts_tasks" class="pt-2">
   <%= render 'index', tasks: @tasks %>
@@ -12,3 +12,9 @@
 <%= new_link([@taskable, Task],
              data: { 'turbo-frame': "modal" })
 %>
+<% if @taskable %>
+  <%= link_to(polymorphic_path(@taskable), class: 'btn btn-secondary') do %>
+    <%= raw(%Q[<i class="fas fa-clipboard-list fw"></i>]) %> Cardboard
+  <% end %>
+<% end %>
+

@@ -1,68 +1,85 @@
 <div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
         id: "tasks_table",
-        class: "table table-bordered table-responsive-xl",
+        class: "table table-striped table-sm table-responsive-xl",
         data: {
           order: [[0, 'desc']].to_json
         } do %>
-    <thead>
+    <thead class="table-primary">
       <tr>
-            <th><%= t('attributes.subject') %></th>
-            <th><%= t('attributes.description') %></th>
-            <th><%= t('attributes.state') %></th>
-            <th><%= t('attributes.responsible') %></th>
-            <th class="notvisible"><%= t('attributes.start') %></th>
-            <th><%= t('attributes.deadline') %></th>
-            <th class="notvisible"><%= t('attributes.resubmission') %></th>
-            <th><%= t('attributes.priority') %></th>
-            <th class="notvisible"><%= t('attributes.org_unit') %></th>
-            <th class="notvisible"><%= t('attributes.list') %></th>
-            <th><%= t('attributes.private') %></th>
-            <th class="notvisible"><%= t('attributes.owner') %></th>
-            <th class=""><%= t('attributes.cross_references') %></th>
-            <th class="nosort"><%= t('titracka.action') %></th>
+        <th><%= t('attributes.id') %></th>
+        <th><%= t('attributes.subject') %></th>
+        <th class="notvisible"><%= t('attributes.description') %></th>
+        <th><%= t('attributes.state') %></th>
+        <th><%= t('attributes.responsible') %></th>
+        <th class="notvisible"><%= t('attributes.start') %></th>
+        <th><%= t('attributes.deadline') %></th>
+        <th class="notvisible"><%= t('attributes.resubmission') %></th>
+        <th><%= t('attributes.priority') %></th>
+        <th class="notvisible"><%= t('attributes.org_unit') %></th>
+        <th class="notvisible"><%= t('attributes.list') %></th>
+        <th class="notvisible"><%= t('attributes.owner') %></th>
+        <th class=""><%= t('attributes.cross_references') %></th>
+        <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th class="nosearch"></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
       <% tasks.each do |task| %>
         <%= content_tag(:tr, id: dom_id(task)) do %>
-                <td><%= task.subject %></td>
-                <td><%= truncate(strip_tags(task.description.to_s), length: 300)%></td>
+                <td><%= task.id %></td>
+                <td><%= link_to task.subject, task_path(task), class: 'primary-link' %></td>
+                <td><%= task.description.to_s %></td>
                 <td><%= task.state %></td>
-                <td><%= task.responsible %></td>
+                <td><%= task.responsible&.short_name %></td>
                 <td><%= task.start %></td>
                 <td><%= task.deadline %></td>
                 <td><%= task.resubmission %></td>
-                <td><%= t(task.priority, scope: 'titracka.priority') %></td>
+                <td class="prio-<%= task.priority %>"><%= t(task.priority, scope: 'titracka.priority') %></td>
                 <td><%= task.org_unit %></td>
                 <td><%= task.list %></td>
-                <td><%= task.private %></td>
-                <td><%= task.user %></td>
+                <td><%= task.user&.short_name %></td>
                 <td><%= task.cross_references.join("<br/>").html_safe %></td>
                 <td class="text-nowrap">
-            <%= show_link task, data: { turbo: 'false' } %>
+            <%= show_link task, 
+                          class: '',
+                          data: { turbo: 'false' } %>
             <%= edit_link(task, 
+                          class: '',
                           data: { 'turbo-frame': "modal" })
             %>
-            <%= delete_link(task) %>
+            <%= link_to raw(%Q[<i class="far fa-fw fa-comment"></i>]),
+                        new_task_note_path(task),
+                        id: "new_note_#{dom_id(task)}",
+                        class: "me-1",
+                        data: { 'turbo-frame': "modal" }
+             %>
+            <%= link_to raw('<i class="far fa-fw fa-clock"></i>'),
+                        new_task_time_accounting_path(task),
+                        id: "new_time_accounting_#{dom_id(task)}",
+                        class: "me-1",
+                        data: { 'turbo-frame': "modal" }
+             %>
+            <%= delete_link task,
+                          class: '',
+                          data: { turbo: 'false' } %>
           </td>
         <% end %>
       <% end %>
