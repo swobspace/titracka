@@ -42,7 +42,7 @@
       </tr>
     </tfoot>
     <tbody>
-      <% @tasks.each do |task| %>
+      <% tasks.each do |task| %>
         <%= content_tag(:tr, id: dom_id(task)) do %>
                 <td><%= task.id %></td>
                 <td><%= link_to task.subject, task_path(task), class: 'primary-link' %></td>
