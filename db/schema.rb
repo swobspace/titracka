@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_27_073300) do
+  create_schema "titracka_development"
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.bigint "record_id", null: false
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.index ["record_type", "record_id", "name"], name: "idx_167682_index_action_text_rich_texts_uniqueness", unique: true
+    t.index ["record_type", "record_id", "name"], name: "idx_167377_index_action_text_rich_texts_uniqueness", unique: true
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -30,8 +32,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.timestamptz "created_at", null: false
-    t.index ["blob_id"], name: "idx_167689_index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "idx_167689_index_active_storage_attachments_uniqueness", unique: true
+    t.index ["blob_id"], name: "idx_167384_index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "idx_167384_index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_blobs", force: :cascade do |t|
@@ -43,13 +45,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.string "checksum", limit: 255
     t.timestamptz "created_at", null: false
     t.string "service_name", limit: 255, null: false
-    t.index ["key"], name: "idx_167696_index_active_storage_blobs_on_key", unique: true
+    t.index ["key"], name: "idx_167391_index_active_storage_blobs_on_key", unique: true
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", limit: 255, null: false
-    t.index ["blob_id", "variation_digest"], name: "idx_167705_index_active_storage_variant_records_uniqueness", unique: true
+    t.index ["blob_id", "variation_digest"], name: "idx_167400_index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "cross_references", force: :cascade do |t|
@@ -59,8 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
     t.string "subject", limit: 255, default: ""
-    t.index ["reference_id"], name: "idx_167716_index_cross_references_on_reference_id"
-    t.index ["task_id"], name: "idx_167716_index_cross_references_on_task_id"
+    t.index ["reference_id"], name: "idx_167411_index_cross_references_on_reference_id"
+    t.index ["task_id"], name: "idx_167411_index_cross_references_on_task_id"
   end
 
   create_table "day_types", force: :cascade do |t|
@@ -68,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.string "description", limit: 255, default: ""
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.index ["abbrev"], name: "idx_167725_index_day_types_on_abbrev"
+    t.index ["abbrev"], name: "idx_167420_index_day_types_on_abbrev"
   end
 
   create_table "lists", force: :cascade do |t|
@@ -79,9 +81,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.bigint "user_id"
     t.bigint "position", default: 0
     t.date "valid_until"
-    t.index ["name"], name: "idx_167734_index_lists_on_name"
-    t.index ["org_unit_id"], name: "idx_167734_index_lists_on_org_unit_id"
-    t.index ["user_id"], name: "idx_167734_index_lists_on_user_id"
+    t.index ["name"], name: "idx_167429_index_lists_on_name"
+    t.index ["org_unit_id"], name: "idx_167429_index_lists_on_org_unit_id"
+    t.index ["user_id"], name: "idx_167429_index_lists_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -90,8 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.date "date"
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.index ["task_id"], name: "idx_167741_index_notes_on_task_id"
-    t.index ["user_id"], name: "idx_167741_index_notes_on_user_id"
+    t.index ["task_id"], name: "idx_167436_index_notes_on_task_id"
+    t.index ["user_id"], name: "idx_167436_index_notes_on_user_id"
   end
 
   create_table "org_units", force: :cascade do |t|
@@ -101,17 +103,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.timestamptz "updated_at", null: false
     t.bigint "position", default: 0
     t.date "valid_until"
-    t.index ["ancestry"], name: "idx_167746_index_org_units_on_ancestry"
-    t.index ["name"], name: "idx_167746_index_org_units_on_name"
-  end
-
-  create_table "reference_urls", force: :cascade do |t|
-    t.bigint "reference_id", null: false
-    t.string "name", limit: 255, default: ""
-    t.string "url", limit: 255, default: ""
-    t.timestamptz "created_at", null: false
-    t.timestamptz "updated_at", null: false
-    t.index ["reference_id"], name: "idx_167765_index_reference_urls_on_reference_id"
+    t.index ["ancestry"], name: "idx_167441_index_org_units_on_ancestry"
+    t.index ["name"], name: "idx_167441_index_org_units_on_name"
   end
 
   create_table "references", force: :cascade do |t|
@@ -119,6 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.string "identifier_name", limit: 255, default: ""
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
+    t.string "url"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -126,8 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.text "data"
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.index ["session_id"], name: "idx_167777_index_sessions_on_session_id", unique: true
-    t.index ["updated_at"], name: "idx_167777_index_sessions_on_updated_at"
+    t.index ["session_id"], name: "idx_167472_index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "idx_167472_index_sessions_on_updated_at"
   end
 
   create_table "states", force: :cascade do |t|
@@ -136,8 +130,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
     t.bigint "position", default: 0
-    t.index ["name"], name: "idx_167784_index_states_on_name"
-    t.index ["state"], name: "idx_167784_index_states_on_state"
+    t.index ["name"], name: "idx_167479_index_states_on_name"
+    t.index ["state"], name: "idx_167479_index_states_on_state"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -154,15 +148,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
     t.bigint "user_id"
-    t.index ["deadline"], name: "idx_167794_index_tasks_on_deadline"
-    t.index ["list_id"], name: "idx_167794_index_tasks_on_list_id"
-    t.index ["org_unit_id"], name: "idx_167794_index_tasks_on_org_unit_id"
-    t.index ["priority"], name: "idx_167794_index_tasks_on_priority"
-    t.index ["responsible_id"], name: "idx_167794_index_tasks_on_responsible_id"
-    t.index ["resubmission"], name: "idx_167794_index_tasks_on_resubmission"
-    t.index ["start"], name: "idx_167794_index_tasks_on_start"
-    t.index ["state_id"], name: "idx_167794_index_tasks_on_state_id"
-    t.index ["user_id"], name: "idx_167794_index_tasks_on_user_id"
+    t.index ["deadline"], name: "idx_167489_index_tasks_on_deadline"
+    t.index ["list_id"], name: "idx_167489_index_tasks_on_list_id"
+    t.index ["org_unit_id"], name: "idx_167489_index_tasks_on_org_unit_id"
+    t.index ["priority"], name: "idx_167489_index_tasks_on_priority"
+    t.index ["responsible_id"], name: "idx_167489_index_tasks_on_responsible_id"
+    t.index ["resubmission"], name: "idx_167489_index_tasks_on_resubmission"
+    t.index ["start"], name: "idx_167489_index_tasks_on_start"
+    t.index ["state_id"], name: "idx_167489_index_tasks_on_state_id"
+    t.index ["user_id"], name: "idx_167489_index_tasks_on_user_id"
   end
 
   create_table "time_accountings", force: :cascade do |t|
@@ -173,9 +167,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.bigint "duration"
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.index ["date"], name: "idx_167803_index_time_accountings_on_date"
-    t.index ["task_id"], name: "idx_167803_index_time_accountings_on_task_id"
-    t.index ["user_id"], name: "idx_167803_index_time_accountings_on_user_id"
+    t.index ["date"], name: "idx_167498_index_time_accountings_on_date"
+    t.index ["task_id"], name: "idx_167498_index_time_accountings_on_task_id"
+    t.index ["user_id"], name: "idx_167498_index_time_accountings_on_user_id"
   end
 
   create_table "versions", force: :cascade do |t|
@@ -185,7 +179,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.string "whodunnit", limit: 255
     t.text "object"
     t.timestamptz "created_at"
-    t.index ["item_type", "item_id"], name: "idx_167809_index_versions_on_item_type_and_item_id"
+    t.index ["item_type", "item_id"], name: "idx_167504_index_versions_on_item_type_and_item_id"
   end
 
   create_table "wobauth_authorities", force: :cascade do |t|
@@ -198,9 +192,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.date "valid_until"
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.index ["authorizable_id"], name: "idx_167817_index_wobauth_authorities_on_authorizable_id"
-    t.index ["authorized_for_id"], name: "idx_167817_index_wobauth_authorities_on_authorized_for_id"
-    t.index ["role_id"], name: "idx_167817_index_wobauth_authorities_on_role_id"
+    t.index ["authorizable_id"], name: "idx_167512_index_wobauth_authorities_on_authorizable_id"
+    t.index ["authorized_for_id"], name: "idx_167512_index_wobauth_authorities_on_authorized_for_id"
+    t.index ["role_id"], name: "idx_167512_index_wobauth_authorities_on_role_id"
   end
 
   create_table "wobauth_groups", force: :cascade do |t|
@@ -216,8 +210,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.boolean "auto", default: false
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.index ["group_id"], name: "idx_167835_index_wobauth_memberships_on_group_id"
-    t.index ["user_id"], name: "idx_167835_index_wobauth_memberships_on_user_id"
+    t.index ["group_id"], name: "idx_167530_index_wobauth_memberships_on_group_id"
+    t.index ["user_id"], name: "idx_167530_index_wobauth_memberships_on_user_id"
   end
 
   create_table "wobauth_roles", force: :cascade do |t|
@@ -251,8 +245,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.string "position", limit: 255, default: ""
     t.string "department", limit: 255, default: ""
     t.string "company", limit: 255, default: ""
-    t.index ["reset_password_token"], name: "idx_167847_index_wobauth_users_on_reset_password_token", unique: true
-    t.index ["username"], name: "idx_167847_index_wobauth_users_on_username", unique: true
+    t.index ["reset_password_token"], name: "idx_167542_index_wobauth_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "idx_167542_index_wobauth_users_on_username", unique: true
   end
 
   create_table "workdays", force: :cascade do |t|
@@ -264,9 +258,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_114900) do
     t.timestamptz "updated_at", null: false
     t.bigint "day_type_id"
     t.string "comment", limit: 255, default: ""
-    t.index ["date", "user_id"], name: "idx_167871_index_workdays_on_date_and_user_id", unique: true
-    t.index ["day_type_id"], name: "idx_167871_index_workdays_on_day_type_id"
-    t.index ["user_id"], name: "idx_167871_index_workdays_on_user_id"
+    t.index ["date", "user_id"], name: "idx_167566_index_workdays_on_date_and_user_id", unique: true
+    t.index ["day_type_id"], name: "idx_167566_index_workdays_on_day_type_id"
+    t.index ["user_id"], name: "idx_167566_index_workdays_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id", on_update: :restrict, on_delete: :restrict

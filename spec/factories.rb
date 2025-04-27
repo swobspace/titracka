@@ -35,7 +35,6 @@ FactoryBot.define do
 
   factory :reference do
     name { generate(:aname) }
-    identifier_name { "Number" }
   end
 
   factory :reference_url do
