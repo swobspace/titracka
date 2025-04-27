@@ -153,6 +153,7 @@ end
 bin/rails g scaffold Reference \
   name:string \
   url:string \
+  valid_until:date \
   --no-stylesheets --no-javascripts --no-helper
 ----
 ////

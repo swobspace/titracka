@@ -14,4 +14,6 @@ class Reference < ApplicationRecord
     "#{name}"
   end
 
+  scope :active, -> { where('valid_until >= ? or valid_until IS NULL', Date.current) }
+
 end

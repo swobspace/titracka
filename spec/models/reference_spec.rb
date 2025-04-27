@@ -17,4 +17,12 @@ RSpec.describe Reference, type: :model do
     expect("#{f}").to match("OTRS")
   end
 
+  describe "#active" do
+    let!(:r1) { FactoryBot.create(:reference) }
+    let!(:r2) { FactoryBot.create(:reference, valid_until: 1.month.before(Date.current)) }
+    let!(:r3) { FactoryBot.create(:reference, valid_until: 1.month.after(Date.current)) }
+
+    it { expect(Reference.active).to contain_exactly(r1, r3) }
+  end
+
 end

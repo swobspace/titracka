@@ -10,7 +10,8 @@ RSpec.describe "references/show", type: :view do
 
     @reference = assign(:reference, Reference.create!(
       name: "DontDoIt",
-      url: "https://ddi.none/local/###IDENTIFIER###/"
+      url: "https://ddi.none/local/###IDENTIFIER###/",
+      valid_until: "2199-12-13"
     ))
   end
 
@@ -18,5 +19,6 @@ RSpec.describe "references/show", type: :view do
     render
     expect(rendered).to match(/DontDoIt/)
     expect(rendered).to match("https://ddi.none/local/###IDENTIFIER###/")
+    expect(rendered).to match("2199-12-13")
   end
 end

@@ -12,6 +12,9 @@
 	 %>
       <%= form.input :url
 	 %>
+      <%= form.input :valid_until, as: :date,  html5: true, wrapper: :horizontal_date
+	 %>
+
 
       <%= form.button :submit, class: 'btn btn-primary' %>
       <%= cancel_button %>

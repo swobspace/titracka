@@ -8,7 +8,7 @@
        %>
     </div>
     <div class="col">
-      <%= form.select :reference_id, Reference.all.collect {|r| [r.name, r.id] },
+      <%= form.select :reference_id, Reference.active.collect {|r| [r.name, r.id] },
             { include_blank: false },
             { class: 'form-control select' }
        %>

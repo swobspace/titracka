@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_27_073300) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_27_093103) do
   create_schema "titracka_development"
 
   # These are extensions that must be enabled in order to support this database
@@ -113,6 +113,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_27_073300) do
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
     t.string "url"
+    t.date "valid_until"
   end
 
   create_table "sessions", force: :cascade do |t|
