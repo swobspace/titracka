@@ -45,6 +45,7 @@ class ReferenceUrl  {
 class Reference  {
     name: string
     url: string
+    valid_until: date
 }
 
 class State  {
