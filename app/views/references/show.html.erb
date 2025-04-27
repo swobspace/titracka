@@ -11,13 +11,8 @@
       </tr>
     
       <tr>
-        <th class="w-15"><%= t('attributes.identifier_name')%>:</th>
-        <td><%= @reference.identifier_name %></td>
-      </tr>
-
-      <tr>
-        <th class="w-15"><%= t('attributes.reference_urls')%>:</th>
-        <td><%= @reference.reference_urls.join("<br/>").html_safe %></td>
+        <th class="w-15"><%= t('attributes.reference_url')%>:</th>
+        <td><%= @reference.url %></td>
       </tr>
     </table>
 

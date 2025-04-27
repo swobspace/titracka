@@ -3,7 +3,7 @@ class ReferenceUrl < ApplicationRecord
   belongs_to :reference, optional: false
 
   # -- validations and callbacks
-  validates :name, :url, presence: true
+  # validates :name, :url, presence: true
 
   def to_s
     "#{name} [ #{url} ]"
