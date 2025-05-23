@@ -48,7 +48,7 @@ gem 'devise-remote-user'
 gem 'paper_trail'
 gem 'cancancan'
 gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
-gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
+gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'main'
 gem 'wobaduser', '~> 1.0'
 
 gem 'acts_as_list'
@@ -63,7 +63,7 @@ gem 'rails-controller-testing'
 gem 'exception_notification'
 
 gem "redis", ">= 5.0"
-gem "hiredis-client"
+# gem "hiredis-client"
 gem "prawn"
 gem "prawn-markup"
 
