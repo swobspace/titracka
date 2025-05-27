@@ -104,10 +104,6 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   # --- wob
-  config.cache_store = :redis_cache_store, {
-                         driver: :hiredis, 
-                         url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }
-                       }
   config.colorize_logging = false
 
   config.after_initialize do
