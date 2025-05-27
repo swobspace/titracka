@@ -8,7 +8,7 @@
       <div class="row mb-3">
         <%= form.label :date, class: "form-label col-sm-2" %>
         <div class="col-sm-4">
-          <%=  form.text_field :date, value: Date.current.to_s,
+          <%=  form.text_field :date, value: (note.date.to_s || Date.current.to_s),
                                type: :date, html5: true,
                                class: 'form-control'
           %>

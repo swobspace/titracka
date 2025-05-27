@@ -90,7 +90,7 @@ RSpec.describe "/tasks/:id/notes", type: :request do
         note = Note.create! valid_attributes
         patch task_note_url(task, note), params: { note: new_attributes }
         note.reload
-        expect(note.date.to_s).to eq(Date.today.to_s)
+        expect(note.date.to_s).to eq('2019-01-01')
         expect(note.description.to_plain_text).to eq("rich description")
       end
 
