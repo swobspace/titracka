@@ -77,7 +77,7 @@
       <div class="card-body">
         <ul class="list-group list-group-flush" id="ts_notes_list">
           <%= render partial: 'notes/note', 
-              collection: @task.notes.order("created_at desc"), 
+              collection: @task.notes.order("date desc, created_at desc"), 
               locals: { show_actions: true },
               layout: 'shared/list_group_item_layout' %>
         </ul>

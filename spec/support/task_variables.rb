@@ -21,7 +21,7 @@ shared_context "task variables" do
   let(:list3) { FactoryBot.create(:list, name: "Caro's private list", user: mcaro)}
  
   # -- other stuff
-  let(:ref)   { FactoryBot.create(:reference) }
+  let(:ref)   { FactoryBot.create(:reference, url: "https://somehardstuff") }
 
   # -- tasks
   let!(:t1) { FactoryBot.create(:task,

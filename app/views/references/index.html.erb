@@ -12,8 +12,8 @@
     <thead>
       <tr>
         <th><%= t('attributes.name') %></th>
-        <th><%= t('attributes.identifier_name') %></th>
-        <th><%= t('attributes.reference_urls') %></th>
+        <th><%= t('attributes.reference_url') %></th>
+        <th class="text-center"><%= t('attributes.valid_until') %></th>
         <th class="nosort"><%= t('titracka.action') %></th>
       </tr>
     </thead>
@@ -29,8 +29,8 @@
       <% @references.each do |reference| %>
         <%= content_tag(:tr, id: dom_id(reference), class: dom_class(reference)) do %>
                 <td><%= reference.name %></td>
-                <td><%= reference.identifier_name %></td>
-                <td><%= reference.reference_urls.join('<br/>').html_safe %></td>
+                <td><%= reference.url %></td>
+                <td class="text-center"><%= reference.valid_until %></td>
                 <td class="text-nowrap">
             <%= show_link reference %>
             <%= edit_link reference %>

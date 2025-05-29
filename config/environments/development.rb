@@ -77,10 +77,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   # --- wob
-  config.cache_store = :redis_cache_store, {
-                          driver: :hiredis, 
-                          url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }
-                        }
   config.i18n.raise_on_missing_translations = true
   config.colorize_logging = false
   config.action_mailer.delivery_method = :sendmail

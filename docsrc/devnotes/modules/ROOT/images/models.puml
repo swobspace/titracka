@@ -2,6 +2,7 @@
 
 !theme titracka from .
 
+
 class CrossReference  {
     identifier: string
     subject: string
@@ -34,14 +35,17 @@ class OrgUnit  {
     valid_until: date
 }
 
+/'
 class ReferenceUrl  {
     name: string
     url: string
 }
+'/
 
 class Reference  {
     name: string
-    identifier_name: string
+    url: string
+    valid_until: date
 }
 
 class State  {
@@ -92,7 +96,7 @@ Reference "*" -- "1" Task
 
 Workday - TimeAccounting: virtual association\nbased on date\n+ user_id
 List "*" -- "1" OrgUnit
-ReferenceUrl "*" -- "1" Reference
+'ReferenceUrl "*" -- "1" Reference
 TimeAccounting "*" - "1" Task
 OrgUnit "1" -- "*" Task
 

@@ -25,7 +25,7 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = @noteable.notes.build(note_params.merge({date: Date.today, user_id: current_user.id}))
+    @note = @noteable.notes.build(note_params.merge({user_id: current_user.id}))
 
     respond_with(@note, location: location) do |format|
       if @note.save
@@ -38,7 +38,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   def update
     respond_with(@note, location: location) do |format|
-      if @note.update(note_params.merge({date: Date.today, user_id: current_user.id}))
+      if @note.update(note_params.merge({user_id: current_user.id}))
         format.turbo_stream
       end
     end

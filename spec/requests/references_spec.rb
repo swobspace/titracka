@@ -20,7 +20,7 @@ RSpec.describe "/references", type: :request do
   }
 
   let(:invalid_attributes) {
-    { name: nil, identifier_name: nil }
+    { name: nil }
   }
 
   before(:each) do
@@ -90,11 +90,8 @@ RSpec.describe "/references", type: :request do
     context "with valid parameters" do
       let(:new_attributes) {{
         name: "DontDoIt",
-        identifier_name: "TicketNumber",
-        reference_urls_attributes: [
-          name: "Websocke",
-          url: "http://just.another.url/"
-        ]
+        url: "http://just.another.url/",
+        valid_until: '2999-12-13'
       }}
 
       it "updates the requested reference" do
@@ -102,9 +99,8 @@ RSpec.describe "/references", type: :request do
         patch reference_url(reference), params: { reference: new_attributes }
         reference.reload
         expect(reference.name).to eq("DontDoIt")
-        expect(reference.identifier_name).to eq("TicketNumber")
-        expect(reference.reference_urls.first.name).to eq("Websocke")
-        expect(reference.reference_urls.first.url).to eq("http://just.another.url/")
+        expect(reference.url).to eq("http://just.another.url/")
+        expect(reference.valid_until.to_s).to eq("2999-12-13")
       end
 
       it "redirects to the reference" do

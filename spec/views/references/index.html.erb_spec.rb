@@ -11,19 +11,13 @@ RSpec.describe "references/index", type: :view do
     @reference = assign(:references, [
       Reference.create!(
         name: "DontDoIt",
-        identifier_name: "Ticketnumber",
-        reference_urls_attributes: [
-          name: "DDI/Web",
-          url: "https://ddi.none/local/###IDENTIFIER###/"
-        ]
+        url: "https://ddi.none/local/###IDENTIFIER###/",
+        valid_until: "2199-12-13"
       ),
       Reference.create!(
         name: "DontDoIt2",
-        identifier_name: "Ticketnumber",
-        reference_urls_attributes: [
-          name: "DDI/Web",
-          url: "https://ddi.none/local/###IDENTIFIER###/"
-        ]
+        url: "https://ddi.none/local/###IDENTIFIER###/",
+        valid_until: "2199-12-13"
       )
     ])
   end
@@ -32,7 +26,7 @@ RSpec.describe "references/index", type: :view do
     render
     assert_select "tr>td", text: "DontDoIt".to_s, count: 1
     assert_select "tr>td", text: "DontDoIt2".to_s, count: 1
-    assert_select "tr>td", text: "Ticketnumber".to_s, count: 2
-    assert_select "tr>td", text: "DDI/Web [ https://ddi.none/local/###IDENTIFIER###/ ]".to_s, count: 2
+    assert_select "tr>td", text: "https://ddi.none/local/###IDENTIFIER###/".to_s, count: 2
+    assert_select "tr>td", text: "2199-12-13".to_s, count: 2
   end
 end

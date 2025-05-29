@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "tasks/show", type: :view do
-  let(:reference) { FactoryBot.create(:reference, name: "DontDoIt") }
+  let(:reference) { FactoryBot.create(:reference, name: "DontDoIt", url: "xxx") }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)

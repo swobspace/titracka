@@ -51,10 +51,6 @@ class ReferencesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def reference_params
-      params.require(:reference).permit(
-        :name, :identifier_name, reference_urls_attributes: [
-          :_destroy, :id, :name, :url
-        ]
-      )
+      params.require(:reference).permit(:name, :url, :valid_until)
     end
 end

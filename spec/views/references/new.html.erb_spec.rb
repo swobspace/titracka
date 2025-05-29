@@ -16,7 +16,8 @@ RSpec.describe "references/new", type: :view do
 
     assert_select "form[action=?][method=?]", references_path, "post" do
       assert_select "input[name=?]", "reference[name]"
-      assert_select "input[name=?]", "reference[identifier_name]"
+      assert_select "input[name=?]", "reference[url]"
+      assert_select "input[name=?]", "reference[valid_until]"
     end
   end
 end
