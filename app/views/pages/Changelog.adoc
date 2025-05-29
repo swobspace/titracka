@@ -1,10 +1,12 @@
 = Changelog
 
-=== 2.2.0-dev / unreleased
+=== 2.2.0 / 2025-05-29
 
 ----
 * BREAKING CHANGE: remove model referencer_url, integrate url to model reference
 * add Reference#valid_until and show only active references in form
+* Ruby 3.3
+* fix minor bugs
 ----
 
 === 2.1.1 / 2025-04-26
