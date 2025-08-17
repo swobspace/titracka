@@ -1,11 +1,12 @@
 @use 'trix/dist/trix.css';
 @use 'jstree/dist/themes/default/style.css';
 
-@import 'breadcrumbs';
-@import 'datatables.net-bs5/css/dataTables.bootstrap5';
-@import 'datatables.net-buttons-bs5/css/buttons.bootstrap5';
-@import 'actiontext';
-@import 'flatpickr/dist/flatpickr';
+@use './breadcrumbs.scss';
+@use 'datatables.net-bs5/css/dataTables.bootstrap5';
+@use 'datatables.net-buttons-bs5/css/buttons.bootstrap5';
+@use 'actiontext';
+@use 'flatpickr/dist/flatpickr';
+@use './titracka.scss';
 $fa-font-path: 'fawefonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 @import '@fortawesome/fontawesome-free/scss/brands';
@@ -13,6 +14,5 @@ $fa-font-path: 'fawefonts';
 @import '@fortawesome/fontawesome-free/scss/regular';
 @import '@fortawesome/fontawesome-free/scss/v4-shims';
 @import 'tom-select/dist/css/tom-select.bootstrap5';
-@import 'titracka';
 
 

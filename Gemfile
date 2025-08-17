@@ -6,7 +6,7 @@ gem 'puma'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'rails-i18n', '~> 7.0.0'
-gem 'sprockets-rails'
+gem 'propshaft'
 
 group :development do
   gem 'capistrano', require: false
