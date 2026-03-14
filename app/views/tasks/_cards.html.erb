@@ -1,11 +1,11 @@
 <div data-controller="toggle" data-toggle-toggle-class="hidden">
-  <div class="row">
+  <div class="d-flex justify-content-between">
     <span class="clapse btn" data-action="click->toggle#toggleAll">
       <i class="clapse" data-toggle-target="content"></i>
     </span>
   </div>
 
-  <div class="row bg-light border rounded-top>
+  <div class="bg-light border rounded-start">
     <%= render TasksComponent.new(tasks: tasks, columns: columns, mode: 'cards', ability: ability) %>
   </div>
 
