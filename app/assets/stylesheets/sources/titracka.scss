@@ -251,6 +251,18 @@ a:link.primary-link,
 a:visited.primary-link {
   text-decoration: none;
 }
+a.clicked-link {
+  text-decoration: none;
+  color: white;
+  background-color: $primary;
+  padding: .25em 0.5em;
+  margin: -0.5em;
+  border-radius: 5px;
+}
+a.clicked-link::before {
+  color: white !important;
+}
+
 a:hover.primary-link,
 a:active.primary-link {
   text-decoration: underline;
@@ -310,3 +322,43 @@ form.button_to {
 //   margin-left: 12px;
 //   margin-right: 12px;
 // }
+
+
+// 
+// Styling sidebar
+//
+nav.sidebar > ul {
+  list-style-type: none;
+  padding-left: 0rem !important;
+}
+nav.sidebar ul {
+  list-style-type: none;
+  // padding-left: 1rem;
+}
+
+nav.sidebar > ul > li > a.list::before {
+  content: "\f03a ";
+}
+
+nav.sidebar > ul > li > a.org_unit::before, {
+  content: "\f500 ";
+}
+
+nav.sidebar a.org_unit::before {
+  color: #666;
+  content: "\2514   \f500 ";
+  font: var(--fa-font-solid);
+}
+
+nav.sidebar a.list::before {
+  color: #666;
+  content: "\2514   \f03a ";
+  font: var(--fa-font-solid);
+}
+
+nav.sidebar a.privateTasks::before {
+  color: #666;
+  content: "\f023 ";
+  font: var(--fa-font-solid);
+}
+

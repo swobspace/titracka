@@ -1,7 +1,7 @@
 <%= render 'shared/turbo-cache-control' %>
 
 <div class="row">
-   <div class="col-auto">
+   <div class="col-auto mt-3">
      <div class="card">
       <div class="card-header">
         <%= t('controller.org_units') %> /
@@ -19,21 +19,23 @@
                   data: { "action": "click->dashboard#open",
                           "url": polymorphic_path(element) },
                   id: dom_id(element),
-                  class: (element.model_name.to_s.underscore +
-                          if @element == element
-                            " jstree-clicked"
-                           end.to_s)
+                  class: [ element.model_name.to_s.underscore,
+                           if @element == element
+                             "clicked clicked-link"
+                           else
+                             "primary-link"
+                           end
+                         ].compact.join(" ")
             %>
           <% end %>
           <ul role="group">
             <li role="presentation">
-              <%= link_to " Private", root_path(private: 1),
+              <%= link_to " Privat", root_path(private: 1),
                   data: { "action": "click->dashboard#open" },
                   id: "privateTasksId",
-                  class: ("privateTasks" +
-                           if params['private'].present?
-                             " jstree-clicked"
-                           end.to_s)
+                  class: ["privateTasks",
+                          "primary-link"
+                         ].compact.join(" ")
               %>
             </li>
           </ul>
