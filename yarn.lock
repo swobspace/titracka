@@ -755,22 +755,10 @@ jpeg-exif@^1.1.4:
   resolved "https://registry.yarnpkg.com/jpeg-exif/-/jpeg-exif-1.1.4.tgz#781a65b6cd74f62cb1c493511020f8d3577a1c2b"
   integrity sha512-a+bKEcCjtuW5WTdgeXFzswSrdqi0jk4XlEtZlx5A94wCoBpFjfFTbo/Tra5SpNCl/YFZPvcV1dJc+TAYeg6ROQ==
 
-jquery.dirtyforms@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/jquery.dirtyforms/-/jquery.dirtyforms-2.0.0.tgz#0a53011595d3d19c2c81c0e91ba0078439ed0d2d"
-  integrity sha512-iGhN+ESRCYgR1Tz3Z5RwKhCZi+1LMQiglHxghtTk10O1KmjvZwd2HUrSsV9Zn3ntFgDzYcQcLNERUAAF4RDT/A==
-  dependencies:
-    jquery ">=1.4.2"
-
-jquery@>=1.4.2, jquery@>=1.7:
+jquery@>=1.7:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-4.0.0.tgz#95c33ac29005ff72ec444c5ba1cf457e61404fbb"
   integrity sha512-TXCHVR3Lb6TZdtw1l3RTLf8RBWVGexdxL6AC8/e0xZKEpBflBsjh9/8LXw+dkNFuOyW9B7iB3O1sP7hS0Kiacg==
-
-jquery@^3.5.0:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
-  integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
 
 jsonfile@^6.0.1:
   version "6.2.0"
@@ -780,13 +768,6 @@ jsonfile@^6.0.1:
     universalify "^2.0.0"
   optionalDependencies:
     graceful-fs "^4.1.6"
-
-jstree@^3.3.10:
-  version "3.3.17"
-  resolved "https://registry.yarnpkg.com/jstree/-/jstree-3.3.17.tgz#aa7f22ee504ba7f63f8942c3d71c62ff21f756cf"
-  integrity sha512-V0Pl1B6BIaxHUQMiWkol37QlhlBKoZA9RUeUmm95+UnV2QeZsj2QP1sOQl/m2EIOyZXOOxOHvR0SYZLSDC7EFw==
-  dependencies:
-    jquery "^3.5.0"
 
 jszip@^3.5.0:
   version "3.10.1"
