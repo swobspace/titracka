@@ -173,45 +173,35 @@ i.clapse {
   width: 2.5em;
   height: 2em;
 }
-i.clapse:before {
-  // content: "\f422";
-  // content: "\f2d1";
-  // content: "\f077";
+i.clapse::before {
   content: "\f0d8";
-  // color: #bbb;
   font-weight: 900;
-  font-family: "Font Awesome 5 Free";
+  font: var(--fa-font-solid);
   font-size: 1.2em;
   font-style: normal;
   position: absolute;
-  top:-0.8em;
+  top:-0.25em;
 }
-i.clapse.hidden:before {
-  // content: "\f424";
-  // content: "\f2d0";
-  //content: "\f078";
+i.clapse.hidden::before {
   content: "\f0d7";
-  // color: #bbb;
-  font-weight: 900;
-  font-family: "Font Awesome 5 Free";
-  font-size: 1.2em;
-  font-style: normal;
-  position: absolute;
-  top:-0.8em;
 }
 .icon-color {
-  // color: #992828; // hue: 0 ; saturation: 74; value: 60
-
-  // color: #176775; // primary
-  // color: #489BA8; // info
-
   color: #666;
-  //color: #312799; // hue: 245 ; saturation: 74; value: 60
-  // color: #802121; // hue: 0 ; saturation: 74; value: 50
-  //color: #FF7D7D; // hue: 0 ; saturation: 51; value: 100
-  // color: #CC3535; // value: 80; saturation:74; hue: 0
-  // color: #CC353F; // value: 80; saturation:74; hue: 356
-  // color: #CC525A; // value: 80; saturation:60; hue: 356
+}
+
+i.card-top-icon {
+  color: #666;
+}
+
+i.card-top-icon::before {
+  top: -0.5em;
+}
+
+.mt-n3 {
+  margin-top: -.75rem !important;
+}
+.mt-n4 {
+  margin-top: -1rem !important;
 }
 
 .timeline {
@@ -233,7 +223,7 @@ button.toggler::after {
   content: "\f0d7";
   color: #666;
   font-weight: 900;
-  font-family: "Font Awesome 5 Free";
+  font: var(--fa-font-solid);
   font-size: small;
   font-style: normal;
   position: absolute;
@@ -259,6 +249,18 @@ a:link.primary-link,
 a:visited.primary-link {
   text-decoration: none;
 }
+a.clicked {
+  text-decoration: none;
+  color: white;
+  background-color: $primary;
+  padding: .25em 0.5em;
+  margin: -0.5em;
+  border-radius: 5px;
+}
+a.clicked::before {
+  color: white !important;
+}
+
 a:hover.primary-link,
 a:active.primary-link {
   text-decoration: underline;
@@ -318,3 +320,43 @@ form.button_to {
 //   margin-left: 12px;
 //   margin-right: 12px;
 // }
+
+
+// 
+// Styling sidebar
+//
+nav.sidebar > ul {
+  list-style-type: none;
+  padding-left: 0rem !important;
+}
+nav.sidebar ul {
+  list-style-type: none;
+  // padding-left: 1rem;
+}
+
+nav.sidebar > ul > li > a.list::before {
+  content: "\f03a ";
+}
+
+nav.sidebar > ul > li > a.org_unit::before, {
+  content: "\f500 ";
+}
+
+nav.sidebar a.org_unit::before {
+  color: #666;
+  content: "\2514   \f500 ";
+  font: var(--fa-font-solid);
+}
+
+nav.sidebar a.list::before {
+  color: #666;
+  content: "\2514   \f03a ";
+  font: var(--fa-font-solid);
+}
+
+nav.sidebar a.privateTasks::before {
+  color: #666;
+  content: "\f023 ";
+  font: var(--fa-font-solid);
+}
+

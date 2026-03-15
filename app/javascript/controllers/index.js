@@ -18,8 +18,8 @@ application.register("calendar", CalendarController)
 import CheckboxListController from "./checkbox_list_controller"
 application.register("checkbox-list", CheckboxListController)
 
-import DashboardController from "./dashboard_controller"
-application.register("dashboard", DashboardController)
+//import DashboardController from "./dashboard_controller"
+//application.register("dashboard", DashboardController)
 
 import DatatablesController from "./datatables_controller"
 application.register("datatables", DatatablesController)

@@ -1,8 +1,8 @@
 <%= render 'shared/turbo-cache-control' %>
 
-<div class="row">
-   <div class="col-auto">
-     <div class="card">
+<div class="row mt-n3">
+   <div class="col-xs-12 col-sm-5 col-lg-4 col-xl-3">
+     <div class="card mt-4">
       <div class="card-header">
         <%= t('controller.org_units') %> /
         <%= t('controller.lists') %>
@@ -19,21 +19,26 @@
                   data: { "action": "click->dashboard#open",
                           "url": polymorphic_path(element) },
                   id: dom_id(element),
-                  class: (element.model_name.to_s.underscore +
-                          if @element == element
-                            " jstree-clicked"
-                           end.to_s)
+                  class: [ element.model_name.to_s.underscore,
+                           if @element == element
+                             "clicked"
+                           else
+                             "primary-link"
+                           end
+                         ].compact.join(" ")
             %>
           <% end %>
           <ul role="group">
             <li role="presentation">
-              <%= link_to " Private", root_path(private: 1),
+              <%= link_to " Privat", root_path(private: 1),
                   data: { "action": "click->dashboard#open" },
                   id: "privateTasksId",
-                  class: ("privateTasks" +
-                           if params['private'].present?
-                             " jstree-clicked"
-                           end.to_s)
+                  class: ["privateTasks",
+                          "primary-link",
+                          if params[:private].present?
+                            "clicked"
+                          end
+                         ].compact.join(" ")
               %>
             </li>
           </ul>
@@ -41,7 +46,7 @@
       </div>
     </div>
   </div>
-  <div id="ts_task_cards" class="col">
+  <div id="ts_task_cards" class="col me-1">
     <%= render('tasks/cards', columns: @columns, 
                               tasks: @tasks,
                               filter: @filter,
