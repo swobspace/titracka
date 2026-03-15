@@ -21,7 +21,7 @@
                   id: dom_id(element),
                   class: [ element.model_name.to_s.underscore,
                            if @element == element
-                             "clicked clicked-link"
+                             "clicked"
                            else
                              "primary-link"
                            end
@@ -34,7 +34,10 @@
                   data: { "action": "click->dashboard#open" },
                   id: "privateTasksId",
                   class: ["privateTasks",
-                          "primary-link"
+                          "primary-link",
+                          if params[:private].present?
+                            "clicked"
+                          end
                          ].compact.join(" ")
               %>
             </li>

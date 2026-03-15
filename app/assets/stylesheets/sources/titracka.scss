@@ -251,7 +251,7 @@ a:link.primary-link,
 a:visited.primary-link {
   text-decoration: none;
 }
-a.clicked-link {
+a.clicked {
   text-decoration: none;
   color: white;
   background-color: $primary;
@@ -259,7 +259,7 @@ a.clicked-link {
   margin: -0.5em;
   border-radius: 5px;
 }
-a.clicked-link::before {
+a.clicked::before {
   color: white !important;
 }
 
