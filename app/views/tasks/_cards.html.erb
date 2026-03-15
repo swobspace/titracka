@@ -1,9 +1,17 @@
 <div data-controller="toggle" data-toggle-toggle-class="hidden">
-  <div class="d-flex justify-content-between">
+  <dv class="d-flex justify-content-between">
     <span class="clapse btn" data-action="click->toggle#toggleAll">
       <i class="clapse" data-toggle-target="content"></i>
     </span>
-  </div>
+    <div>
+      <%= link_to(raw(%Q[<i class="fa-solid fa-expand"></i>]), 
+                  polymorphic_path(@element),
+                  class: "clapse"
+                 ) if @element.present?
+       %>
+    </div>
+  </dv>
+
 
   <div class="bg-light border rounded-start">
     <%= render TasksComponent.new(tasks: tasks, columns: columns, mode: 'cards', ability: ability) %>
