@@ -9,27 +9,15 @@ gem 'rails-i18n', '~> 7.0.0'
 gem 'propshaft'
 
 group :development do
-  gem 'capistrano', require: false
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-passenger'
-  gem 'capistrano-yarn'
   gem 'guard'
-  gem 'guard-livereload', require: false
-  gem 'guard-rails'
-  gem 'guard-bundler'
+  gem 'guard-rspec', require: false
   gem 'web-console', '>= 4.1.0'
-  gem 'listen', '~> 3.3'
-  gem 'libnotify'
-  # gem 'railroady'
-  # gem 'rails-plantuml-generator', git: 'https://github.com/HappyKadaver/rails-plantuml-generator'
 end
 
 group :test, :development do
   gem 'rspec-rails'
   gem 'dotenv'
-  gem 'guard-rspec', require: false
   gem 'byebug'
-
   gem 'json_spec', require: false
 end
 
