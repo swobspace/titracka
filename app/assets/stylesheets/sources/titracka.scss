@@ -179,6 +179,7 @@ i.clapse::before {
   font: var(--fa-font-solid);
   font-size: 1.2em;
   font-style: normal;
+  color: #666;
   position: absolute;
   top:-0.25em;
 }
@@ -189,12 +190,11 @@ i.clapse.hidden::before {
   color: #666;
 }
 
-i.card-top-icon {
-  color: #666;
-}
-
-i.card-top-icon::before {
+i.clapse.clapse-5::before {
   top: -0.5em;
+}
+i.clapse.clapse-7::before {
+  top: -0.75em;
 }
 
 .mt-n3 {
