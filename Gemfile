@@ -1,35 +1,23 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 7.2.0'
+gem 'rails', '~> 8.1.0'
 gem 'pg'
 gem 'puma'
-gem 'jbuilder', '~> 2.7'
+gem 'jbuilder', '~> 2.14'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'rails-i18n', '~> 7.0.0'
-gem 'sprockets-rails'
+gem 'rails-i18n', '~> 8.1.0'
+gem 'propshaft'
 
 group :development do
-  gem 'capistrano', require: false
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-passenger'
-  gem 'capistrano-yarn'
   gem 'guard'
-  gem 'guard-livereload', require: false
-  gem 'guard-rails'
-  gem 'guard-bundler'
+  gem 'guard-rspec', require: false
   gem 'web-console', '>= 4.1.0'
-  gem 'listen', '~> 3.3'
-  gem 'libnotify'
-  # gem 'railroady'
-  # gem 'rails-plantuml-generator', git: 'https://github.com/HappyKadaver/rails-plantuml-generator'
 end
 
 group :test, :development do
   gem 'rspec-rails'
   gem 'dotenv'
-  gem 'guard-rspec', require: false
   gem 'byebug'
-
   gem 'json_spec', require: false
 end
 
@@ -54,9 +42,7 @@ gem 'wobaduser', '~> 1.0'
 gem 'acts_as_list'
 gem 'ancestry'
 gem 'asciidoctor'
-gem 'js-routes'
 gem 'yaml_db'
-gem 'pagy'
 gem 'draper'
 
 gem 'rails-controller-testing'

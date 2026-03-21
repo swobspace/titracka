@@ -16,7 +16,7 @@ RSpec.describe "Dashboard", type: :feature do
       expect(page).to have_content("Mustermann GmbH")
       expect(page).to have_content("Controlling")
       expect(page).to have_content("Mustermanns global list")
-      expect(page).to have_content("Private")
+      expect(page).to have_content("Privat")
     end
 
     it "shows cardboard with available tasks" do

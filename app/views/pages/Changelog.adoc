@@ -1,5 +1,14 @@
 = Changelog
 
+=== 2.3.0 / 2026-03-21
+
+----
+* Rails 8.1 + propshaft
+* fontawesome 7
+* remove jstree and pagy
+* Ruby 3.4
+----
+
 === 2.2.0 / 2025-05-29
 
 ----

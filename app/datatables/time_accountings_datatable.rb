@@ -48,7 +48,11 @@ class TimeAccountingsDatatable < ApplicationDatatable
   end
 
   def time_accountings_query
-    time_accountings = relation.order("#{sort_column} #{sort_direction}")
+    if params[:order]
+      time_accountings = relation.order("#{sort_column} #{sort_direction}")
+    else
+      terminals = relation
+    end
     time_accountings = TimeAccountingQuery.new(time_accountings.joins(:task), 
                                                search_params(params, search_columns)).all
   end
@@ -57,7 +61,8 @@ class TimeAccountingsDatatable < ApplicationDatatable
     if params['length'] == "-1"
       time_accountings = time_accountings_query
     else
-      @pagy, time_accountings = pagy(time_accountings_query, page: page, limit: per_page)
+      # @pagy, time_accountings = pagy(time_accountings_query, page: page, limit: per_page)
+      time_accountings = time_accountings_query.offset((page - 1)*per_page).limit(per_page)
     end
     time_accountings
   end
