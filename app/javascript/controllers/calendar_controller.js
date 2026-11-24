@@ -1,10 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
-import { Calendar } from '@fullcalendar/core'
-import interactionPlugin from '@fullcalendar/interaction'
-import multiMonthPlugin from '@fullcalendar/multimonth'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import deLocale from '@fullcalendar/core/locales/de'
+import { Calendar } from 'fullcalendar'
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import multiMonthPlugin from 'fullcalendar/multimonth'
+import dayGridPlugin from 'fullcalendar/daygrid'
+import interactionPlugin from 'fullcalendar/interaction'
+import deLocale from 'fullcalendar/locales/de'
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 export default class extends Controller {
   static values = {
