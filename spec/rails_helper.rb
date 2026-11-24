@@ -11,28 +11,18 @@ require 'shoulda/matchers'
 require 'factory_bot_rails'
 require 'view_component/test_helpers'
 require 'capybara/rspec'
+require 'capybara-playwright-driver'
 
-Capybara.register_driver :chrome_headless do |app|
-  # url = "http://#{ENV['SELENIUM_REMOTE_HOST']}:4444/wd/hub"
-  options = Selenium::WebDriver::Chrome::Options.new
-
-  options.add_argument("--headless=new")
-  options.add_argument("--no-sandbox")
-  options.add_argument("--disable-dev-shm-usage")
-  options.add_argument("--window-size=1280,1280")
-  # options.add_argument("disable-gpu")
-
-  Capybara::Selenium::Driver.new(
+Capybara.register_driver :my_playwright do |app|
+  Capybara::Playwright::Driver.new(
     app,
-    browser: :chrome,
-    # url: url,
-    options: options
+    browser_type: :chromium,
+    headless: true,
+    viewport: { width: 1280, height: 1280 }
   )
 end
 
-# Capybara.javascript_driver = :selenium_chrome
-# Capybara.javascript_driver = :selenium_chrome_headless
-Capybara.javascript_driver = :chrome_headless
+Capybara.javascript_driver = :my_playwright
 Capybara.disable_animation = true
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
