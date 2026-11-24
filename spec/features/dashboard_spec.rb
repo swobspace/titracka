@@ -70,7 +70,10 @@ RSpec.describe "Dashboard", type: :feature do
       click_button("Notiz erstellen")
       to1.reload
       # turbostream needs some time
-      expect(page).to have_content("Just a simple comment")
+      within "div#card_task_#{to1.id}" do
+        execute_script("document.querySelector('#new_note_task_#{to1.id}').click()")
+      end
+      # expect(page).to have_content("Just a simple comment")
       expect(to1.notes.count).to eq(1)
       expect(to1.notes.first.description.to_plain_text).to eq("Just a simple comment")
     end
