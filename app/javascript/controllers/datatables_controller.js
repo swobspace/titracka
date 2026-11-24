@@ -57,6 +57,8 @@ export default class extends Controller {
 
   // search fields for each column
   setInputFields(dtable) {
+    this.element.querySelectorAll('table tfoot th:not(.nosearch) input')
+        .forEach(f => {f.remove()})
     this.element.querySelectorAll("table tfoot th:not(.nosearch)")
         .forEach((th, idx) => {
           let col = th.getAttribute("data-dt-column")
@@ -71,7 +73,7 @@ export default class extends Controller {
 
   // single search input field
   searchField(idx, text) {
-    return `<input type="text" placeholder="search" name="idx${idx}" value="${text}"/>`
+    return `<input type="text" placeholder="Suche" name="idx${idx}" value="${text}"/>`
   }
 
   // datatables options
@@ -82,7 +84,7 @@ export default class extends Controller {
     options.retrieve = true
     options.stateSave = true
     options.stateDuration = 60 * 60 * 24
-    options.lengthMenu = [10, 25, 100, 250, 1000, { label: 'All', value: -1}]
+    options.lengthMenu = [10, 25, 100, 250, 1000, { label: 'Alle', value: -1}]
     options.columnDefs = [ { "targets": "nosort", "orderable": false },
                            { "targets": "notvisible", "visible": false },
                            { "targets": "actions", "className": "actions" } ]
@@ -97,20 +99,21 @@ export default class extends Controller {
     if (this.hasUrlValue) {
       this.remoteOptions(options)
     }
-    // this.languageOptions(options)
+    this.languageOptions(options)
   }
 
   simpleOptions(options) {
-    options.dom =  "<'row '<'col-sm-12'tr>>" +
-                   "<'row mt-2 justify-content-between'<'col-md-auto me-auto mt-1'l><'col-md-auto me-auto mt-2'i><'col-md-auto ms-auto'p>>"
+    options.layout = {
+      topEnd: 'null'
+    }
     options.pagingType = "numbers"
   }
 
 
   buttonOptions(options) {
-    options.dom = "<'row mt-2 justify-content-between'<'col-md-auto me-auto'l><'col-md-auto'B>>" +
-                    "<'row mt-2 justify-content-md-center'<'col-sm-12'tr>>" +
-                    "<'row mt-2 justify-content-between'<'col-md-auto me-auto'i><'col-md-auto ms-auto'p>>"
+    options.layout = {
+      topEnd: 'buttons'
+    }
     options.buttons = {
       dom: {
         button: {
@@ -125,22 +128,17 @@ export default class extends Controller {
                                 window.location.reload();
                               }},
                  { "extend": 'csv',
-                   "title": null,
-	           "exportOptions": { "columns": ':visible',
-                                      "search": ':applied' } },
+	           "exportOptions": { "search": ':applied' } },
                  { "extend": 'excel',
-                   "title": null,
 	           "exportOptions": { "columns": ':visible',
                                       "search": ':applied' } },
                  { "extend": 'pdf',
-                   "title": null,
 	           "orientation": 'landscape',
 	           "pageSize": 'A4',
 	           "exportOptions": { "columns": ':visible',
 	                              "search": ':applied' } },
-                 { "extend": 'print',
-                   "title": null },
-                 { "extend": 'colvis', "columns": ':gt(0)',
+                 { "extend": 'print'},
+                 { "extend": 'colvis',
                    "text": "Sichbare Spalten" }
                ]
     }
@@ -167,6 +165,7 @@ export default class extends Controller {
 
   colvis_change_listener(dtable) {
     const search = this.createSearchWithDebounce(dtable)
+    const tbl = dtable.table().node()
     let _this = this
     dtable.on('column-visibility.dt', function (e, settings, column, state) {
       if (state) {
@@ -177,19 +176,30 @@ export default class extends Controller {
 	    th.insertAdjacentHTML('afterbegin', _this.searchField(column, ''))
 	  }
         }
-        $('input[name=idx'+column+']').on( 'keyup change', function() {
-          search(column, this.value)
-        })
+	let sinput = tbl.querySelector(`tfoot tr th input[name="idx${column}"]`)
+	if (sinput) {
+	  ['keyup', 'change'].forEach(eventType => {
+	    sinput.addEventListener(eventType, function() {
+	      search(column, this.value)
+	    })
+	  })
+        }
       }
     })
   }
 
   process_search_input(dtable) {
     const search = this.createSearchWithDebounce(dtable)
+    const tbl = dtable.table().node()
     dtable.columns().eq(0).each((colIdx) => {
-      $('input[name=idx'+colIdx+']').on( 'keyup change', function() {
-	search(colIdx, this.value)
-      })
+      let sinput = tbl.querySelector(`tfoot tr th input[name="idx${colIdx}"]`)
+      if (sinput) {
+        ['keyup', 'change'].forEach(eventType => {
+          sinput.addEventListener(eventType, function() {
+	    search(colIdx, this.value)
+          })
+        })
+      }
     })
   }
 
