@@ -51,7 +51,7 @@ class TimeAccountingsDatatable < ApplicationDatatable
     if params[:order]
       time_accountings = relation.order("#{sort_column} #{sort_direction}")
     else
-      terminals = relation
+      time_accountings = relation
     end
     time_accountings = TimeAccountingQuery.new(time_accountings.joins(:task), 
                                                search_params(params, search_columns)).all
